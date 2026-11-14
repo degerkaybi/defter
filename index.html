@@ -78,7 +78,7 @@ body{
   font-size:16px;
   padding-left:max(16px,env(safe-area-inset-left,0px));
   padding-right:max(16px,env(safe-area-inset-right,0px));
-  padding-block:0 124px;
+  padding-block:14px 124px;
 }
 button{font:inherit;color:inherit;background:none;border:0;padding:0;margin:0;cursor:pointer;text-align:inherit;transition:background-color .15s,color .15s,opacity .15s}
 button:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid var(--blue-soft);outline-offset:2px}
@@ -86,16 +86,16 @@ h1{margin:0;font-weight:inherit}
 .app{max-width:560px;margin:0 auto}
 
 /* top bar */
-.top{display:flex;align-items:center;justify-content:flex-end;height:54px}
-.gear{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;color:var(--ink-soft);background:var(--chip)}
+.gear{pointer-events:auto;flex:none;width:52px;height:52px;border-radius:50%;display:grid;place-items:center;color:var(--ink-soft);background:var(--desk);border:1px solid var(--rule-strong);box-shadow:var(--shadow)}
 
 /* period navigation */
 .nav{display:grid;grid-template-columns:40px minmax(0,1fr) 40px;align-items:start;gap:8px;margin:0 0 20px}
 .arrow{width:40px;height:40px;margin-top:4px;border-radius:50%;display:grid;place-items:center;color:var(--ink-soft);background:var(--chip)}
 .nav .t{text-align:center;min-width:0}
-.title{font:400 calc(35px*var(--hs))/1.15 var(--hand);color:var(--ink)}
+.title{font:400 calc(30px*var(--hs))/1.2 var(--hand);color:var(--ink);white-space:nowrap}
 .sub{font:400 calc(22px*var(--hs))/1.2 var(--hand);color:var(--blue)}
-.back{display:inline-block;margin-right:10px;padding:9px 15px;border-radius:999px;background:var(--blue-wash);color:var(--blue);font:500 13px/1 var(--sans)}
+.backwrap{position:fixed;left:0;right:0;bottom:calc(76px + env(safe-area-inset-bottom,0px));z-index:19;display:flex;justify-content:flex-end;max-width:560px;margin:0 auto;padding:0 max(16px,env(safe-area-inset-right,0px)) 0 max(16px,env(safe-area-inset-left,0px));pointer-events:none}
+.back{pointer-events:auto;padding:10px 16px;border-radius:999px;background:var(--sheet);border:1px solid var(--blue-soft);color:var(--blue);box-shadow:var(--shadow);font:500 13px/1 var(--sans)}
 .datepick{position:relative;display:inline-block;max-width:100%}
 .datepick input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;font-size:16px;border:0;padding:0}
 
@@ -231,6 +231,20 @@ h1{margin:0;font-weight:inherit}
   background:var(--ink);color:var(--paper);border-radius:14px;box-shadow:var(--shadow);padding:11px 16px;font:14px/1.3 var(--sans);
 }
 .toast button{color:var(--paper);font-weight:600;text-decoration:underline}
+.bar{display:flex;gap:8px;align-items:center;max-width:560px;margin:0 auto}
+.bar .tabs-in{flex:1;margin:0;max-width:none}
+@media (max-width:759px){.arrow{background:none}}
+@media (min-width:760px){
+  body{padding-block:44px 112px}
+  .app{min-height:calc(100vh - 156px);display:flex;flex-direction:column}
+  #page{flex:1;display:flex;flex-direction:column}
+  #page>div{flex:1;display:flex;flex-direction:column}
+  #page>div>.lines.margin:last-child{flex:1}
+  .title{font-size:calc(36px*var(--hs))}
+  .tabs{padding-bottom:44px}
+  .backwrap{bottom:112px}
+  .toast{bottom:112px}
+}
 /* drag and drop */
 .cb{-webkit-touch-callout:none;-webkit-user-select:none;user-select:none;cursor:grab}
 body.dragging-now{-webkit-user-select:none;user-select:none;cursor:grabbing}
@@ -249,15 +263,11 @@ body.dragging-now{-webkit-user-select:none;user-select:none;cursor:grabbing}
 </style>
 
 <div class="app">
-  <header class="top">
-    <button class="back" id="backBtn" type="button" hidden></button>
-    <button class="gear" id="gear" type="button" aria-label="Ayarlar">
-      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M4 7h10M18 7h2M4 17h2M10 17h10"/><circle cx="16" cy="7" r="2"/><circle cx="8" cy="17" r="2"/></svg>
-    </button>
-  </header>
   <main id="page"></main>
 </div>
-<nav class="tabs" aria-label="Defter"><div class="tabs-in" id="tabs"></div></nav>
+<nav class="tabs" aria-label="Defter"><div class="bar"><div class="tabs-in" id="tabs"></div>
+  <button class="gear" id="gear" type="button" aria-label="Ayarlar"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M4 7h10M18 7h2M4 17h2M10 17h10"/><circle cx="16" cy="7" r="2"/><circle cx="8" cy="17" r="2"/></svg></button></div></nav>
+<div class="backwrap"><button class="back" id="backBtn" type="button" hidden></button></div>
 <div class="dock" id="dock" hidden><div class="dock-in" id="dockIn"></div></div>
 <div class="backdrop" id="sheet" hidden></div>
 <div class="toast" id="toast" hidden></div>
@@ -429,6 +439,12 @@ var ARROW_L='<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" 
 var ARROW_R='<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 5.5L15.5 12L9.5 18.5"/></svg>';
 
 function fit(ta){ta.style.height='auto';ta.style.height=ta.scrollHeight+'px'}
+function fitTitle(){
+  var t=document.querySelector('#page .title');if(!t)return;
+  t.style.fontSize='';
+  var cw=t.clientWidth,sw=t.scrollWidth;
+  if(cw>0&&sw>cw){var fs=parseFloat(getComputedStyle(t).fontSize);t.style.fontSize=Math.max(16,Math.floor(fs*cw/sw*0.97))+'px'}
+}
 function fitAll(){var l=document.querySelectorAll('#page textarea');for(var i=0;i<l.length;i++)fit(l[i])}
 
 /* ---------- ruled lines (the writing surface) ---------- */
@@ -717,7 +733,7 @@ function render(){
     tabs[i].classList.toggle('on',on);
     if(on)tabs[i].setAttribute('aria-current','page');else tabs[i].removeAttribute('aria-current');
   }
-  fitAll();
+  fitAll();fitTitle();
 }
 
 /* ---------- sheets ---------- */
@@ -828,7 +844,7 @@ function openSettings(){
   p.appendChild(h('ul',{class:'alist'},T.how.map(function(t){return h('li',{text:t})})));
   p.appendChild(h('p',{class:'snote acredit',text:T.credit}));
   p.appendChild(h('button',{class:'act soft',type:'button',text:T.close,onclick:closeSheet}));
-  showSheet(p);
+  showSheet(p,true);
 }
 document.getElementById('gear').addEventListener('click',openSettings);
 document.getElementById('backBtn').addEventListener('click',function(){go(view,today())});
@@ -955,8 +971,8 @@ document.addEventListener('visibilitychange',function(){
   var nowKey=dkey(today());
   if(nowKey!==lastToday){if(dkey(anchor)===lastToday)anchor=today();lastToday=nowKey;render()}
 });
-if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fitAll);
-window.addEventListener('resize',fitAll);
+if(document.fonts&&document.fonts.ready)document.fonts.ready.then(function(){fitAll();fitTitle()});
+window.addEventListener('resize',function(){fitAll();fitTitle()});
 
 document.getElementById('gear').setAttribute('aria-label',T.settings);
 buildTabs();render();
