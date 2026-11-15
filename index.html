@@ -94,6 +94,8 @@ h1{margin:0;font-weight:inherit}
 .gear{position:relative;flex:none;width:36px;height:40px;border-radius:12px;display:grid;place-items:center;color:var(--ink-soft);background:none;border:0;box-shadow:none}
 
 .gear[hidden]{display:none}
+.syncbtn.busy svg{animation:spin 1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
 .syncbtn.pend::after{content:'';position:absolute;top:8px;right:6px;width:7px;height:7px;border-radius:50%;background:var(--blue)}
 
 .pinbtn svg .pn{fill:var(--pin);stroke:var(--ink-soft)}
@@ -211,6 +213,8 @@ h1{margin:0;font-weight:inherit}
 /* week page */
 .wday{display:grid;grid-template-columns:40px minmax(0,1fr);column-gap:6px;align-items:start;margin:0 0 8px;padding:5px 12px 5px 12px;background:var(--card-dim);border-radius:18px}
 .wday{position:relative}
+.wday,.wday.empty{margin:0 0 6px}
+.msec.empty{margin:0 0 8px}
 .wday::before{content:"";position:absolute;left:55px;top:9px;bottom:9px;width:1px;background:var(--rule-strong);pointer-events:none}
 .wday .lines{background-image:none;min-height:0}
 .wlab{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;min-height:32px;padding-top:1px;font-family:var(--hand);line-height:1;color:var(--ink-soft)}
@@ -373,7 +377,7 @@ body.dragging-now{-webkit-user-select:none;user-select:none;cursor:grabbing}
 .alist li+li{margin-top:6px}
 .acredit{color:var(--ink);font-weight:500}
 .acredit a{color:var(--blue);text-decoration:underline;text-underline-offset:2px}
-@media (prefers-reduced-motion:reduce){.cb .tick,.cb rect{transition:none}.panel{animation:none}}
+@media (prefers-reduced-motion:reduce){.syncbtn.busy svg{animation-duration:2.4s}.cb .tick,.cb rect{transition:none}.panel{animation:none}}
 </style>
 
 <div class="app">
@@ -1185,7 +1189,7 @@ function openSheet(it){
 /* ---------- google drive sync ---------- */
 var SCOPE='https://www.googleapis.com/auth/drive.appdata',FNAME='yarin-defteri.json';
 var DAPI='https://www.googleapis.com/drive/v3/files',DUP='https://www.googleapis.com/upload/drive/v3/files';
-var gTok=null,gTokExp=0,GTK='defter.gt',lastSilent=0,syncBusy=false,syncMsg='',autoTimer=null,lastAuto=0,conf=null;
+var gTok=null,gTokExp=0,GTK='defter.gt',lastSilent=0,silentFail=0,syncBusy=false,syncSpin=false,syncMsg='',autoTimer=null,lastAuto=0,conf=null;
 try{var gc=JSON.parse(localStorage.getItem(GTK)||'null');if(gc&&gc.t&&gc.exp>Date.now()+60000){gTok=gc.t;gTokExp=gc.exp}}catch(e){}
 function saveTok(){try{if(gTok)localStorage.setItem(GTK,JSON.stringify({t:gTok,exp:gTokExp}));else localStorage.removeItem(GTK)}catch(e){}}
 function loadGIS(){
@@ -1199,6 +1203,12 @@ function loadGIS(){
 function getToken(interactive,silentOk){
   if(gTok&&Date.now()<gTokExp-60000)return Promise.resolve(gTok);
   if(!interactive&&!silentOk)return Promise.reject(new Error('needlogin'));
+  function tidy(){
+    /* Google leaves a hidden frame behind after a silent sign-in; a stuck one keeps the browser tab spinning */
+    if(interactive)return;
+    var fr=document.querySelectorAll('iframe[src*="accounts.google.com"]');
+    for(var i=0;i<fr.length;i++)if(fr[i].parentNode)fr[i].parentNode.removeChild(fr[i]);
+  }
   return loadGIS().then(function(){return new Promise(function(res,rej){
     var to=setTimeout(function(){rej(new Error('timeout'))},interactive?120000:15000);
     var c=google.accounts.oauth2.initTokenClient({client_id:GCLIENT,scope:SCOPE,
@@ -1207,7 +1217,7 @@ function getToken(interactive,silentOk){
         else rej(new Error((r&&r.error)||'auth'))},
       error_callback:function(e){clearTimeout(to);rej(new Error((e&&e.type)||'popup'))}});
     c.requestAccessToken(interactive?{}:{prompt:'none'});
-  })});
+  })}).then(function(t){tidy();return t},function(e){tidy();if(!interactive)silentFail=Date.now();throw e});
 }
 function dFetch(url,opt){
   opt=opt||{};opt.headers=Object.assign({Authorization:'Bearer '+gTok},opt.headers||{});
@@ -1255,7 +1265,7 @@ function syncStatusText(){
 function syncBtnUpdate(){
   var b=document.getElementById('syncBtn');if(!b)return;
   b.hidden=!(SYNC_OK&&S.syncOn);
-  b.classList.toggle('busy',syncBusy);b.classList.toggle('pend',!!S.dirty&&!syncBusy);
+  b.classList.toggle('busy',syncBusy&&syncSpin);b.classList.toggle('pend',!!S.dirty&&!syncBusy);
   b.setAttribute('aria-label',T.syncNow);b.title=T.syncNow;
 }
 function setStatus(){var e=document.getElementById('syncStatus');if(e)e.textContent=syncStatusText();syncBtnUpdate()}
@@ -1288,8 +1298,12 @@ function endSync(kind,auto){
 }
 function syncNow(auto,silentOk){
   if(!SYNC_OK||syncBusy)return Promise.resolve();
-  if(silentOk&&!(gTok&&Date.now()<gTokExp-60000)){if(Date.now()-lastSilent<600000)silentOk=false;else lastSilent=Date.now()}
-  syncBusy=true;syncMsg='';setStatus();
+  if(silentOk&&!(gTok&&Date.now()<gTokExp-60000)){
+    /* the hidden Google sign-in frame makes the browser tab show a loading spinner, so only ask when it is really needed */
+    var need=S.dirty||Date.now()-S.syncLast>20*60000;
+    if(!need||Date.now()-lastSilent<30*60000||Date.now()-silentFail<2*3600000)silentOk=false;else lastSilent=Date.now();
+  }
+  syncBusy=true;syncSpin=!auto;syncMsg='';setStatus();
   if(auto)lastAuto=Date.now();
   var seq=editSeq,wasOn=S.syncOn;
   return getToken(!auto,silentOk).then(function(){
@@ -1338,7 +1352,7 @@ function openConflict(){
   function run(kind){
     var c=conf;conf=null;closeSheet();
     if(syncBusy)return;
-    syncBusy=true;setStatus();var seq=editSeq;
+    syncBusy=true;syncSpin=true;setStatus();var seq=editSeq;
     var job;
     if(kind==='remote'){applyRemote(c.rm);endSync('pulled',false);return}
     if(kind==='merge'){
