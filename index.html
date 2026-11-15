@@ -94,9 +94,7 @@ h1{margin:0;font-weight:inherit}
 .gear{position:relative;flex:none;width:36px;height:40px;border-radius:12px;display:grid;place-items:center;color:var(--ink-soft);background:none;border:0;box-shadow:none}
 
 .gear[hidden]{display:none}
-.syncbtn.busy svg{animation:spin 1s linear infinite}
 .syncbtn.pend::after{content:'';position:absolute;top:8px;right:6px;width:7px;height:7px;border-radius:50%;background:var(--blue)}
-@keyframes spin{to{transform:rotate(360deg)}}
 
 .pinbtn svg .pn{fill:var(--pin);stroke:var(--ink-soft)}
 .pinwrap{width:min(100%,380px);max-height:88vh;display:flex;flex-direction:column;gap:10px;animation:rise .22s ease}
@@ -332,6 +330,8 @@ h1{margin:0;font-weight:inherit}
 .sbtns{display:flex;flex-wrap:wrap;gap:8px;margin:0 4px 10px}
 .rbox .paste{min-height:56px;height:56px;margin-top:0}
 .sbtns{row-gap:8px}
+.sbtns.two{flex-wrap:nowrap}
+.sbtns.two .sbtn{flex:1 1 0;min-width:0;padding:10px 6px;text-align:center;white-space:nowrap}
 .icobox{display:flex;gap:8px;flex:none}
 .fsbtn{flex:none;width:44px;height:38px;display:grid;place-items:center;border-radius:12px;background:var(--chip);color:var(--ink-soft)}
 .fsbtn[aria-pressed="true"]{color:var(--blue)}
@@ -373,7 +373,7 @@ body.dragging-now{-webkit-user-select:none;user-select:none;cursor:grabbing}
 .alist li+li{margin-top:6px}
 .acredit{color:var(--ink);font-weight:500}
 .acredit a{color:var(--blue);text-decoration:underline;text-underline-offset:2px}
-@media (prefers-reduced-motion:reduce){.syncbtn.busy svg{animation-duration:2.4s}.cb .tick,.cb rect{transition:none}.panel{animation:none}}
+@media (prefers-reduced-motion:reduce){.cb .tick,.cb rect{transition:none}.panel{animation:none}}
 </style>
 
 <div class="app">
@@ -413,8 +413,8 @@ var TX={
     noStore:'Bu tarayıcı kayıt tutmuyor, yedek almayı unutma.',close:'Kapat',size:'Yazı boyutu',order:'Yıl sırası',fwd:'Ocak → Aralık',rev:'Aralık → Ocak',past:'Geçmiş aylar',noteDel:'Notu sil',noteAdd:'Not ekle',noteEdit:'Notu düzenle',weekof:'haftası',
     check:'Yaptım',more:'Seçenekler',prev:'Önceki',next:'Sonraki',pick:'Tarih seç',
     sync:'Senkron',syncNote:'Notlarını Google Drive ile cihazlar arasında taşı. Defter, Drive’ında yalnızca bu uygulamanın görebildiği gizli bir alana kaydedilir. Bağlantıyı kesersen Drive’daki kopya silinmez.',
-    connect:'Google ile bağlan',syncNow:'Şimdi senkronize et',disconnect:'Bağlantıyı kes',syncing:'Senkronize ediliyor…',syncLast:'Son senkron: ',syncNever:'Henüz senkronize edilmedi',syncPending:'Gönderilmeyi bekleyen değişiklik var',
-    upToDate:'Güncel',pulled:'Drive’dan güncellendi',pushed:'Drive’a kaydedildi',syncFail:'Senkron olmadı, bağlantını kontrol et',syncNeed:'Giriş gerekiyor, “Şimdi senkronize et”e dokun',disconnected:'Bağlantı kesildi',
+    connect:'Google ile bağlan',syncNow:'Senkronize et',disconnect:'Bağlantıyı kes',syncing:'Senkronize ediliyor…',syncLast:'Son senkron: ',syncNever:'Henüz senkronize edilmedi',syncPending:'Gönderilmeyi bekleyen değişiklik var',
+    upToDate:'Güncel',pulled:'Drive’dan güncellendi',pushed:'Drive’a kaydedildi',syncFail:'Senkron olmadı, bağlantını kontrol et',syncNeed:'Giriş gerekiyor, “Senkronize et”e dokun',disconnected:'Bağlantı kesildi',
     conflictTitle:'İki defter farklı',conflictText:'Bu cihazda ve Drive’da farklı değişiklikler var. Nasıl devam edelim?',onThis:'Bu cihazda',onDrive:'Drive’da',lines:'satır',
     merge:'Birleştir, ikisini de tut',takeRemote:'Drive’dakini al',takeLocal:'Bu cihazdakini gönder',
     about:'Hakkında',
@@ -1379,7 +1379,7 @@ function openSettings(){
     p.appendChild(h('div',{class:'slabel',text:T.sync}));
     p.appendChild(h('p',{class:'snote',text:T.syncNote}));
     p.appendChild(h('p',{class:'snote',id:'syncStatus',text:syncStatusText()}));
-    var sb=h('div',{class:'sbtns'});
+    var sb=h('div',{class:'sbtns'+(S.syncOn?' two':'')});
     if(!S.syncOn){
       sb.appendChild(h('button',{class:'sbtn',type:'button',text:T.connect,onclick:function(){syncNow(false)}}));
     }else{
