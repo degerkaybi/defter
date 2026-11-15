@@ -7,7 +7,7 @@
 <meta name="theme-color" content="#1b1c20" media="(prefers-color-scheme: dark)">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="Defter">
+<meta name="apple-mobile-web-app-title" content="Yarın Defteri">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" type="image/png" href="icon-192.png">
@@ -17,7 +17,7 @@
 [hidden]{display:none!important}
 img{max-width:100%}
 </style>
-<title>Defter</title>
+<title>Yarın Defteri</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=Inter:wght@400;500;600&display=swap">
@@ -193,7 +193,6 @@ h1{margin:0;font-weight:inherit}
 
 /* month sections on 6-month and year pages */
 .msec{margin:0 0 8px;padding:2px 14px 8px;background:var(--card);border-radius:18px}
-.msec.now{background:var(--blue-wash)}
 .mhead{display:flex;align-items:baseline;gap:8px;font:400 calc(26px*var(--hs))/1.2 var(--hand);color:var(--ink);padding:10px 0 2px}
 .mhead i{font-style:normal;font-size:calc(24px*var(--hs));color:var(--ink-faint)}
 .msec.now .mhead{color:var(--blue)}
@@ -263,6 +262,13 @@ h1{margin:0;font-weight:inherit}
 .seg button{padding:8px 14px;border-radius:9px;font:500 13.5px/1 var(--sans);color:var(--ink-soft);white-space:nowrap}
 .seg button[aria-pressed="true"]{background:var(--sheet);color:var(--blue);box-shadow:var(--lift)}
 .slabel{font:600 12px/1 var(--sans);letter-spacing:.02em;color:var(--blue);padding:16px 4px 6px;border-top:1px solid var(--rule)}
+.srow2{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:10px 4px;border-top:1px solid var(--rule)}
+.srow>span{white-space:nowrap}
+.srow .seg button{padding:8px 10px;font-size:13px}
+.scell{display:flex;flex-direction:column;align-items:stretch;gap:8px;min-width:0;font:15px/1.2 var(--sans)}
+.scell .seg{justify-content:space-between}
+.scell .seg button{flex:1;padding:8px 6px}
+.scell .zv{flex:1}
 .snote{margin:0 4px 10px;font:13px/1.45 var(--sans);color:var(--ink-soft)}
 .sbtns{display:flex;flex-wrap:wrap;gap:8px;margin:0 4px 10px}
 .sbtn{padding:11px 15px;border-radius:12px;background:var(--chip);font:500 14px/1 var(--sans);color:var(--ink)}
@@ -309,7 +315,7 @@ body.dragging-now{-webkit-user-select:none;user-select:none;cursor:grabbing}
 <div class="app">
   <main id="page"></main>
 </div>
-<nav class="tabs" aria-label="Defter"><div class="bar"><div class="tabs-in" id="tabs"></div>
+<nav class="tabs" aria-label="Yarın Defteri"><div class="bar"><div class="tabs-in" id="tabs"></div>
   <button class="gear" id="gear" type="button" aria-label="Ayarlar"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M4 7h10M18 7h2M4 17h2M10 17h10"/><circle cx="16" cy="7" r="2"/><circle cx="8" cy="17" r="2"/></svg></button></div></nav>
 <div class="backwrap"><button class="back" id="backBtn" type="button" hidden></button></div>
 <div class="dock" id="dock" hidden><div class="dock-in" id="dockIn"></div></div>
@@ -341,7 +347,7 @@ var TX={
     noStore:'Bu tarayıcı kayıt tutmuyor, yedek almayı unutma.',close:'Kapat',size:'Yazı boyutu',order:'Yıl sırası',fwd:'Ocak → Aralık',rev:'Aralık → Ocak',past:'Geçmiş aylar',noteDel:'Notu sil',noteAdd:'Not ekle',noteEdit:'Notu düzenle',weekof:'haftası',
     check:'Yaptım',more:'Seçenekler',prev:'Önceki',next:'Sonraki',pick:'Tarih seç',
     about:'Hakkında',
-    aboutIntro:'Defter, planlarını kâğıt bir defterdeki gibi sakin tutmak için yapıldı. Gün, hafta, ay, yıl ve 10 yıl sayfaları birbirine bağlı. Renkli çubuk, seri ya da bildirim yok.',
+    aboutIntro:'Yarın Defteri, planlarını kâğıt bir defterdeki gibi sakin tutmak için yapıldı. Gün, hafta, ay, yıl ve 10 yıl sayfaları birbirine bağlı. Renkli çubuk, seri ya da bildirim yok.',
     howTitle:'Nasıl kullanılır',
     how:['Bir satıra dokun ve yaz. Enter yeni satıra geçirir.','Kutucuğa dokununca satırın üstü çizilir, silinmez.','Hafta, ay, yıl ve 10 yıl sayfalarının tepesindeki alan, o döneme ait serbest notlar içindir. Hiçbir güne yapışmaz.','Uzun satırlar tek satırda kısalır, dokununca açılır. Açılan satırın sağındaki üç nokta menüsünden not ekleyebilir ya da satırı başka bir güne, haftaya veya aya taşıyabilirsin.','Kutucuğa basılı tutup sürükleyerek sıralayabilir ya da başka güne, haftaya, aya ve yıla taşıyabilirsin.','Sağa ya da sola kaydırarak önceki ve sonraki sayfaya geçersin.'],
     credit:['Verimlilik için ',' tarafından tasarlandı, Claude ile birlikte geliştirildi.'],
@@ -369,7 +375,7 @@ var TX={
     noStore:'This browser is not saving anything. Remember to back up.',close:'Close',size:'Text size',order:'Year order',fwd:'Jan → Dec',rev:'Dec → Jan',past:'Past months',noteDel:'Delete note',noteAdd:'Add note',noteEdit:'Edit note',weekof:'week of',
     check:'Done',more:'Options',prev:'Previous',next:'Next',pick:'Pick a date',
     about:'About',
-    aboutIntro:'Defter is made to keep your plans calm, like a paper notebook. Day, week, month, year and 10-year pages are connected. No colored bars, streaks or notifications.',
+    aboutIntro:'Yarın Defteri (Tomorrow’s Notebook) is made to keep your plans calm, like a paper notebook. Day, week, month, year and 10-year pages are connected. No colored bars, streaks or notifications.',
     howTitle:'How to use',
     how:['Tap a line and write. Enter moves to the next line.','Tap the box to cross a line out. It is never deleted.','The area at the top of the week, month, year and 10-year pages holds loose notes for that period. They never stick to a day.','Long lines are shortened to one line, tap one to open it. The three dots on an open line add a note or move it to another day, week or month.','Press and hold the box, then drag to reorder, or to move a line to another day, week, month or year.','Swipe left or right to turn to the previous or next page.'],
     credit:['Designed for productivity by ',', built together with Claude.'],
@@ -712,6 +718,8 @@ function pageWeek(){
     sec.appendChild(linesBlock('day',key,{row:32,min:empty?1:2}));
     f.appendChild(sec);
   })(i)}
+  var qm=quiet('month');
+  if(qm){qm.style.marginTop='18px';f.appendChild(qm)}
   return f;
 }
 function pageMonth(){
@@ -893,13 +901,14 @@ function openSettings(){
   function seg(l,name){return h('button',{type:'button',text:name,'aria-pressed':String(S.lang===l),onclick:function(){if(S.lang!==l)setLang(l)}})}
   p.appendChild(h('div',{class:'srow'},[h('span',{text:T.lang}),h('div',{class:'seg'},[seg('tr','Türkçe'),seg('en','English')])]));
   function segF(f,name){return h('button',{type:'button',text:name,'aria-pressed':String(S.font===f),onclick:function(){if(S.font!==f)setFont(f)}})}
-  p.appendChild(h('div',{class:'srow'},[h('span',{text:T.font}),h('div',{class:'seg'},[segF('hand',T.fontHand),segF('plain',T.fontPlain)])]));
+  var fontCell=h('div',{class:'scell'},[h('span',{text:T.font}),h('div',{class:'seg'},[segF('hand',T.fontHand),segF('plain',T.fontPlain)])]);
   var zi=ZOOMS.indexOf(S.zoom);if(zi<0)zi=3;
-  p.appendChild(h('div',{class:'srow'},[h('span',{text:T.size}),h('div',{class:'seg'},[
+  var sizeCell=h('div',{class:'scell'},[h('span',{text:T.size}),h('div',{class:'seg'},[
     h('button',{type:'button',text:'A−','aria-label':'−',disabled:zi<=0,onclick:function(){setZoom(ZOOMS[zi-1])}}),
     h('span',{class:'zv',text:Math.round(S.zoom*100)+'%'}),
     h('button',{type:'button',text:'A+','aria-label':'+',disabled:zi>=ZOOMS.length-1,onclick:function(){setZoom(ZOOMS[zi+1])}})
-  ])]));
+  ])]);
+  p.appendChild(h('div',{class:'srow2'},[fontCell,sizeCell]));
   function segO(v,name){return h('button',{type:'button',text:name,'aria-pressed':String(S.yrev===v),onclick:function(){if(S.yrev!==v){S.yrev=v;persist();render();openSettings()}}})}
   p.appendChild(h('div',{class:'srow'},[h('span',{text:T.order}),h('div',{class:'seg'},[segO(false,T.fwd),segO(true,T.rev)])]));
   p.appendChild(h('div',{class:'slabel',text:T.backup}));
@@ -909,7 +918,7 @@ function openSettings(){
   var btns=h('div',{class:'sbtns'});
   var standalone=!(window.claude&&window.claude.use);
   if(dl||standalone)btns.appendChild(h('button',{class:'sbtn',type:'button',text:T.saveBackup,onclick:function(){
-    var name='defter-yedek-'+dkey(today())+'.json';
+    var name='yarin-defteri-yedek-'+dkey(today())+'.json';
     if(dl){dl.save({filename:name,data:backupJson()}).then(function(){toast(T.saved)}).catch(function(){});return}
     var url=URL.createObjectURL(new Blob([backupJson()],{type:'application/json'}));
     var a=h('a',{href:url,download:name});document.body.appendChild(a);a.click();a.remove();

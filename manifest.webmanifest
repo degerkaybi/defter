@@ -1,6 +1,6 @@
 {
-  "name": "Defter",
-  "short_name": "Defter",
+  "name": "Yarın Defteri",
+  "short_name": "Yarın Defteri",
   "description": "Gün, hafta, ay, yıl ve 10 yıl sayfalı planlama defteri",
   "start_url": "./",
   "scope": "./",
