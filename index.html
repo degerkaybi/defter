@@ -346,6 +346,11 @@ var TX={
     restored:'Yedek yüklendi',bad:'Yedek okunamadı',copied:'Kopyalandı',saved:'Kaydedildi',
     noStore:'Bu tarayıcı kayıt tutmuyor, yedek almayı unutma.',close:'Kapat',size:'Yazı boyutu',order:'Yıl sırası',fwd:'Ocak → Aralık',rev:'Aralık → Ocak',past:'Geçmiş aylar',noteDel:'Notu sil',noteAdd:'Not ekle',noteEdit:'Notu düzenle',weekof:'haftası',
     check:'Yaptım',more:'Seçenekler',prev:'Önceki',next:'Sonraki',pick:'Tarih seç',
+    sync:'Senkron',syncNote:'Notlarını Google Drive ile cihazlar arasında taşı. Defter, Drive’ında yalnızca bu uygulamanın görebildiği gizli bir alana kaydedilir. Bağlantıyı kesersen Drive’daki kopya silinmez.',
+    connect:'Google ile bağlan',syncNow:'Şimdi senkronize et',disconnect:'Bağlantıyı kes',syncing:'Senkronize ediliyor…',syncLast:'Son senkron: ',syncNever:'Henüz senkronize edilmedi',syncPending:'Gönderilmeyi bekleyen değişiklik var',
+    pulled:'Drive’dan güncellendi',pushed:'Drive’a kaydedildi',syncFail:'Senkron olmadı, bağlantını kontrol et',syncNeed:'Giriş gerekiyor, “Şimdi senkronize et”e dokun',disconnected:'Bağlantı kesildi',
+    conflictTitle:'İki defter farklı',conflictText:'Bu cihazda ve Drive’da farklı değişiklikler var. Nasıl devam edelim?',onThis:'Bu cihazda',onDrive:'Drive’da',lines:'satır',
+    merge:'Birleştir, ikisini de tut',takeRemote:'Drive’dakini al',takeLocal:'Bu cihazdakini gönder',
     about:'Hakkında',
     aboutIntro:'Yarın Defteri, planlarını kâğıt bir defterdeki gibi sakin tutmak için yapıldı. Gün, hafta, ay, yıl ve 10 yıl sayfaları birbirine bağlı. Renkli çubuk, seri ya da bildirim yok.',
     howTitle:'Nasıl kullanılır',
@@ -374,6 +379,11 @@ var TX={
     restored:'Backup restored',bad:'Could not read backup',copied:'Copied',saved:'Saved',
     noStore:'This browser is not saving anything. Remember to back up.',close:'Close',size:'Text size',order:'Year order',fwd:'Jan → Dec',rev:'Dec → Jan',past:'Past months',noteDel:'Delete note',noteAdd:'Add note',noteEdit:'Edit note',weekof:'week of',
     check:'Done',more:'Options',prev:'Previous',next:'Next',pick:'Pick a date',
+    sync:'Sync',syncNote:'Carry your notes between devices with Google Drive. The notebook is saved in a hidden area of your Drive that only this app can see. If you disconnect, the copy in Drive is not deleted.',
+    connect:'Connect with Google',syncNow:'Sync now',disconnect:'Disconnect',syncing:'Syncing…',syncLast:'Last sync: ',syncNever:'Not synced yet',syncPending:'Changes waiting to be sent',
+    pulled:'Updated from Drive',pushed:'Saved to Drive',syncFail:'Sync failed, check your connection',syncNeed:'Sign-in needed, tap “Sync now”',disconnected:'Disconnected',
+    conflictTitle:'The two notebooks differ',conflictText:'This device and Drive both have different changes. How should we continue?',onThis:'On this device',onDrive:'In Drive',lines:'lines',
+    merge:'Merge, keep both',takeRemote:'Use the one in Drive',takeLocal:'Send this device’s',
     about:'About',
     aboutIntro:'Yarın Defteri (Tomorrow’s Notebook) is made to keep your plans calm, like a paper notebook. Day, week, month, year and 10-year pages are connected. No colored bars, streaks or notifications.',
     howTitle:'How to use',
@@ -387,6 +397,10 @@ var TX={
 };
 var LAYERS=['day','week','month','year','decade'];
 var STORE='defter.v1';
+var GCLIENT='73590225069-fv94bc3b7968iqu1o763c0h1ljcvd817.apps.googleusercontent.com';
+var STANDALONE=!(window.claude&&window.claude.use);
+var SYNC_OK=STANDALONE&&!!GCLIENT;
+var editSeq=0;
 var ZOOMS=[.78,.86,.93,1,1.1,1.2];
 function zoomOk(z){return ZOOMS.indexOf(z)>=0?z:1}
 
@@ -435,17 +449,17 @@ function load(){
     var raw=localStorage.getItem(STORE);
     if(raw){
       var o=JSON.parse(raw);
-      return {lang:o&&o.lang==='en'?'en':'tr',font:o&&o.font==='plain'?'plain':'hand',decadeStart:(o&&typeof o.decadeStart==='number')?o.decadeStart:new Date().getFullYear(),zoom:zoomOk(o&&o.zoom),yrev:!!(o&&o.yrev),items:clean(o)||[]};
+      return {lang:o&&o.lang==='en'?'en':'tr',font:o&&o.font==='plain'?'plain':'hand',decadeStart:(o&&typeof o.decadeStart==='number')?o.decadeStart:new Date().getFullYear(),zoom:zoomOk(o&&o.zoom),yrev:!!(o&&o.yrev),syncOn:!!(o&&o.syncOn),syncRev:(o&&typeof o.syncRev==='number')?o.syncRev:null,dirty:!!(o&&o.dirty),syncLast:(o&&typeof o.syncLast==='number')?o.syncLast:0,items:clean(o)||[]};
     }
   }catch(e){storageOK=false}
-  return {lang:'tr',font:'hand',decadeStart:new Date().getFullYear(),zoom:1,yrev:false,items:[]};
+  return {lang:'tr',font:'hand',decadeStart:new Date().getFullYear(),zoom:1,yrev:false,syncOn:false,syncRev:null,dirty:false,syncLast:0,items:[]};
 }
 function persist(){
   clearTimeout(saveTimer);saveTimer=null;
-  try{localStorage.setItem(STORE,JSON.stringify({v:1,lang:S.lang,font:S.font,zoom:S.zoom,yrev:S.yrev,decadeStart:S.decadeStart,items:S.items}));}
+  try{localStorage.setItem(STORE,JSON.stringify({v:1,lang:S.lang,font:S.font,zoom:S.zoom,yrev:S.yrev,syncOn:S.syncOn,syncRev:S.syncRev,dirty:S.dirty,syncLast:S.syncLast,decadeStart:S.decadeStart,items:S.items}));}
   catch(e){storageOK=false;if(!warned){warned=true;toast(T.noStore)}}
 }
-function queueSave(){clearTimeout(saveTimer);saveTimer=setTimeout(persist,300)}
+function queueSave(){editSeq++;S.dirty=true;clearTimeout(saveTimer);saveTimer=setTimeout(persist,300);autoPushSoon()}
 document.addEventListener('visibilitychange',function(){if(document.visibilityState==='hidden'&&saveTimer)persist()});
 window.addEventListener('pagehide',function(){if(saveTimer)persist()});
 
@@ -881,6 +895,166 @@ function openSheet(it){
   showSheet(p,true);
 }
 
+/* ---------- google drive sync ---------- */
+var SCOPE='https://www.googleapis.com/auth/drive.appdata',FNAME='yarin-defteri.json';
+var DAPI='https://www.googleapis.com/drive/v3/files',DUP='https://www.googleapis.com/upload/drive/v3/files';
+var gTok=null,gTokExp=0,syncBusy=false,syncMsg='',autoTimer=null,lastAuto=0,conf=null;
+function loadGIS(){
+  return new Promise(function(res,rej){
+    if(window.google&&google.accounts&&google.accounts.oauth2)return res();
+    var sc=document.createElement('script');sc.src='https://accounts.google.com/gsi/client';sc.async=true;
+    sc.onload=function(){res()};sc.onerror=function(){rej(new Error('gis'))};
+    document.head.appendChild(sc);
+  });
+}
+function getToken(interactive){
+  if(gTok&&Date.now()<gTokExp-60000)return Promise.resolve(gTok);
+  return loadGIS().then(function(){return new Promise(function(res,rej){
+    var to=setTimeout(function(){rej(new Error('timeout'))},interactive?120000:15000);
+    var c=google.accounts.oauth2.initTokenClient({client_id:GCLIENT,scope:SCOPE,
+      callback:function(r){clearTimeout(to);
+        if(r&&r.access_token){gTok=r.access_token;gTokExp=Date.now()+(r.expires_in||3600)*1000;res(gTok)}
+        else rej(new Error((r&&r.error)||'auth'))},
+      error_callback:function(e){clearTimeout(to);rej(new Error((e&&e.type)||'popup'))}});
+    c.requestAccessToken(interactive?{}:{prompt:'none'});
+  })});
+}
+function dFetch(url,opt){
+  opt=opt||{};opt.headers=Object.assign({Authorization:'Bearer '+gTok},opt.headers||{});
+  return fetch(url,opt).then(function(r){
+    if(r.status===401){gTok=null;throw new Error('401')}
+    if(!r.ok)throw new Error('http '+r.status);
+    return r;
+  });
+}
+function findFile(){
+  return dFetch(DAPI+'?spaces=appDataFolder&q='+encodeURIComponent("name='"+FNAME+"'")+'&fields=files(id)&pageSize=1')
+    .then(function(r){return r.json()}).then(function(j){return j.files&&j.files[0]?j.files[0].id:null});
+}
+function readFile(id){return dFetch(DAPI+'/'+id+'?alt=media').then(function(r){return r.json()})}
+function createFile(body){
+  var b='defterb'+Date.now();
+  var meta=JSON.stringify({name:FNAME,parents:['appDataFolder'],mimeType:'application/json'});
+  var data='--'+b+'\r\nContent-Type: application/json; charset=UTF-8\r\n\r\n'+meta+'\r\n--'+b+'\r\nContent-Type: application/json; charset=UTF-8\r\n\r\n'+body+'\r\n--'+b+'--';
+  return dFetch(DUP+'?uploadType=multipart&fields=id',{method:'POST',headers:{'Content-Type':'multipart/related; boundary='+b},body:data});
+}
+function updateFile(id,body){
+  return dFetch(DUP+'/'+id+'?uploadType=media',{method:'PATCH',headers:{'Content-Type':'application/json; charset=UTF-8'},body:body});
+}
+function parseRemote(j){
+  var items=j&&j.app==='defter'?clean(j):null;
+  if(!items)return null;
+  return {items:items,ds:typeof j.decadeStart==='number'?j.decadeStart:null,savedAt:typeof j.savedAt==='number'?j.savedAt:0};
+}
+function sameItems(a,b){
+  function n(l){return JSON.stringify(l.map(function(i){return [i.id,i.text,!!i.done,i.layer,i.key,i.note||'']}).sort())}
+  return n(a)===n(b);
+}
+function editing(){var a=document.activeElement;return !!(a&&(a.tagName==='TEXTAREA'||a.tagName==='INPUT'))}
+function fmtTime(t){try{return new Date(t).toLocaleString(S.lang==='en'?'en-GB':'tr-TR',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'})}catch(e){return ''}}
+function syncStatusText(){
+  if(syncBusy)return T.syncing;
+  if(syncMsg)return syncMsg;
+  if(S.dirty&&S.syncOn)return T.syncPending;
+  return S.syncLast?T.syncLast+fmtTime(S.syncLast):T.syncNever;
+}
+function setStatus(){var e=document.getElementById('syncStatus');if(e)e.textContent=syncStatusText()}
+function autoPushSoon(){
+  if(!SYNC_OK||!S.syncOn)return;
+  clearTimeout(autoTimer);autoTimer=setTimeout(function(){syncNow(true)},8000);
+}
+function syncOff(){
+  var t=gTok;gTok=null;gTokExp=0;
+  try{if(t&&window.google&&google.accounts&&google.accounts.oauth2)google.accounts.oauth2.revoke(t,function(){})}catch(e){}
+  S.syncOn=false;S.syncRev=null;S.dirty=false;syncMsg='';persist();toast(T.disconnected);openSettings();
+}
+function applyRemote(rm){
+  S.items=rm.items;if(rm.ds)S.decadeStart=rm.ds;S.syncRev=rm.savedAt;S.dirty=false;S.syncLast=Date.now();persist();render();
+}
+function pushNow(id,seq){
+  var pl={app:'defter',v:1,savedAt:Date.now(),decadeStart:S.decadeStart,items:S.items};
+  var body=JSON.stringify(pl);
+  return (id?updateFile(id,body):createFile(body)).then(function(){
+    S.syncRev=pl.savedAt;if(editSeq===seq)S.dirty=false;S.syncLast=Date.now();persist();
+  });
+}
+function endSync(kind,auto){
+  syncBusy=false;syncMsg='';
+  if(kind==='pulled'){toast(T.pulled)}
+  else if(kind==='pushed'&&!auto){toast(T.pushed)}
+  persist();setStatus();
+  if(S.dirty&&S.syncOn&&kind!=='conflict'&&kind!=='skip')autoPushSoon();
+}
+function syncNow(auto){
+  if(!SYNC_OK||syncBusy)return Promise.resolve();
+  syncBusy=true;syncMsg='';setStatus();
+  if(auto)lastAuto=Date.now();
+  var seq=editSeq,wasOn=S.syncOn;
+  return getToken(!auto).then(function(){
+    if(!S.syncOn){S.syncOn=true;persist()}
+    return findFile();
+  }).then(function(id){
+    if(!id)return pushNow(null,seq).then(function(){endSync('pushed',auto)});
+    return readFile(id).then(function(j){
+      var rm=parseRemote(j);
+      if(!rm)throw new Error('remote');
+      var changed=S.syncRev!==rm.savedAt;
+      if(S.syncRev==null){
+        if(!S.items.length){applyRemote(rm);return endSync('pulled',auto)}
+        if(!rm.items.length)return pushNow(id,seq).then(function(){endSync('pushed',auto)});
+        if(sameItems(S.items,rm.items)){S.syncRev=rm.savedAt;S.dirty=false;S.syncLast=Date.now();return endSync('ok',auto)}
+        if(auto&&editing())return endSync('skip',auto);
+        conf={rm:rm,id:id};endSync('conflict',auto);return openConflict();
+      }
+      if(changed&&S.dirty){
+        if(auto&&editing())return endSync('skip',auto);
+        conf={rm:rm,id:id};endSync('conflict',auto);return openConflict();
+      }
+      if(changed){
+        if(auto&&editing())return endSync('skip',auto);
+        applyRemote(rm);return endSync('pulled',auto);
+      }
+      if(S.dirty)return pushNow(id,seq).then(function(){endSync('pushed',auto)});
+      S.syncLast=Date.now();endSync('ok',auto);
+    });
+  }).then(function(){
+    if(!wasOn&&S.syncOn&&!conf&&document.getElementById('syncStatus'))openSettings();
+  }).catch(function(e){
+    syncBusy=false;
+    if(!wasOn)S.syncOn=false;
+    syncMsg=auto?T.syncNeed:T.syncFail;
+    if(!auto)toast(T.syncFail);
+    persist();setStatus();
+  });
+}
+function openConflict(){
+  if(!conf)return;
+  var p=h('div',{class:'panel',role:'dialog','aria-modal':'true'});
+  p.appendChild(h('div',{class:'phead'},[h('div',{class:'sheet-title',text:T.conflictTitle}),xBtn()]));
+  p.appendChild(h('p',{class:'snote',text:T.conflictText}));
+  p.appendChild(h('p',{class:'snote',text:T.onThis+': '+S.items.length+' '+T.lines+' · '+T.onDrive+': '+conf.rm.items.length+' '+T.lines}));
+  function run(kind){
+    var c=conf;conf=null;closeSheet();
+    if(syncBusy)return;
+    syncBusy=true;setStatus();var seq=editSeq;
+    var job;
+    if(kind==='remote'){applyRemote(c.rm);endSync('pulled',false);return}
+    if(kind==='merge'){
+      var seen={};S.items.forEach(function(i){seen[i.id]=1});
+      c.rm.items.forEach(function(i){if(!seen[i.id])S.items.push(i)});
+      persist();render();
+    }
+    getToken(true).then(function(){return pushNow(c.id,editSeq)}).then(function(){endSync('pushed',false);toast(T.pushed)})
+      .catch(function(){syncBusy=false;S.dirty=true;syncMsg=T.syncFail;persist();setStatus();toast(T.syncFail)});
+  }
+  p.appendChild(h('div',{class:'sbtns'},[
+    h('button',{class:'sbtn',type:'button',text:T.merge,onclick:function(){run('merge')}}),
+    h('button',{class:'sbtn',type:'button',text:T.takeRemote,onclick:function(){run('remote')}}),
+    h('button',{class:'sbtn',type:'button',text:T.takeLocal,onclick:function(){run('local')}})
+  ]));
+  showSheet(p,true);
+}
+
 /* ---------- settings ---------- */
 function backupJson(){return JSON.stringify({app:'defter',v:1,savedAt:new Date().toISOString(),lang:S.lang,font:S.font,zoom:S.zoom,yrev:S.yrev,decadeStart:S.decadeStart,items:S.items},null,1)}
 function setLang(l){
@@ -911,6 +1085,19 @@ function openSettings(){
   p.appendChild(h('div',{class:'srow2'},[fontCell,sizeCell]));
   function segO(v,name){return h('button',{type:'button',text:name,'aria-pressed':String(S.yrev===v),onclick:function(){if(S.yrev!==v){S.yrev=v;persist();render();openSettings()}}})}
   p.appendChild(h('div',{class:'srow'},[h('span',{text:T.order}),h('div',{class:'seg'},[segO(false,T.fwd),segO(true,T.rev)])]));
+  if(SYNC_OK){
+    p.appendChild(h('div',{class:'slabel',text:T.sync}));
+    p.appendChild(h('p',{class:'snote',text:T.syncNote}));
+    p.appendChild(h('p',{class:'snote',id:'syncStatus',text:syncStatusText()}));
+    var sb=h('div',{class:'sbtns'});
+    if(!S.syncOn){
+      sb.appendChild(h('button',{class:'sbtn',type:'button',text:T.connect,onclick:function(){syncNow(false)}}));
+    }else{
+      sb.appendChild(h('button',{class:'sbtn',type:'button',text:T.syncNow,onclick:function(){syncNow(false)}}));
+      sb.appendChild(h('button',{class:'sbtn',type:'button',text:T.disconnect,onclick:syncOff}));
+    }
+    p.appendChild(sb);
+  }
   p.appendChild(h('div',{class:'slabel',text:T.backup}));
   p.appendChild(h('p',{class:'snote',text:T.backupNote}));
   if(!storageOK)p.appendChild(h('p',{class:'snote',text:T.noStore}));
@@ -939,7 +1126,7 @@ function openSettings(){
     var items=null,ds=null;try{var oo=JSON.parse(raw);items=clean(oo);if(oo&&typeof oo.decadeStart==='number')ds=oo.decadeStart}catch(e){}
     if(!items){toast(T.bad);return}
     if(!confirming){confirming=true;rb.textContent=T.confirmRestore;return}
-    S.items=items;if(ds)S.decadeStart=ds;persist();closeSheet();render();toast(T.restored);
+    S.items=items;if(ds)S.decadeStart=ds;S.dirty=true;editSeq++;persist();closeSheet();render();toast(T.restored);autoPushSoon();
   });
   p.appendChild(h('div',{class:'sbtns'},[rb]));
   p.appendChild(h('div',{class:'slabel',text:T.about}));
@@ -1073,12 +1260,14 @@ document.addEventListener('visibilitychange',function(){
   if(document.visibilityState!=='visible')return;
   var nowKey=dkey(today());
   if(nowKey!==lastToday){if(dkey(anchor)===lastToday)anchor=today();lastToday=nowKey;render()}
+  if(SYNC_OK&&S.syncOn&&Date.now()-lastAuto>30000)syncNow(true);
 });
 if(document.fonts&&document.fonts.ready)document.fonts.ready.then(function(){fitAll();fitTitle()});
 window.addEventListener('resize',function(){fitAll();fitTitle()});
 
 document.getElementById('gear').setAttribute('aria-label',T.settings);
 buildTabs();render();
+if(SYNC_OK&&S.syncOn)setTimeout(function(){syncNow(true)},600);
 })();
 </script>
 
