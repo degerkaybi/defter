@@ -10,6 +10,7 @@
 <meta name="apple-mobile-web-app-title" content="Yarın Defteri">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/svg+xml" href="icon.svg">
 <link rel="icon" type="image/png" href="icon-192.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <style>
@@ -89,6 +90,12 @@ h1{margin:0;font-weight:inherit}
 
 /* top bar */
 .gear{pointer-events:auto;flex:none;width:52px;height:52px;border-radius:50%;display:grid;place-items:center;color:var(--ink-soft);background:var(--desk);border:1px solid var(--rule-strong);box-shadow:var(--shadow)}
+
+.gear[hidden]{display:none}
+.syncbtn.busy svg{animation:spin 1s linear infinite}
+.syncbtn.pend::after{content:'';position:absolute;top:11px;right:11px;width:7px;height:7px;border-radius:50%;background:var(--blue)}
+.syncbtn{position:relative}
+@keyframes spin{to{transform:rotate(360deg)}}
 
 /* period navigation */
 .nav{display:grid;grid-template-columns:40px minmax(0,1fr) 40px;align-items:start;gap:8px;margin:0 0 20px}
@@ -252,6 +259,7 @@ h1{margin:0;font-weight:inherit}
 .seg button:disabled{opacity:.35;cursor:default}
 @keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 .sheet-text{font:400 calc(25px*var(--hs))/1.25 var(--hand);color:var(--ink);padding:0 0 12px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;overflow-wrap:anywhere}
+.sheet-title.sicon{display:flex;align-items:center;gap:12px;padding-bottom:6px}.sheet-title.sicon svg{display:block;flex:none;height:42px;width:auto}.sheet-title.sicon .stxt{display:flex;flex-direction:column;gap:5px;min-width:0;white-space:nowrap}.stxt b{font:600 40px/.8 'Caveat','Bradley Hand','Segoe Print',cursive;color:var(--ink);letter-spacing:.01em}.stxt i{font:600 10px/1 var(--sans);font-style:normal;letter-spacing:.36em;color:var(--blue);padding-left:2px}
 .sheet-title{font:400 calc(32px*var(--hs))/1.1 var(--hand);color:var(--ink);padding-bottom:10px}
 .act{display:block;width:100%;padding:15px 4px;font:15px/1.2 var(--sans);color:var(--ink);border-top:1px solid var(--rule)}
 .act.soft{color:var(--ink-soft)}
@@ -309,13 +317,14 @@ body.dragging-now{-webkit-user-select:none;user-select:none;cursor:grabbing}
 .alist li+li{margin-top:6px}
 .acredit{color:var(--ink);font-weight:500}
 .acredit a{color:var(--blue);text-decoration:underline;text-underline-offset:2px}
-@media (prefers-reduced-motion:reduce){.cb .tick,.cb rect{transition:none}.panel{animation:none}}
+@media (prefers-reduced-motion:reduce){.syncbtn.busy svg{animation-duration:2.4s}.cb .tick,.cb rect{transition:none}.panel{animation:none}}
 </style>
 
 <div class="app">
   <main id="page"></main>
 </div>
 <nav class="tabs" aria-label="Yarın Defteri"><div class="bar"><div class="tabs-in" id="tabs"></div>
+  <button class="gear syncbtn" id="syncBtn" type="button" hidden><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11a8 8 0 0 0-14.3-4.2L4 9M4 4v5h5M4 13a8 8 0 0 0 14.3 4.2L20 15M20 20v-5h-5"/></svg></button>
   <button class="gear" id="gear" type="button" aria-label="Ayarlar"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M4 7h10M18 7h2M4 17h2M10 17h10"/><circle cx="16" cy="7" r="2"/><circle cx="8" cy="17" r="2"/></svg></button></div></nav>
 <div class="backwrap"><button class="back" id="backBtn" type="button" hidden></button></div>
 <div class="dock" id="dock" hidden><div class="dock-in" id="dockIn"></div></div>
@@ -348,7 +357,7 @@ var TX={
     check:'Yaptım',more:'Seçenekler',prev:'Önceki',next:'Sonraki',pick:'Tarih seç',
     sync:'Senkron',syncNote:'Notlarını Google Drive ile cihazlar arasında taşı. Defter, Drive’ında yalnızca bu uygulamanın görebildiği gizli bir alana kaydedilir. Bağlantıyı kesersen Drive’daki kopya silinmez.',
     connect:'Google ile bağlan',syncNow:'Şimdi senkronize et',disconnect:'Bağlantıyı kes',syncing:'Senkronize ediliyor…',syncLast:'Son senkron: ',syncNever:'Henüz senkronize edilmedi',syncPending:'Gönderilmeyi bekleyen değişiklik var',
-    pulled:'Drive’dan güncellendi',pushed:'Drive’a kaydedildi',syncFail:'Senkron olmadı, bağlantını kontrol et',syncNeed:'Giriş gerekiyor, “Şimdi senkronize et”e dokun',disconnected:'Bağlantı kesildi',
+    upToDate:'Güncel',pulled:'Drive’dan güncellendi',pushed:'Drive’a kaydedildi',syncFail:'Senkron olmadı, bağlantını kontrol et',syncNeed:'Giriş gerekiyor, “Şimdi senkronize et”e dokun',disconnected:'Bağlantı kesildi',
     conflictTitle:'İki defter farklı',conflictText:'Bu cihazda ve Drive’da farklı değişiklikler var. Nasıl devam edelim?',onThis:'Bu cihazda',onDrive:'Drive’da',lines:'satır',
     merge:'Birleştir, ikisini de tut',takeRemote:'Drive’dakini al',takeLocal:'Bu cihazdakini gönder',
     about:'Hakkında',
@@ -381,7 +390,7 @@ var TX={
     check:'Done',more:'Options',prev:'Previous',next:'Next',pick:'Pick a date',
     sync:'Sync',syncNote:'Carry your notes between devices with Google Drive. The notebook is saved in a hidden area of your Drive that only this app can see. If you disconnect, the copy in Drive is not deleted.',
     connect:'Connect with Google',syncNow:'Sync now',disconnect:'Disconnect',syncing:'Syncing…',syncLast:'Last sync: ',syncNever:'Not synced yet',syncPending:'Changes waiting to be sent',
-    pulled:'Updated from Drive',pushed:'Saved to Drive',syncFail:'Sync failed, check your connection',syncNeed:'Sign-in needed, tap “Sync now”',disconnected:'Disconnected',
+    upToDate:'Up to date',pulled:'Updated from Drive',pushed:'Saved to Drive',syncFail:'Sync failed, check your connection',syncNeed:'Sign-in needed, tap “Sync now”',disconnected:'Disconnected',
     conflictTitle:'The two notebooks differ',conflictText:'This device and Drive both have different changes. How should we continue?',onThis:'On this device',onDrive:'In Drive',lines:'lines',
     merge:'Merge, keep both',takeRemote:'Use the one in Drive',takeLocal:'Send this device’s',
     about:'About',
@@ -835,6 +844,7 @@ function render(){
 
 /* ---------- sheets ---------- */
 var sheet=document.getElementById('sheet'),toastEl=document.getElementById('toast'),toastTimer=null;
+var SUNICON='<svg viewBox="100 136 312 292" aria-hidden="true" fill="none" stroke-linecap="round"><path d="M168 322A88 88 0 0 1 344 322" stroke="var(--blue)" stroke-width="24"/><path d="M256 178V150M347 215L367 195M165 215L145 195" stroke="var(--blue)" stroke-width="22"/><path d="M112 322H400" stroke="var(--blue)" stroke-width="24"/><path d="M168 376H344M208 426H304" stroke="var(--blue-soft)" stroke-width="20"/></svg>';
 var XICON='<svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M3.5 3.5l9 9M12.5 3.5l-9 9"/></svg>';
 function xBtn(){return h('button',{class:'xbtn',type:'button','aria-label':T.close,html:XICON,onclick:closeSheet})}
 function itemDate(it){
@@ -958,7 +968,13 @@ function syncStatusText(){
   if(S.dirty&&S.syncOn)return T.syncPending;
   return S.syncLast?T.syncLast+fmtTime(S.syncLast):T.syncNever;
 }
-function setStatus(){var e=document.getElementById('syncStatus');if(e)e.textContent=syncStatusText()}
+function syncBtnUpdate(){
+  var b=document.getElementById('syncBtn');if(!b)return;
+  b.hidden=!(SYNC_OK&&S.syncOn);
+  b.classList.toggle('busy',syncBusy);b.classList.toggle('pend',!!S.dirty&&!syncBusy);
+  b.setAttribute('aria-label',T.syncNow);b.title=T.syncNow;
+}
+function setStatus(){var e=document.getElementById('syncStatus');if(e)e.textContent=syncStatusText();syncBtnUpdate()}
 function autoPushSoon(){
   if(!SYNC_OK||!S.syncOn)return;
   clearTimeout(autoTimer);autoTimer=setTimeout(function(){syncNow(true)},8000);
@@ -966,7 +982,7 @@ function autoPushSoon(){
 function syncOff(){
   var t=gTok;gTok=null;gTokExp=0;
   try{if(t&&window.google&&google.accounts&&google.accounts.oauth2)google.accounts.oauth2.revoke(t,function(){})}catch(e){}
-  S.syncOn=false;S.syncRev=null;S.dirty=false;syncMsg='';persist();toast(T.disconnected);openSettings();
+  S.syncOn=false;S.syncRev=null;S.dirty=false;syncMsg='';persist();syncBtnUpdate();toast(T.disconnected);openSettings();
 }
 function applyRemote(rm){
   S.items=rm.items;if(rm.ds)S.decadeStart=rm.ds;S.syncRev=rm.savedAt;S.dirty=false;S.syncLast=Date.now();persist();render();
@@ -982,6 +998,7 @@ function endSync(kind,auto){
   syncBusy=false;syncMsg='';
   if(kind==='pulled'){toast(T.pulled)}
   else if(kind==='pushed'&&!auto){toast(T.pushed)}
+  else if(kind==='ok'&&!auto){toast(T.upToDate)}
   persist();setStatus();
   if(S.dirty&&S.syncOn&&kind!=='conflict'&&kind!=='skip')autoPushSoon();
 }
@@ -1059,7 +1076,7 @@ function openConflict(){
 function backupJson(){return JSON.stringify({app:'defter',v:1,savedAt:new Date().toISOString(),lang:S.lang,font:S.font,zoom:S.zoom,yrev:S.yrev,decadeStart:S.decadeStart,items:S.items},null,1)}
 function setLang(l){
   S.lang=l;T=TX[l];document.documentElement.lang=l;persist();
-  document.getElementById('gear').setAttribute('aria-label',T.settings);buildTabs();render();openSettings();
+  document.getElementById('gear').setAttribute('aria-label',T.settings);syncBtnUpdate();buildTabs();render();openSettings();
 }
 function setFont(f){
   S.font=f;document.documentElement.setAttribute('data-font',f);persist();
@@ -1071,7 +1088,7 @@ function setZoom(z){
 }
 function openSettings(){
   var p=h('div',{class:'panel',role:'dialog','aria-modal':'true'});
-  p.appendChild(h('div',{class:'phead'},[h('div',{class:'sheet-title',text:T.settings}),xBtn()]));
+  p.appendChild(h('div',{class:'phead'},[h('div',{class:'sheet-title sicon',role:'img','aria-label':T.settings,html:SUNICON+'<span class="stxt"><b>Yarın</b><i>DEFTERİ</i></span>'}),xBtn()]));
   function seg(l,name){return h('button',{type:'button',text:name,'aria-pressed':String(S.lang===l),onclick:function(){if(S.lang!==l)setLang(l)}})}
   p.appendChild(h('div',{class:'srow'},[h('span',{text:T.lang}),h('div',{class:'seg'},[seg('tr','Türkçe'),seg('en','English')])]));
   function segF(f,name){return h('button',{type:'button',text:name,'aria-pressed':String(S.font===f),onclick:function(){if(S.font!==f)setFont(f)}})}
@@ -1267,6 +1284,8 @@ window.addEventListener('resize',function(){fitAll();fitTitle()});
 
 document.getElementById('gear').setAttribute('aria-label',T.settings);
 buildTabs();render();
+document.getElementById('syncBtn').addEventListener('click',function(){syncNow(false)});
+syncBtnUpdate();
 if(SYNC_OK&&S.syncOn)setTimeout(function(){syncNow(true)},600);
 })();
 </script>
