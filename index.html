@@ -310,7 +310,7 @@ h1{margin:0;font-weight:inherit}
 .seg button:disabled{opacity:.35;cursor:default}
 @keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 .sheet-text{font:400 calc(25px*var(--hs))/1.25 var(--hand);color:var(--ink);padding:0 0 12px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;overflow-wrap:anywhere}
-.sheet-title.sicon{display:flex;align-items:center;gap:14px;padding-bottom:6px}.sheet-title.sicon svg{display:block;flex:none;height:36px;width:auto}.sheet-title.sicon .stxt{display:flex;flex-direction:column;justify-content:center;height:36px;font:400 16px/1.06 'Jost',var(--sans);letter-spacing:.2em;color:var(--ink)}.stxt span{display:block}
+.sheet-title.sicon{display:flex;align-items:center;gap:14px;padding-bottom:6px}.sheet-title.sicon svg{display:block;flex:none;height:36px;width:auto}.sheet-title.sicon .stxt{display:flex;flex-direction:column;justify-content:center;height:36px;font:400 13px/1.12 'Jost',var(--sans);letter-spacing:.2em;color:var(--ink)}.stxt span{display:block}
 .sheet-title{font:400 calc(32px*var(--hs))/1.1 var(--hand);color:var(--ink);padding-bottom:10px}
 .act{display:block;width:100%;padding:15px 4px;font:15px/1.2 var(--sans);color:var(--ink);border-top:1px solid var(--rule)}
 .act.soft{color:var(--ink-soft)}
@@ -375,7 +375,7 @@ body.dragging-now{-webkit-user-select:none;user-select:none;cursor:grabbing}
 .dchip.over{background:var(--blue);color:var(--paper)}
 .alist{margin:0 4px 12px;padding-left:20px;font:13px/1.5 var(--sans);color:var(--ink-soft)}
 .alist li+li{margin-top:6px}
-.acredit{color:var(--ink);font-weight:500}
+.snote.acredit{margin:16px 4px 4px;padding-top:14px;border-top:1px solid var(--rule);color:var(--ink-soft);font-weight:400;font-size:12px;line-height:1.5}
 .acredit a{color:var(--blue);text-decoration:underline;text-underline-offset:2px}
 @media (prefers-reduced-motion:reduce){.syncbtn.busy svg{animation-duration:2.4s}.cb .tick,.cb rect{transition:none}.panel{animation:none}}
 </style>
@@ -407,7 +407,7 @@ var TX={
     hint:'Bir satıra dokun ve yazmaya başla.',still:'hâlâ duruyor',
     carryweek:'geçen haftadan',carrymonth:'geçen aydan',bring:'buraya al',
     pull:'bitmeyenleri bugüne al',days:'Yazılan günler',noDays:'Bu ay henüz bir güne yazılmadı.',
-    here:'Bu güne al',moveTo:'Güne taşı',toWeek:'Haftaya al',toMonth:'Aya al',tmrw:'Yarına ertele',nextday:'Ertesi güne ertele',bullet:'• Madde',noteClr:'Notu temizle',undoCap:'Geri al',del:'Görevi sil',pins:'Hızlı notlar',pinNew:'+ Yeni not',pinPh:'Telefon, alışveriş, aklına gelen…',pinDel:'Sil',pinGone:'Not silindi',pinMove:'Taşı',fs:'Tam ekran',themeLight:'Açık tema',themeDark:'Koyu tema',fsOn:'Aç',fsOff:'Kapat',fsFail:'Tarayıcı tam ekrana izin vermedi',fsIos:'Tam ekran için Paylaş › Ana Ekrana Ekle de, sonra defteri ana ekrandan aç; tarayıcı çubukları olmadan açılır.',pinDay:'Güne',pinWeek:'Haftaya',pinMonth:'Aya',pinSize:'Boyutu sürükle',
+    here:'Bu güne al',moveTo:'Güne taşı',toWeek:'Haftaya al',toMonth:'Aya al',tmrw:'Yarına ertele',nextday:'Ertesi güne ertele',bullet:'• Madde',noteClr:'Notu temizle',undoCap:'Geri al',del:'Görevi sil',pins:'Hızlı notlar',pinNew:'+ Yeni not',pinPh:'Telefon, alışveriş, aklına gelen…',pinDel:'Sil',pinGone:'Not silindi',pinMove:'Taşı',fs:'Tam ekran',brand:['YARIN','DEFTERİ'],themeLight:'Açık tema',themeDark:'Koyu tema',fsOn:'Aç',fsOff:'Kapat',fsFail:'Tarayıcı tam ekrana izin vermedi',fsIos:'Tam ekran için Paylaş › Ana Ekrana Ekle de, sonra defteri ana ekrandan aç; tarayıcı çubukları olmadan açılır.',pinDay:'Güne',pinWeek:'Haftaya',pinMonth:'Aya',pinSize:'Boyutu sürükle',
     deleted:'Silindi',undo:'geri al',moved:'Taşındı',
     settings:'Ayarlar',lang:'Dil',font:'Yazı tipi',fontHand:'El yazısı',fontPlain:'Düz yazı',note:'Not',notePh:'Bu satır için not…',backup:'Yedek',
     backupNote:'Defterin bu tarayıcıda saklanır. Arada bir yedek al.',
@@ -440,7 +440,7 @@ var TX={
     hint:'Tap a line and start writing.',still:'still here',
     carryweek:'from last week',carrymonth:'from last month',bring:'bring here',
     pull:'move unfinished to today',days:'Days with notes',noDays:'Nothing written on a day this month yet.',
-    here:'Move to this day',moveTo:'Move to day',toWeek:'Move to week',toMonth:'Move to month',tmrw:'Postpone to tomorrow',nextday:'Postpone a day',bullet:'• Bullet',noteClr:'Clear note',undoCap:'Undo',del:'Delete task',pins:'Quick notes',pinNew:'+ New note',pinPh:'A phone number, shopping, a stray thought…',pinDel:'Delete',pinGone:'Note deleted',pinMove:'Move',fs:'Full screen',themeLight:'Light theme',themeDark:'Dark theme',fsOn:'Enter',fsOff:'Exit',fsFail:'The browser did not allow full screen',fsIos:'For full screen, tap Share › Add to Home Screen, then open the notebook from there; it opens without browser bars.',pinDay:'To day',pinWeek:'To week',pinMonth:'To month',pinSize:'Drag to resize',
+    here:'Move to this day',moveTo:'Move to day',toWeek:'Move to week',toMonth:'Move to month',tmrw:'Postpone to tomorrow',nextday:'Postpone a day',bullet:'• Bullet',noteClr:'Clear note',undoCap:'Undo',del:'Delete task',pins:'Quick notes',pinNew:'+ New note',pinPh:'A phone number, shopping, a stray thought…',pinDel:'Delete',pinGone:'Note deleted',pinMove:'Move',fs:'Full screen',brand:['TOMORROW’S','NOTEBOOK'],themeLight:'Light theme',themeDark:'Dark theme',fsOn:'Enter',fsOff:'Exit',fsFail:'The browser did not allow full screen',fsIos:'For full screen, tap Share › Add to Home Screen, then open the notebook from there; it opens without browser bars.',pinDay:'To day',pinWeek:'To week',pinMonth:'To month',pinSize:'Drag to resize',
     deleted:'Deleted',undo:'undo',moved:'Moved',
     settings:'Settings',lang:'Language',font:'Font',fontHand:'Handwriting',fontPlain:'Plain',note:'Note',notePh:'A note for this line…',backup:'Backup',
     backupNote:'Your notebook is stored in this browser. A backup now and then is a good idea.',
@@ -1388,7 +1388,7 @@ function setZoom(z){
 }
 function openSettings(){
   var p=h('div',{class:'panel',role:'dialog','aria-modal':'true'});
-  p.appendChild(h('div',{class:'phead'},[h('div',{class:'sheet-title sicon',role:'img','aria-label':T.settings,html:SUNICON+'<span class="stxt"><span>YARIN</span><span>DEFTERİ</span></span>'}),xBtn()]));
+  p.appendChild(h('div',{class:'phead'},[h('div',{class:'sheet-title sicon',role:'img','aria-label':T.settings,html:SUNICON+'<span class="stxt"><span>'+T.brand[0]+'</span><span>'+T.brand[1]+'</span></span>'}),xBtn()]));
   if(SYNC_OK){
     p.appendChild(h('div',{class:'slabel',text:T.sync}));
     p.appendChild(h('p',{class:'snote',text:T.syncNote}));
