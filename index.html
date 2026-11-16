@@ -147,7 +147,7 @@ h1{margin:0;font-weight:inherit}
 .float>.label,.quiet>.label{margin:2px 0 4px;padding:0 0 7px;border-bottom:1px solid var(--rule)}
 .quiet+.quiet{margin-top:-4px}
 .quiet .lines{background-image:none;min-height:0}
-.qadd{display:block;width:100%;text-align:left;color:var(--ink-faint);font:400 calc(21px*var(--hs))/30px var(--hand);padding:0 0 0 26px}
+.qadd{display:block;width:100%;text-align:left;color:var(--ink-faint);font:italic 400 calc(12.5px*var(--zm))/30px var(--sans);padding:0 0 0 26px}
 .qempty{margin-bottom:12px}
 .qempty .qadd{padding:9px 2px;font:500 13px/1.2 var(--sans);color:var(--ink-soft);border-bottom:1px dashed var(--rule-strong)}
 .quiet.dz-over,.qempty.dz-over{background:var(--chip);border-radius:10px}
@@ -182,6 +182,7 @@ h1{margin:0;font-weight:inherit}
 .done .cb rect{fill:var(--blue-wash);stroke:var(--blue)}
 .done .cb .tick{stroke-dashoffset:0}
 .draft .cb{visibility:hidden}
+.draft:focus-within .cb{visibility:visible}
 .tw{position:relative;min-width:0}
 .row textarea{
   display:block;width:100%;min-width:0;height:var(--row);
@@ -193,6 +194,7 @@ h1{margin:0;font-weight:inherit}
 .lines.margin .row.open{background:var(--sheet);box-shadow:inset 0 -1px 0 var(--rule);margin:0 -10px 0 -4px;padding:0 10px 0 4px}
 .row:not(.open) textarea{height:var(--row)!important}
 .row.open textarea{color:var(--ink);-webkit-text-fill-color:var(--ink);white-space:pre-wrap;overflow-wrap:anywhere}
+.float .row textarea::placeholder,.mprev .row textarea::placeholder{font:italic 400 calc(12.5px*var(--zm))/var(--row) var(--sans);letter-spacing:.01em}
 .row textarea::placeholder{color:var(--ink-soft);-webkit-text-fill-color:var(--ink-soft);opacity:.6}
 .view{position:absolute;left:0;right:0;top:0;height:var(--row);padding:0 0 0 6px;font-family:var(--hand);font-size:calc(var(--row)*.76*var(--hs));line-height:var(--row);color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;pointer-events:none}
 .row.open .view{display:none}
@@ -342,9 +344,11 @@ h1{margin:0;font-weight:inherit}
 .pull{display:inline-block;margin:16px 0 0;padding:9px 15px;border-radius:999px;background:var(--blue-wash);color:var(--blue);font:500 13.5px/1 var(--sans)}
 
 /* week page */
-.wday{display:grid;grid-template-columns:40px minmax(0,1fr);column-gap:6px;align-items:start;margin:0 0 8px;padding:5px 12px 5px 12px;background:var(--card-dim);border-radius:18px}
+.wweek{margin:0 0 6px;padding:4px 0;background:var(--card-dim);border-radius:18px;overflow:hidden}
+.wday{display:grid;grid-template-columns:40px minmax(0,1fr);column-gap:6px;align-items:start;margin:0;padding:6px 12px;background:none;border-radius:0}
 .wday{position:relative}
-.wday,.wday.empty{margin:0 0 6px}
+.wday+.wday{border-top:1px solid var(--rule)}
+.wday.dz-over{outline:0;background:var(--blue-wash);box-shadow:inset 0 0 0 2px var(--blue-soft)}
 .msec.empty{margin:0 0 8px}
 .wday::before{content:"";position:absolute;left:55px;top:9px;bottom:9px;width:1px;background:var(--rule-strong);pointer-events:none}
 .wday .lines{background-image:none;min-height:0}
@@ -356,10 +360,37 @@ h1{margin:0;font-weight:inherit}
 /* month page */
 .mgrid{display:grid;grid-template-columns:repeat(7,1fr);margin:0 0 16px;padding:6px 6px 4px;background:var(--card);border-radius:18px}
 .mwd{font:500 10.5px/1 var(--sans);color:var(--ink-soft);text-align:center;padding:3px 0 3px}
-.mday{height:33px;display:grid;place-items:center;position:relative;font:400 calc(21px*var(--hs))/1 var(--hand);color:var(--ink)}
-.mday.has::after{content:"";position:absolute;bottom:2px;left:50%;width:4px;height:4px;margin-left:-2px;border-radius:50%;background:var(--ink-soft)}
-.mday.today span{display:grid;place-items:center;min-width:27px;height:27px;padding:0 4px;border-radius:50%;background:var(--blue);color:var(--paper)}
-.mday.today.has::after{background:var(--blue)}
+.mday{height:44px;display:grid;place-items:center;position:relative;font:400 calc(21px*var(--hs))/1 var(--hand);color:var(--ink);border-radius:10px}
+.mday.has{background:color-mix(in srgb,var(--blue) calc(var(--d,0)*1%),transparent)}
+.mday.has .n{transform:translateY(-4px)}
+.mday .dots{position:absolute;left:0;right:0;bottom:5px;display:flex;justify-content:center;gap:2px;pointer-events:none}
+.mday .dots i{width:4px;height:4px;border-radius:50%;box-shadow:inset 0 0 0 1px var(--ink-faint)}
+.mday .dots i.on{background:var(--ink-soft);box-shadow:none}
+.mday.today .n{display:grid;place-items:center;min-width:27px;height:27px;padding:0 4px;border-radius:50%;background:var(--blue);color:var(--paper)}
+.mday.today .dots i{box-shadow:inset 0 0 0 1px var(--blue)}
+.mday.today .dots i.on{background:var(--blue)}
+.mday.sel{box-shadow:inset 0 0 0 1.5px var(--blue-soft)}
+.mday.dz-over{outline:0;background:var(--blue-wash);box-shadow:inset 0 0 0 2px var(--blue)}
+.msum{margin:-6px 0 14px;text-align:center;font:500 12.5px/1.3 var(--sans);color:var(--ink-soft)}
+.mprev{margin:0 0 6px;padding:2px 10px 4px;border-radius:14px;background:var(--card)}
+.mph{display:flex;align-items:baseline;justify-content:space-between;gap:10px;padding:0 2px;border-bottom:1px solid var(--rule)}
+.mpt{font:400 calc(24px*var(--hs))/1.3 var(--hand);color:var(--ink)}
+.mpt.istoday{color:var(--blue)}
+.mpo{display:inline-flex;align-items:center;gap:4px;padding:8px 2px;font:600 12.5px/1 var(--sans);color:var(--blue)}
+.mproj{margin:0 0 18px}
+.mproj .label{margin-bottom:8px}
+.pjc.dn{opacity:.6}
+.mlist{margin:0 0 16px}
+.mlh{display:flex;align-items:center;gap:8px;width:100%;padding:6px 0 8px;border-bottom:1px solid var(--rule);font:600 12px/1 var(--sans);letter-spacing:.02em;color:var(--blue);text-align:left}
+.mlh .ct{font-weight:500;color:var(--ink-faint)}
+.mlh .ex{margin-left:auto;display:inline-flex;align-items:center;gap:5px;padding:7px 12px 7px 14px;border-radius:999px;background:var(--blue-wash);box-shadow:inset 0 0 0 1px var(--blue-soft);font:600 12.5px/1 var(--sans);letter-spacing:0;color:var(--blue)}
+.mlh:active .ex{background:var(--blue-soft)}
+.mlh .ex svg{width:15px;height:15px;transition:transform .15s}
+.mlh .ex.on svg{transform:rotate(180deg)}
+.mwg:first-of-type{padding-top:4px}
+.mwg+.mwg{margin-top:8px;padding-top:8px;border-top:1px solid var(--rule-strong)}
+.mwg .mrow{border-top:0;padding:5px 0}
+.cmore{margin:6px 2px 0;font:500 12px/1 var(--sans);color:var(--ink-soft)}
 .mlist .label{margin-bottom:2px}
 .mrow{display:grid;grid-template-columns:78px minmax(0,1fr);align-items:baseline;width:100%;padding:7px 0;border-top:1px solid var(--rule)}
 .mrow .k{font:400 calc(22px*var(--hs))/1.2 var(--hand);color:var(--ink-soft);white-space:nowrap}
@@ -377,6 +408,26 @@ h1{margin:0;font-weight:inherit}
 .msec.empty .mhead{font-size:calc(23px*var(--hs));line-height:32px;padding:0;height:32px}
 .msec .lines{background-image:none}
 .msec.empty .lines{min-height:0}
+.tprog{margin:0 4px 14px}
+.tprog .bar{height:5px;border-radius:3px;background:var(--chip);overflow:hidden}
+.tprog .bar i{display:block;height:100%;border-radius:3px;background:var(--blue-soft)}
+.tprog .tl{display:flex;justify-content:space-between;margin-top:6px;font:500 12px/1 var(--sans);color:var(--ink-soft)}
+.ygrid{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;margin:0 0 14px;padding:6px;background:var(--card);border-radius:18px}
+.ygrid.dec{grid-template-columns:repeat(5,1fr)}
+.ymo{height:56px;display:grid;place-items:center;position:relative;font:400 calc(19px*var(--hs))/1 var(--hand);color:var(--ink);border-radius:12px;padding:0 2px;min-width:0}
+.ymo.has{background:color-mix(in srgb,var(--blue) calc(var(--d,0)*1%),transparent)}
+.ymo.has .n{transform:translateY(-5px)}
+.ymo.past{color:var(--ink-faint)}
+.ymo.now{box-shadow:inset 0 0 0 1.5px var(--blue-soft)}
+.ymo.now .n{color:var(--blue);font-weight:600}
+.ymo .dots{position:absolute;left:0;right:0;bottom:7px;display:flex;justify-content:center;gap:2px;pointer-events:none}
+.ymo .dots i{width:4px;height:4px;border-radius:50%;box-shadow:inset 0 0 0 1px var(--ink-faint)}
+.ymo .dots i.on{background:var(--ink-soft);box-shadow:none}
+.ymo.dz-over{outline:0;background:var(--blue-wash);box-shadow:inset 0 0 0 2px var(--blue)}
+.yframe{margin:0 0 8px;padding:2px 0;background:var(--card);border-radius:18px;overflow:hidden}
+.yframe .msec,.yframe .msec.empty{margin:0;background:none;border-radius:0}
+.yframe .msec+.msec{border-top:1px solid var(--rule)}
+.drawer .yframe{margin-bottom:8px}
 .drawer{margin:0 0 8px}
 .drawer-btn{display:flex;align-items:center;justify-content:space-between;width:100%;margin:0 0 8px;padding:12px 16px;border-radius:18px;border:1px dashed var(--rule-strong);color:var(--ink-soft);font:500 13.5px/1 var(--sans)}
 .drawer-btn svg{width:16px;height:16px;transition:transform .2s}
@@ -524,7 +575,7 @@ body.dragging-now{-webkit-user-select:none;user-select:none;cursor:grabbing}
 .htitle{margin:6px 4px 4px;font:400 calc(30px*var(--hs))/1.15 var(--hand);color:var(--ink)}
 .hback{display:inline-flex;align-items:center;gap:4px;height:36px;padding:0 10px 0 2px;font:500 14px/1 var(--sans);color:var(--ink-soft)}
 .hback svg{width:18px;height:18px}
-.hintro{margin:6px 4px 12px;font:400 calc(21px*var(--hs))/1.35 var(--hand);color:var(--ink-soft)}
+.hintro{margin:6px 4px 12px;font:400 calc(17px*var(--hs))/1.4 var(--hand);color:var(--ink-soft);column-count:2;column-gap:22px;text-align:left;hyphens:auto;-webkit-hyphens:auto}
 .hsec{display:flex;align-items:center;gap:10px;margin:0;padding:16px 4px 2px;border-top:1px solid var(--rule);font:600 14px/1.2 var(--sans);letter-spacing:.01em;color:var(--ink)}
 .hic{flex:none;display:inline-flex;align-items:center;justify-content:center;gap:1px;min-width:30px;height:30px;padding:0 6px;border-radius:15px;background:var(--blue-wash);color:var(--blue)}
 .hic svg{width:17px;height:17px;display:block;flex:none}
@@ -538,7 +589,7 @@ body.dragging-now{-webkit-user-select:none;user-select:none;cursor:grabbing}
 </style>
 
 <div class="app">
-  <div id="topHold" hidden><button class="gear pinbtn" id="pinBtn" type="button" aria-label="Hızlı notlar"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path class="pn" d="M5 4.5h14v9.5l-5.5 5.5H5z"/><path d="M13.5 19.5v-3.5a2 2 0 0 1 2-2H19" stroke="var(--ink-soft)"/><path d="M8.5 9h7M8.5 12.2h4" stroke="var(--ink-soft)" opacity=".7"/></svg></button><button class="gear" id="gear" type="button" aria-label="Ayarlar"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M4 7h10M18 7h2M4 17h2M10 17h10"/><circle cx="16" cy="7" r="2"/><circle cx="8" cy="17" r="2"/></svg></button></div>
+  <div id="topHold" hidden><button class="gear pinbtn" id="pinBtn" type="button" aria-label="Zamansız Notlar"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path class="pn" d="M5 4.5h14v9.5l-5.5 5.5H5z"/><path d="M13.5 19.5v-3.5a2 2 0 0 1 2-2H19" stroke="var(--ink-soft)"/><path d="M8.5 9h7M8.5 12.2h4" stroke="var(--ink-soft)" opacity=".7"/></svg></button><button class="gear" id="gear" type="button" aria-label="Ayarlar"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M4 7h10M18 7h2M4 17h2M10 17h10"/><circle cx="16" cy="7" r="2"/><circle cx="8" cy="17" r="2"/></svg></button></div>
   <main id="page"></main>
 </div>
 <nav class="tabs" aria-label="Yarın Defteri"><div class="bar"><div class="tabs-in" id="tabs"></div><button class="gear syncbtn" id="syncBtn" type="button" hidden><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11a8 8 0 0 0-14.3-4.2L4 9M4 4v5h5M4 13a8 8 0 0 0 14.3 4.2L20 15M20 20v-5h-5"/></svg></button>
@@ -563,9 +614,9 @@ var TX={
     ph_week:'bu hafta içinde…',ph_month:'bu ay içinde…',ph_year:'bu yıl içinde…',ph_decade:'önümüzdeki yıllarda…',
     today:'bugün',tomorrow:'yarın',yesterday:'dün',back:'bugüne dön',
     hint:'Bir satıra dokun ve yazmaya başla.',still:'hâlâ duruyor',
-    carryweek:'geçen haftadan',carrymonth:'geçen aydan',bring:'buraya al',
-    pull:'bitmeyenleri bugüne al',days:'Yazılan günler',noDays:'Bu ay henüz bir güne yazılmadı.',
-    openLink:'Linki aç',projects:'Projeler',rename:'Başlığı düzenle',pjArch:'Arşiv',pjDrop:'Arşivlemek için buraya bırak',pjArchived:'Arşivlendi',pjRestore:'Geri al',pjAttach:'Projeye ekle',pjDetach:'Projeden çıkar',pjNone:'Henüz proje yok',pjAdded:'Projeye eklendi',pinMax:'En fazla 4 not',calendar:'Takvim',pjNeedTitle:'Önce proje adı yaz',chkS:'+ Madde',bulS:'• Liste',pjNoItems:'madde yok',pjOff:'Nota çevir',hereS:'Bu güne',tmrwS:'Yarına',nextS:'Ertesi güne',toWeekS:'Haftaya',toMonthS:'Aya',delS:'Sil',tabNotes:'Notlar',project:'Proje',pjNew:'+ Yeni proje',pjUntitled:'Adsız proje',pjTitlePh:'Proje adı',pjEmpty:'Henüz proje yok. Uzun soluklu işler için bir proje aç, maddelere tarih verirsen o günün defterine de düşer.',pjAdd:'+ Madde ekle',pjTodoPh:'Yapılacak…',pjNotes:'Akla gelenler',pjNotesPh:'Not…',pjDel:'Projeyi sil',pjGone:'Proje silindi',pjMake:'Proje yap',pjOpen:'Projeyi aç',pjDate:'Tarih ver',pjClr:'Tarihi kaldır',pjDone:'tamam',pjBack:'Projeler',pjMade:'Proje oluşturuldu',here:'Bu güne al',moveTo:'Güne taşı',repeat:'Tekrarla',repNone:'Tekrarsız',repW:'Her hafta',repM:'Her ay',repY:'Her yıl',toWeek:'Haftaya al',toMonth:'Aya al',tmrw:'Yarına ertele',nextday:'Ertesi güne ertele',bullet:'• Madde',check2:'☐ Görev',noteClr:'Notu temizle',undoCap:'Geri al',del:'Görevi sil',pins:'Hızlı notlar',pinNew:'+ Yeni not',pinPh:'Telefon, alışveriş, aklına gelen…',pinDel:'Sil',pinGone:'Not silindi',pinMove:'Taşı',fs:'Tam ekran',brand:['YARIN','DEFTERİ'],themeLight:'Açık tema',themeDark:'Koyu tema',fsOn:'Aç',fsOff:'Kapat',fsFail:'Tarayıcı tam ekrana izin vermedi',fsIos:'Tam ekran için Paylaş › Ana Ekrana Ekle de, sonra defteri ana ekrandan aç; tarayıcı çubukları olmadan açılır.',pinDay:'Güne',pinWeek:'Haftaya',pinMonth:'Aya',pinSize:'Boyutu sürükle',
+    carryweek:'geçen haftadan',carryyear:'geçen yıldan',pastY:'Geçmiş yıllar',tpYear:'Yıl %{P} geçti',tpYearR:'{N} gün kaldı',tpDec:'10 yıl %{P} geçti',tpDecR:'Yıl {K} / 10',carrymonth:'geçen aydan',bring:'buraya al',
+    pull:'bitmeyenleri bugüne al',wkShort:'H',openDay:'Güne git',mprevPh:'bu gün…',mprojects:'Aktif projeler',mexp:'Genişlet',mcol:'Daralt',moreN:'+{N} daha',days:'Bu ay',noDays:'Bu ay henüz bir güne yazılmadı.',
+    openLink:'Linki aç',projects:'Projeler',rename:'Başlığı düzenle',pjArch:'Arşiv',pjDrop:'Arşivlemek için buraya bırak',pjArchived:'Arşivlendi',pjRestore:'Geri al',pjAttach:'Projeye ekle',pjDetach:'Projeden çıkar',pjNone:'Henüz proje yok',pjAdded:'Projeye eklendi',pinMax:'En fazla 6 not',calendar:'Takvim',pjNeedTitle:'Önce proje adı yaz',chkS:'+ Madde',bulS:'• Liste',pjNoItems:'madde yok',pjOff:'Nota çevir',hereS:'Bu güne',tmrwS:'Yarına',nextS:'Ertesi güne',toWeekS:'Haftaya',toMonthS:'Aya',delS:'Sil',tabNotes:'Notlar',project:'Proje',pjNew:'+ Yeni proje',pjUntitled:'Adsız proje',pjTitlePh:'Proje adı',pjEmpty:'Henüz proje yok. Uzun soluklu işler için bir proje aç, maddelere tarih verirsen o günün defterine de düşer.',pjAdd:'+ Madde ekle',pjTodoPh:'Yapılacak…',pjNotes:'Akla gelenler',pjNotesPh:'Not…',pjDel:'Projeyi sil',pjGone:'Proje silindi',pjMake:'Proje yap',pjOpen:'Projeyi aç',pjDate:'Tarih ver',pjClr:'Tarihi kaldır',pjDone:'tamam',pjBack:'Projeler',pjMade:'Proje oluşturuldu',here:'Bu güne al',moveTo:'Güne taşı',repeat:'Tekrarla',repNone:'Tekrarsız',repW:'Her hafta',repM:'Her ay',repY:'Her yıl',toWeek:'Haftaya al',toMonth:'Aya al',tmrw:'Yarına ertele',nextday:'Ertesi güne ertele',bullet:'• Madde',check2:'☐ Görev',noteClr:'Notu temizle',undoCap:'Geri al',del:'Görevi sil',pins:'Zamansız Notlar',pinNew:'+ Yeni not',pinPh:'Telefon, alışveriş, aklına gelen…',pinDel:'Sil',pinGone:'Not silindi',pinMove:'Taşı',fs:'Tam ekran',brand:['YARIN','DEFTERİ'],themeLight:'Açık tema',themeDark:'Koyu tema',fsOn:'Aç',fsOff:'Kapat',fsFail:'Tarayıcı tam ekrana izin vermedi',fsIos:'Tam ekran için Paylaş › Ana Ekrana Ekle de, sonra defteri ana ekrandan aç; tarayıcı çubukları olmadan açılır.',pinDay:'Güne',pinWeek:'Haftaya',pinMonth:'Aya',pinSize:'Boyutu sürükle',
     deleted:'Silindi',undo:'geri al',moved:'Taşındı',
     settings:'Ayarlar',lang:'Dil',font:'Yazı tipi',fontHand:'El yazısı',fontPlain:'Düz yazı',note:'Not',notePh:'Bu satır için not…',backup:'Yedek',
     backupNote:'Defterin bu tarayıcıda saklanır. Arada bir yedek al.',
@@ -580,23 +631,21 @@ var TX={
     conflictTitle:'İki defter farklı',conflictText:'Bu cihazda ve Drive’da farklı değişiklikler var. Nasıl devam edelim?',onThis:'Bu cihazda',onDrive:'Drive’da',lines:'satır',
     merge:'Birleştir, ikisini de tut',takeRemote:'Drive’dakini al',takeLocal:'Bu cihazdakini gönder',
     about:'Hakkında',
-    aboutIntro:'Yarın Defteri, planlarını kâğıt bir defterdeki gibi sakin tutmak için yapıldı. Gün, hafta, ay, yıl ve 10 yıl sayfaları birbirine bağlı. Renkli çubuk, seri ya da bildirim yok.',
+    aboutIntro:'Yarın Defteri, zamanı ve günleri daha iyi algılamak ve yönetebilmek için ortaya çıktı.\nGün, hafta, ay, yıl ve 10 yıl sayfalarının hepsi birbirine bağlı. Bugünü daha geniş bir zamanın içinden görebilirsiniz. Zamansız işleri ve fikirleri not almak, önemli projeleri takip etmek de mümkün.',
     howTitle:'Nasıl kullanılır',
-    helpIntro:'Yarın Defteri bir kâğıt defter gibi çalışır: yaz, işaretle, işin yetişmezse yarına bırak. Burada her şeyin nasıl işlediğini bulursun.',
-    helpNoSync:' Bu önizlemede senkron kapalı; kendi sitende Ayarlar\u2019da görünür.',
+    helpIntro:'Yarın Defteri, kâğıt defterin boş bıraktığı yerleri tamamlamak için yapıldı: yaz, işaretle, yetişmeyeni yarına bırak. Gün, hafta, ay, yıl ve 10 yıl sayfaları birbirine bağlıdır; hepsinde hem liste hem takvim gibi planlayabilirsin. Tarihi belli olmayan işi \u201cbu hafta\u201d ya da \u201cbu ay içinde\u201d diye yazarsın; zamansız notlar için post-it, uzun işler için projeler var.',
+    helpNoSync:'',
     help:[
-      ['Yazmak ve işaretlemek','Bir satıra dokun ve yaz, <b>Enter</b> yeni satıra geçirir. Kutucuğa dokununca satırın üstü çizilir, hiçbir şey silinmez. Uzun satırlar tek satırda kısalır, dokununca açılır.'],
-      ['Gün, hafta, ay, yıl, 10 yıl','Beş sayfa birbirine bağlıdır. Günlerin altında <b>Bu hafta içinde</b>, <b>Bu ay içinde</b> gibi alanlar vardır: o döneme ait ama henüz bir güne yapışmamış işler buraya yazılır. Sağa ya da sola kaydırarak önceki ve sonraki sayfaya geçersin.'],
-      ['Taşımak ve ertelemek','Kutucuğa basılı tut (bilgisayarda sürükle) ve başka bir güne, haftaya, aya ya da yıla taşı. Satırı açınca sağdaki <b>üç nokta</b> menüsünden <b>Yarına</b>, <b>Haftaya</b>, <b>Aya</b> diyebilir, tarih seçebilir ya da tekrar kurabilirsin.'],
-      ['Not ve proje','Satırın sağındaki ikona dokununca not sayfası açılır. Not ile proje aynı sayfadır: bir madde listesi ve serbest bir not alanı. Başlığın önündeki ikona dokunarak <b>Not</b> (mavi) ile <b>Proje</b> (turuncu) arasında geçersin. Başlığa dokunarak adını değiştirebilirsin. Bütün projeler sayfanın üstündeki <b>Projeler</b> sekmesinde durur.'],
-      ['Maddeler','Maddeleri kutucuktan tutup sürükleyerek sıralarsın. Takvim ikonuyla bir maddeye tarih verirsen o günün sayfasına da düşer; tarihe dokununca o güne gidersin.'],
-      ['Arşiv','Uzun bir projede biten maddeyi kutucuğundan tutup altta beliren <b>Arşivlemek için buraya bırak</b> alanına sürükle. Madde listeden kalkıp <b>Arşiv</b> bölümüne gider, ilerlemede sayılmaya devam eder. Arşivden istediğin zaman geri alabilirsin.'],
-      ['Bir notu projeye bağlamak','Günlük bir satırın üç nokta menüsündeki klasör düğmesiyle, o satırı mevcut bir projeye madde olarak bağlarsın.'],
-      ['Post-it','Üstteki post-it düğmesi hiçbir güne bağlı olmayan karalama defterindir. Tek büyük post-it açılır, kenarındaki düğmeyle küçük kareye döner. En fazla 4 post-it tutabilirsin.'],
-      ['Bağlantılar ve görevler','Notlara yazdığın web adresleri tıklanabilir olur. <b>☐ Görev</b> ile onay kutulu satırlar ekleyebilirsin.'],
-      ['Yedek','Ayarlar\u2019daki <b>Yedek</b> bölümünden defterini dosya olarak kaydeder, kopyalar ya da bir yedekten geri yüklersin.'],
-      ['Senkron (Google hesabı)','Ayarlar\u2019daki <b>Senkron</b> bölümünden <b>Google ile bağlan</b> dersen aynı defteri telefonunda ve bilgisayarında kullanırsın. Defter, Drive\u2019ında yalnızca bu uygulamanın görebildiği gizli bir alana kaydedilir; diğer dosyalarına dokunmaz. Değişikliklerin kendiliğinden gider, istersen <b>Senkronize et</b> ile elle de eşitlersin. Bağlantıyı kesersen Drive\u2019daki kopya silinmez.{NOSYNC}'],
-      ['Görünüm','Ayarlar\u2019dan dili, açık ya da koyu temayı, el yazısı ya da düz yazıyı ve yazı boyutunu seçersin.']
+      ['Yazmak ve işaretlemek','Bir satıra dokun ve yaz, <b>Enter</b> yeni satır açar. Kutucuk satırın üstünü çizer, hiçbir şey silinmez. Notlardaki web adresleri tıklanabilir olur; <b>☐ Görev</b> ile onay kutulu satırlar eklersin.'],
+      ['Sayfalar','Gün, hafta, ay, yıl ve 10 yıl sayfaları birbirine bağlıdır; alttaki çubuktan seçer, kaydırarak ilerlersin. Her sayfada <b>Bu hafta içinde</b>, <b>Bu ay içinde</b> gibi alanlar vardır: o döneme ait ama bir güne atanmamış işler buraya yazılır.'],
+      ['Gün sayfası','Günün işlerini yazarsın. Üstte haftanın, altta ayın <b>içinde</b> alanı görünür; böylece günün yanında yaklaşan işleri de görürsün. Geçmiş bir günde bitmeyenleri <b>bugüne al</b> ile taşırsın, başlığa dokunup tarih seçersin.'],
+      ['Hafta sayfası','Yedi gün alt alta kart olarak durur; kartın başlığına dokunmak o günü açar. En üstteki <b>Bu hafta içinde</b> alanı haftaya ait ama güne atanmamış işlerindir, geçen haftadan kalanlar <b>buraya al</b> ile gelir.'],
+      ['Ay sayfası','Noktalar günün işlerini gösterir (dolu bitmiş, boş bitmemiş). Bir güne dokununca altta <b>Bu ay</b> bölümünde açılır; ikinci dokunuş ya da <b>Güne git</b> gün sayfasını açar. <b>Genişlet</b> bütün günleri alt alta gösterir. <b>Bu ay içinde</b> işlerini tutup takvimde bir güne bırakırsın; en altta bitmemiş <b>Aktif projeler</b> durur.'],
+      ['Yıl ve 10 yıl','Uzun ve çok uzun vadeli planlar içindir.'],
+      ['Taşımak ve ertelemek','Kutucuğa basılı tut (bilgisayarda sürükle) ve başka bir güne, haftaya, aya ya da yıla bırak. Ya da satırı açıp <b>üç nokta</b> menüsünden <b>Yarına</b>, <b>Haftaya</b>, <b>Aya</b> de, tarih seç, tekrar kur ya da bir projeye bağla.'],
+      ['Not ve proje','Satırın sağındaki ikon not sayfasını açar. Not ile proje aynı sayfadır: madde listesi ve serbest not alanı. Başlığın önündeki ikonla <b>Not</b> (mavi) ile <b>Proje</b> (turuncu) arasında geçersin, başlığa dokunup adını değiştirirsin. Maddeleri tutup sürükleyerek sıralar, takvim ikonuyla tarih verirsin; tarihli madde o günün sayfasına da düşer. Biten maddeyi <b>Arşivlemek için buraya bırak</b> alanına sürüklersen <b>Arşiv</b> bölümüne gider, ilerlemede sayılmaya devam eder. Bütün projeler üstteki <b>Projeler</b> sekmesindedir.'],
+      ['Post-it','Üstteki post-it düğmesi hiçbir güne bağlı olmayan karalama defterindir. En fazla 6 post-it tutabilirsin, büyük post-iti kenarındaki düğmeyle küçük kareye çevirirsin.'],
+      ['Ayarlar','Ayarlar\u2019dan dili, açık ya da koyu temayı, yazı tipini ve boyutunu seçersin. <b>Yedek</b> defterini dosya olarak kaydeder, kopyalar ya da geri yükler. <b>Senkron</b> ile Google hesabına bağlanıp aynı defteri telefonunda ve bilgisayarında kullanırsın; defter Drive\u2019ında yalnızca bu uygulamanın görebildiği gizli bir alanda durur, değişikliklerin kendiliğinden gider.']
     ],
     credit:['Verimlilik için ',' tarafından tasarlandı, Claude ile birlikte geliştirildi.'],
     wd:['Pazartesi','Salı','Çarşamba','Perşembe','Cuma','Cumartesi','Pazar'],
@@ -612,9 +661,9 @@ var TX={
     ph_week:'sometime this week…',ph_month:'sometime this month…',ph_year:'sometime this year…',ph_decade:'in the years ahead…',
     today:'today',tomorrow:'tomorrow',yesterday:'yesterday',back:'back to today',
     hint:'Tap a line and start writing.',still:'still here',
-    carryweek:'from last week',carrymonth:'from last month',bring:'bring here',
-    pull:'move unfinished to today',days:'Days with notes',noDays:'Nothing written on a day this month yet.',
-    openLink:'Open link',projects:'Projects',rename:'Edit title',pjArch:'Archive',pjDrop:'Drop here to archive',pjArchived:'Archived',pjRestore:'Restore',pjAttach:'Add to project',pjDetach:'Remove from project',pjNone:'No projects yet',pjAdded:'Added to project',pinMax:'Up to 4 notes',calendar:'Calendar',pjNeedTitle:'Give the project a name first',chkS:'+ Item',bulS:'• Bullet',pjNoItems:'no items',pjOff:'Make it a note',hereS:'This day',tmrwS:'Tomorrow',nextS:'Next day',toWeekS:'Week',toMonthS:'Month',delS:'Delete',tabNotes:'Notes',project:'Project',pjNew:'+ New project',pjUntitled:'Untitled project',pjTitlePh:'Project name',pjEmpty:'No projects yet. Start one for long-running work; give an item a date and it also shows up on that day.',pjAdd:'+ Add item',pjTodoPh:'To do…',pjNotes:'Ideas',pjNotesPh:'Note…',pjDel:'Delete project',pjGone:'Project deleted',pjMake:'Make project',pjOpen:'Open project',pjDate:'Set date',pjClr:'Remove date',pjDone:'done',pjBack:'Projects',pjMade:'Project created',here:'Move to this day',moveTo:'Move to day',repeat:'Repeat',repNone:'No repeat',repW:'Every week',repM:'Every month',repY:'Every year',toWeek:'Move to week',toMonth:'Move to month',tmrw:'Postpone to tomorrow',nextday:'Postpone a day',bullet:'• Bullet',check2:'☐ Task',noteClr:'Clear note',undoCap:'Undo',del:'Delete task',pins:'Quick notes',pinNew:'+ New note',pinPh:'A phone number, shopping, a stray thought…',pinDel:'Delete',pinGone:'Note deleted',pinMove:'Move',fs:'Full screen',brand:['TOMORROW’S','NOTEBOOK'],themeLight:'Light theme',themeDark:'Dark theme',fsOn:'Enter',fsOff:'Exit',fsFail:'The browser did not allow full screen',fsIos:'For full screen, tap Share › Add to Home Screen, then open the notebook from there; it opens without browser bars.',pinDay:'To day',pinWeek:'To week',pinMonth:'To month',pinSize:'Drag to resize',
+    carryweek:'from last week',carryyear:'from last year',pastY:'Past years',tpYear:'Year {P}% elapsed',tpYearR:'{N} days left',tpDec:'Decade {P}% elapsed',tpDecR:'Year {K} / 10',carrymonth:'from last month',bring:'bring here',
+    pull:'move unfinished to today',wkShort:'W',openDay:'Go to day',mprevPh:'this day…',mprojects:'Active projects',mexp:'Expand',mcol:'Collapse',moreN:'+{N} more',days:'This month',noDays:'Nothing written on a day this month yet.',
+    openLink:'Open link',projects:'Projects',rename:'Edit title',pjArch:'Archive',pjDrop:'Drop here to archive',pjArchived:'Archived',pjRestore:'Restore',pjAttach:'Add to project',pjDetach:'Remove from project',pjNone:'No projects yet',pjAdded:'Added to project',pinMax:'Up to 6 notes',calendar:'Calendar',pjNeedTitle:'Give the project a name first',chkS:'+ Item',bulS:'• Bullet',pjNoItems:'no items',pjOff:'Make it a note',hereS:'This day',tmrwS:'Tomorrow',nextS:'Next day',toWeekS:'Week',toMonthS:'Month',delS:'Delete',tabNotes:'Notes',project:'Project',pjNew:'+ New project',pjUntitled:'Untitled project',pjTitlePh:'Project name',pjEmpty:'No projects yet. Start one for long-running work; give an item a date and it also shows up on that day.',pjAdd:'+ Add item',pjTodoPh:'To do…',pjNotes:'Ideas',pjNotesPh:'Note…',pjDel:'Delete project',pjGone:'Project deleted',pjMake:'Make project',pjOpen:'Open project',pjDate:'Set date',pjClr:'Remove date',pjDone:'done',pjBack:'Projects',pjMade:'Project created',here:'Move to this day',moveTo:'Move to day',repeat:'Repeat',repNone:'No repeat',repW:'Every week',repM:'Every month',repY:'Every year',toWeek:'Move to week',toMonth:'Move to month',tmrw:'Postpone to tomorrow',nextday:'Postpone a day',bullet:'• Bullet',check2:'☐ Task',noteClr:'Clear note',undoCap:'Undo',del:'Delete task',pins:'Timeless Notes',pinNew:'+ New note',pinPh:'A phone number, shopping, a stray thought…',pinDel:'Delete',pinGone:'Note deleted',pinMove:'Move',fs:'Full screen',brand:['TOMORROW’S','NOTEBOOK'],themeLight:'Light theme',themeDark:'Dark theme',fsOn:'Enter',fsOff:'Exit',fsFail:'The browser did not allow full screen',fsIos:'For full screen, tap Share › Add to Home Screen, then open the notebook from there; it opens without browser bars.',pinDay:'To day',pinWeek:'To week',pinMonth:'To month',pinSize:'Drag to resize',
     deleted:'Deleted',undo:'undo',moved:'Moved',
     settings:'Settings',lang:'Language',font:'Font',fontHand:'Handwriting',fontPlain:'Plain',note:'Note',notePh:'A note for this line…',backup:'Backup',
     backupNote:'Your notebook is stored in this browser. A backup now and then is a good idea.',
@@ -629,23 +678,21 @@ var TX={
     conflictTitle:'The two notebooks differ',conflictText:'This device and Drive both have different changes. How should we continue?',onThis:'On this device',onDrive:'In Drive',lines:'lines',
     merge:'Merge, keep both',takeRemote:'Use the one in Drive',takeLocal:'Send this device’s',
     about:'About',
-    aboutIntro:'Yarın Defteri (Tomorrow’s Notebook) is made to keep your plans calm, like a paper notebook. Day, week, month, year and 10-year pages are connected. No colored bars, streaks or notifications.',
+    aboutIntro:'Yarın Defteri (Tomorrow\u2019s Notebook) came about to perceive and manage time and days better.\nThe day, week, month, year and 10-year pages are all connected. You can see today from inside a wider stretch of time. You can also note down timeless items and ideas, and keep track of your important projects.',
     howTitle:'How to use',
-    helpIntro:'Tomorrow\u2019s Notebook works like a paper notebook: write, tick things off, and leave what did not fit for tomorrow. Here is how everything works.',
-    helpNoSync:' Sync is off in this preview; it appears in Settings on your own site.',
+    helpIntro:'Tomorrow\u2019s Notebook was made to fill the gaps a paper notebook leaves: write, tick things off, and leave what did not fit for tomorrow. The day, week, month, year and 10-year pages are connected, and on all of them you can plan like in a list and a calendar at once. An item with no date can be noted as \u201csometime this week\u201d or \u201cthis month\u201d; there is the post-it for timeless notes and projects for long work.',
+    helpNoSync:'',
     help:[
-      ['Writing and ticking off','Tap a line and write, <b>Enter</b> moves to the next line. Tap the box to cross a line out, nothing is ever deleted. Long lines are shortened to one line, tap one to open it.'],
-      ['Day, week, month, year, 10 years','Five connected pages. Under the days you will find areas like <b>Sometime this week</b> and <b>Sometime this month</b>: things that belong to that period but not to one day yet. Swipe left or right to turn the page.'],
-      ['Moving and postponing','Press and hold the box (drag on a computer) and move a line to another day, week, month or year. Open a line and use the <b>three dots</b> to choose <b>Tomorrow</b>, <b>Week</b> or <b>Month</b>, pick a date or set a repeat.'],
-      ['Notes and projects','Tap the icon at the right of a line to open its note page. A note and a project are the same page: a list of items plus a free note field. Tap the icon before the title to switch between <b>Note</b> (blue) and <b>Project</b> (orange). Tap the title to rename it. All projects live in the <b>Projects</b> tab at the top of the sheet.'],
-      ['Items','Hold an item\u2019s box and drag to reorder. Give an item a date with the calendar icon and it also appears on that day; tap the date to jump there.'],
-      ['Archive','In a long project, hold a finished item by its box and drag it to the <b>Drop here to archive</b> area that appears at the bottom. It leaves the list and goes to the <b>Archive</b> section, still counted in the progress. You can restore it any time.'],
-      ['Attaching a note to a project','Use the folder button in the three-dot menu of a daily line to attach it to an existing project as an item.'],
-      ['Post-it','The post-it button at the top is a scratchpad that is not tied to any day. One big post-it opens, and the button on its edge shrinks it to a small square. You can keep up to 4.'],
-      ['Links and tasks','Web addresses in notes become tappable. Use <b>☐ Task</b> to add lines with checkboxes.'],
-      ['Backup','In Settings, the <b>Backup</b> section saves your notebook as a file, copies it, or restores it from a backup.'],
-      ['Sync (Google account)','In Settings, under <b>Sync</b>, choose <b>Connect with Google</b> to use the same notebook on your phone and computer. The notebook is saved in a hidden area of your Drive that only this app can see; your other files are untouched. Changes are sent automatically, and you can also press <b>Sync now</b>. If you disconnect, the copy in Drive is not deleted.{NOSYNC}'],
-      ['Look','In Settings you choose the language, light or dark theme, handwriting or plain font, and text size.']
+      ['Writing and ticking off','Tap a line and write, <b>Enter</b> opens a new line. The box crosses a line out, nothing is ever deleted. Web addresses in notes become tappable; use <b>☐ Task</b> to add lines with checkboxes.'],
+      ['Pages','The day, week, month, year and 10-year pages are connected; pick one from the bar at the bottom or swipe to turn the page. Every page has areas like <b>Sometime this week</b> and <b>Sometime this month</b>: things that belong to that period but not to a day yet.'],
+      ['Day page','Write the day\u2019s items here. The week\u2019s and the month\u2019s \u201csometime\u201d areas sit above and below, so you see what is coming next to today. Unfinished items from a past day move over with <b>move unfinished to today</b>, and tapping the title lets you pick a date.'],
+      ['Week page','The seven days stand one under another as cards; tapping a card\u2019s title opens that day. The <b>Sometime this week</b> area at the top holds what belongs to the week but not to a day, and leftovers from last week come in with <b>bring here</b>.'],
+      ['Month page','Dots show the day\u2019s items (filled is done, empty is not done yet). Tap a day and it opens in the <b>This month</b> section below; a second tap or <b>Go to day</b> opens the day page. <b>Expand</b> lists every day. Hold a <b>Sometime this month</b> item and drop it on a day in the calendar; your unfinished <b>Active projects</b> are at the bottom.'],
+      ['Year and 10 years','These pages are for long and very long-term plans.'],
+      ['Moving and postponing','Hold the box (drag on a computer) and drop a line on another day, week, month or year. Or open a line and use the <b>three dots</b> to choose <b>Tomorrow</b>, <b>Week</b> or <b>Month</b>, pick a date, set a repeat or attach it to a project.'],
+      ['Notes and projects','The icon at the right of a line opens its note page. A note and a project are the same page: a list of items plus a free note field. The icon before the title switches between <b>Note</b> (blue) and <b>Project</b> (orange), and tapping the title renames it. Hold an item to drag it into order, and give it a date with the calendar icon; a dated item also shows up on that day. Drag a finished item to <b>Drop here to archive</b> and it moves to the <b>Archive</b> section, still counted in the progress. All projects are in the <b>Projects</b> tab at the top.'],
+      ['Post-it','The post-it button at the top is a scratchpad that is not tied to any day. You can keep up to 6 post-its, and the button on the edge of the big one shrinks it to a small square.'],
+      ['Settings','In Settings you choose the language, light or dark theme, font and text size. <b>Backup</b> saves your notebook as a file, copies it or restores it. With <b>Sync</b> you connect your Google account and use the same notebook on your phone and computer; it lives in a hidden area of your Drive that only this app can see, and changes are sent automatically.']
     ],
     credit:['Designed for productivity by ',', built together with Claude.'],
     wd:['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'],
@@ -945,7 +992,8 @@ function checkBtn(row){
   var b=h('button',{class:'cb',type:'button','aria-label':T.check,'aria-pressed':String(!!(it&&it.done)),html:BOX});
   attachDrag(b,row);
   b.addEventListener('click',function(){
-    var cur=findItem(row.dataset.id);if(!cur)return;
+    var cur=findItem(row.dataset.id);
+    if(!cur){var dta=row.querySelector('textarea');if(dta)dta.focus();return}
     cur.done=!cur.done;
     row.classList.toggle('done',cur.done);
     b.setAttribute('aria-pressed',String(cur.done));
@@ -1090,16 +1138,18 @@ function floatBlock(layer){
 function carryBlock(layer){
   if(keyOf(layer,anchor)!==keyOf(layer,today()))return null;
   var cur=keyOf(layer,anchor);
-  var prevKey=layer==='week'?dkey(addDays(monday(anchor),-7)):keyOf('month',new Date(anchor.getFullYear(),anchor.getMonth()-1,1));
+  var prevKey=layer==='week'?dkey(addDays(monday(anchor),-7)):layer==='year'?String(anchor.getFullYear()-1):keyOf('month',new Date(anchor.getFullYear(),anchor.getMonth()-1,1));
   var open=listFor(layer,prevKey).filter(function(i){return !i.done&&i.text.trim()});
+  if(layer==='month')S.items.forEach(function(i){if(i.layer==='day'&&i.key.indexOf(prevKey+'-')===0&&!i.done&&!i.pt&&i.text.trim())open.push(i)});
   if(!open.length)return null;
   var box=h('section',{class:'carry'},[h('div',{class:'label',text:T['carry'+layer]})]);
-  open.forEach(function(it){
+  open.slice(0,6).forEach(function(it){
     box.appendChild(h('div',{class:'crow'},[
-      h('span',{class:'tx',text:it.text}),
-      h('button',{type:'button',text:T.bring,onclick:function(){it.key=cur;queueSave();render()}})
+      h('span',{class:'tx',text:it.text+(it.layer==='day'?' \u00b7 '+shortDate(pd(it.key)):'')}),
+      h('button',{type:'button',text:T.bring,onclick:function(){it.layer=layer;it.key=cur;queueSave();render()}})
     ]));
   });
+  if(open.length>6)box.appendChild(h('div',{class:'cmore',text:T.moreN.replace('{N}',String(open.length-6))}));
   return box;
 }
 function qAdd(layer,key,empty){
@@ -1168,6 +1218,7 @@ function pageWeek(){
   f.appendChild(navBar(h('h1',{class:'title',text:title}),yearSub(mon)));
   f.appendChild(floatBlock('week'));
   var c=carryBlock('week');if(c)f.appendChild(c);
+  var frame=h('div',{class:'wweek'});
   for(var i=0;i<7;i++){(function(i){
     var d=addDays(mon,i),key=dkey(d);
     var empty=!listFor('day',key).length;
@@ -1176,38 +1227,97 @@ function pageWeek(){
       h('span',{class:'n',text:String(d.getDate())}),h('span',{class:'d',text:T.wds[i]})
     ]));
     sec.appendChild(linesBlock('day',key,{row:32,min:empty?1:2}));
-    f.appendChild(sec);
+    frame.appendChild(sec);
   })(i)}
+  f.appendChild(frame);
   var qm=quiet('month',true);
   if(qm){qm.style.marginTop='18px';f.appendChild(qm)}
   return f;
 }
+var monthSel=null;
+function activeProjects(){return S.projects.filter(function(pj){return !pj.n&&!pjIsDone(pj)})}
+var monthListOpen=false;
 function pageMonth(){
-  var f=h('div'),y=anchor.getFullYear(),m=anchor.getMonth(),tk=dkey(today());
+  var f=h('div'),y=anchor.getFullYear(),m=anchor.getMonth(),t0=today(),tk=dkey(t0);
+  var mkey=y+'-'+pad(m+1),prefix=mkey+'-',dim=new Date(y,m+1,0).getDate(),byDay={};
+  S.items.forEach(function(i){if(i.layer==='day'&&i.key.indexOf(prefix)===0&&i.text.trim())(byDay[i.key]=byDay[i.key]||[]).push(i)});
+  var mi=listFor('month',mkey).filter(function(i){return i.text.trim()});
+  var total=mi.length,done=mi.filter(function(i){return i.done}).length;
+  Object.keys(byDay).forEach(function(k){total+=byDay[k].length;done+=byDay[k].filter(function(i){return i.done}).length});
+  var mps=activeProjects(),running=mps.length;
   f.appendChild(navBar(h('h1',{class:'title',text:T.mo[m]+' '+y}),''));
+  if(total||running){
+    var tr=S.lang==='tr',sm=tr?total+' iş · '+done+' tamam':total+(total===1?' item':' items')+' · '+done+' done';
+    if(running)sm+=tr?' · '+running+' proje sürüyor':' · '+running+(running===1?' project':' projects')+' ongoing';
+    f.appendChild(h('p',{class:'msum',text:sm}));
+  }
   f.appendChild(floatBlock('month'));
   var c=carryBlock('month');if(c)f.appendChild(c);
-  var dim=new Date(y,m+1,0).getDate(),prefix=y+'-'+pad(m+1)+'-',byDay={};
-  S.items.forEach(function(i){if(i.layer==='day'&&i.key.indexOf(prefix)===0&&i.text.trim())(byDay[i.key]=byDay[i.key]||[]).push(i)});
+  var sel=(monthSel&&monthSel.indexOf(prefix)===0)?monthSel:((y===t0.getFullYear()&&m===t0.getMonth())?tk:null);
   var grid=h('div',{class:'mgrid'});
   T.wl.forEach(function(l){grid.appendChild(h('div',{class:'mwd',text:l}))});
-  for(var b=0;b<wdIdx(new Date(y,m,1));b++)grid.appendChild(h('span'));
-  for(var n=1;n<=dim;n++){(function(n){
-    var key=prefix+pad(n);
-    grid.appendChild(h('button',{class:'mday'+(byDay[key]?' has':'')+(key===tk?' today':''),'data-layer':'day','data-key':key,type:'button','aria-label':shortDate(new Date(y,m,n)),onclick:function(){go('day',new Date(y,m,n))}},[h('span',{text:String(n)})]));
-  })(n)}
+  var first=new Date(y,m,1),start=monday(first),rows=Math.ceil((wdIdx(first)+dim)/7);
+  for(var r=0;r<rows;r++){(function(ws){
+    for(var cc=0;cc<7;cc++){(function(d){
+      if(d.getMonth()!==m){grid.appendChild(h('span'));return}
+      var key=dkey(d),its=byDay[key]||[],cnt=its.length;
+      var cell=h('button',{class:'mday'+(cnt?' has':'')+(key===tk?' today':'')+(key===sel?' sel':''),'data-layer':'day','data-key':key,type:'button','aria-label':shortDate(d),onclick:function(){
+        if(monthSel===key)go('day',d);else{monthSel=key;render();var pv=document.querySelector('.mprev');if(pv&&pv.scrollIntoView)pv.scrollIntoView({block:'nearest'})}
+      }},[h('span',{class:'n',text:String(d.getDate())})]);
+      if(cnt){
+        cell.style.setProperty('--d',String(Math.min(22,4+cnt*5)));
+        var dots=h('span',{class:'dots'});
+        its.slice(0,4).forEach(function(i){dots.appendChild(h('i',{class:i.done?'on':''}))});
+        cell.appendChild(dots);
+      }
+      grid.appendChild(cell);
+    })(addDays(ws,cc))}
+  })(addDays(start,r*7))}
   f.appendChild(grid);
-  var list=h('section',{class:'mlist'},[h('div',{class:'label',text:T.days})]);
-  var keys=Object.keys(byDay).sort();
-  if(!keys.length)list.appendChild(h('p',{class:'empty',text:T.noDays}));
-  keys.forEach(function(k){
-    var d=pd(k),its=byDay[k],open=its.filter(function(i){return !i.done}),show=open.length?open:its;
-    list.appendChild(h('button',{class:'mrow'+(k===tk?' today':''),type:'button',onclick:function(){go('day',d)}},[
-      h('span',{class:'k',text:T.wds[wdIdx(d)]+' '+d.getDate()}),
-      h('span',{class:'v'+(open.length?'':' alldone'),text:show.map(function(i){return i.text}).join(' · ')})
+  var keys=Object.keys(byDay).sort(),lastWk=null,grp=null,dayTotal=0;
+  keys.forEach(function(k){dayTotal+=byDay[k].length});
+  function selBlock(){
+    var sd=pd(sel),lab=S.lang==='tr'?T.wd[wdIdx(sd)]+', '+sd.getDate()+' '+T.mo[sd.getMonth()]:T.wd[wdIdx(sd)]+', '+T.mo[sd.getMonth()]+' '+sd.getDate();
+    return h('div',{class:'mprev'},[
+      h('div',{class:'mph'},[h('span',{class:'mpt'+(sel===tk?' istoday':''),text:lab}),h('button',{class:'mpo',type:'button',onclick:function(){go('day',sd)}},[T.openDay,h('i',{text:'\u203a'})])]),
+      linesBlock('day',sel,{row:32,min:1,ph:T.mprevPh,phOnce:true})
+    ]);
+  }
+  if(keys.length||sel){
+    var list=h('section',{class:'mlist'});
+    var chev='<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>';
+    list.appendChild(h('button',{class:'mlh',type:'button','aria-expanded':String(monthListOpen),onclick:function(){monthListOpen=!monthListOpen;render();var pv=document.querySelector('.mprev');if(pv&&pv.scrollIntoView)pv.scrollIntoView({block:'nearest'})}},[
+      h('span',{text:T.days}),h('span',{class:'ct',text:String(dayTotal)}),
+      h('span',{class:'ex'+(monthListOpen?' on':''),html:'<span>'+(monthListOpen?T.mcol:T.mexp)+'</span>'+chev})
     ]));
-  });
-  f.appendChild(list);
+    if(!monthListOpen){
+      if(sel)list.appendChild(selBlock());
+    }else{
+      var all=keys.slice();
+      if(sel&&all.indexOf(sel)<0){all.push(sel);all.sort()}
+      all.forEach(function(k){
+        var d=pd(k),ws=monday(d),wk=dkey(ws);
+        if(wk!==lastWk){lastWk=wk;grp=h('div',{class:'mwg'});list.appendChild(grp)}
+        if(k===sel){grp.appendChild(selBlock());return}
+        var its=byDay[k],open=its.filter(function(i){return !i.done}),show=open.length?open:its;
+        grp.appendChild(h('button',{class:'mrow'+(k===tk?' today':''),type:'button',onclick:function(){monthSel=k;render();var pv=document.querySelector('.mprev');if(pv&&pv.scrollIntoView)pv.scrollIntoView({block:'nearest'})}},[
+          h('span',{class:'k',text:T.wds[wdIdx(d)]+' '+d.getDate()}),
+          h('span',{class:'v'+(open.length?'':' alldone'),text:show.map(function(i){return i.text}).join(' \u00b7 ')})
+        ]));
+      });
+    }
+    f.appendChild(list);
+  }
+  if(mps.length){
+    var chips=h('div',{class:'pjchips'});
+    mps.forEach(function(pj){
+      var pr=pjProgress(pj);
+      chips.appendChild(h('button',{class:'pjc'+(pjIsDone(pj)?' dn':''),type:'button',onclick:function(){openProject(pj.id)}},[
+        h('span',{class:'pt',text:pj.title.trim()||T.pjUntitled}),h('span',{class:'pm',text:pr.n?pr.d+'/'+pr.n:''})
+      ]));
+    });
+    f.appendChild(h('section',{class:'mproj'},[h('div',{class:'label',text:T.mprojects}),chips]));
+  }
   return f;
 }
 function monthSection(y,m){
@@ -1228,33 +1338,102 @@ function yearSection(y){
   sec.appendChild(linesBlock('year',String(y),{row:32,min:empty?1:2}));
   return sec;
 }
+var pastYOpen=false;
+function tCell(label,layer,key,its,cls,onclick){
+  var c=h('button',{class:'ymo'+(its.length?' has':'')+(cls?' '+cls:''),'data-layer':layer,'data-key':key,type:'button',onclick:onclick},[h('span',{class:'n',text:label})]);
+  if(its.length){
+    c.style.setProperty('--d',String(Math.min(22,4+its.length*4)));
+    var dots=h('span',{class:'dots'});
+    its.slice(0,4).forEach(function(i){dots.appendChild(h('i',{class:i.done?'on':''}))});
+    c.appendChild(dots);
+  }
+  return c;
+}
+function tProg(pct,l,r){
+  return h('div',{class:'tprog'},[
+    h('div',{class:'bar'},[h('i',{style:'width:'+pct+'%'})]),
+    h('div',{class:'tl'},[h('span',{text:l}),h('span',{text:r})])
+  ]);
+}
+function yframe(secs){var f=h('div',{class:'yframe'});secs.forEach(function(e){f.appendChild(e)});return f}
 function pageDecade(){
-  var f=h('div'),start=+keyOf('decade',anchor);
+  var f=h('div'),start=+keyOf('decade',anchor),t0=today(),cy=t0.getFullYear();
   f.appendChild(navBar(h('h1',{class:'title',text:start+' – '+(start+9)}),''));
   f.appendChild(floatBlock('decade'));
-  for(var i=0;i<10;i++)f.appendChild(yearSection(start+i));
+  var byY={};
+  S.items.forEach(function(i){
+    if(!i.text.trim())return;
+    var y=null;
+    if(i.layer==='year'||i.layer==='month'||i.layer==='day')y=i.key.slice(0,4);
+    if(y&&+y>=start&&+y<start+10)(byY[y]=byY[y]||[]).push(i);
+  });
+  var inDec=cy>=start&&cy<start+10;
+  if(inDec){
+    var a0=new Date(start,0,1),a1=new Date(start+10,0,1),p=Math.max(0,Math.min(100,Math.floor(100*(t0-a0)/(a1-a0))));
+    f.appendChild(tProg(p,T.tpDec.replace('{P}',String(p)),T.tpDecR.replace('{K}',String(cy-start+1))));
+  }
+  var grid=h('div',{class:'ygrid dec'});
+  for(var i=0;i<10;i++){(function(y){
+    grid.appendChild(tCell(String(y),'year',String(y),byY[y]||[],(y===cy?'now':(y<cy?'past':'')),function(){go('year',monthAnchor(y,0))}));
+  })(start+i)}
+  f.appendChild(grid);
+  var past=[],rest=[];
+  for(var j=0;j<10;j++){(inDec&&start+j<cy?past:rest).push(start+j)}
+  if(past.length){
+    var dr=h('div',{class:'drawer'+(pastYOpen?' open':'')},[
+      h('button',{class:'drawer-btn',type:'button','aria-expanded':String(pastYOpen),onclick:function(){pastYOpen=!pastYOpen;render()}},[
+        h('span',{text:T.pastY+' · '+past.length}),
+        h('span',{html:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>'})
+      ])
+    ]);
+    if(pastYOpen)dr.appendChild(yframe(past.map(yearSection)));
+    f.appendChild(dr);
+  }
+  f.appendChild(yframe(rest.map(yearSection)));
   return f;
 }
 function pageYear(){
-  var f=h('div'),y=anchor.getFullYear();
-  f.appendChild(navBar(h('h1',{class:'title',text:String(y)}),''));
+  var f=h('div'),y=anchor.getFullYear(),ys=String(y),t0=today();
+  f.appendChild(navBar(h('h1',{class:'title',text:ys}),''));
   f.appendChild(floatBlock('year'));
-  var t=today(),cur=(y===t.getFullYear()),cm=cur?t.getMonth():0;
-  var order=[0,1,2,3,4,5,6,7,8,9,10,11];
+  var c=carryBlock('year');if(c)f.appendChild(c);
+  var cur=(y===t0.getFullYear()),cm=cur?t0.getMonth():0;
+  var byM={},total=0,done=0;
+  S.items.forEach(function(i){
+    if(!i.text.trim())return;
+    var k=null;
+    if(i.layer==='year'&&i.key===ys){total++;if(i.done)done++;return}
+    if(i.layer==='month'&&i.key.slice(0,4)===ys)k=i.key;
+    else if(i.layer==='day'&&i.key.slice(0,4)===ys)k=i.key.slice(0,7);
+    if(k){(byM[k]=byM[k]||[]).push(i);total++;if(i.done)done++}
+  });
+  if(total){
+    var tr=S.lang==='tr';
+    f.appendChild(h('p',{class:'msum',text:tr?total+' iş · '+done+' tamam':total+(total===1?' item':' items')+' · '+done+' done'}));
+  }
+  if(cur){
+    var a0=new Date(y,0,1),a1=new Date(y+1,0,1),p=Math.max(0,Math.min(100,Math.floor(100*(t0-a0)/(a1-a0)))),left=Math.max(0,Math.ceil((a1-t0)/864e5));
+    f.appendChild(tProg(p,T.tpYear.replace('{P}',String(p)),T.tpYearR.replace('{N}',String(left))));
+  }
+  var grid=h('div',{class:'ygrid'});
+  for(var m=0;m<12;m++){(function(m){
+    var key=y+'-'+pad(m+1);
+    grid.appendChild(tCell(T.mo[m],'month',key,byM[key]||[],(cur&&m===cm?'now':(cur&&m<cm?'past':'')),function(){go('month',monthAnchor(y,m))}));
+  })(m)}
+  f.appendChild(grid);
   var past=[],rest=[];
-  order.forEach(function(m){(cur&&m<cm?past:rest).push(m)});
-  var dr=null;
+  for(var q=0;q<12;q++){(cur&&q<cm?past:rest).push(q)}
   if(past.length){
-    dr=h('div',{class:'drawer'+(pastOpen?' open':'')},[
+    var dr=h('div',{class:'drawer'+(pastOpen?' open':'')},[
       h('button',{class:'drawer-btn',type:'button','aria-expanded':String(pastOpen),onclick:function(){pastOpen=!pastOpen;render()}},[
         h('span',{text:T.past+' · '+past.length}),
         h('span',{html:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>'})
       ])
     ]);
-    if(pastOpen)past.forEach(function(m){dr.appendChild(monthSection(y,m))});
+    if(pastOpen)dr.appendChild(yframe(past.map(function(mm){return monthSection(y,mm)})));
+    f.appendChild(dr);
   }
-  if(dr)f.appendChild(dr);
-  rest.forEach(function(m){f.appendChild(monthSection(y,m))});
+  f.appendChild(yframe(rest.map(function(mm){return monthSection(y,mm)})));
   return f;
 }
 
@@ -1482,7 +1661,7 @@ function openPins(){
   }
   var add=h('button',{class:'pinpill',type:'button',text:T.pinNew,onclick:function(){
     if(cards.length&&!cards[0].text.trim()){list.firstChild._ta.focus();return}
-    if(cards.length>=4){toast(T.pinMax);return}
+    if(cards.length>=6){toast(T.pinMax);return}
     cards.unshift({id:uid(),text:''});draw();list.firstChild._ta.focus();list.scrollTop=0;
   }});
   wrap.appendChild(h('div',{class:'pinbar'},[h('div',{class:'pinpill',text:T.pins}),h('div',{class:'sp'}),add,xBtn()]));
@@ -2243,21 +2422,23 @@ function openHelp(){
   var G=function(d){return '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">'+d+'</svg>'};
   var HI=[
     BOX,CAL_I,
-    G('<path d="M5 12h13M13 7l5 5-5 5"/>'),
+    G('<circle cx="12" cy="12" r="4"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6L7 7M17 17l1.4 1.4M5.6 18.4L7 17M17 7l1.4-1.4"/>'),
+    G('<rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M8 14h8M8 17h8"/>'),
+    G('<rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4M8.5 14h.01M12 14h.01M15.5 14h.01M8.5 17h.01M12 17h.01"/>'),
+    G('<path d="M3 17l5-5 4 3 8-9"/><path d="M15 6h5v5"/>'),
+    G('<path d="M12 4v16M8 8l4-4 4 4M8 16l4 4 4-4"/>'),
     NOTE+PJ_W,
-    G('<path d="M9 7h10M9 12h10M9 17h10M4.5 7h.01M4.5 12h.01M4.5 17h.01"/>'),
-    G('<rect x="3" y="4" width="18" height="4" rx="1"/><path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8M10 12h4"/>'),
-    PJ_W,
     G('<path d="M5 4.5h14v9.5l-5.5 5.5H5z"/><path d="M13.5 19.5V14H19"/>'),
-    LINK_I,
-    G('<path d="M12 4v11M7.5 10.5L12 15l4.5-4.5M5 19h14"/>'),
-    G('<path d="M7 18a4.5 4.5 0 0 1-.6-8.96A6 6 0 0 1 17.9 8.6 4.8 4.8 0 0 1 17 18z"/>'),
-    SUN_I
+    G('<path d="M7 18a4.5 4.5 0 0 1-.6-8.96A6 6 0 0 1 17.9 8.6 4.8 4.8 0 0 1 17 18z"/>')
   ];
+  var cols=h('div',{class:'hcols'});
   T.help.forEach(function(sec,i){
-    p.appendChild(h('h3',{class:'hsec'},[h('span',{class:'hic',html:HI[i]||''}),h('span',{text:sec[0]})]));
-    p.appendChild(h('p',{class:'hp',html:sec[1].replace('{NOSYNC}',SYNC_OK?'':T.helpNoSync)}));
+    cols.appendChild(h('div',{class:'hx'},[
+      h('h3',{class:'hsec'},[h('span',{class:'hic',html:HI[i]||''}),h('span',{text:sec[0]})]),
+      h('p',{class:'hp',html:sec[1]})
+    ]));
   });
+  p.classList.add('helpp');p.appendChild(cols);
   showSheet(p,true);
 }
 function openSettings(){
@@ -2343,10 +2524,11 @@ function openSettings(){
     if(!confirming){confirming=true;rb.textContent=T.confirmRestore;return}
     S.items=items;if(ds)S.decadeStart=ds;if(pn)S.pins=pn;if(pr)S.projects=pr;S.dirty=true;editSeq++;persist();closeSheet();render();toast(T.restored);autoPushSoon();
   });
-  rbox.appendChild(ta);rbox.appendChild(h('div',{class:'sbtns'},[rb]));bk.push(rbox);p.appendChild(drawer('backup',T.backup,bk));
+  rbox.appendChild(ta);rbox.appendChild(h('div',{class:'sbtns'},[rb]));bk.push(rbox);
   if(typeof syncDrawer!=='undefined'&&syncDrawer)p.appendChild(syncDrawer);
+  p.appendChild(drawer('backup',T.backup,bk));
   p.appendChild(h('div',{class:'slabel',text:T.about}));
-  p.appendChild(h('p',{class:'snote',text:T.aboutIntro}));
+  T.aboutIntro.split('\n').forEach(function(t){p.appendChild(h('p',{class:'snote',text:t}))});
   p.appendChild(h('button',{class:'hopen',type:'button',onclick:openHelp},[h('span',{text:T.howTitle}),h('span',{html:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>'})]));
   p.appendChild(h('p',{class:'snote acredit'},[T.credit[0],h('a',{href:'https://www.instagram.com/kaybid/',target:'_blank',rel:'noopener noreferrer',text:'@kaybid'}),T.credit[1]]));
   showSheet(p,true);
