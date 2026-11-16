@@ -599,6 +599,12 @@ body.dragging-now{-webkit-user-select:none;user-select:none;cursor:grabbing}
 .hopen svg{width:18px;height:18px;color:var(--ink-soft)}
 .mvrow.cmp2 .dtxt.arch{color:var(--ink-soft)}
 .btnrow{padding:4px}.btnrow .hopen{width:auto;margin:0;padding:12px 12px;gap:8px;min-width:0}.btnrow .hopen>span:first-child{min-width:0;text-align:left;white-space:nowrap}
+.refined .pjbtn{display:none!important}
+.hopen.rf{gap:12px}.hopen.rf .rft{display:flex;flex-direction:column;gap:3px;text-align:left;min-width:0}.hopen.rf .rft b{font:600 14px/1.1 var(--sans)}.hopen.rf .rft small{font:400 12px/1.3 var(--sans);color:var(--ink-soft)}
+.hopen.rf .sw{position:relative;flex:none;width:34px;height:20px;border-radius:999px;background:var(--rule-strong);transition:background .15s}
+.hopen.rf .sw::after{content:"";position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;background:var(--card);transition:transform .15s}
+.hopen.rf[aria-checked=true] .sw{background:var(--blue)}
+.hopen.rf[aria-checked=true] .sw::after{transform:translateX(14px)}
 .btnrow{gap:8px}.btnrow .hopen{padding:13px 10px 13px 12px;gap:6px;font-size:13px}
 .btnrow .hopen.tgl[aria-checked=true]{box-shadow:inset 0 0 0 1.5px var(--blue);color:var(--blue)}.btnrow .hopen.tgl[aria-checked=true] svg{color:var(--blue)}
 @media(max-width:340px){.btnrow .hopen{font-size:12px;padding-left:10px}}
@@ -647,7 +653,7 @@ var TX={
     carryweek:'geçen haftadan',subOf:'Alt başlık',subs:'Alt başlıklar',carryyear:'geçen yıldan',pastY:'Geçmiş yıllar',tpYear:'Yıl %{P} geçti',tpYearR:'{N} gün kaldı',tpDec:'10 yıl %{P} geçti',tpDecR:'Yıl {K} / 10',carrymonth:'geçen aydan',bring:'buraya al',
     pull:'bitmeyenleri bugüne al',wkShort:'H',openDay:'Güne git',mprevPh:'bu gün…',mprojects:'Aktif projeler',mexp:'Genişlet',mcol:'Daralt',moreN:'+{N} daha',days:'Bu ay',noDays:'Bu ay henüz bir güne yazılmadı.',
     openLink:'Linki aç',projects:'Projeler',rename:'Başlığı düzenle',pjArch:'Arşiv',pjDrop:'Arşivlemek için buraya bırak',pjArchived:'Arşivlendi',pjRestore:'Geri al',pjAttach:'Projeye ekle',pjDetach:'Projeden çıkar',pjNone:'Henüz proje yok',pjAdded:'Projeye eklendi',pinMax:'En fazla 6 not',calendar:'Takvim',pjNeedTitle:'Önce proje adı yaz',chkS:'+ Madde',bulS:'• Liste',pjNoItems:'madde yok',pjOff:'Nota çevir',hereS:'Bu güne',tmrwS:'Yarına',nextS:'Ertesi güne',toWeekS:'Haftaya',toMonthS:'Aya',delS:'Sil',tabNotes:'Notlar',project:'Proje',pjNew:'+ Yeni proje',pjUntitled:'Adsız proje',pjTitlePh:'Proje adı',pjEmpty:'Henüz proje yok. Uzun soluklu işler için bir proje aç, maddelere tarih verirsen o günün defterine de düşer.',pjAdd:'+ Madde ekle',pjTodoPh:'Yapılacak…',pjNotes:'Akla gelenler',pjNotesPh:'Not…',pjDel:'Projeyi sil',pjGone:'Proje silindi',pjMake:'Proje yap',pjOpen:'Projeyi aç',pjDate:'Tarih ver',pjClr:'Tarihi kaldır',pjDone:'tamam',pjBack:'Projeler',pjMade:'Proje oluşturuldu',here:'Bu güne al',moveTo:'Güne taşı',repeat:'Tekrarla',repNone:'Tekrarsız',repW:'Her hafta',repM:'Her ay',repY:'Her yıl',toWeek:'Haftaya al',toMonth:'Aya al',tmrw:'Yarına ertele',nextday:'Ertesi güne ertele',bullet:'• Madde',check2:'☐ Görev',noteClr:'Notu temizle',undoCap:'Geri al',del:'Görevi sil',pins:'Zamansız Notlar',pinNew:'+ Yeni not',pinPh:'Telefon, alışveriş, aklına gelen…',pinDel:'Sil',pinGone:'Not silindi',pinMove:'Taşı',fs:'Tam ekran',brand:['YARIN','DEFTERİ'],themeLight:'Açık tema',themeDark:'Koyu tema',fsOn:'Aç',fsOff:'Kapat',fsFail:'Tarayıcı tam ekrana izin vermedi',fsIos:'Tam ekran için Paylaş › Ana Ekrana Ekle de, sonra defteri ana ekrandan aç; tarayıcı çubukları olmadan açılır.',pinDay:'Güne',pinWeek:'Haftaya',pinMonth:'Aya',pinSize:'Boyutu sürükle',
-    deleted:'Silindi',undo:'geri al',moved:'Taşındı',archive:'Arşiv',arch:'Arşivle',archived:'Arşivlendi',trashT:'Silinenler',archEmpty:'Arşivde madde yok.',trashEmpty:'Silinen madde yok.',archNote:'Arşivlenenler sayfalardan kalkar, burada saklanır.',trashNote:'Silinenler 30 gün burada kalır, sonra kalıcı olarak silinir.',putBack:'Geri koy',delForever:'Kalıcı sil',emptyTrash:'Silinenleri boşalt',emptySure:'Emin misin? Tekrar dokun',backed:'Geri konuldu',hideDone:'Bitenleri gizle',hidS:'biten gizli',hideAgain:'Bitenleri gizle',
+    deleted:'Silindi',undo:'geri al',moved:'Taşındı',archive:'Arşiv',arch:'Arşivle',archived:'Arşivlendi',trashT:'Silinenler',archEmpty:'Arşivde madde yok.',trashEmpty:'Silinen madde yok.',archNote:'Arşivlenenler sayfalardan kalkar, burada saklanır.',trashNote:'Silinenler 30 gün burada kalır, sonra kalıcı olarak silinir.',putBack:'Geri koy',delForever:'Kalıcı sil',emptyTrash:'Silinenleri boşalt',emptySure:'Emin misin? Tekrar dokun',backed:'Geri konuldu',refine:'Rafine mod',refineNote:'Proje ve klasör araçlarını gizler, notlar kalır.',hideDone:'Bitenleri gizle',hidS:'biten gizli',hideAgain:'Bitenleri gizle',
     settings:'Ayarlar',lang:'Dil',font:'Yazı tipi',fontHand:'El yazısı',fontPlain:'Düz yazı',note:'Not',notePh:'Bu satır için not…',backup:'Yedek',
     backupNote:'Defterin bu tarayıcıda saklanır. Arada bir yedek al.',
     saveBackup:'Kaydet',copyBackup:'Kopyala',pasteHere:'Yedek metnini yapıştır',
@@ -670,12 +676,12 @@ var TX={
       ['Sayfalar','Gün, hafta, ay, yıl ve 10 yıl sayfaları birbirine bağlıdır; alttaki çubuktan seçer, kaydırarak ilerlersin. Her sayfada <b>Bu hafta içinde</b>, <b>Bu ay içinde</b> gibi alanlar vardır: o döneme ait ama bir güne atanmamış işler buraya yazılır.'],
       ['Gün sayfası','Günün işlerini yazarsın. Üstte haftanın, altta ayın <b>içinde</b> alanı görünür; böylece günün yanında yaklaşan işleri de görürsün. Geçmiş bir günde bitmeyenleri <b>bugüne al</b> ile taşırsın, başlığa dokunup tarih seçersin.'],
       ['Hafta sayfası','Yedi gün alt alta kart olarak durur; kartın başlığına dokunmak o günü açar. En üstteki <b>Bu hafta içinde</b> alanı haftaya ait ama güne atanmamış işlerindir, geçen haftadan kalanlar <b>buraya al</b> ile gelir.'],
-      ['Ay sayfası','Noktalar günün işlerini gösterir (dolu bitmiş, boş bitmemiş). Bir güne dokununca altta <b>Bu ay</b> bölümünde açılır; ikinci dokunuş ya da <b>Güne git</b> gün sayfasını açar. <b>Genişlet</b> bütün günleri alt alta gösterir. <b>Bu ay içinde</b> işlerini tutup takvimde bir güne bırakırsın; en altta bitmemiş <b>Aktif projeler</b> durur.'],
+      ['Ay sayfası','Takvimde her günün işleri başlık olarak görünür (biten soluk ve üstü çizili, fazlası <b>+2</b> gibi). Bir güne dokununca altta <b>Bu ay</b> bölümünde açılır; ikinci dokunuş ya da <b>Güne git</b> gün sayfasını açar. <b>Genişlet</b> bütün günleri alt alta gösterir. <b>Bu ay içinde</b> işlerini ya da takvimdeki başlıkları tutup başka bir güne bırakırsın.'],
       ['Yıl ve 10 yıl','Uzun ve çok uzun vadeli planlar içindir.'],
       ['Taşımak ve ertelemek','Kutucuğa basılı tut (bilgisayarda sürükle) ve başka bir güne, haftaya, aya ya da yıla bırak. Ya da satırı açıp <b>üç nokta</b> menüsünden <b>Yarına</b>, <b>Haftaya</b>, <b>Aya</b> de, tarih seç, tekrar kur ya da bir projeye bağla.'],
       ['Not ve proje','Satırın sağındaki ikon not sayfasını açar. Not ile proje aynı sayfadır: madde listesi ve serbest not alanı. Başlığın önündeki ikonla <b>Not</b> (mavi) ile <b>Proje</b> (turuncu) arasında geçersin, başlığa dokunup adını değiştirirsin. Maddeleri tutup sürükleyerek sıralar, takvim ikonuyla tarih verirsin; tarihli madde o günün sayfasına da düşer. Biten maddeyi <b>Arşivlemek için buraya bırak</b> alanına sürüklersen <b>Arşiv</b> bölümüne gider, ilerlemede sayılmaya devam eder. Bir notu ya da projeyi klasör düğmesiyle başka bir projeye bağlarsan onun alt başlığı olur; üst projede toplanır, satırın ikonunda küçük bir nokta görünür. Bütün projeler üstteki <b>Projeler</b> sekmesindedir.'],
       ['Post-it','Üstteki post-it düğmesi hiçbir güne bağlı olmayan karalama defterindir. En fazla 6 post-it tutabilirsin, büyük post-iti kenarındaki düğmeyle küçük kareye çevirirsin.'],
-      ['Ayarlar','Ayarlar\u2019dan dili, açık ya da koyu temayı, yazı tipini ve boyutunu seçersin. <b>Yedek</b> defterini dosya olarak kaydeder, kopyalar ya da geri yükler. <b>Senkron</b> ile Google hesabına bağlanıp aynı defteri telefonunda ve bilgisayarında kullanırsın; defter Drive\u2019ında yalnızca bu uygulamanın görebildiği gizli bir alanda durur, değişikliklerin kendiliğinden gider.']
+      ['Ayarlar','Ayarlar\u2019dan dili, açık ya da koyu temayı, yazı tipini ve boyutunu seçersin. <b>Yedek</b> defterini dosya olarak kaydeder, kopyalar ya da geri yükler. <b>Arşiv</b> arşivlediğin ve sildiğin satırları geri koyar (silinenler 30 gün durur); <b>Bitenleri gizle</b> üstü çizili satırları saklar; <b>Rafine mod</b> not ve proje araçlarını gizleyip defteri sade tutar. <b>Senkron</b> ile Google hesabına bağlanıp aynı defteri telefonunda ve bilgisayarında kullanırsın; defter Drive\u2019ında yalnızca bu uygulamanın görebildiği gizli bir alanda durur, değişikliklerin kendiliğinden gider.']
     ],
     credit:['Verimlilik için ',' tarafından tasarlandı, Claude ile birlikte geliştirildi.'],
     wd:['Pazartesi','Salı','Çarşamba','Perşembe','Cuma','Cumartesi','Pazar'],
@@ -694,7 +700,7 @@ var TX={
     carryweek:'from last week',subOf:'Sub-heading',subs:'Sub-headings',carryyear:'from last year',pastY:'Past years',tpYear:'Year {P}% elapsed',tpYearR:'{N} days left',tpDec:'Decade {P}% elapsed',tpDecR:'Year {K} / 10',carrymonth:'from last month',bring:'bring here',
     pull:'move unfinished to today',wkShort:'W',openDay:'Go to day',mprevPh:'this day…',mprojects:'Active projects',mexp:'Expand',mcol:'Collapse',moreN:'+{N} more',days:'This month',noDays:'Nothing written on a day this month yet.',
     openLink:'Open link',projects:'Projects',rename:'Edit title',pjArch:'Archive',pjDrop:'Drop here to archive',pjArchived:'Archived',pjRestore:'Restore',pjAttach:'Add to project',pjDetach:'Remove from project',pjNone:'No projects yet',pjAdded:'Added to project',pinMax:'Up to 6 notes',calendar:'Calendar',pjNeedTitle:'Give the project a name first',chkS:'+ Item',bulS:'• Bullet',pjNoItems:'no items',pjOff:'Make it a note',hereS:'This day',tmrwS:'Tomorrow',nextS:'Next day',toWeekS:'Week',toMonthS:'Month',delS:'Delete',tabNotes:'Notes',project:'Project',pjNew:'+ New project',pjUntitled:'Untitled project',pjTitlePh:'Project name',pjEmpty:'No projects yet. Start one for long-running work; give an item a date and it also shows up on that day.',pjAdd:'+ Add item',pjTodoPh:'To do…',pjNotes:'Ideas',pjNotesPh:'Note…',pjDel:'Delete project',pjGone:'Project deleted',pjMake:'Make project',pjOpen:'Open project',pjDate:'Set date',pjClr:'Remove date',pjDone:'done',pjBack:'Projects',pjMade:'Project created',here:'Move to this day',moveTo:'Move to day',repeat:'Repeat',repNone:'No repeat',repW:'Every week',repM:'Every month',repY:'Every year',toWeek:'Move to week',toMonth:'Move to month',tmrw:'Postpone to tomorrow',nextday:'Postpone a day',bullet:'• Bullet',check2:'☐ Task',noteClr:'Clear note',undoCap:'Undo',del:'Delete task',pins:'Timeless Notes',pinNew:'+ New note',pinPh:'A phone number, shopping, a stray thought…',pinDel:'Delete',pinGone:'Note deleted',pinMove:'Move',fs:'Full screen',brand:['TOMORROW’S','NOTEBOOK'],themeLight:'Light theme',themeDark:'Dark theme',fsOn:'Enter',fsOff:'Exit',fsFail:'The browser did not allow full screen',fsIos:'For full screen, tap Share › Add to Home Screen, then open the notebook from there; it opens without browser bars.',pinDay:'To day',pinWeek:'To week',pinMonth:'To month',pinSize:'Drag to resize',
-    deleted:'Deleted',undo:'undo',moved:'Moved',archive:'Archive',arch:'Archive',archived:'Archived',trashT:'Deleted',archEmpty:'Nothing archived.',trashEmpty:'Nothing deleted.',archNote:'Archived items leave the pages and are kept here.',trashNote:'Deleted items stay here for 30 days, then are removed for good.',putBack:'Put back',delForever:'Delete for good',emptyTrash:'Empty deleted',emptySure:'Sure? Tap again',backed:'Put back',hideDone:'Hide done',hidS:'done hidden',hideAgain:'Hide done',
+    deleted:'Deleted',undo:'undo',moved:'Moved',archive:'Archive',arch:'Archive',archived:'Archived',trashT:'Deleted',archEmpty:'Nothing archived.',trashEmpty:'Nothing deleted.',archNote:'Archived items leave the pages and are kept here.',trashNote:'Deleted items stay here for 30 days, then are removed for good.',putBack:'Put back',delForever:'Delete for good',emptyTrash:'Empty deleted',emptySure:'Sure? Tap again',backed:'Put back',refine:'Refined mode',refineNote:'Hides project and folder tools; notes stay.',hideDone:'Hide done',hidS:'done hidden',hideAgain:'Hide done',
     settings:'Settings',lang:'Language',font:'Font',fontHand:'Handwriting',fontPlain:'Plain',note:'Note',notePh:'A note for this line…',backup:'Backup',
     backupNote:'Your notebook is stored in this browser. A backup now and then is a good idea.',
     saveBackup:'Save',copyBackup:'Copy',pasteHere:'Paste backup text',
@@ -717,12 +723,12 @@ var TX={
       ['Pages','The day, week, month, year and 10-year pages are connected; pick one from the bar at the bottom or swipe to turn the page. Every page has areas like <b>Sometime this week</b> and <b>Sometime this month</b>: things that belong to that period but not to a day yet.'],
       ['Day page','Write the day\u2019s items here. The week\u2019s and the month\u2019s \u201csometime\u201d areas sit above and below, so you see what is coming next to today. Unfinished items from a past day move over with <b>move unfinished to today</b>, and tapping the title lets you pick a date.'],
       ['Week page','The seven days stand one under another as cards; tapping a card\u2019s title opens that day. The <b>Sometime this week</b> area at the top holds what belongs to the week but not to a day, and leftovers from last week come in with <b>bring here</b>.'],
-      ['Month page','Dots show the day\u2019s items (filled is done, empty is not done yet). Tap a day and it opens in the <b>This month</b> section below; a second tap or <b>Go to day</b> opens the day page. <b>Expand</b> lists every day. Hold a <b>Sometime this month</b> item and drop it on a day in the calendar; your unfinished <b>Active projects</b> are at the bottom.'],
+      ['Month page','Each day shows its items as small titles (done ones are faded and crossed out, extras become <b>+2</b>). Tap a day and it opens in the <b>This month</b> section below; a second tap or <b>Go to day</b> opens the day page. <b>Expand</b> lists every day. Hold a <b>Sometime this month</b> item or a title in the calendar and drop it on another day.'],
       ['Year and 10 years','These pages are for long and very long-term plans.'],
       ['Moving and postponing','Hold the box (drag on a computer) and drop a line on another day, week, month or year. Or open a line and use the <b>three dots</b> to choose <b>Tomorrow</b>, <b>Week</b> or <b>Month</b>, pick a date, set a repeat or attach it to a project.'],
       ['Notes and projects','The icon at the right of a line opens its note page. A note and a project are the same page: a list of items plus a free note field. The icon before the title switches between <b>Note</b> (blue) and <b>Project</b> (orange), and tapping the title renames it. Hold an item to drag it into order, and give it a date with the calendar icon; a dated item also shows up on that day. Drag a finished item to <b>Drop here to archive</b> and it moves to the <b>Archive</b> section, still counted in the progress. Attach a note or project to another project with the folder button and it becomes its sub-heading: it is gathered in the parent project, and its icon gets a small dot. All projects are in the <b>Projects</b> tab at the top.'],
       ['Post-it','The post-it button at the top is a scratchpad that is not tied to any day. You can keep up to 6 post-its, and the button on the edge of the big one shrinks it to a small square.'],
-      ['Settings','In Settings you choose the language, light or dark theme, font and text size. <b>Backup</b> saves your notebook as a file, copies it or restores it. With <b>Sync</b> you connect your Google account and use the same notebook on your phone and computer; it lives in a hidden area of your Drive that only this app can see, and changes are sent automatically.']
+      ['Settings','In Settings you choose the language, light or dark theme, font and text size. <b>Backup</b> saves your notebook as a file, copies it or restores it. <b>Archive</b> brings back lines you archived or deleted (deleted ones stay for 30 days); <b>Hide done</b> tucks away crossed-out lines; <b>Refined mode</b> hides the note and project tools to keep the notebook plain. With <b>Sync</b> you connect your Google account and use the same notebook on your phone and computer; it lives in a hidden area of your Drive that only this app can see, and changes are sent automatically.']
     ],
     credit:['Designed for productivity by ',', built together with Claude.'],
     wd:['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'],
@@ -831,14 +837,14 @@ function load(){
     var raw=localStorage.getItem(STORE);
     if(raw){
       var o=JSON.parse(raw);
-      return {lang:o&&o.lang==='en'?'en':'tr',font:o&&o.font==='plain'?'plain':'hand',decadeStart:(o&&typeof o.decadeStart==='number')?o.decadeStart:new Date().getFullYear(),zoom:zoomOk(o&&o.zoom),theme:(o&&(o.theme==='light'||o.theme==='dark'))?o.theme:null,yrev:!!(o&&o.yrev),hideDone:!!(o&&o.hideDone),syncOn:!!(o&&o.syncOn),syncRev:(o&&typeof o.syncRev==='number')?o.syncRev:null,dirty:!!(o&&o.dirty),syncLast:(o&&typeof o.syncLast==='number')?o.syncLast:0,pins:cleanPins(o&&o.pins)||[],projects:cleanProjects(o&&o.projects)||[],items:clean(o)||[]};
+      return {lang:o&&o.lang==='en'?'en':'tr',font:o&&o.font==='plain'?'plain':'hand',decadeStart:(o&&typeof o.decadeStart==='number')?o.decadeStart:new Date().getFullYear(),zoom:zoomOk(o&&o.zoom),theme:(o&&(o.theme==='light'||o.theme==='dark'))?o.theme:null,yrev:!!(o&&o.yrev),hideDone:!!(o&&o.hideDone),refined:!(o&&o.refined===false),syncOn:!!(o&&o.syncOn),syncRev:(o&&typeof o.syncRev==='number')?o.syncRev:null,dirty:!!(o&&o.dirty),syncLast:(o&&typeof o.syncLast==='number')?o.syncLast:0,pins:cleanPins(o&&o.pins)||[],projects:cleanProjects(o&&o.projects)||[],items:clean(o)||[]};
     }
   }catch(e){storageOK=false}
-  return {lang:'tr',font:'hand',decadeStart:new Date().getFullYear(),zoom:1,theme:null,yrev:false,hideDone:false,syncOn:false,syncRev:null,dirty:false,syncLast:0,pins:[],projects:[],items:[]};
+  return {lang:'tr',font:'hand',decadeStart:new Date().getFullYear(),zoom:1,theme:null,yrev:false,hideDone:false,refined:true,syncOn:false,syncRev:null,dirty:false,syncLast:0,pins:[],projects:[],items:[]};
 }
 function persist(){
   clearTimeout(saveTimer);saveTimer=null;
-  try{localStorage.setItem(STORE,JSON.stringify({v:1,lang:S.lang,font:S.font,zoom:S.zoom,theme:S.theme,yrev:S.yrev,hideDone:S.hideDone,syncOn:S.syncOn,syncRev:S.syncRev,dirty:S.dirty,syncLast:S.syncLast,decadeStart:S.decadeStart,pins:S.pins,projects:S.projects,items:S.items}));}
+  try{localStorage.setItem(STORE,JSON.stringify({v:1,lang:S.lang,font:S.font,zoom:S.zoom,theme:S.theme,yrev:S.yrev,hideDone:S.hideDone,refined:S.refined,syncOn:S.syncOn,syncRev:S.syncRev,dirty:S.dirty,syncLast:S.syncLast,decadeStart:S.decadeStart,pins:S.pins,projects:S.projects,items:S.items}));}
   catch(e){storageOK=false;if(!warned){warned=true;toast(T.noStore)}}
 }
 function queueSave(){editSeq++;S.dirty=true;clearTimeout(saveTimer);saveTimer=setTimeout(persist,300);autoPushSoon()}
@@ -846,7 +852,7 @@ document.addEventListener('visibilitychange',function(){if(document.visibilitySt
 window.addEventListener('pagehide',function(){if(saveTimer)persist()});
 
 var S=load(),T=TX[S.lang],pastOpen=false,view='day',anchor=today(),lastToday=dkey(today());
-document.documentElement.lang=S.lang;
+document.documentElement.lang=S.lang;document.documentElement.classList.toggle('refined',!!S.refined);
 document.documentElement.setAttribute('data-font',S.font);
 function isDark(){
   if(S&&S.theme)return S.theme==='dark';
@@ -1065,16 +1071,16 @@ function pjShown(it){var p=it&&it.pj?findProject(it.pj):null;return !!(p&&(!p.n|
 function childItems(pj){return S.items.filter(function(x){return x.up===pj.id&&recOf(x)})}
 function descIds(pj,out){out=out||{};out[pj.id]=1;childItems(pj).forEach(function(x){var r=recOf(x);if(r&&!out[r.id])descIds(r,out)});return out}
 function isProjOrigin(it){var r=recOf(it);return !!(r&&!r.n)}
-function hasNote(it){if(!it)return false;if(it.note)return true;var r=recOf(it);return !!(r&&(r.todos.length||(r.arch&&r.arch.length)||(r.notes&&r.notes.trim())))}
+function hasNote(it){if(!it)return false;if(it.note)return true;var r=recOf(it);if(S.refined)return !!(r&&r.notes&&r.notes.trim());return !!(r&&(r.todos.length||(r.arch&&r.arch.length)||(r.notes&&r.notes.trim())))}
 function noteBtn(row){
   var it=row.dataset.id?findItem(row.dataset.id):null;
-  return h('button',{class:'notebtn'+(hasNote(it)?' has':'')+(isProjOrigin(it)||(it&&it.pt&&!it.note)?' nomore':'')+(isLinked(it)&&!pjShown(it)?' lk':''),type:'button','aria-label':T.note,html:NOTE,onclick:function(){
+  return h('button',{class:'notebtn'+(hasNote(it)?' has':'')+((S.refined?false:isProjOrigin(it))||(it&&it.pt&&!it.note)?' nomore':'')+(!S.refined&&isLinked(it)&&!pjShown(it)?' lk':''),type:'button','aria-label':T.note,html:NOTE,onclick:function(){
     var cur=findItem(row.dataset.id);if(cur)openSheet(cur);
   }});
 }
 function refreshNote(it){
   var l=document.querySelectorAll('[data-id="'+it.id+'"] .notebtn');
-  for(var i=0;i<l.length;i++){l[i].classList.toggle('has',!!it.note);if(it.note)l[i].classList.remove('nomore')}
+  var hn=hasNote(it);for(var i=0;i<l.length;i++){l[i].classList.toggle('has',hn);if(hn)l[i].classList.remove('nomore')}
 }
 function ensureDraft(box,o){
   var last=box.lastElementChild;
@@ -2084,7 +2090,7 @@ function leaveSheet(){var f=onSheetClose;onSheetClose=null;if(f)f()}
 function sheetTabs(active,ctx){
   return h('div',{class:'ptabs'},[
     h('button',{class:'ptab k-'+(ctx.kind||'n')+(active==='cur'?' on':''),type:'button',text:ctx.label,onclick:function(){if(active!=='cur'){leaveSheet();ctx.open()}}}),
-    h('button',{class:'ptab k-p'+(active==='list'?' on':''),type:'button',text:T.projects,onclick:function(){if(active!=='list'){leaveSheet();openProjectList(ctx)}}}),
+    S.refined?null:h('button',{class:'ptab k-p'+(active==='list'?' on':''),type:'button',text:T.projects,onclick:function(){if(active!=='list'){leaveSheet();openProjectList(ctx)}}}),
     h('span',{class:'sp'}),xBtn()
   ]);
 }
@@ -2154,7 +2160,8 @@ function openProject(id,focusTitle){
 }
 function openSheet(it){
   var p=h('div',{class:'panel note',role:'dialog','aria-modal':'true'});
-  var rec=it.pt?null:ensureRec(it);
+  var rec=it.pt?null:(S.refined?null:ensureRec(it));
+  var rc0=S.refined&&!it.pt?recOf(it):null;
   var ptask=h('div',{class:'ptask'+(it.done?' done':'')+(it.pt?'':' rec')});
   var tt=h('textarea',{class:'sheet-text sedit',rows:'1',spellcheck:'false','aria-label':T.rename,enterkeyhint:'done'});
   tt.value=it.text;
@@ -2185,7 +2192,7 @@ function openSheet(it){
   ptask.appendChild(ttl);
   var ctx={label:rec&&!rec.n?T.project:T.note,kind:rec&&!rec.n?'p':'n',open:function(){openSheet(it)}};
   var hm=h('div',{class:'hmeta'},[h('span',{class:'hd',text:itemDate(it)})]);
-  var upc=parentOf(it);
+  var upc=S.refined?null:parentOf(it);
   var upEl=upc?h('button',{class:'upchip',type:'button','aria-label':T.subOf+': '+(upc.title.trim()||T.pjUntitled),onclick:function(){leaveSheet();openProject(upc.id)}},[h('span',{class:'ui',html:PJ_I}),h('span',{text:T.subOf+' \u00b7 '+(upc.title.trim()||T.pjUntitled)})]):null;
   p.appendChild(h('div',{class:'stick'},[sheetTabs('cur',ctx),h('div',{class:'phead'},rec?[ptask,hm]:[ptask])].concat(upEl?[upEl]:[])));
   var body=null;
@@ -2194,9 +2201,10 @@ function openSheet(it){
     body.els.forEach(function(e){p.appendChild(e)});
   }else{
     var ta=h('textarea',{class:'paste notearea',id:'noteText',placeholder:T.notePh,spellcheck:'false'});
-    ta.value=it.note||'';
+    ta.value=rc0?(rc0.notes||''):(it.note||'');
     var noteChanged=function(){
-      if(ta.value.trim())it.note=ta.value;else delete it.note;
+      var tgt=rc0||it,k=rc0?'notes':'note';
+      if(ta.value.trim())tgt[k]=ta.value;else delete tgt[k];
       queueSave();refreshNote(it);
     };
     var saved=null;
@@ -2216,7 +2224,7 @@ function openSheet(it){
     var lkb=linkBar();lkb.set(it.text,ta.value);
     ta.addEventListener('input',function(){lkb.set(it.text,ta.value)});
     p.appendChild(ta);
-    p.appendChild(h('div',{class:'nbar under'},[nc,clr]));
+    p.appendChild(h('div',{class:'nbar under'},S.refined?[clr]:[nc,clr]));
     p.appendChild(lkb);
   }
   /* compact actions */
@@ -2250,7 +2258,7 @@ function openSheet(it){
     sel.addEventListener('change',function(){setRep(it,sel.value)});
     rB.appendChild(h('div',{class:'selbox'},[sel]));
   }
-  rA.appendChild(attachControl(it));
+  if(!S.refined)rA.appendChild(attachControl(it));
   if(archBtn)rB.appendChild(archBtn);rB.appendChild(delBtn);
   p.appendChild(rA);p.appendChild(rB);
   showSheet(p,true);
@@ -2500,9 +2508,14 @@ function openHelp(){
   ];
   var cols=h('div',{class:'hcols'});
   T.help.forEach(function(sec,i){
+    var txt=sec[1];
+    if(S.refined){
+      if(i===7)return;
+      if(i===6)txt=txt.replace(', tekrar kur ya da bir projeye bağla',' ya da tekrar kur').replace(', set a repeat or attach it to a project',' or set a repeat').replace(' or attach it to a project','');
+    }
     cols.appendChild(h('div',{class:'hx'},[
       h('h3',{class:'hsec'},[h('span',{class:'hic',html:HI[i]||''}),h('span',{text:sec[0]})]),
-      h('p',{class:'hp',html:sec[1]})
+      h('p',{class:'hp',html:txt})
     ]));
   });
   p.classList.add('helpp');p.appendChild(cols);
@@ -2595,6 +2608,7 @@ function openSettings(){
     h('button',{type:'button',text:'A+','aria-label':'+',disabled:zi>=ZOOMS.length-1,onclick:function(){setZoom(ZOOMS[zi+1])}})
   ])]);
   p.appendChild(h('div',{class:'srow2'},[fontCell,sizeCell]));
+  p.appendChild(h('button',{class:'hopen rf',type:'button',role:'switch','aria-checked':String(!!S.refined),onclick:function(){S.refined=!S.refined;document.documentElement.classList.toggle('refined',!!S.refined);persist();render();openSettings()}},[h('span',{class:'rft'},[h('b',{text:T.refine}),h('small',{text:T.refineNote})]),h('i',{class:'sw','aria-hidden':'true'})]));
   var nArch=stashed('arch').length+stashed('trash').length;
   var archB=h('button',{class:'hopen',type:'button',onclick:function(){openArchive('arch')}},[h('span',{text:T.archive+(nArch?' · '+nArch:'')}),h('span',{html:ARCH_I})]);
   var hideB=h('button',{class:'hopen tgl',type:'button',role:'switch','aria-checked':String(!!S.hideDone),onclick:function(){S.hideDone=!S.hideDone;revealDone=false;justDone={};persist();queueSave();render();openSettings()}},[h('span',{text:T.hideDone}),h('span',{html:S.hideDone?EYE_OFF:EYE_ON})]);
