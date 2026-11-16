@@ -31,9 +31,9 @@ img{max-width:100%}
   --ink:#33373f;
   --ink-soft:#6b6f78;
   --ink-faint:#a9a8a1;
-  --blue:#4a6d9f;
+  --blue:#4a6d9f;--nt:var(--blue);
   --sun:#e08a4f;
-  --today:#c9692a;--pin:#f7e792;--pin-ink:#4a431f;--pin-scroll:rgba(55,48,22,.55);
+  --today:#c9692a;--pj:#c9692a;--pj-soft:rgba(201,105,42,.34);--pj-wash:rgba(201,105,42,.12);--pin:#f7e792;--pin-ink:#4a431f;--pin-scroll:rgba(55,48,22,.55);
   --blue-soft:rgba(74,109,159,.28);
   --blue-wash:rgba(74,109,159,.11);
   --card:rgba(74,109,159,.055);
@@ -54,7 +54,7 @@ img{max-width:100%}
 @media (prefers-color-scheme:dark){
   :root:not([data-theme="light"]):not([data-mode]){
     --paper:#1b1c20;--desk:#131417;--sheet:#25262b;--ink:#e1ded5;--ink-soft:#a1a2a8;--ink-faint:#64656c;
-    --sun:#f0a468;--today:#f0a468;--pin:#d8c76c;--pin-ink:#2e2911;--pin-scroll:#3b3d45;--blue:#8fabd6;--blue-soft:rgba(143,171,214,.32);--blue-wash:rgba(143,171,214,.15);
+    --sun:#f0a468;--today:#f0a468;--pj:#f0a468;--pj-soft:rgba(240,164,104,.36);--pj-wash:rgba(240,164,104,.15);--pin:#d8c76c;--pin-ink:#2e2911;--pin-scroll:#3b3d45;--blue:#8fabd6;--blue-soft:rgba(143,171,214,.32);--blue-wash:rgba(143,171,214,.15);
     --card:rgba(143,171,214,.07);--float:rgba(255,255,255,.04);--danger:#e0928a;--card-dim:rgba(143,171,214,.035);--chip:rgba(255,255,255,.07);
     --rule:rgba(255,255,255,.07);--rule-strong:rgba(255,255,255,.14);
     --scrim:rgba(0,0,0,.55);--shadow:0 12px 36px rgba(0,0,0,.5);--lift:0 1px 3px rgba(0,0,0,.4);
@@ -64,7 +64,7 @@ img{max-width:100%}
 }
 :root[data-theme="dark"]:not([data-mode]),:root[data-mode="dark"]{
   --paper:#1b1c20;--desk:#131417;--sheet:#25262b;--ink:#e1ded5;--ink-soft:#a1a2a8;--ink-faint:#64656c;
-  --sun:#f0a468;--today:#f0a468;--pin:#d8c76c;--pin-ink:#2e2911;--pin-scroll:#3b3d45;--blue:#8fabd6;--blue-soft:rgba(143,171,214,.32);--blue-wash:rgba(143,171,214,.15);
+  --sun:#f0a468;--today:#f0a468;--pj:#f0a468;--pj-soft:rgba(240,164,104,.36);--pj-wash:rgba(240,164,104,.15);--pin:#d8c76c;--pin-ink:#2e2911;--pin-scroll:#3b3d45;--blue:#8fabd6;--blue-soft:rgba(143,171,214,.32);--blue-wash:rgba(143,171,214,.15);
   --card:rgba(143,171,214,.07);--float:rgba(255,255,255,.04);--danger:#e0928a;--card-dim:rgba(143,171,214,.035);--chip:rgba(255,255,255,.07);
   --rule:rgba(255,255,255,.07);--rule-strong:rgba(255,255,255,.14);
   --scrim:rgba(0,0,0,.55);--shadow:0 12px 36px rgba(0,0,0,.5);--lift:0 1px 3px rgba(0,0,0,.4);
@@ -227,7 +227,7 @@ h1{margin:0;font-weight:inherit}
 .ptd .cb{-webkit-touch-callout:none;-webkit-user-select:none;user-select:none}
 .ptd{display:grid;grid-template-columns:30px minmax(0,1fr) auto 28px;align-items:start;border-bottom:1px solid var(--rule);--row:36px}
 .ptd .cb{height:36px}
-.ptd textarea{display:block;width:100%;min-height:36px;border:0;outline:0;background:none;resize:none;overflow:hidden;padding:5px 0 5px 6px;margin:0;border-radius:0;font:400 calc(23px*var(--hs))/1.25 var(--hand);color:var(--ink)}
+.ptd textarea{display:block;width:100%;min-height:36px;border:0;outline:0;background:none;resize:none;overflow:hidden;padding:max(2px,calc((36px - 23px*var(--hs)*1.25)/2)) 0 max(2px,calc((36px - 23px*var(--hs)*1.25)/2)) 6px;margin:0;border-radius:0;font:400 calc(23px*var(--hs))/1.25 var(--hand);color:var(--ink)}
 .ptd textarea::placeholder{color:var(--ink-faint)}
 .ptd.done textarea{color:var(--ink-faint);text-decoration:line-through;text-decoration-thickness:1.5px}
 .pdt{position:relative;display:inline-flex;align-items:center;gap:4px;height:36px;padding:0 4px}
@@ -266,7 +266,20 @@ h1{margin:0;font-weight:inherit}
 .ptabs .sp{flex:1}
 .ptab{height:34px;padding:0 16px;border:1px solid var(--rule);border-bottom:0;border-radius:10px 10px 0 0;background:var(--chip);font:500 14px/1 var(--sans);color:var(--ink-soft);margin-bottom:-1px}
 .ptab.on{background:var(--sheet);border-color:var(--rule-strong);color:var(--today);font-weight:600;height:35px;padding-bottom:1px}
-.isproj .ptab.on{color:var(--blue)}
+.ptab.k-n.on{color:var(--nt)}
+.ptab.k-p.on{color:var(--pj)}
+.stick .phead .ptask.rec{align-items:center}
+.pjarch{margin:6px 4px 0}
+.pjarch-h{display:flex;align-items:center;gap:8px;width:100%;padding:10px 2px;font:600 12.5px/1 var(--sans);color:var(--ink-soft);text-align:left}
+.pjarch-h svg{width:16px;height:16px;flex:none}
+.pjarch-h .chev{margin-left:auto;transition:transform .15s}
+.pjarch-h[aria-expanded="true"] .chev{transform:rotate(180deg)}
+.pjar{display:grid;grid-template-columns:minmax(0,1fr) auto auto;align-items:center;gap:4px;border-bottom:1px solid var(--rule)}
+.pjar .pt{padding:9px 6px 9px 2px;font:400 calc(21px*var(--hs))/1.25 var(--hand);color:var(--ink-faint);text-decoration:line-through;text-decoration-thickness:1.5px;overflow-wrap:anywhere}
+.pjar button{height:36px;min-width:32px;display:grid;place-items:center;color:var(--ink-soft);font:600 12.5px/1 var(--sans);padding:0 8px}
+.arczone{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(env(safe-area-inset-bottom,0px) + 18px);z-index:80;display:flex;align-items:center;gap:8px;padding:15px 24px;border-radius:999px;background:var(--sheet);border:1.5px dashed var(--pj);color:var(--pj);font:600 14px/1 var(--sans);box-shadow:var(--shadow);pointer-events:none;white-space:nowrap}
+.arczone svg{width:18px;height:18px}
+.arczone.hot{background:var(--pj);color:var(--sheet);border-style:solid}
 .ptabs .xbtn{width:32px;height:32px;margin-bottom:4px}
 .ttl{display:flex;align-items:center;gap:10px;min-width:0}
 .phead .ttl .sheet-text{flex:0 1 auto}
@@ -285,8 +298,8 @@ h1{margin:0;font-weight:inherit}
 .stick .phead .ptask{align-items:flex-start}
 .mvrow.cmp .dtxt svg{width:20px;height:20px;display:block}
 .npb{display:grid;place-items:center;text-align:center;width:28px;height:28px;border-radius:50%;border:1.5px solid var(--ink-faint);color:var(--ink-faint);font:600 13px/1 var(--sans);background:none;padding:0}
-.npb.on{background:var(--ink);border-color:var(--ink);color:var(--sheet)}
-.npb.p.on{background:var(--blue);border-color:var(--blue);color:#fff}
+.npb.on{background:var(--nt);border-color:var(--nt);color:var(--sheet)}
+.npb.p.on{background:var(--pj);border-color:var(--pj);color:var(--sheet)}
 .nadd{padding:8px 4px;font:600 14px/1 var(--sans);color:var(--blue)}
 .nbar.under .nclr{color:var(--ink-faint);font-weight:500}
 .pjrow{display:grid;grid-template-columns:30px minmax(0,1fr) auto;grid-template-areas:"cb t t" "cb m d";column-gap:10px;row-gap:4px;align-items:center;padding:10px 4px;border-bottom:1px solid var(--rule)}
@@ -322,7 +335,7 @@ h1{margin:0;font-weight:inherit}
 .row .acts{display:contents}
 .row .more,.row .notebtn{display:none}
 .row .notebtn.has{display:grid}
-.notebtn.has,.pjbtn{width:26px;min-width:26px}
+.notebtn,.notebtn.has,.pjbtn{width:26px;min-width:26px}
 .row:not(.draft) .more{display:grid;width:34px;opacity:.85}
 .nudge{font:400 calc(19px*var(--hs))/var(--row) var(--hand);color:var(--blue);opacity:.85;white-space:nowrap;padding:0 4px 0 8px}
 .done .nudge,.draft .nudge{display:none}
@@ -508,6 +521,17 @@ body.dragging-now{-webkit-user-select:none;user-select:none;cursor:grabbing}
 .dchip.over{background:var(--blue);color:var(--paper)}
 .alist{margin:0 4px 12px;padding-left:20px;font:13px/1.5 var(--sans);color:var(--ink-soft)}
 .alist li+li{margin-top:6px}
+.htitle{margin:6px 4px 4px;font:400 calc(30px*var(--hs))/1.15 var(--hand);color:var(--ink)}
+.hback{display:inline-flex;align-items:center;gap:4px;height:36px;padding:0 10px 0 2px;font:500 14px/1 var(--sans);color:var(--ink-soft)}
+.hback svg{width:18px;height:18px}
+.hintro{margin:6px 4px 12px;font:400 calc(21px*var(--hs))/1.35 var(--hand);color:var(--ink-soft)}
+.hsec{display:flex;align-items:center;gap:10px;margin:0;padding:16px 4px 2px;border-top:1px solid var(--rule);font:600 14px/1.2 var(--sans);letter-spacing:.01em;color:var(--ink)}
+.hic{flex:none;display:inline-flex;align-items:center;justify-content:center;gap:1px;min-width:30px;height:30px;padding:0 6px;border-radius:15px;background:var(--blue-wash);color:var(--blue)}
+.hic svg{width:17px;height:17px;display:block;flex:none}
+.hp{margin:6px 4px 6px;font:14px/1.6 var(--sans);color:var(--ink-soft)}
+.hp b{color:var(--ink);font-weight:600}
+.hopen{display:flex;align-items:center;justify-content:space-between;width:calc(100% - 8px);margin:4px 4px 12px;padding:13px 16px;border-radius:14px;background:var(--chip);font:600 14px/1 var(--sans);color:var(--ink)}
+.hopen svg{width:18px;height:18px;color:var(--ink-soft)}
 .snote.acredit{margin:16px 4px 4px;padding-top:14px;border-top:1px solid var(--rule);color:var(--ink-soft);font-weight:400;font-size:12px;line-height:1.5}
 .acredit a{color:var(--blue);text-decoration:underline;text-underline-offset:2px}
 @media (prefers-reduced-motion:reduce){.syncbtn.busy svg{animation-duration:2.4s}.cb .tick,.cb rect{transition:none}.panel{animation:none}}
@@ -541,7 +565,7 @@ var TX={
     hint:'Bir satıra dokun ve yazmaya başla.',still:'hâlâ duruyor',
     carryweek:'geçen haftadan',carrymonth:'geçen aydan',bring:'buraya al',
     pull:'bitmeyenleri bugüne al',days:'Yazılan günler',noDays:'Bu ay henüz bir güne yazılmadı.',
-    openLink:'Linki aç',projects:'Projeler',rename:'Başlığı düzenle',pjAttach:'Projeye ekle',pjDetach:'Projeden çıkar',pjNone:'Henüz proje yok',pjAdded:'Projeye eklendi',pinMax:'En fazla 4 not',calendar:'Takvim',pjNeedTitle:'Önce proje adı yaz',chkS:'+ Madde',bulS:'• Liste',pjNoItems:'madde yok',pjOff:'Nota çevir',hereS:'Bu güne',tmrwS:'Yarına',nextS:'Ertesi güne',toWeekS:'Haftaya',toMonthS:'Aya',delS:'Sil',tabNotes:'Notlar',project:'Proje',pjNew:'+ Yeni proje',pjUntitled:'Adsız proje',pjTitlePh:'Proje adı',pjEmpty:'Henüz proje yok. Uzun soluklu işler için bir proje aç, maddelere tarih verirsen o günün defterine de düşer.',pjAdd:'+ Madde ekle',pjTodoPh:'Yapılacak…',pjNotes:'Akla gelenler',pjNotesPh:'Not…',pjDel:'Projeyi sil',pjGone:'Proje silindi',pjMake:'Proje yap',pjOpen:'Projeyi aç',pjDate:'Tarih ver',pjClr:'Tarihi kaldır',pjDone:'tamam',pjBack:'Projeler',pjMade:'Proje oluşturuldu',here:'Bu güne al',moveTo:'Güne taşı',repeat:'Tekrarla',repNone:'Tekrarsız',repW:'Her hafta',repM:'Her ay',repY:'Her yıl',toWeek:'Haftaya al',toMonth:'Aya al',tmrw:'Yarına ertele',nextday:'Ertesi güne ertele',bullet:'• Madde',check2:'☐ Görev',noteClr:'Notu temizle',undoCap:'Geri al',del:'Görevi sil',pins:'Hızlı notlar',pinNew:'+ Yeni not',pinPh:'Telefon, alışveriş, aklına gelen…',pinDel:'Sil',pinGone:'Not silindi',pinMove:'Taşı',fs:'Tam ekran',brand:['YARIN','DEFTERİ'],themeLight:'Açık tema',themeDark:'Koyu tema',fsOn:'Aç',fsOff:'Kapat',fsFail:'Tarayıcı tam ekrana izin vermedi',fsIos:'Tam ekran için Paylaş › Ana Ekrana Ekle de, sonra defteri ana ekrandan aç; tarayıcı çubukları olmadan açılır.',pinDay:'Güne',pinWeek:'Haftaya',pinMonth:'Aya',pinSize:'Boyutu sürükle',
+    openLink:'Linki aç',projects:'Projeler',rename:'Başlığı düzenle',pjArch:'Arşiv',pjDrop:'Arşivlemek için buraya bırak',pjArchived:'Arşivlendi',pjRestore:'Geri al',pjAttach:'Projeye ekle',pjDetach:'Projeden çıkar',pjNone:'Henüz proje yok',pjAdded:'Projeye eklendi',pinMax:'En fazla 4 not',calendar:'Takvim',pjNeedTitle:'Önce proje adı yaz',chkS:'+ Madde',bulS:'• Liste',pjNoItems:'madde yok',pjOff:'Nota çevir',hereS:'Bu güne',tmrwS:'Yarına',nextS:'Ertesi güne',toWeekS:'Haftaya',toMonthS:'Aya',delS:'Sil',tabNotes:'Notlar',project:'Proje',pjNew:'+ Yeni proje',pjUntitled:'Adsız proje',pjTitlePh:'Proje adı',pjEmpty:'Henüz proje yok. Uzun soluklu işler için bir proje aç, maddelere tarih verirsen o günün defterine de düşer.',pjAdd:'+ Madde ekle',pjTodoPh:'Yapılacak…',pjNotes:'Akla gelenler',pjNotesPh:'Not…',pjDel:'Projeyi sil',pjGone:'Proje silindi',pjMake:'Proje yap',pjOpen:'Projeyi aç',pjDate:'Tarih ver',pjClr:'Tarihi kaldır',pjDone:'tamam',pjBack:'Projeler',pjMade:'Proje oluşturuldu',here:'Bu güne al',moveTo:'Güne taşı',repeat:'Tekrarla',repNone:'Tekrarsız',repW:'Her hafta',repM:'Her ay',repY:'Her yıl',toWeek:'Haftaya al',toMonth:'Aya al',tmrw:'Yarına ertele',nextday:'Ertesi güne ertele',bullet:'• Madde',check2:'☐ Görev',noteClr:'Notu temizle',undoCap:'Geri al',del:'Görevi sil',pins:'Hızlı notlar',pinNew:'+ Yeni not',pinPh:'Telefon, alışveriş, aklına gelen…',pinDel:'Sil',pinGone:'Not silindi',pinMove:'Taşı',fs:'Tam ekran',brand:['YARIN','DEFTERİ'],themeLight:'Açık tema',themeDark:'Koyu tema',fsOn:'Aç',fsOff:'Kapat',fsFail:'Tarayıcı tam ekrana izin vermedi',fsIos:'Tam ekran için Paylaş › Ana Ekrana Ekle de, sonra defteri ana ekrandan aç; tarayıcı çubukları olmadan açılır.',pinDay:'Güne',pinWeek:'Haftaya',pinMonth:'Aya',pinSize:'Boyutu sürükle',
     deleted:'Silindi',undo:'geri al',moved:'Taşındı',
     settings:'Ayarlar',lang:'Dil',font:'Yazı tipi',fontHand:'El yazısı',fontPlain:'Düz yazı',note:'Not',notePh:'Bu satır için not…',backup:'Yedek',
     backupNote:'Defterin bu tarayıcıda saklanır. Arada bir yedek al.',
@@ -558,7 +582,22 @@ var TX={
     about:'Hakkında',
     aboutIntro:'Yarın Defteri, planlarını kâğıt bir defterdeki gibi sakin tutmak için yapıldı. Gün, hafta, ay, yıl ve 10 yıl sayfaları birbirine bağlı. Renkli çubuk, seri ya da bildirim yok.',
     howTitle:'Nasıl kullanılır',
-    how:['Bir satıra dokun ve yaz. Enter yeni satıra geçirir.','Kutucuğa dokununca satırın üstü çizilir, silinmez.','Hafta, ay, yıl ve 10 yıl sayfalarının tepesindeki alan, o döneme ait serbest notlar içindir. Hiçbir güne yapışmaz.','Uzun satırlar tek satırda kısalır, dokununca açılır. Açılan satırın sağındaki üç nokta menüsünden not ekleyebilir ya da satırı başka bir güne, haftaya veya aya taşıyabilirsin.','Kutucuğa basılı tutup sürükleyerek sıralayabilir ya da başka güne, haftaya, aya ve yıla taşıyabilirsin.','Sağa ya da sola kaydırarak önceki ve sonraki sayfaya geçersin.','Not sayfası ve proje sayfası aynıdır: yapılacak maddeler ve Akla gelenler alanı. Başlığın önündeki N / P ile hangisi olacağını seçersin. Tüm projeler sayfanın üstündeki Projeler sekmesinde. Maddelere tarih verirsen o günün defterine de düşer. Bir satırı üç noktadan "Proje yap" diyerek projeye çevirebilirsin; satırdaki not ikonunun yerine P ikonu gelir ve satırın notu projenin Akla gelenler alanı olur.','Notlara yazdığın web adresleri tıklanabilir olur. ☐ Görev ile onay kutulu satırlar ekleyebilirsin.'],
+    helpIntro:'Yarın Defteri bir kâğıt defter gibi çalışır: yaz, işaretle, işin yetişmezse yarına bırak. Burada her şeyin nasıl işlediğini bulursun.',
+    helpNoSync:' Bu önizlemede senkron kapalı; kendi sitende Ayarlar\u2019da görünür.',
+    help:[
+      ['Yazmak ve işaretlemek','Bir satıra dokun ve yaz, <b>Enter</b> yeni satıra geçirir. Kutucuğa dokununca satırın üstü çizilir, hiçbir şey silinmez. Uzun satırlar tek satırda kısalır, dokununca açılır.'],
+      ['Gün, hafta, ay, yıl, 10 yıl','Beş sayfa birbirine bağlıdır. Günlerin altında <b>Bu hafta içinde</b>, <b>Bu ay içinde</b> gibi alanlar vardır: o döneme ait ama henüz bir güne yapışmamış işler buraya yazılır. Sağa ya da sola kaydırarak önceki ve sonraki sayfaya geçersin.'],
+      ['Taşımak ve ertelemek','Kutucuğa basılı tut (bilgisayarda sürükle) ve başka bir güne, haftaya, aya ya da yıla taşı. Satırı açınca sağdaki <b>üç nokta</b> menüsünden <b>Yarına</b>, <b>Haftaya</b>, <b>Aya</b> diyebilir, tarih seçebilir ya da tekrar kurabilirsin.'],
+      ['Not ve proje','Satırın sağındaki ikona dokununca not sayfası açılır. Not ile proje aynı sayfadır: bir madde listesi ve serbest bir not alanı. Başlığın önündeki ikona dokunarak <b>Not</b> (mavi) ile <b>Proje</b> (turuncu) arasında geçersin. Başlığa dokunarak adını değiştirebilirsin. Bütün projeler sayfanın üstündeki <b>Projeler</b> sekmesinde durur.'],
+      ['Maddeler','Maddeleri kutucuktan tutup sürükleyerek sıralarsın. Takvim ikonuyla bir maddeye tarih verirsen o günün sayfasına da düşer; tarihe dokununca o güne gidersin.'],
+      ['Arşiv','Uzun bir projede biten maddeyi kutucuğundan tutup altta beliren <b>Arşivlemek için buraya bırak</b> alanına sürükle. Madde listeden kalkıp <b>Arşiv</b> bölümüne gider, ilerlemede sayılmaya devam eder. Arşivden istediğin zaman geri alabilirsin.'],
+      ['Bir notu projeye bağlamak','Günlük bir satırın üç nokta menüsündeki klasör düğmesiyle, o satırı mevcut bir projeye madde olarak bağlarsın.'],
+      ['Post-it','Üstteki post-it düğmesi hiçbir güne bağlı olmayan karalama defterindir. Tek büyük post-it açılır, kenarındaki düğmeyle küçük kareye döner. En fazla 4 post-it tutabilirsin.'],
+      ['Bağlantılar ve görevler','Notlara yazdığın web adresleri tıklanabilir olur. <b>☐ Görev</b> ile onay kutulu satırlar ekleyebilirsin.'],
+      ['Yedek','Ayarlar\u2019daki <b>Yedek</b> bölümünden defterini dosya olarak kaydeder, kopyalar ya da bir yedekten geri yüklersin.'],
+      ['Senkron (Google hesabı)','Ayarlar\u2019daki <b>Senkron</b> bölümünden <b>Google ile bağlan</b> dersen aynı defteri telefonunda ve bilgisayarında kullanırsın. Defter, Drive\u2019ında yalnızca bu uygulamanın görebildiği gizli bir alana kaydedilir; diğer dosyalarına dokunmaz. Değişikliklerin kendiliğinden gider, istersen <b>Senkronize et</b> ile elle de eşitlersin. Bağlantıyı kesersen Drive\u2019daki kopya silinmez.{NOSYNC}'],
+      ['Görünüm','Ayarlar\u2019dan dili, açık ya da koyu temayı, el yazısı ya da düz yazıyı ve yazı boyutunu seçersin.']
+    ],
     credit:['Verimlilik için ',' tarafından tasarlandı, Claude ile birlikte geliştirildi.'],
     wd:['Pazartesi','Salı','Çarşamba','Perşembe','Cuma','Cumartesi','Pazar'],
     wds:['Pzt','Sal','Çar','Per','Cum','Cmt','Paz'],
@@ -575,7 +614,7 @@ var TX={
     hint:'Tap a line and start writing.',still:'still here',
     carryweek:'from last week',carrymonth:'from last month',bring:'bring here',
     pull:'move unfinished to today',days:'Days with notes',noDays:'Nothing written on a day this month yet.',
-    openLink:'Open link',projects:'Projects',rename:'Edit title',pjAttach:'Add to project',pjDetach:'Remove from project',pjNone:'No projects yet',pjAdded:'Added to project',pinMax:'Up to 4 notes',calendar:'Calendar',pjNeedTitle:'Give the project a name first',chkS:'+ Item',bulS:'• Bullet',pjNoItems:'no items',pjOff:'Make it a note',hereS:'This day',tmrwS:'Tomorrow',nextS:'Next day',toWeekS:'Week',toMonthS:'Month',delS:'Delete',tabNotes:'Notes',project:'Project',pjNew:'+ New project',pjUntitled:'Untitled project',pjTitlePh:'Project name',pjEmpty:'No projects yet. Start one for long-running work; give an item a date and it also shows up on that day.',pjAdd:'+ Add item',pjTodoPh:'To do…',pjNotes:'Ideas',pjNotesPh:'Note…',pjDel:'Delete project',pjGone:'Project deleted',pjMake:'Make project',pjOpen:'Open project',pjDate:'Set date',pjClr:'Remove date',pjDone:'done',pjBack:'Projects',pjMade:'Project created',here:'Move to this day',moveTo:'Move to day',repeat:'Repeat',repNone:'No repeat',repW:'Every week',repM:'Every month',repY:'Every year',toWeek:'Move to week',toMonth:'Move to month',tmrw:'Postpone to tomorrow',nextday:'Postpone a day',bullet:'• Bullet',check2:'☐ Task',noteClr:'Clear note',undoCap:'Undo',del:'Delete task',pins:'Quick notes',pinNew:'+ New note',pinPh:'A phone number, shopping, a stray thought…',pinDel:'Delete',pinGone:'Note deleted',pinMove:'Move',fs:'Full screen',brand:['TOMORROW’S','NOTEBOOK'],themeLight:'Light theme',themeDark:'Dark theme',fsOn:'Enter',fsOff:'Exit',fsFail:'The browser did not allow full screen',fsIos:'For full screen, tap Share › Add to Home Screen, then open the notebook from there; it opens without browser bars.',pinDay:'To day',pinWeek:'To week',pinMonth:'To month',pinSize:'Drag to resize',
+    openLink:'Open link',projects:'Projects',rename:'Edit title',pjArch:'Archive',pjDrop:'Drop here to archive',pjArchived:'Archived',pjRestore:'Restore',pjAttach:'Add to project',pjDetach:'Remove from project',pjNone:'No projects yet',pjAdded:'Added to project',pinMax:'Up to 4 notes',calendar:'Calendar',pjNeedTitle:'Give the project a name first',chkS:'+ Item',bulS:'• Bullet',pjNoItems:'no items',pjOff:'Make it a note',hereS:'This day',tmrwS:'Tomorrow',nextS:'Next day',toWeekS:'Week',toMonthS:'Month',delS:'Delete',tabNotes:'Notes',project:'Project',pjNew:'+ New project',pjUntitled:'Untitled project',pjTitlePh:'Project name',pjEmpty:'No projects yet. Start one for long-running work; give an item a date and it also shows up on that day.',pjAdd:'+ Add item',pjTodoPh:'To do…',pjNotes:'Ideas',pjNotesPh:'Note…',pjDel:'Delete project',pjGone:'Project deleted',pjMake:'Make project',pjOpen:'Open project',pjDate:'Set date',pjClr:'Remove date',pjDone:'done',pjBack:'Projects',pjMade:'Project created',here:'Move to this day',moveTo:'Move to day',repeat:'Repeat',repNone:'No repeat',repW:'Every week',repM:'Every month',repY:'Every year',toWeek:'Move to week',toMonth:'Move to month',tmrw:'Postpone to tomorrow',nextday:'Postpone a day',bullet:'• Bullet',check2:'☐ Task',noteClr:'Clear note',undoCap:'Undo',del:'Delete task',pins:'Quick notes',pinNew:'+ New note',pinPh:'A phone number, shopping, a stray thought…',pinDel:'Delete',pinGone:'Note deleted',pinMove:'Move',fs:'Full screen',brand:['TOMORROW’S','NOTEBOOK'],themeLight:'Light theme',themeDark:'Dark theme',fsOn:'Enter',fsOff:'Exit',fsFail:'The browser did not allow full screen',fsIos:'For full screen, tap Share › Add to Home Screen, then open the notebook from there; it opens without browser bars.',pinDay:'To day',pinWeek:'To week',pinMonth:'To month',pinSize:'Drag to resize',
     deleted:'Deleted',undo:'undo',moved:'Moved',
     settings:'Settings',lang:'Language',font:'Font',fontHand:'Handwriting',fontPlain:'Plain',note:'Note',notePh:'A note for this line…',backup:'Backup',
     backupNote:'Your notebook is stored in this browser. A backup now and then is a good idea.',
@@ -592,7 +631,22 @@ var TX={
     about:'About',
     aboutIntro:'Yarın Defteri (Tomorrow’s Notebook) is made to keep your plans calm, like a paper notebook. Day, week, month, year and 10-year pages are connected. No colored bars, streaks or notifications.',
     howTitle:'How to use',
-    how:['Tap a line and write. Enter moves to the next line.','Tap the box to cross a line out. It is never deleted.','The area at the top of the week, month, year and 10-year pages holds loose notes for that period. They never stick to a day.','Long lines are shortened to one line, tap one to open it. The three dots on an open line add a note or move it to another day, week or month.','Press and hold the box, then drag to reorder, or to move a line to another day, week, month or year.','Swipe left or right to turn to the previous or next page.','A note page and a project page are the same: a to-do list plus an Ideas field. The N / P switch before the title picks which one it is. All projects are in the Projects tab at the top of the sheet. Give an item a date and it also shows up on that day. Use the three dots on a line and choose "Make project" to turn it into a project; the note icon on the line becomes a P icon and its note moves into the Ideas field of the project.','Web addresses in notes become tappable. Use ☐ Task to add lines with checkboxes.'],
+    helpIntro:'Tomorrow\u2019s Notebook works like a paper notebook: write, tick things off, and leave what did not fit for tomorrow. Here is how everything works.',
+    helpNoSync:' Sync is off in this preview; it appears in Settings on your own site.',
+    help:[
+      ['Writing and ticking off','Tap a line and write, <b>Enter</b> moves to the next line. Tap the box to cross a line out, nothing is ever deleted. Long lines are shortened to one line, tap one to open it.'],
+      ['Day, week, month, year, 10 years','Five connected pages. Under the days you will find areas like <b>Sometime this week</b> and <b>Sometime this month</b>: things that belong to that period but not to one day yet. Swipe left or right to turn the page.'],
+      ['Moving and postponing','Press and hold the box (drag on a computer) and move a line to another day, week, month or year. Open a line and use the <b>three dots</b> to choose <b>Tomorrow</b>, <b>Week</b> or <b>Month</b>, pick a date or set a repeat.'],
+      ['Notes and projects','Tap the icon at the right of a line to open its note page. A note and a project are the same page: a list of items plus a free note field. Tap the icon before the title to switch between <b>Note</b> (blue) and <b>Project</b> (orange). Tap the title to rename it. All projects live in the <b>Projects</b> tab at the top of the sheet.'],
+      ['Items','Hold an item\u2019s box and drag to reorder. Give an item a date with the calendar icon and it also appears on that day; tap the date to jump there.'],
+      ['Archive','In a long project, hold a finished item by its box and drag it to the <b>Drop here to archive</b> area that appears at the bottom. It leaves the list and goes to the <b>Archive</b> section, still counted in the progress. You can restore it any time.'],
+      ['Attaching a note to a project','Use the folder button in the three-dot menu of a daily line to attach it to an existing project as an item.'],
+      ['Post-it','The post-it button at the top is a scratchpad that is not tied to any day. One big post-it opens, and the button on its edge shrinks it to a small square. You can keep up to 4.'],
+      ['Links and tasks','Web addresses in notes become tappable. Use <b>☐ Task</b> to add lines with checkboxes.'],
+      ['Backup','In Settings, the <b>Backup</b> section saves your notebook as a file, copies it, or restores it from a backup.'],
+      ['Sync (Google account)','In Settings, under <b>Sync</b>, choose <b>Connect with Google</b> to use the same notebook on your phone and computer. The notebook is saved in a hidden area of your Drive that only this app can see; your other files are untouched. Changes are sent automatically, and you can also press <b>Sync now</b>. If you disconnect, the copy in Drive is not deleted.{NOSYNC}'],
+      ['Look','In Settings you choose the language, light or dark theme, handwriting or plain font, and text size.']
+    ],
     credit:['Designed for productivity by ',', built together with Claude.'],
     wd:['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'],
     wds:['Mon','Tue','Wed','Thu','Fri','Sat','Sun'],
@@ -671,7 +725,14 @@ function cleanProjects(a){
       if(typeof t.due==='string'&&/^\d{4}-\d{2}-\d{2}$/.test(t.due))q.due=t.due;
       o.todos.push(q);
     });
-    if(!o.title.trim()&&!o.todos.length&&!o.notes)return;
+    (Array.isArray(x.arch)?x.arch:[]).forEach(function(t){
+      if(!t||typeof t.text!=='string'||!t.text.trim())return;
+      var tid=(typeof t.id==='string'&&t.id&&!ts[t.id])?t.id:uid();ts[tid]=1;
+      var q={id:tid,text:t.text.replace(/[\r\n]+/g,' '),done:true};
+      if(typeof t.due==='string'&&/^\d{4}-\d{2}-\d{2}$/.test(t.due))q.due=t.due;
+      (o.arch=o.arch||[]).push(q);
+    });
+    if(!o.title.trim()&&!o.todos.length&&!(o.arch&&o.arch.length)&&!o.notes)return;
     out.push(o);
   });
   return out;
@@ -894,16 +955,16 @@ function checkBtn(row){
 }
 function recOf(it){return it&&it.pj&&!it.pt?findProject(it.pj):null}
 function isProjOrigin(it){var r=recOf(it);return !!(r&&!r.n)}
-function hasNote(it){if(!it)return false;if(it.note)return true;var r=recOf(it);return !!(r&&(r.todos.length||(r.notes&&r.notes.trim())))}
+function hasNote(it){if(!it)return false;if(it.note)return true;var r=recOf(it);return !!(r&&(r.todos.length||(r.arch&&r.arch.length)||(r.notes&&r.notes.trim())))}
 function noteBtn(row){
   var it=row.dataset.id?findItem(row.dataset.id):null;
-  return h('button',{class:'notebtn'+(hasNote(it)?' has':'')+(isProjOrigin(it)?' nomore':''),type:'button','aria-label':T.note,html:NOTE,onclick:function(){
+  return h('button',{class:'notebtn'+(hasNote(it)?' has':'')+(isProjOrigin(it)||(it&&it.pt&&!it.note)?' nomore':''),type:'button','aria-label':T.note,html:NOTE,onclick:function(){
     var cur=findItem(row.dataset.id);if(cur)openSheet(cur);
   }});
 }
 function refreshNote(it){
   var l=document.querySelectorAll('[data-id="'+it.id+'"] .notebtn');
-  for(var i=0;i<l.length;i++)l[i].classList.toggle('has',!!it.note);
+  for(var i=0;i<l.length;i++){l[i].classList.toggle('has',!!it.note);if(it.note)l[i].classList.remove('nomore')}
 }
 function ensureDraft(box,o){
   var last=box.lastElementChild;
@@ -1484,7 +1545,7 @@ function setDue(pj,t,key){
   }
   queueSave();
 }
-function pjProgress(pj){var n=pj.todos.length,d=pj.todos.filter(function(t){return t.done}).length;return {n:n,d:d}}
+function pjProgress(pj){var a=pj.arch?pj.arch.length:0,n=pj.todos.length+a,d=pj.todos.filter(function(t){return t.done}).length+a;return {n:n,d:d}}
 function ensureRec(it){
   var pj=recOf(it);if(pj)return pj;
   pj={id:uid(),title:it.text,todos:[],n:1};var rest=[];
@@ -1515,6 +1576,38 @@ function projectBody(pj){
     var t={id:uid(),text:'',done:false};
     pj.todos.splice(at,0,t);queueSave();draw();
     var ta=list.children[at]&&list.children[at].querySelector('textarea');if(ta)ta.focus();
+  }
+  var ARCH_I='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="4" rx="1"/><path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8M10 12h4"/></svg>';
+  var CHEV_I='<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>';
+  var arcWrap=h('div',{class:'pjarch'}),arcOpen=false;
+  function archive(t){
+    var i=pj.todos.indexOf(t);if(i<0)return null;
+    var it=todoItem(t);if(it){var ii=S.items.indexOf(it);if(ii>=0)S.items.splice(ii,1)}
+    pj.todos.splice(i,1);t.done=true;
+    (pj.arch=pj.arch||[]).push(t);queueSave();
+    return {t:t,i:i};
+  }
+  function unarchive(t,at,keep){
+    var k=pj.arch?pj.arch.indexOf(t):-1;if(k<0)return;
+    pj.arch.splice(k,1);if(!pj.arch.length)delete pj.arch;
+    if(!keep)t.done=false;
+    pj.todos.splice(Math.min(at==null?pj.todos.length:at,pj.todos.length),0,t);
+    if(t.due)setDue(pj,t,t.due);
+    queueSave();
+  }
+  function drawArch(){
+    arcWrap.innerHTML='';
+    var a=pj.arch||[];
+    if(!a.length){arcWrap.hidden=true;return}
+    arcWrap.hidden=false;
+    arcWrap.appendChild(h('button',{class:'pjarch-h',type:'button','aria-expanded':String(arcOpen),html:ARCH_I+'<span>'+T.pjArch+' \u00b7 '+a.length+'</span>'+CHEV_I,onclick:function(){arcOpen=!arcOpen;drawArch()}}));
+    if(arcOpen)a.slice().forEach(function(t){
+      arcWrap.appendChild(h('div',{class:'pjar'},[
+        h('span',{class:'pt',text:t.text}),
+        h('button',{type:'button','aria-label':T.pjRestore,title:T.pjRestore,text:'\u21a9',onclick:function(){unarchive(t);draw();drawArch();render()}}),
+        h('button',{type:'button','aria-label':T.del,text:'\u00d7',onclick:function(){var k=pj.arch.indexOf(t);if(k>=0)pj.arch.splice(k,1);if(!pj.arch.length)delete pj.arch;queueSave();drawArch();upd();render()}})
+      ]));
+    });
   }
   function rowFor(t){
     var row=h('div',{class:'ptd'+(t.done?' done':'')});
@@ -1571,21 +1664,36 @@ function projectBody(pj){
         r.style.transform=sh?'translateY('+sh+'px)':'';
       });
     }
-    function mv(e){if(st&&e.pointerId===st.id){st.y=e.clientY;update()}}
+    function zoneHit(){
+      if(!st||!st.zone)return false;
+      var q=st.zone.getBoundingClientRect();
+      return st.x>=q.left-16&&st.x<=q.right+16&&st.y>=q.top-16&&st.y<=q.bottom+16;
+    }
+    function mv(e){if(st&&e.pointerId===st.id){st.y=e.clientY;st.x=e.clientX;if(st.zone)st.zone.classList.toggle('hot',zoneHit());update()}}
     function tick(){
       if(!st.sc)return;
       var r=st.sc.getBoundingClientRect(),b0=st.sc.scrollTop;
+      if(zoneHit())return;
       if(st.y<r.top+70)st.sc.scrollTop-=10;else if(st.y>r.bottom-70)st.sc.scrollTop+=10;
       if(st.sc.scrollTop!==b0)update();
     }
     function finish(commit){
-      var m=st;st=null;
+      var m=st,toArch=false;
+      if(m&&m.on&&commit&&m.zone){toArch=zoneHit()}
+      st=null;
       clearTimeout(m.timer);
+      if(m.zone){m.zone.remove();m.zone=null}
       if(!m.on)return;
       document.removeEventListener('pointermove',mv);document.removeEventListener('pointerup',up);document.removeEventListener('pointercancel',cancel);
       clearInterval(m.iv);
       m.rows.forEach(function(r){r.style.transform=''});
       row.classList.remove('dragging');document.body.classList.remove('dragging-now');
+      if(toArch){
+        var ar=archive(row._t);
+        if(ar){draw();drawArch();upd();render();
+          toast(T.pjArchived,{label:T.undo,fn:function(){unarchive(ar.t,ar.i,true);draw();drawArch();render()}});
+          setTimeout(function(){dg.j=false},350);return}
+      }
       if(commit&&m.slot!==m.idx){
         var others=m.rows.filter(function(r){return r!==row});
         others.splice(m.slot,0,row);
@@ -1603,6 +1711,7 @@ function projectBody(pj){
       st.rects=st.rows.map(function(r){var q=r.getBoundingClientRect();return {top:q.top,h:q.height}});
       st.sc=scroller(row);st.s0=st.sc?st.sc.scrollTop:0;
       row.classList.add('dragging');document.body.classList.add('dragging-now');
+      if(row._t&&row._t.done){st.zone=h('div',{class:'arczone',html:ARCH_I+'<span>'+T.pjDrop+'</span>'});document.body.appendChild(st.zone);st.x=st.x0}
       document.addEventListener('pointermove',mv);document.addEventListener('pointerup',up);document.addEventListener('pointercancel',cancel);
       st.iv=setInterval(tick,16);
       update();
@@ -1642,13 +1751,13 @@ function projectBody(pj){
   noteBullets(nt,function(){if(nt.value.trim())pj.notes=nt.value;else delete pj.notes;queueSave();lkn.set(nt.value);fitNotes()});
   return {
     prog:prog,
-    els:[list,addBtn,h('div',{class:'sp6'}),nt,h('div',{class:'sp6'}),lkn],
+    els:[list,addBtn,arcWrap,h('div',{class:'sp6'}),nt,h('div',{class:'sp6'}),lkn],
     addTodo:addTodo,
     tidy:function(){
       pj.todos=pj.todos.filter(function(t){if(t.text.trim())return true;if(todoItem(t))setDue(pj,t,null);return false});
       queueSave();
     },
-    mount:function(){draw();fitNotes()}
+    mount:function(){draw();drawArch();fitNotes()}
   };
 }
 function originOf(id){var o=null;S.items.forEach(function(x){if(!o&&x.pj===id&&!x.pt)o=x});return o}
@@ -1735,8 +1844,8 @@ function leaveSheet(){var f=onSheetClose;onSheetClose=null;if(f)f()}
 /* top of every task / project sheet: [Not|Proje] [Projeler] ... X */
 function sheetTabs(active,ctx){
   return h('div',{class:'ptabs'},[
-    h('button',{class:'ptab'+(active==='cur'?' on':''),type:'button',text:ctx.label,onclick:function(){if(active!=='cur'){leaveSheet();ctx.open()}}}),
-    h('button',{class:'ptab'+(active==='list'?' on':''),type:'button',text:T.projects,onclick:function(){if(active!=='list'){leaveSheet();openProjectList(ctx)}}}),
+    h('button',{class:'ptab k-'+(ctx.kind||'n')+(active==='cur'?' on':''),type:'button',text:ctx.label,onclick:function(){if(active!=='cur'){leaveSheet();ctx.open()}}}),
+    h('button',{class:'ptab k-p'+(active==='list'?' on':''),type:'button',text:T.projects,onclick:function(){if(active!=='list'){leaveSheet();openProjectList(ctx)}}}),
     h('span',{class:'sp'}),xBtn()
   ]);
 }
@@ -1745,7 +1854,7 @@ function newProject(){
 }
 function openProjectList(ctx){
   syncProjects();
-  var p=h('div',{class:'panel note',role:'dialog','aria-modal':'true','aria-label':T.projects});
+  var p=h('div',{class:'panel note isproj',role:'dialog','aria-modal':'true','aria-label':T.projects});
   p.appendChild(h('div',{class:'stick'},[sheetTabs('list',ctx)]));
   var list=h('div',{class:'pjlist'});
   if(!S.projects.some(function(x){return !x.n}))list.appendChild(h('p',{class:'pjempty',text:T.pjEmpty}));
@@ -1786,7 +1895,7 @@ function openProject(id,focusTitle){
   ti.addEventListener('input',function(){pj.title=ti.value;queueSave()});
   ti.addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();body.addTodo(0)}});
   p.classList.add('isproj');
-  var ctx={label:T.project,open:function(){openProject(pj.id)}};
+  var ctx={label:T.project,kind:'p',open:function(){openProject(pj.id)}};
   p.appendChild(h('div',{class:'stick'},[sheetTabs('cur',ctx),h('div',{class:'phead'},[h('div',{class:'pjhead'},[ti]),h('div',{class:'hmeta'},[body.prog])])]));
   body.els.forEach(function(e){p.appendChild(e)});
   p.appendChild(h('div',{class:'pjfoot'},[h('button',{class:'dtxt',type:'button',text:T.pjDel,onclick:function(){
@@ -1798,7 +1907,7 @@ function openProject(id,focusTitle){
   showSheet(p,true);
   onSheetClose=function(){
     body.tidy();
-    if(!pj.title.trim()&&!pj.todos.length&&!pj.notes){var i=S.projects.indexOf(pj);if(i>=0)S.projects.splice(i,1)}
+    if(!pj.title.trim()&&!pj.todos.length&&!(pj.arch&&pj.arch.length)&&!pj.notes){var i=S.projects.indexOf(pj);if(i>=0)S.projects.splice(i,1)}
     queueSave();render();
   };
   body.mount();
@@ -1835,7 +1944,7 @@ function openSheet(it){
     ptask.appendChild(pcb);
   }
   ptask.appendChild(ttl);
-  var ctx={label:rec&&!rec.n?T.project:T.note,open:function(){openSheet(it)}};
+  var ctx={label:rec&&!rec.n?T.project:T.note,kind:rec&&!rec.n?'p':'n',open:function(){openSheet(it)}};
   var hm=h('div',{class:'hmeta'},[h('span',{class:'hd',text:itemDate(it)})]);
   p.appendChild(h('div',{class:'stick'},[sheetTabs('cur',ctx),h('div',{class:'phead'},rec?[ptask,hm]:[ptask])]));
   var body=null;
@@ -1904,7 +2013,7 @@ function openSheet(it){
   if(body){
     onSheetClose=function(){
       body.tidy();
-      if(rec.n&&!rec.todos.length&&!(rec.notes&&rec.notes.trim())){deleteProject(rec);delete it.pj;queueSave()}
+      if(rec.n&&!rec.todos.length&&!(rec.arch&&rec.arch.length)&&!(rec.notes&&rec.notes.trim())){deleteProject(rec);delete it.pj;queueSave()}
       render();
     };
     body.mount();
@@ -2123,6 +2232,34 @@ function drawer(key,title,kids){
   }});
   return h('div',{class:'sdrawer'},[hd,body]);
 }
+function openHelp(){
+  var p=h('div',{class:'panel',role:'dialog','aria-modal':'true','aria-label':T.howTitle});
+  p.appendChild(h('div',{class:'phead'},[
+    h('button',{class:'hback',type:'button',html:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>',onclick:openSettings},[h('span',{text:T.settings})]),
+    xBtn()
+  ]));
+  p.appendChild(h('div',{class:'htitle',text:T.howTitle}));
+  p.appendChild(h('p',{class:'hintro',text:T.helpIntro}));
+  var G=function(d){return '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">'+d+'</svg>'};
+  var HI=[
+    BOX,CAL_I,
+    G('<path d="M5 12h13M13 7l5 5-5 5"/>'),
+    NOTE+PJ_W,
+    G('<path d="M9 7h10M9 12h10M9 17h10M4.5 7h.01M4.5 12h.01M4.5 17h.01"/>'),
+    G('<rect x="3" y="4" width="18" height="4" rx="1"/><path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8M10 12h4"/>'),
+    PJ_W,
+    G('<path d="M5 4.5h14v9.5l-5.5 5.5H5z"/><path d="M13.5 19.5V14H19"/>'),
+    LINK_I,
+    G('<path d="M12 4v11M7.5 10.5L12 15l4.5-4.5M5 19h14"/>'),
+    G('<path d="M7 18a4.5 4.5 0 0 1-.6-8.96A6 6 0 0 1 17.9 8.6 4.8 4.8 0 0 1 17 18z"/>'),
+    SUN_I
+  ];
+  T.help.forEach(function(sec,i){
+    p.appendChild(h('h3',{class:'hsec'},[h('span',{class:'hic',html:HI[i]||''}),h('span',{text:sec[0]})]));
+    p.appendChild(h('p',{class:'hp',html:sec[1].replace('{NOSYNC}',SYNC_OK?'':T.helpNoSync)}));
+  });
+  showSheet(p,true);
+}
 function openSettings(){
   var p=h('div',{class:'panel',role:'dialog','aria-modal':'true'});
   p.appendChild(h('div',{class:'phead'},[h('div',{class:'sheet-title sicon',role:'img','aria-label':T.settings,html:SUNICON+'<span class="stxt"><span>'+T.brand[0]+'</span><span>'+T.brand[1]+'</span></span>'}),xBtn()]));
@@ -2137,7 +2274,7 @@ function openSettings(){
       sb.appendChild(h('button',{class:'sbtn',type:'button',text:T.syncNow,onclick:function(){syncNow(false)}}));
       sb.appendChild(h('button',{class:'sbtn',type:'button',text:T.disconnect,onclick:syncOff}));
     }
-    sk.push(sb);p.appendChild(drawer('sync',T.sync,sk));
+    sk.push(sb);var syncDrawer=drawer('sync',T.sync,sk);
   }
   function seg(l,name){return h('button',{type:'button',text:name,'aria-pressed':String(S.lang===l),onclick:function(){if(S.lang!==l)setLang(l)}})}
   var fe=document.documentElement,fsOK=!!(fe.requestFullscreen||fe.webkitRequestFullscreen);
@@ -2207,10 +2344,10 @@ function openSettings(){
     S.items=items;if(ds)S.decadeStart=ds;if(pn)S.pins=pn;if(pr)S.projects=pr;S.dirty=true;editSeq++;persist();closeSheet();render();toast(T.restored);autoPushSoon();
   });
   rbox.appendChild(ta);rbox.appendChild(h('div',{class:'sbtns'},[rb]));bk.push(rbox);p.appendChild(drawer('backup',T.backup,bk));
+  if(typeof syncDrawer!=='undefined'&&syncDrawer)p.appendChild(syncDrawer);
   p.appendChild(h('div',{class:'slabel',text:T.about}));
   p.appendChild(h('p',{class:'snote',text:T.aboutIntro}));
-  p.appendChild(h('div',{class:'slabel',text:T.howTitle}));
-  p.appendChild(h('ul',{class:'alist'},T.how.map(function(t){return h('li',{text:t})})));
+  p.appendChild(h('button',{class:'hopen',type:'button',onclick:openHelp},[h('span',{text:T.howTitle}),h('span',{html:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>'})]));
   p.appendChild(h('p',{class:'snote acredit'},[T.credit[0],h('a',{href:'https://www.instagram.com/kaybid/',target:'_blank',rel:'noopener noreferrer',text:'@kaybid'}),T.credit[1]]));
   showSheet(p,true);
 }
