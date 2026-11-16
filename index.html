@@ -147,13 +147,16 @@ h1{margin:0;font-weight:inherit}
 .float>.label,.quiet>.label{margin:2px 0 4px;padding:0 0 7px;border-bottom:1px solid var(--rule)}
 .quiet+.quiet{margin-top:-4px}
 .quiet .lines{background-image:none;min-height:0}
-.qadd{display:block;width:100%;text-align:left;color:var(--ink-faint);font:italic 400 calc(12.5px*var(--zm))/30px var(--sans);padding:0 0 0 26px}
+.qadd{display:block;flex:1 1 auto;min-width:0;text-align:left;color:var(--ink-faint);font:400 calc(18px*var(--zm))/30px var(--sans);padding:0}
+.qadd .qp{display:block;width:26px;text-align:center}
+.qfoot{display:flex;align-items:center;justify-content:space-between;gap:8px}
 .qempty{margin-bottom:12px}
-.qempty .qadd{padding:9px 2px;font:500 13px/1.2 var(--sans);color:var(--ink-soft);border-bottom:1px dashed var(--rule-strong)}
+.qempty{display:flex;align-items:center;gap:8px;border-bottom:1px dashed var(--rule-strong)}
+.qempty .qadd{padding:7px 0;font:400 18px/1.2 var(--sans);color:var(--ink-soft)}
 .quiet.dz-over,.qempty.dz-over{background:var(--chip);border-radius:10px}
 .float{margin-bottom:18px}
 .float .lines{background-image:none;min-height:0}
-.qrow{display:grid;grid-template-columns:26px minmax(0,1fr) auto auto auto 28px;align-items:start;min-height:30px}
+.qrow{display:grid;grid-template-columns:26px minmax(0,1fr) auto auto auto 34px;align-items:start;min-height:30px}
 .qrow .cb{height:30px}
 .qrow .cb svg{width:16px;height:16px}
 .qtext{font:400 calc(21px*var(--hs))/30px var(--hand);color:var(--ink-soft);min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -352,6 +355,14 @@ h1{margin:0;font-weight:inherit}
 .row .notebtn.has{display:grid}
 .notebtn,.notebtn.has,.pjbtn{width:26px;min-width:26px}
 .row:not(.draft) .more{display:grid;width:34px;opacity:.85}
+.qrow .lnkbtn{grid-column:4}.qrow .pjbtn{grid-column:5}.qrow .notebtn{grid-column:6;width:34px;min-width:34px}
+.qrow{padding-right:11px}
+.qrow .more{grid-column:6;width:34px;display:grid;place-items:center;opacity:.85}
+.qrow .notebtn:not(.has){display:none}
+.qrow .notebtn.has~.more{display:none}
+.qrow.done .notebtn.has~.more{display:grid}
+.refined .row .notebtn.has,.refined .qrow .notebtn{width:34px;min-width:34px}
+.refined .row .notebtn.has~.more{display:none}
 .nudge{font:400 calc(19px*var(--hs))/var(--row) var(--hand);color:var(--blue);opacity:.85;white-space:nowrap;padding:0 4px 0 8px}
 .done .nudge,.draft .nudge{display:none}
 .pull{display:inline-block;margin:16px 0 0;padding:9px 15px;border-radius:999px;background:var(--blue-wash);color:var(--blue);font:500 13.5px/1 var(--sans)}
@@ -577,6 +588,10 @@ select option:disabled{color:var(--ink-faint)}
 .cb{-webkit-touch-callout:none;-webkit-user-select:none;user-select:none;cursor:grab}
 body.dragging-now{-webkit-user-select:none;user-select:none;cursor:grabbing}
 .row.dragging,.qrow.dragging{opacity:.3}
+body.arrows-on .arrow{box-shadow:0 0 0 1.5px var(--blue-soft);color:var(--blue);background:var(--blue-wash)}
+body.tabs-on .tab:not(.on){box-shadow:inset 0 0 0 1.5px var(--blue-soft)}
+body.tabs-on .tab.over{background:var(--blue-wash);box-shadow:inset 0 0 0 2px var(--blue);color:var(--blue)}
+body.arrows-on .arrow.over{background:var(--blue-soft);box-shadow:0 0 0 2px var(--blue)}
 .dz-over{outline:2px dashed var(--blue-soft);outline-offset:-2px}
 .ghost{position:fixed;left:0;top:0;z-index:70;pointer-events:none;max-width:70vw;padding:8px 14px;background:var(--sheet);border:1px solid var(--blue-soft);border-radius:14px;box-shadow:var(--shadow);font:400 calc(22px*var(--hs))/1.2 var(--hand);color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .dropline{position:fixed;height:2px;border-radius:2px;background:var(--blue);z-index:65;pointer-events:none}
@@ -608,7 +623,8 @@ body.dragging-now{-webkit-user-select:none;user-select:none;cursor:grabbing}
 .btnrow{gap:8px}.btnrow .hopen{padding:13px 10px 13px 12px;gap:6px;font-size:13px}
 .btnrow .hopen.tgl[aria-checked=true]{box-shadow:inset 0 0 0 1.5px var(--blue);color:var(--blue)}.btnrow .hopen.tgl[aria-checked=true] svg{color:var(--blue)}
 @media(max-width:340px){.btnrow .hopen{font-size:12px;padding-left:10px}}
-.hidnote{display:block;margin:2px 0 10px;padding:6px 2px;font:500 13px/1.2 var(--sans);color:var(--ink-soft);text-align:left;background:none;border:0}
+.hidnote{display:block;margin:2px 0 10px auto;padding:6px 2px;font:500 13px/1.2 var(--sans);color:var(--ink-soft);text-align:right;background:none;border:0}
+.qfoot .hidnote,.qempty .hidnote{margin:0;flex:none}
 .archp .archseg{margin:2px 4px 8px;display:flex}.archp .archseg button{flex:1}
 .alist{margin:4px 4px 8px}
 .arow{display:flex;align-items:center;gap:8px;padding:10px 0;border-bottom:1px solid var(--rule)}
@@ -678,7 +694,7 @@ var TX={
       ['Hafta sayfası','Yedi gün alt alta kart olarak durur; kartın başlığına dokunmak o günü açar. En üstteki <b>Bu hafta içinde</b> alanı haftaya ait ama güne atanmamış işlerindir, geçen haftadan kalanlar <b>buraya al</b> ile gelir.'],
       ['Ay sayfası','Takvimde her günün işleri başlık olarak görünür (biten soluk ve üstü çizili, fazlası <b>+2</b> gibi). Bir güne dokununca altta <b>Bu ay</b> bölümünde açılır; ikinci dokunuş ya da <b>Güne git</b> gün sayfasını açar. <b>Genişlet</b> bütün günleri alt alta gösterir. <b>Bu ay içinde</b> işlerini ya da takvimdeki başlıkları tutup başka bir güne bırakırsın.'],
       ['Yıl ve 10 yıl','Uzun ve çok uzun vadeli planlar içindir.'],
-      ['Taşımak ve ertelemek','Kutucuğa basılı tut (bilgisayarda sürükle) ve başka bir güne, haftaya, aya ya da yıla bırak. Ya da satırı açıp <b>üç nokta</b> menüsünden <b>Yarına</b>, <b>Haftaya</b>, <b>Aya</b> de, tarih seç, tekrar kur ya da bir projeye bağla.'],
+      ['Taşımak ve ertelemek','Kutucuğa basılı tut (bilgisayarda sürükle) ve başka bir güne, haftaya, aya ya da yıla bırak. Alttaki sekmelere bırakırsan görev o sayfaya (gün, hafta, ay, yıl, 10 yıl) gider; gün sayfasında üstteki <b>‹ ›</b> oklarına bırakırsan önceki ya da sonraki güne gider. Ya da satırı açıp <b>üç nokta</b> menüsünden <b>Yarına</b>, <b>Haftaya</b>, <b>Aya</b> de, tarih seç, tekrar kur ya da bir projeye bağla.'],
       ['Not ve proje','Satırın sağındaki ikon not sayfasını açar. Not ile proje aynı sayfadır: madde listesi ve serbest not alanı. Başlığın önündeki ikonla <b>Not</b> (mavi) ile <b>Proje</b> (turuncu) arasında geçersin, başlığa dokunup adını değiştirirsin. Maddeleri tutup sürükleyerek sıralar, takvim ikonuyla tarih verirsin; tarihli madde o günün sayfasına da düşer. Biten maddeyi <b>Arşivlemek için buraya bırak</b> alanına sürüklersen <b>Arşiv</b> bölümüne gider, ilerlemede sayılmaya devam eder. Bir notu ya da projeyi klasör düğmesiyle başka bir projeye bağlarsan onun alt başlığı olur; üst projede toplanır, satırın ikonunda küçük bir nokta görünür. Bütün projeler üstteki <b>Projeler</b> sekmesindedir.'],
       ['Post-it','Üstteki post-it düğmesi hiçbir güne bağlı olmayan karalama defterindir. En fazla 6 post-it tutabilirsin, büyük post-iti kenarındaki düğmeyle küçük kareye çevirirsin.'],
       ['Ayarlar','Ayarlar\u2019dan dili, açık ya da koyu temayı, yazı tipini ve boyutunu seçersin. <b>Yedek</b> defterini dosya olarak kaydeder, kopyalar ya da geri yükler. <b>Arşiv</b> arşivlediğin ve sildiğin satırları geri koyar (silinenler 30 gün durur); <b>Bitenleri gizle</b> üstü çizili satırları saklar; <b>Rafine mod</b> not ve proje araçlarını gizleyip defteri sade tutar. <b>Senkron</b> ile Google hesabına bağlanıp aynı defteri telefonunda ve bilgisayarında kullanırsın; defter Drive\u2019ında yalnızca bu uygulamanın görebildiği gizli bir alanda durur, değişikliklerin kendiliğinden gider.']
@@ -725,7 +741,7 @@ var TX={
       ['Week page','The seven days stand one under another as cards; tapping a card\u2019s title opens that day. The <b>Sometime this week</b> area at the top holds what belongs to the week but not to a day, and leftovers from last week come in with <b>bring here</b>.'],
       ['Month page','Each day shows its items as small titles (done ones are faded and crossed out, extras become <b>+2</b>). Tap a day and it opens in the <b>This month</b> section below; a second tap or <b>Go to day</b> opens the day page. <b>Expand</b> lists every day. Hold a <b>Sometime this month</b> item or a title in the calendar and drop it on another day.'],
       ['Year and 10 years','These pages are for long and very long-term plans.'],
-      ['Moving and postponing','Hold the box (drag on a computer) and drop a line on another day, week, month or year. Or open a line and use the <b>three dots</b> to choose <b>Tomorrow</b>, <b>Week</b> or <b>Month</b>, pick a date, set a repeat or attach it to a project.'],
+      ['Moving and postponing','Hold the box (drag on a computer) and drop a line on another day, week, month or year. Dropping it on a tab at the bottom sends it to that page (day, week, month, year, 10 years); on the day page, the <b>‹ ›</b> arrows at the top send it to the previous or next day. Or open a line and use the <b>three dots</b> to choose <b>Tomorrow</b>, <b>Week</b> or <b>Month</b>, pick a date, set a repeat or attach it to a project.'],
       ['Notes and projects','The icon at the right of a line opens its note page. A note and a project are the same page: a list of items plus a free note field. The icon before the title switches between <b>Note</b> (blue) and <b>Project</b> (orange), and tapping the title renames it. Hold an item to drag it into order, and give it a date with the calendar icon; a dated item also shows up on that day. Drag a finished item to <b>Drop here to archive</b> and it moves to the <b>Archive</b> section, still counted in the progress. Attach a note or project to another project with the folder button and it becomes its sub-heading: it is gathered in the parent project, and its icon gets a small dot. All projects are in the <b>Projects</b> tab at the top.'],
       ['Post-it','The post-it button at the top is a scratchpad that is not tied to any day. You can keep up to 6 post-its, and the button on the edge of the big one shrinks it to a small square.'],
       ['Settings','In Settings you choose the language, light or dark theme, font and text size. <b>Backup</b> saves your notebook as a file, copies it or restores it. <b>Archive</b> brings back lines you archived or deleted (deleted ones stay for 30 days); <b>Hide done</b> tucks away crossed-out lines; <b>Refined mode</b> hides the note and project tools to keep the notebook plain. With <b>Sync</b> you connect your Google account and use the same notebook on your phone and computer; it lives in a hidden area of your Drive that only this app can see, and changes are sent automatically.']
@@ -1185,7 +1201,7 @@ function shift(dir){
   render();window.scrollTo(0,0);
 }
 function arrowBtn(dir){
-  return h('button',{class:'arrow',type:'button','aria-label':dir<0?T.prev:T.next,html:dir<0?ARROW_L:ARROW_R,onclick:function(){shift(dir)}});
+  return h('button',{class:'arrow',type:'button','data-dir':String(dir),'aria-label':dir<0?T.prev:T.next,html:dir<0?ARROW_L:ARROW_R,onclick:function(){shift(dir)}});
 }
 function navBar(titleNode,sub){
   var c=h('div',{class:'t'},[titleNode]);
@@ -1229,22 +1245,30 @@ function carryBlock(layer){
   return box;
 }
 function qAdd(layer,key,empty){
-  var b=h('button',{class:'qadd',type:'button',text:'+ '+T['ph_'+layer],onclick:function(){
+  var b=h('button',{class:'qadd',type:'button','aria-label':T['ph_'+layer],title:T['ph_'+layer],onclick:function(){
     var lb=h('div',{class:'lines'});lb.dataset.layer=layer;lb.dataset.key=key;
     lb.style.setProperty('--row',Math.round(30*S.zoom)+'px');lb.style.setProperty('--min','1');
-    var r=makeRow(lb,null,{row:30,ph:T['ph_'+layer]});lb.appendChild(r);
-    b.replaceWith(lb);r.querySelector('textarea').focus();
+    var r=makeRow(lb,null,{row:30,ph:''});lb.appendChild(r);
+    var ft=b.parentNode&&b.parentNode.classList.contains('qfoot')?b.parentNode:null;
+    if(ft)ft.replaceWith(lb);else b.replaceWith(lb);
+    r.querySelector('textarea').focus();
     lb.addEventListener('focusout',function(){setTimeout(function(){if(lb.isConnected&&!lb.contains(document.activeElement)&&!sheet.querySelector('.panel'))render()},280)});
-  }});
+  }},[h('span',{class:'qp',text:'+'})]);
   return b;
 }
 function quiet(layer,always){
   var key=keyOf(layer,anchor);
-  var its=listFor(layer,key).filter(function(i){return i.text.trim()&&!(hideOn()&&i.done&&!justDone[i.id])});
+  var allIts=listFor(layer,key).filter(function(i){return i.text.trim()});
+  var its=allIts.filter(function(i){return !(hideOn()&&i.done&&!justDone[i.id])});
+  var hid=allIts.length-its.length,anyDone=allIts.some(function(i){return i.done});
+  function hidChip(){
+    if(!(S.hideDone&&anyDone&&(hid||revealDone)))return null;
+    return h('button',{class:'hidnote',type:'button',text:hid?hid+' '+T.hidS:T.hideAgain,onclick:function(){revealDone=!revealDone;render()}});
+  }
   if(!its.length){
     if(!always)return null;
     var e=h('section',{class:'quiet qempty','data-layer':layer,'data-key':key});
-    e.appendChild(qAdd(layer,key,true));return e;
+    e.appendChild(qAdd(layer,key,true));var hc0=hidChip();if(hc0)e.appendChild(hc0);return e;
   }
   var nud=nudgeOn(layer,key);
   var box=h('section',{class:'quiet','data-layer':layer,'data-key':key},[h('div',{class:'label',text:T['lab_'+layer]})]);
@@ -1257,9 +1281,12 @@ function quiet(layer,always){
     row.appendChild(linkBtn(it.text));
     row.appendChild(pjBtn(it));
     row.appendChild(noteBtn(row));
+    row.appendChild(h('button',{class:'more',type:'button','aria-label':T.more,html:DOTS,onclick:function(){openSheet(it)}}));
     box.appendChild(row);
   });
-  if(always)box.appendChild(qAdd(layer,key,false));
+  var hc=hidChip();
+  if(always){var ft=h('div',{class:'qfoot'},[qAdd(layer,key,false)]);if(hc)ft.appendChild(hc);box.appendChild(ft)}
+  else if(hc)box.appendChild(h('div',{class:'qfoot'},[hc]));
   return box;
 }
 
@@ -1292,7 +1319,7 @@ function pageWeek(){
   else
     title=S.lang==='tr'?mon.getDate()+' '+T.mo[mon.getMonth()].slice(0,3)+' – '+sun.getDate()+' '+T.mo[sun.getMonth()].slice(0,3):T.mo[mon.getMonth()].slice(0,3)+' '+mon.getDate()+' – '+T.mo[sun.getMonth()].slice(0,3)+' '+sun.getDate();
   f.appendChild(navBar(h('h1',{class:'title',text:title}),yearSub(mon)));
-  f.appendChild(floatBlock('week'));
+  var wq=quiet('week',true);if(wq)f.appendChild(wq);
   var c=carryBlock('week');if(c)f.appendChild(c);
   var frame=h('div',{class:'wweek'});
   for(var i=0;i<7;i++){(function(i){
@@ -1321,11 +1348,11 @@ function pageMonth(){
   var total=mi.length,done=mi.filter(function(i){return i.done}).length;
   Object.keys(byDay).forEach(function(k){total+=byDay[k].length;done+=byDay[k].filter(function(i){return i.done}).length});
   f.appendChild(navBar(h('h1',{class:'title',text:T.mo[m]+' '+y}),''));
-  if(total){
+  if(total&&!S.refined){
     var tr=S.lang==='tr',sm=tr?total+' iş · '+done+' tamam':total+(total===1?' item':' items')+' · '+done+' done';
     f.appendChild(h('p',{class:'msum',text:sm}));
   }
-  f.appendChild(floatBlock('month'));
+  var q_month=quiet('month',true);if(q_month)f.appendChild(q_month);
   var c=carryBlock('month');if(c)f.appendChild(c);
   var sel=(monthSel&&monthSel.indexOf(prefix)===0)?monthSel:((y===t0.getFullYear()&&m===t0.getMonth())?tk:null);
   var grid=h('div',{class:'mgrid'});
@@ -1432,7 +1459,7 @@ function yblock(o){
 function pageDecade(){
   var f=h('div'),start=+keyOf('decade',anchor),t0=today(),cy=t0.getFullYear();
   f.appendChild(navBar(h('h1',{class:'title',text:start+' – '+(start+9)}),''));
-  f.appendChild(floatBlock('decade'));
+  var q_decade=quiet('decade',true);if(q_decade)f.appendChild(q_decade);
   var inDec=cy>=start&&cy<start+10;
   var hd=null;
   if(inDec){
@@ -1447,7 +1474,7 @@ function pageDecade(){
 function pageYear(){
   var f=h('div'),y=anchor.getFullYear(),ys=String(y),t0=today();
   f.appendChild(navBar(h('h1',{class:'title',text:ys}),''));
-  f.appendChild(floatBlock('year'));
+  var q_year=quiet('year',true);if(q_year)f.appendChild(q_year);
   var c=carryBlock('year');if(c)f.appendChild(c);
   var cur=(y===t0.getFullYear()),cm=cur?t0.getMonth():0;
   var total=0,done=0;
@@ -2692,13 +2719,8 @@ function beginDrag(x,y){
   pending=null;suppressClick=true;
   drag.row.classList.add('dragging');
   ghost=h('div',{class:'ghost',text:it.text});document.body.appendChild(ghost);
-  document.body.classList.add('dragging-now');
-  dockIn.innerHTML='';
-  ['week','month','year','decade'].forEach(function(l){
-    var k=keyOf(l,anchor);if(l===it.layer&&k===it.key)return;
-    dockIn.appendChild(h('div',{class:'dchip','data-layer':l,'data-key':k,text:T[l]}));
-  });
-  dock.hidden=false;
+  document.body.classList.add('dragging-now');document.body.classList.toggle('arrows-on',view==='day');
+  document.body.classList.add('tabs-on');
   try{if(navigator.vibrate)navigator.vibrate(12)}catch(e){}
   updateDrag();rafId=requestAnimationFrame(autoLoop);
 }
@@ -2708,9 +2730,13 @@ function updateDrag(){
   ghost.style.transform='translate('+Math.round(x+16)+'px,'+Math.round(y-26)+'px)';
   var el=document.elementFromPoint(x,y);
   var zone=el&&el.closest?el.closest('[data-layer][data-key]'):null;
-  var old=document.querySelectorAll('.dz-over,.dchip.over');
+  var old=document.querySelectorAll('.dz-over,.dchip.over,.arrow.over,.tab.over');
   for(var i=0;i<old.length;i++){old[i].classList.remove('dz-over');old[i].classList.remove('over')}
   drag.target=null;drag.overChip=false;dropline.hidden=true;
+  var tb=el&&el.closest?el.closest('.tab[data-layer]'):null;
+  if(tb){drag.overChip=true;tb.classList.add('over');drag.target={layer:tb.dataset.layer,key:keyOf(tb.dataset.layer,anchor),beforeId:null};return}
+  var ar=view==='day'&&el&&el.closest?el.closest('.arrow'):null;
+  if(ar){ar.classList.add('over');drag.target={layer:'day',key:dkey(addDays(anchor,+ar.dataset.dir)),beforeId:null};return}
   if(!zone)return;
   var isChip=zone.classList.contains('dchip');
   drag.overChip=isChip;
@@ -2757,8 +2783,8 @@ function finishDrag(commit){
   var d=drag;drag=null;pending=null;clearTimeout(holdTimer);cancelAnimationFrame(rafId);
   lastDragEnd=Date.now();
   if(ghost){ghost.remove();ghost=null}
-  dock.hidden=true;dropline.hidden=true;document.body.classList.remove('dragging-now');
-  var l=document.querySelectorAll('.dz-over,.dchip.over,.dragging');
+  dock.hidden=true;dropline.hidden=true;document.body.classList.remove('dragging-now');document.body.classList.remove('arrows-on');document.body.classList.remove('tabs-on');
+  var l=document.querySelectorAll('.dz-over,.dchip.over,.dragging,.arrow.over,.tab.over');
   for(var i=0;i<l.length;i++){l[i].classList.remove('dz-over');l[i].classList.remove('over');l[i].classList.remove('dragging')}
   setTimeout(function(){suppressClick=false},80);
   if(commit&&d&&d.target)applyDrop(d);
