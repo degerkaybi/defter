@@ -115,13 +115,35 @@ h1{margin:0;font-weight:inherit}
 .ptitle:focus{border-bottom-color:rgba(0,0,0,.35)}
 .pin.far{opacity:0;pointer-events:none}
 .pin::before{content:'';position:absolute;left:0;right:0;top:0;height:16px;background:linear-gradient(rgba(0,0,0,.09),rgba(0,0,0,0))}
-.pdots{display:flex;justify-content:center;gap:2px;padding:0 0 2px;min-height:22px}
+.pdots{position:relative;display:flex;justify-content:center;gap:2px;padding:0 0 2px;min-height:22px}
+.pdots button{touch-action:manipulation;-webkit-touch-callout:none;user-select:none;-webkit-user-select:none}
+.ptip{position:absolute;bottom:30px;transform:translateX(-50%);z-index:60;max-width:240px;padding:7px 11px;border-radius:9px;background:var(--sheet);color:var(--ink);box-shadow:var(--lift);font:600 12.5px/1.2 var(--sans);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;pointer-events:none}
+.pstack.swp .pin{cursor:grabbing}
+.ppick{position:absolute;left:0;right:0;bottom:0;z-index:5;display:flex;flex-wrap:wrap;align-items:center;gap:6px;padding:10px 12px;background:var(--pin);box-shadow:0 -8px 14px -6px rgba(0,0,0,.25)}
+.ppl{flex:1 1 100%;font:600 12px/1.2 var(--sans);color:var(--pin-ink);opacity:.75}
+.ppc{padding:7px 11px;border-radius:999px;background:rgba(0,0,0,.1);font:600 12.5px/1 var(--sans);color:var(--pin-ink)}
+.ppc.x{padding:7px 9px}.ppc.x svg{width:12px;height:12px;display:block}
+.xbtn.on{color:var(--blue)}
+.ptrash{flex:1 1 auto;min-height:0;max-height:min(60vh,420px);overflow-y:auto;background:var(--sheet);border-radius:16px;padding:6px 14px 10px;box-shadow:var(--lift)}
+.ptrhead{display:flex;align-items:center;gap:12px;padding:10px 0}
+.ptrt{font:600 15px/1 var(--sans);color:var(--ink-soft)}
+.ptrdng{padding:6px 11px;border-radius:999px;background:var(--chip);font:500 12.5px/1 var(--sans);color:var(--danger)}
+.ptrempty{margin:6px 0 10px;font:14px/1.3 var(--sans);color:var(--ink-faint)}
+.ptrrow{display:flex;gap:8px;align-items:center;padding:10px 0;border-top:1px solid var(--rule)}
+.ptrtx{flex:1 1 auto;min-width:0}
+.ptrti{font:600 14px/1.3 var(--sans);color:var(--ink);margin-bottom:2px}
+.ptrbd{font:400 calc(18px*var(--hs))/1.25 var(--hand);color:var(--ink-soft);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;white-space:pre-wrap;word-break:break-word}
+.ptrbtn{flex:none;padding:8px 11px;border-radius:8px;background:var(--chip);font:600 12.5px/1 var(--sans);color:var(--ink-soft)}
+.ptrbtn.ic{padding:8px}.ptrbtn.ic svg{width:16px;height:16px;display:block}
 .pdots button{width:22px;height:22px;display:grid;place-items:center;padding:0}
-.pdots button i{display:block;width:8px;height:8px;border-radius:50%;background:var(--sheet);opacity:.55}
-.pdots button.on i{background:var(--pin);opacity:1}
+.pdots button i{display:block;width:8px;height:8px;border-radius:50%;background:#fff;opacity:.55}
+.pdots button.on i{background:var(--pin);opacity:1;transform:scale(1.4)}
 .pin textarea{display:block;flex:1 1 auto;width:100%;min-height:0;background:none;border:0;outline:0;resize:none;overflow-y:auto;padding:0;font:400 calc(24px*var(--hs))/1.28 var(--hand);color:var(--pin-ink)}
 .pin textarea::placeholder{color:var(--pin-ink);opacity:.45}
 .pin .pact{display:flex;justify-content:space-between;align-items:center;margin-top:2px}
+.pin .pact .pi{display:inline-flex;align-items:center;gap:3px;padding:8px 7px;opacity:.78}
+.pin .pact .pi svg{display:block;width:19px;height:19px}
+.pin .pact .pi svg:first-child:not(:only-child){width:12px;height:12px}
 .pin .pact button{font:600 12px/1 var(--sans);color:var(--pin-ink);opacity:.62;padding:10px 6px}
 .pin .pact button:hover,.pin .pact button.on{opacity:1}
 .pmove{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:2px 0 8px;padding:8px;border-radius:8px;background:rgba(0,0,0,.07)}
@@ -160,6 +182,26 @@ h1{margin:0;font-weight:inherit}
 .nbt[aria-pressed="true"]{background:var(--blue-wash);color:var(--blue);box-shadow:inset 0 0 0 1.5px var(--blue-soft)}
 .nbt.plus{padding:8px 14px;font-size:17px;line-height:1}
 .nbt.del{color:var(--danger)}
+.nbt.over{background:var(--blue-soft);color:var(--blue)}
+.nbt.ut{touch-action:manipulation;-webkit-touch-callout:none;user-select:none;-webkit-user-select:none}
+.nbt.tdrag{opacity:.45}
+.nbt.dl{box-shadow:-3px 0 0 var(--blue)}
+.nbt.dr{box-shadow:3px 0 0 var(--blue)}
+.naddrow{display:flex;gap:8px;align-items:flex-start}
+.naddrow .nadd{flex:1 1 auto;min-width:0;width:auto;padding:9px 14px;min-height:calc(26px*var(--hs) + 18px)}
+.ntrash{position:relative;flex:none;width:calc(26px*var(--hs) + 18px);height:calc(26px*var(--hs) + 18px);display:grid;place-items:center;border-radius:14px;background:none;color:var(--ink-faint)}
+.ntrash svg{width:20px;height:20px;display:block}
+.ntrash[aria-pressed="true"]{color:var(--blue)}
+.ntrash.over{background:rgba(214,84,84,.28);color:var(--danger);box-shadow:inset 0 0 0 2px var(--danger)}
+body.nbdragging .ntrash{color:var(--ink-soft)}
+.ntrhead{flex:1 1 auto;min-width:0;display:flex;align-items:center;gap:12px;min-height:calc(26px*var(--hs) + 18px)}
+.ntrt{font:600 15px/1 var(--sans);color:var(--ink-soft)}
+.ntrhead .dng{color:var(--danger)}
+.nrow.ntr .nclamp{font:400 calc(21px*var(--hs))/1.3 var(--hand);color:var(--ink-soft);display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden;white-space:pre-wrap;word-break:break-word}
+body.nbdragging{user-select:none;-webkit-user-select:none;cursor:grabbing}
+body.nbdragging .nbtabs .nbt[data-nbtab]{box-shadow:inset 0 0 0 1.5px var(--blue-soft)}
+.nrow.ndrag{opacity:.35}
+.nghost{position:fixed;z-index:400;pointer-events:none;max-width:220px;padding:8px 12px;border-radius:10px;background:var(--sheet);box-shadow:var(--lift);font:400 calc(18px*var(--hs))/1.2 var(--hand);color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;transform:rotate(-1.5deg)}
 .nbtin{flex:none;width:130px;padding:7px 12px;border-radius:999px;border:1px solid var(--blue);background:var(--sheet);font:500 13.5px/1 var(--sans);color:var(--ink);outline:0}
 .nbtin.wide{width:min(260px,70%)}
 .nadd{display:block;width:100%;box-sizing:border-box;resize:none;border:0;outline:0;background:var(--chip);border-radius:14px;padding:12px 14px;overflow:hidden;font:400 calc(20px*var(--hs))/1.3 var(--hand);color:var(--ink)}
@@ -168,8 +210,12 @@ h1{margin:0;font-weight:inherit}
 .nrow{display:flex;flex-wrap:wrap;align-items:flex-start;gap:6px;padding:11px 2px;border-bottom:1px solid var(--rule)}
 .nrow .ntx{flex:1 1 0;min-width:0}
 .nrow textarea{display:block;width:100%;box-sizing:border-box;resize:none;border:0;outline:0;background:none;padding:0;overflow:hidden;font:400 calc(21px*var(--hs))/1.3 var(--hand);color:var(--ink)}
+.nside{flex:none;display:flex;flex-direction:column;align-items:center;gap:0}
+.ntog{width:30px;height:26px;display:grid;place-items:center;border-radius:8px;color:var(--ink-soft)}
+.ntog[hidden]{display:none}
+.ntog:hover{color:var(--ink)}
 .ntag{margin-top:4px;font:12px/1 var(--sans);color:var(--ink-soft)}
-.nmore{flex:none;width:30px;height:30px;display:grid;place-items:center;border-radius:8px;color:var(--ink-faint)}
+.nmore{touch-action:none;cursor:grab;flex:none;width:30px;height:30px;display:grid;place-items:center;border-radius:8px;color:var(--ink-faint)}
 .nmore svg{width:18px;height:18px;display:block}
 .nmenu{flex:1 1 100%;display:flex;flex-wrap:wrap;align-items:center;gap:6px;padding:6px 0 2px}
 .nmenu .nbt{padding:6px 11px;font-size:12.5px}
@@ -411,8 +457,8 @@ h1{margin:0;font-weight:inherit}
 .qrow .notebtn:not(.has){display:none}
 .qrow .notebtn.has~.more{display:none}
 .qrow.done .notebtn.has~.more{display:grid}
-.refined .row .notebtn.has,.refined .qrow .notebtn{width:34px;min-width:34px}
-.refined .row .notebtn.has~.more{display:none}
+.row .notebtn.has,.qrow .notebtn{width:34px;min-width:34px}
+.row .notebtn.has~.more{display:none}
 .nudge{font:400 calc(19px*var(--hs))/var(--row) var(--hand);color:var(--blue);opacity:.85;white-space:nowrap;padding:0 4px 0 8px}
 .done .nudge,.draft .nudge{display:none}
 .pull{display:inline-block;margin:16px 0 0;padding:9px 15px;border-radius:999px;background:var(--blue-wash);color:var(--blue);font:500 13.5px/1 var(--sans)}
@@ -620,7 +666,9 @@ select option:disabled{color:var(--ink-faint)}
 .sbtns{row-gap:8px}
 .sbtns.two{flex-wrap:nowrap}
 .sbtns.two .sbtn{flex:1 1 0;min-width:0;padding:10px 6px;text-align:center;white-space:nowrap}
-.icobox{display:flex;gap:8px;flex:none}
+.icobox{display:flex;gap:6px;flex:none}
+.icobox .fsbtn{width:38px}
+.icobox .fsbtn svg{width:20px;height:20px;display:block}
 .fsbtn{flex:none;width:44px;height:38px;display:grid;place-items:center;border-radius:12px;background:var(--chip);color:var(--ink-soft)}
 .fsbtn[aria-pressed="true"]{color:var(--blue)}
 .sbtn{padding:10px 12px;border-radius:12px;background:var(--chip);font:500 14px/1 var(--sans);color:var(--ink)}
@@ -667,6 +715,10 @@ body.arrows-on .arrow.over{background:var(--blue-soft);box-shadow:0 0 0 2px var(
 .hback{display:inline-flex;align-items:center;gap:4px;height:36px;padding:0 10px 0 2px;font:500 14px/1 var(--sans);color:var(--ink-soft)}
 .hback svg{width:18px;height:18px}
 .hintro{margin:6px 4px 12px;font:400 calc(17px*var(--hs))/1.4 var(--hand);color:var(--ink-soft);column-count:2;column-gap:22px;text-align:left;hyphens:auto;-webkit-hyphens:auto}
+.hseg{margin:4px 4px 6px}
+.hseg{gap:4px}
+.hseg button{flex:1 1 auto;min-width:0;padding:10px 10px;white-space:nowrap;line-height:1.15;font-size:12.5px}
+@media (max-width:370px){.hseg button{padding:10px 6px;font-size:12px}}
 .hsec{display:flex;align-items:center;gap:10px;margin:0;padding:16px 4px 2px;border-top:1px solid var(--rule);font:600 14px/1.2 var(--sans);letter-spacing:.01em;color:var(--ink)}
 .hic{flex:none;display:inline-flex;align-items:center;justify-content:center;gap:1px;min-width:30px;height:30px;padding:0 6px;border-radius:15px;background:var(--blue-wash);color:var(--blue)}
 .hic svg{width:17px;height:17px;display:block;flex:none}
@@ -676,14 +728,8 @@ body.arrows-on .arrow.over{background:var(--blue-soft);box-shadow:0 0 0 2px var(
 .hopen svg{width:18px;height:18px;color:var(--ink-soft)}
 .mvrow.cmp2 .dtxt.arch{color:var(--ink-soft)}
 .btnrow{padding:4px}.btnrow .hopen{width:auto;margin:0;padding:12px 12px;gap:8px;min-width:0}.btnrow .hopen>span:first-child{min-width:0;text-align:left;white-space:nowrap}
-.refined .pjbtn{display:none!important}
-.hopen.rf{gap:12px}.hopen.rf .rft{display:flex;flex-direction:column;gap:3px;text-align:left;min-width:0}.hopen.rf .rft b{font:600 14px/1.1 var(--sans)}.hopen.rf .rft small{font:400 12px/1.3 var(--sans);color:var(--ink-soft)}
-.hopen.rf .sw{position:relative;flex:none;width:34px;height:20px;border-radius:999px;background:var(--rule-strong);transition:background .15s}
-.hopen.rf .sw::after{content:"";position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;background:var(--card);transition:transform .15s}
-.hopen.rf[aria-checked=true] .sw{background:var(--blue)}
-.hopen.rf[aria-checked=true] .sw::after{transform:translateX(14px)}
+.pjbtn{display:none!important}
 .btnrow{gap:8px}
-.rfrow{display:flex;gap:8px;align-items:stretch;margin:4px 4px 12px}.rfrow .hopen{margin:0;width:auto}.rfrow .hopen.rf{flex:1 1 auto;min-width:0}.rfrow .hopen.icon{flex:none;width:52px;padding:0;justify-content:center}.rfrow .hopen.icon svg{width:20px;height:20px}.rfrow .hopen.tgl[aria-checked=true]{box-shadow:inset 0 0 0 1.5px var(--blue);color:var(--blue)}.rfrow .hopen.tgl[aria-checked=true] svg{color:var(--blue)}.btnrow .hopen{padding:13px 10px 13px 12px;gap:6px;font-size:13px}
 .btnrow .hopen.tgl[aria-checked=true]{box-shadow:inset 0 0 0 1.5px var(--blue);color:var(--blue)}.btnrow .hopen.tgl[aria-checked=true] svg{color:var(--blue)}
 @media(max-width:340px){.btnrow .hopen{font-size:12px;padding-left:10px}}
 .hidnote{display:block;margin:2px 0 10px auto;padding:6px 2px;font:500 13px/1.2 var(--sans);color:var(--ink-soft);text-align:right;background:none;border:0}
@@ -731,8 +777,8 @@ var TX={
     hint:'Bir satıra dokun ve yazmaya başla.',still:'hâlâ duruyor',
     carryweek:'geçen haftadan',subOf:'Alt başlık',subs:'Alt başlıklar',carryyear:'geçen yıldan',pastY:'Geçmiş yıllar',tpYear:'Yıl %{P} geçti',tpYearR:'{N} gün kaldı',tpDec:'10 yıl %{P} geçti',tpDecR:'Yıl {K} / 10',carrymonth:'geçen aydan',bring:'buraya al',
     pull:'bitmeyenleri bugüne al',wkShort:'H',openDay:'Güne git',mprevPh:'bu gün…',mprojects:'Aktif projeler',mexp:'Genişlet',mcol:'Daralt',moreN:'+{N} daha',days:'Bu ay',noDays:'Bu ay henüz bir güne yazılmadı.',
-    openLink:'Linki aç',projects:'Projeler',rename:'Başlığı düzenle',pjArch:'Arşiv',pjDrop:'Arşivlemek için buraya bırak',pjArchived:'Arşivlendi',pjRestore:'Geri al',pjAttach:'Projeye ekle',pjDetach:'Projeden çıkar',pjNone:'Henüz proje yok',pjAdded:'Projeye eklendi',pinMax:'En fazla 10 not',pinNoRep:'Bu görev taşınamaz',pinTasks:'Taşınan görevler',pinHere:'Bu güne taşı',trashS:'Çöp',pinDropHint:'Post-it dışında tutmak için görevi buraya sürükle',pinPick:'Taşımak için bir satıra dokun',pinSub:'alt madde',calendar:'Takvim',pjNeedTitle:'Önce proje adı yaz',chkS:'+ Madde',bulS:'• Liste',pjNoItems:'madde yok',pjOff:'Nota çevir',hereS:'Bu güne',tmrwS:'Yarına',nextS:'Ertesi güne',toWeekS:'Haftaya',toMonthS:'Aya',delS:'Sil',tabNotes:'Notlar',project:'Proje',pjNew:'+ Yeni proje',pjUntitled:'Adsız proje',pjTitlePh:'Proje adı',pjEmpty:'Henüz proje yok. Uzun soluklu işler için bir proje aç, maddelere tarih verirsen o günün defterine de düşer.',pjAdd:'+ Madde ekle',pjTodoPh:'Yapılacak…',pjNotes:'Akla gelenler',pjNotesPh:'Not…',pjDel:'Projeyi sil',pjGone:'Proje silindi',pjMake:'Proje yap',pjOpen:'Projeyi aç',pjDate:'Tarih ver',pjClr:'Tarihi kaldır',pjDone:'tamam',pjBack:'Projeler',pjMade:'Proje oluşturuldu',here:'Bu güne al',moveTo:'Güne taşı',repeat:'Tekrarla',repNone:'Tekrarsız',repW:'Her hafta',repM:'Her ay',repY:'Her yıl',toWeek:'Haftaya al',toMonth:'Aya al',tmrw:'Yarına ertele',nextday:'Ertesi güne ertele',bullet:'• Madde',check2:'☐ Görev',noteClr:'Notu temizle',undoCap:'Geri al',del:'Görevi sil',pins:'Post-it',nb:'Zamansız Notlar',nbAll:'Tümü',nbDef:'Sonra',nbAddPh:'Yeni not…',nbTabPh:'Sekme adı',nbNewTab:'Yeni sekme',nbEmpty:'Henüz not yok. Aklındakini yukarıya yaz.',nbDefEmpty:'Ertelemek istediğin görevi alttaki defter simgesine sürükle; alt maddeleri ve notuyla burada bekler.',nbMove:'Taşı',nbNone:'Sekmesiz',nbRename:'Adı değiştir',nbDelTab:'Sekmeyi sil',nbDelSure:'Emin misin? Notlar Tümü\'nde kalır',nbTabMax:'En fazla 12 sekme',nbGone:'Not silindi',nbMore:'Seçenekler',nbDel:'Sil',pinNew:'+ Yeni not',pinPh:'Telefon, alışveriş, aklına gelen…',pinTi:'Başlık',pinDel:'Sil',pinGone:'Not silindi',pinMove:'Taşı',fs:'Tam ekran',brand:['YARIN','DEFTERİ'],themeLight:'Açık tema',themeDark:'Koyu tema',fsOn:'Aç',fsOff:'Kapat',fsFail:'Tarayıcı tam ekrana izin vermedi',fsIos:'Tam ekran için Paylaş › Ana Ekrana Ekle de, sonra defteri ana ekrandan aç; tarayıcı çubukları olmadan açılır.',pinDay:'Güne',pinWeek:'Haftaya',pinMonth:'Aya',pinSize:'Boyutu sürükle',
-    deleted:'Silindi',undo:'geri al',moved:'Taşındı',archive:'Arşiv',arch:'Arşivle',archived:'Arşivlendi',trashT:'Silinenler',archEmpty:'Arşivde madde yok.',trashEmpty:'Silinen madde yok.',archNote:'Arşivlenenler sayfalardan kalkar, burada saklanır.',trashNote:'Silinenler 30 gün burada kalır, sonra kalıcı olarak silinir.',putBack:'Geri koy',delForever:'Kalıcı sil',emptyTrash:'Silinenleri boşalt',emptySure:'Emin misin? Tekrar dokun',backed:'Geri konuldu',refine:'Rafine mod',refineNote:'Projeler ve klasörler gizlenir',hideDone:'Bitenleri gizle',hidS:'biten gizli',hideAgain:'Bitenleri gizle',hideDoneL:'Biten yok',
+    openLink:'Linki aç',projects:'Projeler',rename:'Başlığı düzenle',pjArch:'Arşiv',pjDrop:'Arşivlemek için buraya bırak',pjArchived:'Arşivlendi',pjRestore:'Geri al',pjAttach:'Projeye ekle',pjDetach:'Projeden çıkar',pjNone:'Henüz proje yok',pjAdded:'Projeye eklendi',pinMax:'En fazla 10 not',pinNoRep:'Bu görev taşınamaz',pinTasks:'Taşınan görevler',pinHere:'Bu güne taşı',pinToNb:'Zamansız Notlara taşı',trashS:'Çöp',pinDropHint:'Post-it dışında tutmak için görevi buraya sürükle',pinPick:'Boş post-it taşınamaz',pinSub:'alt madde',calendar:'Takvim',pjNeedTitle:'Önce proje adı yaz',chkS:'+ Madde',bulS:'• Liste',pjNoItems:'madde yok',pjOff:'Nota çevir',hereS:'Bu güne',tmrwS:'Yarına',nextS:'Ertesi güne',toWeekS:'Haftaya',toMonthS:'Aya',delS:'Sil',tabNotes:'Notlar',project:'Proje',pjNew:'+ Yeni proje',pjUntitled:'Adsız proje',pjTitlePh:'Proje adı',pjEmpty:'Henüz proje yok. Uzun soluklu işler için bir proje aç, maddelere tarih verirsen o günün defterine de düşer.',pjAdd:'+ Madde ekle',pjTodoPh:'Yapılacak…',pjNotes:'Akla gelenler',pjNotesPh:'Not…',pjDel:'Projeyi sil',pjGone:'Proje silindi',pjMake:'Proje yap',pjOpen:'Projeyi aç',pjDate:'Tarih ver',pjClr:'Tarihi kaldır',pjDone:'tamam',pjBack:'Projeler',pjMade:'Proje oluşturuldu',here:'Bu güne al',moveTo:'Güne taşı',repeat:'Tekrarla',repNone:'Tekrarsız',repW:'Her hafta',repM:'Her ay',repY:'Her yıl',toWeek:'Haftaya al',toMonth:'Aya al',tmrw:'Yarına ertele',nextday:'Ertesi güne ertele',bullet:'• Madde',check2:'☐ Görev',noteClr:'Notu temizle',undoCap:'Geri al',del:'Görevi sil',pins:'Post-it',nb:'Zamansız Notlar',nbAll:'Tümü',nbDef:'Arşiv',nbAddPh:'Yeni not…',nbTabPh:'Sekme adı',nbNewTab:'Yeni sekme',nbEmpty:'Henüz not yok. Aklındakini yukarıya yaz.',nbDefEmpty:'Arşivlemek istediğin görevi alttaki defter simgesine sürükle ya da satır menüsündeki saat ikonuna bas; alt maddeleri ve notuyla burada bekler.',nbMove:'Taşı',nbNone:'Sekmesiz',nbRename:'Adı değiştir',nbDelTab:'Sekmeyi sil',nbDelSure:'Emin misin? Notlar Tümü\'nde kalır',nbTabMax:'En fazla 12 sekme',nbGone:'Not silindi',nbMore:'Seçenekler',nbDrag:'Sürükle',nbTrash:'Çöp',nbEmptyTrash:'Çöpü boşalt',nbEmptySure:'Emin misin? Dokun',nbTrashEmpty:'Çöp boş.',nbPerm:'Kalıcı sil',nbMoreTx:'Devamını göster',nbLess:'Kısalt',nbDel:'Sil',pinNew:'+ Yeni not',pinPh:'Telefon, alışveriş, aklına gelen…',pinTi:'Başlık',pinDel:'Sil',pinGone:'Not silindi',pinMove:'Taşı',fs:'Tam ekran',brand:['YARIN','DEFTERİ'],themeLight:'Açık tema',themeDark:'Koyu tema',fsOn:'Aç',fsOff:'Kapat',fsFail:'Tarayıcı tam ekrana izin vermedi',fsIos:'Tam ekran için Paylaş › Ana Ekrana Ekle de, sonra defteri ana ekrandan aç; tarayıcı çubukları olmadan açılır.',pinDay:'Güne',pinWeek:'Haftaya',pinMonth:'Aya',pinSize:'Boyutu sürükle',
+    deleted:'Silindi',undo:'geri al',moved:'Taşındı',archive:'Arşiv',arch:'Arşivle',archived:'Arşivlendi',trashT:'Silinenler',archEmpty:'Arşivde madde yok.',trashEmpty:'Silinen madde yok.',archNote:'Arşivlenenler sayfalardan kalkar; Zamansız Notlar\u2019daki Arşiv sekmesiyle aynı yerdir.',trashNote:'Silinenler 30 gün burada kalır, sonra kalıcı olarak silinir.',putBack:'Geri koy',delForever:'Kalıcı sil',emptyTrash:'Silinenleri boşalt',emptySure:'Emin misin? Tekrar dokun',backed:'Geri konuldu',hideDone:'Bitenleri gizle',hidS:'biten gizli',hideAgain:'Bitenleri gizle',hideDoneL:'Biten yok',
     settings:'Ayarlar',lang:'Dil',font:'Yazı tipi',fontHand:'El yazısı',fontPlain:'Düz yazı',note:'Not',notePh:'Bu satır için not…',backup:'Yedek',
     backupNote:'Defterin bu tarayıcıda saklanır. Arada bir yedek al.',
     saveBackup:'Kaydet',copyBackup:'Kopyala',pasteHere:'Yedek metnini yapıştır',
@@ -748,7 +794,24 @@ var TX={
     about:'Hakkında',
     aboutIntro:'Yarın Defteri, zamanı ve günleri daha iyi algılamak ve yönetebilmek için ortaya çıktı.\nGün, hafta, ay, yıl ve 10 yıl sayfalarının hepsi birbirine bağlı. Bugünü daha geniş bir zamanın içinden görebilirsiniz. Zamansız işleri ve fikirleri not almak, önemli projeleri takip etmek de mümkün.',
     howTitle:'Nasıl kullanılır',
-    helpIntro:'Yarın Defteri, kâğıt defterin boş bıraktığı yerleri tamamlamak için yapıldı: yaz, işaretle, yetişmeyeni yarına bırak. Gün, hafta, ay, yıl ve 10 yıl sayfaları birbirine bağlıdır; hepsinde hem liste hem takvim gibi planlayabilirsin. Tarihi belli olmayan işi \u201cbu hafta\u201d ya da \u201cbu ay içinde\u201d diye yazarsın; zamansız notlar için post-it, uzun işler için projeler var.',
+    helpIntro:'Yarın Defteri, kâğıt defterin boş bıraktığı yerleri tamamlamak için yapıldı: yaz, işaretle, yetişmeyeni yarına bırak. Gün, hafta, ay, yıl ve 10 yıl sayfaları birbirine bağlıdır; hepsinde hem liste hem takvim gibi planlayabilirsin. Tarihi belli olmayan işi \u201cbu hafta\u201d ya da \u201cbu ay içinde\u201d diye yazarsın; kâğıt parçası gibi kullan-at notlar için post-it, kalıcı fikirler için Zamansız Notlar, uzun işler için projeler var.',
+    helpTabs:['Yarın Defteri','Post-it','Zamansız Notlar'],
+    helpPin:[
+      ['Post-it nedir','Üstteki post-it düğmesi hiçbir güne bağlı olmayan, kullan-at bir alandır: telefon numarası, alışveriş listesi, aklına gelen bir cümle. Yazdığın anda kaydedilir. En fazla 10 post-it tutarsın.'],
+      ['Başlık ve yazı','Her post-itin üstünde küçük bir <b>Başlık</b> alanı vardır, istersen doldurursun. Altına yazdıkların notun kendisidir; <b>☐</b> ile onay kutulu satırlar ekleyebilirsin. <b>+ Yeni not</b> yeni bir post-it açar.'],
+      ['Post-itler arasında gezmek','Post-itler üst üste durur. Parmağınla sağa ya da sola kaydırarak, kenardaki yanına dokunarak ya da alttaki noktalara basarak diğerine geçersin. Bir noktaya <b>uzun basarsan</b> o post-itin başlığı görünür; pasif noktalar soluktur.'],
+      ['Güne ya da Zamansız Notlara taşı','Alttaki ikonlar post-iti başka yere taşır. <b>Okla güneşli sayfa ikonu</b> post-iti bütünüyle bugünün sayfasına gönderir: başlık görevin kendisi olur, altına yazdıkların görevin notuna, ☐ ile işaretli satırlar ise notun madde listesine geçer. Başlık boşsa ilk satır görev olur. <b>Okla defter ikonu</b> post-iti Zamansız Notlar’a gönderir; birden fazla sekmen varsa hangisine gideceğini seçersin.'],
+      ['Çöp','Çöp ikonu post-iti siler, ama hemen kaybolmaz: üstteki çöp ikonuyla <b>Çöp</b> görünümünü açarsın. Oradan <b>Geri koy</b> ile post-iti geri getirir, satırdaki çöp ikonuyla tamamen kaldırır, <b>Çöpü boşalt</b> ile hepsini silersin (emin olmak için iki kere dokunursun).']
+    ],
+    helpNb:[
+      ['Zamansız Notlar nedir','Alttaki çubukta sağdaki defter ikonu Zamansız Notlar’ı açar. Burası bir görev alanı değil, bir hatırlama alanıdır: günlük gibi, fikir ve not defteri gibi. Hiçbir güne bağlı değildir, sayılmaz, bitmesi gerekmez.'],
+      ['Not yazmak','Üstteki kutuya yaz, <b>Enter</b> ile kaydedersin (yeni satır için Shift+Enter). Yazıp kaydetmediysen başka bir yere dokunsan bile yazın kutuda durur; sen kaydedene ya da silene kadar kaybolmaz.'],
+      ['Sekmeler','<b>Tümü</b> bütün notları gösterir. Saat ikonlu <b>Arşiv</b> kenara koyduğun görevlerin yeridir. <b>+</b> ile kendi sekmelerini açarsın (en fazla 12); bir sekme seçiliyken altta <b>Adı değiştir</b> ve <b>Sekmeyi sil</b> görünür; sekmeye uzun basıp sürükleyerek sırasını değiştirirsin. Sekme silinince notlar Tümü’nde kalır.'],
+      ['Uzun notlar','Notun altındaki üçgen uzun yazıyı 4 satıra kısaltır ya da açar: <b>içi boş üçgen</b> kapalı, <b>dolu üçgen</b> açık demektir. 10 satırdan uzun notlar kapalı gelir.'],
+      ['Üç nokta, tarih ve taşımak','Notun altında hangi sekmede olduğu ve yazıldığı tarih görünür (sekme adı yalnızca Tümü’de). Üç noktalı tutamaçtan <b>sürükleyerek</b> notu üstteki sekmelerden birine bırakırsın, taşınmış olur. Sürüklerken tutamacı çöp ikonuna bırakırsan not çöpe gider.'],
+      ['Çöp','Yeni not kutusunun sağındaki çöp ikonuna dokununca silinen notlar açılır. Bir notu sekmeye sürükleyerek geri koyarsın, notun yanındaki çöp ikonuyla kalıcı silersin, <b>Çöpü boşalt</b> hepsini siler. Çöpte sayaç yoktur; burası serbest alan.'],
+      ['Arşiv: kenara konan görevler','Bir görevi sayfadan tutup alttaki defter simgesine bırakırsan ya da satır menüsündeki <b>saat ikonuna</b> basarsan <b>Arşiv</b> sekmesine gider; alt maddeleri ve notuyla birlikte bekler. Aynı liste Ayarlar\u2019daki <b>Arşiv</b> düğmesinde de açılır. Sayaç yoktur. İstediğinde <b>Geri koy</b> ile bugüne ya da başka bir sayfaya döndürürsün.']
+    ],
     helpNoSync:'',
     help:[
       ['Yazmak ve işaretlemek','Bir satıra dokun ve yaz, <b>Enter</b> yeni satır açar. Kutucuk satırın üstünü çizer, hiçbir şey silinmez. Notlardaki web adresleri tıklanabilir olur; <b>☐ Görev</b> ile onay kutulu satırlar eklersin.'],
@@ -759,8 +822,7 @@ var TX={
       ['Yıl ve 10 yıl','Uzun ve çok uzun vadeli planlar içindir.'],
       ['Taşımak ve ertelemek','Kutucuğa basılı tut (bilgisayarda sürükle) ve başka bir güne, haftaya, aya ya da yıla bırak. Alttaki sekmelere bırakırsan görev o sayfaya (gün, hafta, ay, yıl, 10 yıl) gider; gün sayfasında üstteki <b>‹ ›</b> oklarına bırakırsan önceki ya da sonraki güne gider. Ya da satırı açıp <b>üç nokta</b> menüsünden <b>Yarına</b>, <b>Haftaya</b>, <b>Aya</b> de, tarih seç, tekrar kur ya da bir projeye bağla.'],
       ['Not ve proje','Satırın sağındaki ikon not sayfasını açar. Not ile proje aynı sayfadır: madde listesi ve serbest not alanı. Başlığın önündeki ikonla <b>Not</b> (mavi) ile <b>Proje</b> (turuncu) arasında geçersin, başlığa dokunup adını değiştirirsin. Maddeleri tutup sürükleyerek sıralar, takvim ikonuyla tarih verirsin; tarihli madde o günün sayfasına da düşer. Biten maddeyi <b>Arşivlemek için buraya bırak</b> alanına sürüklersen <b>Arşiv</b> bölümüne gider, ilerlemede sayılmaya devam eder. Bir notu ya da projeyi klasör düğmesiyle başka bir projeye bağlarsan onun alt başlığı olur; üst projede toplanır, satırın ikonunda küçük bir nokta görünür. Bütün projeler üstteki <b>Projeler</b> sekmesindedir.'],
-      ['Post-it','Üstteki post-it düğmesi hiçbir güne bağlı olmayan karalama defterindir. En fazla 6 post-it tutabilirsin, büyük post-iti kenarındaki düğmeyle küçük kareye çevirirsin.'],
-      ['Ayarlar','Ayarlar\u2019dan dili, açık ya da koyu temayı, yazı tipini ve boyutunu seçersin. <b>Yedek</b> defterini dosya olarak kaydeder, kopyalar ya da geri yükler. <b>Arşiv</b> arşivlediğin ve sildiğin satırları geri koyar (silinenler 30 gün durur); <b>Bitenleri gizle</b> üstü çizili satırları saklar; <b>Rafine mod</b> not ve proje araçlarını gizleyip defteri sade tutar. <b>Senkron</b> ile Google hesabına bağlanıp aynı defteri telefonunda ve bilgisayarında kullanırsın; defter Drive\u2019ında yalnızca bu uygulamanın görebildiği gizli bir alanda durur, değişikliklerin kendiliğinden gider.']
+      ['Ayarlar','Ayarlar\u2019dan dili, açık ya da koyu temayı, yazı tipini ve boyutunu seçersin. <b>Yedek</b> defterini dosya olarak kaydeder, kopyalar ya da geri yükler. <b>Arşiv</b> arşivlediğin ve sildiğin satırları geri koyar (silinenler 30 gün durur); Göz ikonu (tema ve tam ekran düğmelerinin yanında) üstü çizili satırları saklar. <b>Senkron</b> ile Google hesabına bağlanıp aynı defteri telefonunda ve bilgisayarında kullanırsın; defter Drive\u2019ında yalnızca bu uygulamanın görebildiği gizli bir alanda durur, değişikliklerin kendiliğinden gider.']
     ],
     credit:['Verimlilik için ',' tarafından tasarlandı, Claude ile birlikte geliştirildi.'],
     wd:['Pazartesi','Salı','Çarşamba','Perşembe','Cuma','Cumartesi','Pazar'],
@@ -778,8 +840,8 @@ var TX={
     hint:'Tap a line and start writing.',still:'still here',
     carryweek:'from last week',subOf:'Sub-heading',subs:'Sub-headings',carryyear:'from last year',pastY:'Past years',tpYear:'Year {P}% elapsed',tpYearR:'{N} days left',tpDec:'Decade {P}% elapsed',tpDecR:'Year {K} / 10',carrymonth:'from last month',bring:'bring here',
     pull:'move unfinished to today',wkShort:'W',openDay:'Go to day',mprevPh:'this day…',mprojects:'Active projects',mexp:'Expand',mcol:'Collapse',moreN:'+{N} more',days:'This month',noDays:'Nothing written on a day this month yet.',
-    openLink:'Open link',projects:'Projects',rename:'Edit title',pjArch:'Archive',pjDrop:'Drop here to archive',pjArchived:'Archived',pjRestore:'Restore',pjAttach:'Add to project',pjDetach:'Remove from project',pjNone:'No projects yet',pjAdded:'Added to project',pinMax:'Up to 10 notes',pinNoRep:"This task can't be moved",pinTasks:'Moved tasks',pinHere:'Move to this day',trashS:'Trash',pinDropHint:'Drag a task here to keep it outside the notes',pinPick:'Tap a line to move it',pinSub:'sub-items',calendar:'Calendar',pjNeedTitle:'Give the project a name first',chkS:'+ Item',bulS:'• Bullet',pjNoItems:'no items',pjOff:'Make it a note',hereS:'This day',tmrwS:'Tomorrow',nextS:'Next day',toWeekS:'Week',toMonthS:'Month',delS:'Delete',tabNotes:'Notes',project:'Project',pjNew:'+ New project',pjUntitled:'Untitled project',pjTitlePh:'Project name',pjEmpty:'No projects yet. Start one for long-running work; give an item a date and it also shows up on that day.',pjAdd:'+ Add item',pjTodoPh:'To do…',pjNotes:'Ideas',pjNotesPh:'Note…',pjDel:'Delete project',pjGone:'Project deleted',pjMake:'Make project',pjOpen:'Open project',pjDate:'Set date',pjClr:'Remove date',pjDone:'done',pjBack:'Projects',pjMade:'Project created',here:'Move to this day',moveTo:'Move to day',repeat:'Repeat',repNone:'No repeat',repW:'Every week',repM:'Every month',repY:'Every year',toWeek:'Move to week',toMonth:'Move to month',tmrw:'Postpone to tomorrow',nextday:'Postpone a day',bullet:'• Bullet',check2:'☐ Task',noteClr:'Clear note',undoCap:'Undo',del:'Delete task',pins:'Sticky notes',nb:'Timeless Notes',nbAll:'All',nbDef:'Later',nbAddPh:'New note…',nbTabPh:'Tab name',nbNewTab:'New tab',nbEmpty:'No notes yet. Write what is on your mind above.',nbDefEmpty:'Drag a task onto the notebook icon below to defer it; it waits here with its sub-items and notes.',nbMove:'Move',nbNone:'No tab',nbRename:'Rename',nbDelTab:'Delete tab',nbDelSure:"Sure? Notes stay in All",nbTabMax:'Up to 12 tabs',nbGone:'Note deleted',nbMore:'Options',nbDel:'Delete',pinNew:'+ New note',pinPh:'A phone number, shopping, a stray thought…',pinTi:'Title',pinDel:'Delete',pinGone:'Note deleted',pinMove:'Move',fs:'Full screen',brand:['TOMORROW’S','NOTEBOOK'],themeLight:'Light theme',themeDark:'Dark theme',fsOn:'Enter',fsOff:'Exit',fsFail:'The browser did not allow full screen',fsIos:'For full screen, tap Share › Add to Home Screen, then open the notebook from there; it opens without browser bars.',pinDay:'To day',pinWeek:'To week',pinMonth:'To month',pinSize:'Drag to resize',
-    deleted:'Deleted',undo:'undo',moved:'Moved',archive:'Archive',arch:'Archive',archived:'Archived',trashT:'Deleted',archEmpty:'Nothing archived.',trashEmpty:'Nothing deleted.',archNote:'Archived items leave the pages and are kept here.',trashNote:'Deleted items stay here for 30 days, then are removed for good.',putBack:'Put back',delForever:'Delete for good',emptyTrash:'Empty deleted',emptySure:'Sure? Tap again',backed:'Put back',refine:'Refined mode',refineNote:'Projects and folders are hidden',hideDone:'Hide done',hidS:'done hidden',hideAgain:'Hide done',hideDoneL:'No done items',
+    openLink:'Open link',projects:'Projects',rename:'Edit title',pjArch:'Archive',pjDrop:'Drop here to archive',pjArchived:'Archived',pjRestore:'Restore',pjAttach:'Add to project',pjDetach:'Remove from project',pjNone:'No projects yet',pjAdded:'Added to project',pinMax:'Up to 10 notes',pinNoRep:"This task can't be moved",pinTasks:'Moved tasks',pinHere:'Move to this day',pinToNb:'Move to Timeless Notes',trashS:'Trash',pinDropHint:'Drag a task here to keep it outside the notes',pinPick:'An empty post-it can\'t be moved',pinSub:'sub-items',calendar:'Calendar',pjNeedTitle:'Give the project a name first',chkS:'+ Item',bulS:'• Bullet',pjNoItems:'no items',pjOff:'Make it a note',hereS:'This day',tmrwS:'Tomorrow',nextS:'Next day',toWeekS:'Week',toMonthS:'Month',delS:'Delete',tabNotes:'Notes',project:'Project',pjNew:'+ New project',pjUntitled:'Untitled project',pjTitlePh:'Project name',pjEmpty:'No projects yet. Start one for long-running work; give an item a date and it also shows up on that day.',pjAdd:'+ Add item',pjTodoPh:'To do…',pjNotes:'Ideas',pjNotesPh:'Note…',pjDel:'Delete project',pjGone:'Project deleted',pjMake:'Make project',pjOpen:'Open project',pjDate:'Set date',pjClr:'Remove date',pjDone:'done',pjBack:'Projects',pjMade:'Project created',here:'Move to this day',moveTo:'Move to day',repeat:'Repeat',repNone:'No repeat',repW:'Every week',repM:'Every month',repY:'Every year',toWeek:'Move to week',toMonth:'Move to month',tmrw:'Postpone to tomorrow',nextday:'Postpone a day',bullet:'• Bullet',check2:'☐ Task',noteClr:'Clear note',undoCap:'Undo',del:'Delete task',pins:'Sticky notes',nb:'Timeless Notes',nbAll:'All',nbDef:'Archive',nbAddPh:'New note…',nbTabPh:'Tab name',nbNewTab:'New tab',nbEmpty:'No notes yet. Write what is on your mind above.',nbDefEmpty:'Drag a task onto the notebook icon below, or tap the clock icon in its menu, to archive it; it waits here with its sub-items and notes.',nbMove:'Move',nbNone:'No tab',nbRename:'Rename',nbDelTab:'Delete tab',nbDelSure:"Sure? Notes stay in All",nbTabMax:'Up to 12 tabs',nbGone:'Note deleted',nbMore:'Options',nbDrag:'Drag',nbTrash:'Trash',nbEmptyTrash:'Empty trash',nbEmptySure:'Sure? Tap again',nbTrashEmpty:'Trash is empty.',nbPerm:'Delete forever',nbMoreTx:'Show more',nbLess:'Show less',nbDel:'Delete',pinNew:'+ New note',pinPh:'A phone number, shopping, a stray thought…',pinTi:'Title',pinDel:'Delete',pinGone:'Note deleted',pinMove:'Move',fs:'Full screen',brand:['TOMORROW’S','NOTEBOOK'],themeLight:'Light theme',themeDark:'Dark theme',fsOn:'Enter',fsOff:'Exit',fsFail:'The browser did not allow full screen',fsIos:'For full screen, tap Share › Add to Home Screen, then open the notebook from there; it opens without browser bars.',pinDay:'To day',pinWeek:'To week',pinMonth:'To month',pinSize:'Drag to resize',
+    deleted:'Deleted',undo:'undo',moved:'Moved',archive:'Archive',arch:'Archive',archived:'Archived',trashT:'Deleted',archEmpty:'Nothing archived.',trashEmpty:'Nothing deleted.',archNote:'Archived items leave the pages; this is the same place as the Archive tab in Timeless Notes.',trashNote:'Deleted items stay here for 30 days, then are removed for good.',putBack:'Put back',delForever:'Delete for good',emptyTrash:'Empty deleted',emptySure:'Sure? Tap again',backed:'Put back',hideDone:'Hide done',hidS:'done hidden',hideAgain:'Hide done',hideDoneL:'No done items',
     settings:'Settings',lang:'Language',font:'Font',fontHand:'Handwriting',fontPlain:'Plain',note:'Note',notePh:'A note for this line…',backup:'Backup',
     backupNote:'Your notebook is stored in this browser. A backup now and then is a good idea.',
     saveBackup:'Save',copyBackup:'Copy',pasteHere:'Paste backup text',
@@ -795,7 +857,24 @@ var TX={
     about:'About',
     aboutIntro:'Yarın Defteri (Tomorrow\u2019s Notebook) came about to perceive and manage time and days better.\nThe day, week, month, year and 10-year pages are all connected. You can see today from inside a wider stretch of time. You can also note down timeless items and ideas, and keep track of your important projects.',
     howTitle:'How to use',
-    helpIntro:'Tomorrow\u2019s Notebook was made to fill the gaps a paper notebook leaves: write, tick things off, and leave what did not fit for tomorrow. The day, week, month, year and 10-year pages are connected, and on all of them you can plan like in a list and a calendar at once. An item with no date can be noted as \u201csometime this week\u201d or \u201cthis month\u201d; there is the post-it for timeless notes and projects for long work.',
+    helpIntro:'Tomorrow\u2019s Notebook was made to fill the gaps a paper notebook leaves: write, tick things off, and leave what did not fit for tomorrow. The day, week, month, year and 10-year pages are connected, and on all of them you can plan like in a list and a calendar at once. An item with no date can be noted as \u201csometime this week\u201d or \u201cthis month\u201d; there are post-its for throwaway notes, Timeless Notes for ideas you want to keep, and projects for long work.',
+    helpTabs:['Notebook','Post-it','Timeless Notes'],
+    helpPin:[
+      ['What a post-it is','The post-it button at the top opens a throwaway space that is not tied to any day: a phone number, a shopping list, a sentence that just came to mind. It saves as you type. You can keep up to 10 post-its.'],
+      ['Title and text','Each post-it has a small <b>Title</b> field at the top, filled in only if you like. What you write below is the note itself; <b>\u2610</b> adds lines with checkboxes. <b>+ New note</b> opens another post-it.'],
+      ['Moving between post-its','Post-its stack on top of each other. Swipe left or right, tap the edge of the next one, or tap the dots at the bottom. <b>Hold a dot</b> to see that post-it\u2019s title; inactive dots are faded.'],
+      ['Move to a day or to Timeless Notes','The icons at the bottom move a post-it elsewhere. The <b>arrow with the sunny page</b> sends the whole post-it to today\u2019s page: the title becomes the task, what you wrote below becomes the task\u2019s note, and lines marked with \u2610 become the note\u2019s list items. If the title is empty, the first line becomes the task. The <b>arrow with the notebook</b> sends it to Timeless Notes; if you have several tabs you choose which one.'],
+      ['Trash','The trash icon deletes a post-it, but it does not vanish at once: open the <b>Trash</b> view with the trash icon at the top. There <b>Put back</b> restores a post-it, the trash icon on its row removes it for good, and <b>Empty trash</b> clears everything (tap twice to be sure).']
+    ],
+    helpNb:[
+      ['What Timeless Notes is','The notebook icon at the right of the bottom bar opens Timeless Notes. It is not a task area but a place to remember: like a journal or an idea book. It is tied to no day, nothing is counted, nothing has to get done.'],
+      ['Writing a note','Type in the box at the top and press <b>Enter</b> to save (Shift+Enter for a new line). If you wrote something and did not save it, it stays in the box even when you tap elsewhere, until you save or delete it.'],
+      ['Tabs','<b>All</b> shows every note. <b>Archive</b>, with the clock icon, is where tasks you set aside wait. <b>+</b> makes your own tabs (up to 12); with a tab selected, <b>Rename</b> and <b>Delete tab</b> appear below the notes; long-press a tab and drag it to reorder. When a tab is deleted its notes stay in All.'],
+      ['Long notes','The triangle under a note shortens a long text to 4 lines or opens it: a <b>hollow triangle</b> means folded, a <b>filled triangle</b> means open. Notes longer than 10 lines start folded.'],
+      ['Three dots, date and moving','Under a note you see its tab and the date it was written (the tab name only in All). <b>Drag</b> the three-dot handle onto one of the tabs above to move the note there, or onto the trash icon to delete it.'],
+      ['Trash','Tap the trash icon at the right of the new-note box to open deleted notes. Drag a note onto a tab to put it back, use the trash icon next to a note to delete it forever, or <b>Empty trash</b> to clear all. The trash has no counter; this is a free space.'],
+      ['Archive: tasks set aside','Hold a task and drop it on the notebook icon at the bottom, or tap the <b>clock icon</b> in its menu, and it goes to the <b>Archive</b> tab, waiting with its sub-items and note. The same list opens from <b>Archive</b> in Settings. There is no counter. <b>Put back</b> returns it to today or any other page when you want.']
+    ],
     helpNoSync:'',
     help:[
       ['Writing and ticking off','Tap a line and write, <b>Enter</b> opens a new line. The box crosses a line out, nothing is ever deleted. Web addresses in notes become tappable; use <b>☐ Task</b> to add lines with checkboxes.'],
@@ -806,8 +885,7 @@ var TX={
       ['Year and 10 years','These pages are for long and very long-term plans.'],
       ['Moving and postponing','Hold the box (drag on a computer) and drop a line on another day, week, month or year. Dropping it on a tab at the bottom sends it to that page (day, week, month, year, 10 years); on the day page, the <b>‹ ›</b> arrows at the top send it to the previous or next day. Or open a line and use the <b>three dots</b> to choose <b>Tomorrow</b>, <b>Week</b> or <b>Month</b>, pick a date, set a repeat or attach it to a project.'],
       ['Notes and projects','The icon at the right of a line opens its note page. A note and a project are the same page: a list of items plus a free note field. The icon before the title switches between <b>Note</b> (blue) and <b>Project</b> (orange), and tapping the title renames it. Hold an item to drag it into order, and give it a date with the calendar icon; a dated item also shows up on that day. Drag a finished item to <b>Drop here to archive</b> and it moves to the <b>Archive</b> section, still counted in the progress. Attach a note or project to another project with the folder button and it becomes its sub-heading: it is gathered in the parent project, and its icon gets a small dot. All projects are in the <b>Projects</b> tab at the top.'],
-      ['Post-it','The post-it button at the top is a scratchpad that is not tied to any day. You can keep up to 6 post-its, and the button on the edge of the big one shrinks it to a small square.'],
-      ['Settings','In Settings you choose the language, light or dark theme, font and text size. <b>Backup</b> saves your notebook as a file, copies it or restores it. <b>Archive</b> brings back lines you archived or deleted (deleted ones stay for 30 days); <b>Hide done</b> tucks away crossed-out lines; <b>Refined mode</b> hides the note and project tools to keep the notebook plain. With <b>Sync</b> you connect your Google account and use the same notebook on your phone and computer; it lives in a hidden area of your Drive that only this app can see, and changes are sent automatically.']
+      ['Settings','In Settings you choose the language, light or dark theme, font and text size. <b>Backup</b> saves your notebook as a file, copies it or restores it. <b>Archive</b> brings back lines you archived or deleted (deleted ones stay for 30 days); The eye icon (next to the theme and full-screen buttons) tucks away crossed-out lines. With <b>Sync</b> you connect your Google account and use the same notebook on your phone and computer; it lives in a hidden area of your Drive that only this app can see, and changes are sent automatically.']
     ],
     credit:['Designed for productivity by ',', built together with Claude.'],
     wd:['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'],
@@ -859,6 +937,7 @@ function clean(o){
     if(!text.trim())return;
     var id=(typeof x.id==='string'&&x.id&&!seen[x.id])?x.id:uid();
     seen[id]=1;
+    if(x.layer==='arch')x.layer='pin';
     var o={id:id,text:text,done:!!x.done,layer:x.layer,key:x.key};
     if(typeof x.note==='string'&&x.note.trim())o.note=x.note;
     if(x.rep==='w'||x.rep==='m'||x.rep==='y'){o.rep=x.rep;if(typeof x.rs==='string')o.rs=x.rs;if(typeof x.rto==='string')o.rto=x.rto}
@@ -909,7 +988,7 @@ function cleanPins(a){
     var ti=(typeof x.ti==='string')?x.ti.trim().slice(0,60):'';
     if(!x.text.trim()&&!ti)return;
     var id=(typeof x.id==='string'&&x.id&&!seen[x.id])?x.id:uid();
-    seen[id]=1;var o={id:id,text:x.text};if(ti)o.ti=ti;if(x.tk)o.tk=1;if(x.src&&typeof x.src==='object'&&x.src.it&&typeof x.src.it.text==='string'&&typeof x.src.text==='string')o.src={it:x.src.it,rec:x.src.rec||null,ritems:Array.isArray(x.src.ritems)?x.src.ritems:[],text:x.src.text};if(x.w===0.5)o.w=0.5;if(typeof x.h==='number'&&x.h>=40&&x.h<=900)o.h=Math.round(x.h);out.push(o);
+    seen[id]=1;var o={id:id,text:x.text};if(ti)o.ti=ti;if(x.tk)o.tk=1;if(x.src&&typeof x.src==='object'&&x.src.it&&typeof x.src.it.text==='string'&&typeof x.src.text==='string')o.src={it:x.src.it,rec:x.src.rec||null,ritems:Array.isArray(x.src.ritems)?x.src.ritems:[],text:x.src.text};if(x.w===0.5)o.w=0.5;if(typeof x.h==='number'&&x.h>=40&&x.h<=900)o.h=Math.round(x.h);if(typeof x.d==='number'&&x.d>0)o.d=x.d;out.push(o);
   });
   return out;
 }
@@ -918,14 +997,14 @@ function load(){
     var raw=localStorage.getItem(STORE);
     if(raw){
       var o=JSON.parse(raw);
-      return {lang:o&&o.lang==='en'?'en':'tr',font:o&&o.font==='plain'?'plain':'hand',decadeStart:(o&&typeof o.decadeStart==='number')?o.decadeStart:new Date().getFullYear(),zoom:zoomOk(o&&o.zoom),theme:(o&&(o.theme==='light'||o.theme==='dark'))?o.theme:null,yrev:!!(o&&o.yrev),hideDone:!!(o&&o.hideDone),refined:!(o&&o.refined===false),syncOn:!!(o&&o.syncOn),syncRev:(o&&typeof o.syncRev==='number')?o.syncRev:null,dirty:!!(o&&o.dirty),syncLast:(o&&typeof o.syncLast==='number')?o.syncLast:0,pins:cleanPins(o&&o.pins)||[],nb:cleanNb(o&&o.nb),projects:cleanProjects(o&&o.projects)||[],items:clean(o)||[]};
+      return {lang:o&&o.lang==='en'?'en':'tr',font:o&&o.font==='plain'?'plain':'hand',decadeStart:(o&&typeof o.decadeStart==='number')?o.decadeStart:new Date().getFullYear(),zoom:zoomOk(o&&o.zoom),theme:(o&&(o.theme==='light'||o.theme==='dark'))?o.theme:null,yrev:!!(o&&o.yrev),hideDone:!!(o&&o.hideDone),syncOn:!!(o&&o.syncOn),syncRev:(o&&typeof o.syncRev==='number')?o.syncRev:null,dirty:!!(o&&o.dirty),syncLast:(o&&typeof o.syncLast==='number')?o.syncLast:0,pins:cleanPins(o&&o.pins)||[],nb:cleanNb(o&&o.nb),projects:cleanProjects(o&&o.projects)||[],items:clean(o)||[]};
     }
   }catch(e){storageOK=false}
-  return {lang:'tr',font:'hand',decadeStart:new Date().getFullYear(),zoom:1,theme:null,yrev:false,hideDone:false,refined:true,syncOn:false,syncRev:null,dirty:false,syncLast:0,pins:[],nb:{tabs:[],notes:[]},projects:[],items:[]};
+  return {lang:'tr',font:'hand',decadeStart:new Date().getFullYear(),zoom:1,theme:null,yrev:false,hideDone:false,syncOn:false,syncRev:null,dirty:false,syncLast:0,pins:[],nb:{tabs:[],notes:[]},projects:[],items:[]};
 }
 function persist(){
   clearTimeout(saveTimer);saveTimer=null;
-  try{localStorage.setItem(STORE,JSON.stringify({v:1,lang:S.lang,font:S.font,zoom:S.zoom,theme:S.theme,yrev:S.yrev,hideDone:S.hideDone,refined:S.refined,syncOn:S.syncOn,syncRev:S.syncRev,dirty:S.dirty,syncLast:S.syncLast,decadeStart:S.decadeStart,pins:S.pins,nb:S.nb,projects:S.projects,items:S.items}));}
+  try{localStorage.setItem(STORE,JSON.stringify({v:1,lang:S.lang,font:S.font,zoom:S.zoom,theme:S.theme,yrev:S.yrev,hideDone:S.hideDone,syncOn:S.syncOn,syncRev:S.syncRev,dirty:S.dirty,syncLast:S.syncLast,decadeStart:S.decadeStart,pins:S.pins,nb:S.nb,projects:S.projects,items:S.items}));}
   catch(e){storageOK=false;if(!warned){warned=true;toast(T.noStore)}}
 }
 function queueSave(){editSeq++;S.dirty=true;clearTimeout(saveTimer);saveTimer=setTimeout(persist,300);autoPushSoon()}
@@ -933,7 +1012,7 @@ document.addEventListener('visibilitychange',function(){if(document.visibilitySt
 window.addEventListener('pagehide',function(){if(saveTimer)persist()});
 
 var S=load(),T=TX[S.lang],pastOpen=false,view='day',anchor=today(),lastToday=dkey(today());
-document.documentElement.lang=S.lang;document.documentElement.classList.toggle('refined',!!S.refined);
+document.documentElement.lang=S.lang;
 document.documentElement.setAttribute('data-font',S.font);
 function isDark(){
   if(S&&S.theme)return S.theme==='dark';
@@ -1155,7 +1234,7 @@ function isProjOrigin(it){var r=recOf(it);return !!(r&&!r.n)}
 function hasNote(it){if(!it)return false;if(it.note)return true;var r=recOf(it);return !!(r&&(r.todos.length||(r.arch&&r.arch.length)||(r.notes&&r.notes.trim())))}
 function noteBtn(row){
   var it=row.dataset.id?findItem(row.dataset.id):null;
-  return h('button',{class:'notebtn'+(hasNote(it)?' has':'')+((S.refined?false:isProjOrigin(it))||(it&&it.pt&&!it.note)?' nomore':'')+(!S.refined&&isLinked(it)&&!pjShown(it)?' lk':''),type:'button','aria-label':T.note,html:NOTE,onclick:function(){
+  return h('button',{class:'notebtn'+(hasNote(it)?' has':'')+((it&&it.pt&&!it.note)?' nomore':''),type:'button','aria-label':T.note,html:NOTE,onclick:function(){
     var cur=findItem(row.dataset.id);if(cur)openSheet(cur);
   }});
 }
@@ -1409,7 +1488,7 @@ function pageMonth(){
   var total=mi.length,done=mi.filter(function(i){return i.done}).length;
   Object.keys(byDay).forEach(function(k){total+=byDay[k].length;done+=byDay[k].filter(function(i){return i.done}).length});
   f.appendChild(navBar(h('h1',{class:'title',text:T.mo[m]+' '+y}),''));
-  if(total&&!S.refined){
+  if(false){
     var tr=S.lang==='tr',sm=tr?total+' iş · '+done+' tamam':total+(total===1?' item':' items')+' · '+done+' done';
     f.appendChild(h('p',{class:'msum',text:sm}));
   }
@@ -1728,7 +1807,8 @@ function noteBullets(ta,onChange){
 }
 function hereKey(){return view==='day'?dkey(anchor):(view==='nb'&&nbFromKey?nbFromKey:dkey(today()))}
 function openPins(){
-  var cards=S.pins.map(function(x){return {id:x.id,text:x.text,ti:x.ti||'',w:x.w,h:x.h,src:x.src}});
+  var cards=S.pins.filter(function(x){return !x.d}).map(function(x){return {id:x.id,text:x.text,ti:x.ti||'',w:x.w,h:x.h,src:x.src}});
+  var trashed=S.pins.filter(function(x){return x.d}).map(function(x){return {id:x.id,text:x.text,ti:x.ti||'',d:x.d}});
   function has(c){return !!(c.text.trim()||(c.ti&&c.ti.trim()))}
   if(!cards.length)cards.push({id:uid(),text:''});
   var wrap=h('div',{class:'pinwrap',role:'dialog','aria-modal':'true','aria-label':T.pins});
@@ -1736,76 +1816,75 @@ function openPins(){
   function save(){
     S.pins=cards.filter(has).map(function(c){
       var o={id:c.id,text:c.text};if(c.ti&&c.ti.trim())o.ti=c.ti.trim().slice(0,60);if(c.w===0.5)o.w=0.5;if(c.h)o.h=c.h;if(c.src&&c.src.text===c.text)o.src=c.src;return o;
-    });
+    }).concat(trashed.map(function(x){var o={id:x.id,text:x.text,d:x.d};if(x.ti)o.ti=x.ti;return o}));
     queueSave();
   }
   function grow(){}
   function indentOf(l){return l.length-l.replace(/^\s+/,'').length}
-  function gather(text,st,en){
-    var lines=text.split('\n'),pos=0,hit=[];
-    for(var i=0;i<lines.length;i++){
-      var a=pos,b=pos+lines[i].length;
-      if((en>st?(a<en&&b>st):(st>=a&&st<=b))&&lines[i].replace(/^\s*[•☐☑]\s*/,'').trim())hit.push(i);
-      pos=b+1;
+  function pinToItem(c,layer,key){
+    if(!has(c)){toast(T.pinPick);return}
+    var idx=cards.indexOf(c);if(idx<0)return;
+    var ti=(c.ti||'').trim(),lines=(c.text||'').split('\n'),snap0=c.src,before=c.text;
+    var snap=c.src&&c.src.text===c.text&&!ti&&!S.items.some(function(x){return x.id===c.src.it.id})&&!(c.src.rec&&S.projects.some(function(x){return x.id===c.src.rec.id}))?c.src:null;
+    var its=[],extra=[],xrec=null;
+    if(snap){
+      var it0=JSON.parse(JSON.stringify(snap.it));it0.layer=layer;it0.key=key;it0.done=false;its.push(it0);
+      if(snap.rec){xrec=JSON.parse(JSON.stringify(snap.rec));extra=JSON.parse(JSON.stringify(snap.ritems||[]))}
+    }else{
+      /* title is the task itself; the rest of the post-it is its note, checkbox lines become its list items */
+      var title=ti;
+      if(!title){
+        for(var k=0;k<lines.length;k++){if(lines[k].trim()){title=lines[k].trim().replace(/^[\u2022\u2610\u2611]\s*/,'').trim();lines.splice(k,1);break}}
+      }
+      var todos=[],rest=[];
+      lines.forEach(function(l){
+        var m=/^\s*([\u2610\u2611])\s*(.*)$/.exec(l);
+        if(m){if(m[2].trim())todos.push({id:uid(),text:m[2].trim().replace(/[\r\n]+/g,' '),done:m[1]==='\u2611'})}
+        else rest.push(l.replace(/\s+$/,''));
+      });
+      var notes=rest.join('\n').replace(/^\n+|\n+$/g,'');
+      var it={id:uid(),text:title.replace(/[\r\n]+/g,' ').slice(0,200),done:false,layer:layer,key:key};
+      if(!it.text){toast(T.pinPick);return}
+      if(todos.length){
+        xrec={id:uid(),title:it.text,todos:todos,n:1};if(notes)xrec.notes=notes;it.pj=xrec.id;
+      }else if(notes)it.note=notes;
+      its.push(it);
     }
-    var used={},groups=[];
-    hit.forEach(function(i){
-      if(used[i])return;
-      used[i]=1;
-      var base=indentOf(lines[i]),kids=[];
-      for(var j=i+1;j<lines.length;j++){
-        if(!lines[j].trim()){continue}
-        if(indentOf(lines[j])<=base)break;
-        kids.push(j);used[j]=1;
-      }
-      groups.push({i:i,kids:kids});
-    });
-    return {lines:lines,groups:groups};
-  }
-  function pinToItem(c,layer,key,ta){
-    var g=gather(c.text,ta.selectionStart,ta.selectionEnd),lines=g.lines;
-    if(!g.groups.length){toast(T.pinPick);return}
-    var whole=c.src&&c.src.text===c.text&&g.groups.length===1&&g.groups[0].i===0&&g.groups[0].kids.length===lines.filter(function(l,i){return i>0&&l.trim()}).length;
-    var snap=whole&&!S.items.some(function(x){return x.id===c.src.it.id})&&!(c.src.rec&&S.projects.some(function(x){return x.id===c.src.rec.id}))?c.src:null;
-    var extra=[],xrec=null;
-    var drop={},its=g.groups.map(function(gr){
-      if(snap){
-        var raw0=lines[gr.i].trim(),it0=JSON.parse(JSON.stringify(snap.it));
-        it0.layer=layer;it0.key=key;it0.done=/^\u2611/.test(raw0);
-        gr.kids.forEach(function(j){drop[j]=1});drop[gr.i]=1;
-        if(snap.rec){xrec=JSON.parse(JSON.stringify(snap.rec));extra=JSON.parse(JSON.stringify(snap.ritems||[]))}
-        return it0;
-      }
-      drop[gr.i]=1;
-      var raw=lines[gr.i].trim();
-      var it={id:uid(),text:raw.replace(/^[•☐☑]\s*/,'').trim(),done:/^☑/.test(raw),layer:layer,key:key};
-      if(gr.kids.length){
-        var min=Math.min.apply(null,gr.kids.map(function(j){return indentOf(lines[j])}));
-        it.note=gr.kids.map(function(j){drop[j]=1;return lines[j].slice(min).replace(/\s+$/,'')}).join('\n');
-      }
-      return it;
-    });
-    var before=c.text,snap0=c.src;
-    c.text=lines.filter(function(_,i){return !drop[i]}).join('\n').replace(/^\n+|\n+$/g,'');
-    var idx=cards.indexOf(c),gone=!has(c);
     its.forEach(function(it){S.items.push(it)});
     if(xrec){S.projects.push(xrec);extra.forEach(function(x){S.items.push(x)})}
     c.src=undefined;
-    if(gone){cards.splice(idx,1);if(!cards.length)cards.push({id:uid(),text:''})}
+    cards.splice(idx,1);if(!cards.length)cards.push({id:uid(),text:''});
+    act=Math.min(idx,cards.length-1);
     save();draw();render();
     var where=layer==='day'?shortDate(pd(key)):T[layer];
-    toast(T.moved+' · '+where,{label:T.undo,fn:function(){
+    toast(T.moved+' \u00b7 '+where,{label:T.undo,fn:function(){
       S.items=S.items.filter(function(x){return its.indexOf(x)<0&&extra.indexOf(x)<0});
       if(xrec)S.projects=S.projects.filter(function(p){return p!==xrec});
       c.text=before;c.src=snap0;
-      if(gone){cards=cards.filter(has);cards.splice(Math.min(idx,cards.length),0,c)}
+      cards=cards.filter(has);cards.splice(Math.min(idx,cards.length),0,c);
       save();render();
       if(sheet.querySelector('.pinwrap'))draw();
     }});
   }
-  var act=0,els=[],dots=h('div',{class:'pdots'});
+  var act=0,els=[],dots=h('div',{class:'pdots'}),mode='deck',lastSwipe=0;
+  var trashBox=h('div',{class:'ptrash',hidden:true});
   function jit(id){var n=0;for(var i=0;i<id.length;i++)n=(n*31+id.charCodeAt(i))|0;return ((n%7)+7)%7-3}
   function blurNow(){var a=document.activeElement;if(a&&a.blur&&a!==document.body)a.blur()}
+  function dotTip(btn,c){
+    var t=0,tip=null;
+    function hide(){clearTimeout(t);if(tip){tip.remove();tip=null}}
+    btn.addEventListener('pointerdown',function(){
+      clearTimeout(t);
+      t=setTimeout(function(){
+        var txt=(c.ti&&c.ti.trim())||((c.text||'').trim().split('\n')[0]||'').slice(0,40)||T.pinTi;
+        tip=h('div',{class:'ptip',text:txt});dots.appendChild(tip);btn._tip=true;
+        var w=tip.offsetWidth,x=btn.offsetLeft+btn.offsetWidth/2;
+        tip.style.left=Math.max(w/2,Math.min(dots.clientWidth-w/2,x))+'px';
+      },380);
+    });
+    ['pointerup','pointercancel','pointerleave'].forEach(function(ev){btn.addEventListener(ev,hide)});
+    btn.addEventListener('contextmenu',function(e){e.preventDefault()});
+  }
   function layout(){
     if(act>=cards.length)act=cards.length-1;if(act<0)act=0;
     els.forEach(function(el,i){
@@ -1819,8 +1898,27 @@ function openPins(){
     });
     dots.innerHTML='';
     if(cards.length>1)cards.forEach(function(c,i){
-      dots.appendChild(h('button',{type:'button',class:i===act?'on':'','aria-label':(i+1)+' / '+cards.length,html:'<i></i>',onclick:function(){if(i!==act){blurNow();act=i;layout()}}}));
+      var b=h('button',{type:'button',class:i===act?'on':'','aria-label':(i+1)+' / '+cards.length,html:'<i></i>',onclick:function(){
+        if(b._tip){b._tip=false;return}
+        if(i!==act){blurNow();act=i;layout()}
+      }});
+      dotTip(b,c);dots.appendChild(b);
     });
+  }
+  function toNb(c,tab){
+    if(S.nb.notes.length>=1000)return;
+    var ti=(c.ti||'').trim(),bd=(c.text||'').trim();
+    var note={id:uid(),text:(ti+(ti&&bd?'\n':'')+bd).slice(0,4000),tab:tab||'',t:Date.now()};
+    var i=cards.indexOf(c);if(i<0||!note.text)return;
+    cards.splice(i,1);if(!cards.length)cards.push({id:uid(),text:''});
+    act=Math.min(i,cards.length-1);
+    S.nb.notes.unshift(note);save();draw();
+    var tn=tab?(S.nb.tabs.filter(function(t){return t.id===tab})[0]||{}).name:'';
+    toast(T.moved+' · '+(tn||T.nb),{label:T.undo,fn:function(){
+      S.nb.notes=S.nb.notes.filter(function(x){return x!==note});
+      cards=cards.filter(has);var k=Math.min(i,cards.length);cards.splice(k,0,c);act=k;save();
+      if(sheet.querySelector('.pinwrap'))draw();
+    }});
   }
   function build(c){
     var ta=h('textarea',{rows:'3',placeholder:T.pinPh,spellcheck:'false','aria-label':T.pins});
@@ -1828,28 +1926,40 @@ function openPins(){
     var el;
     var lkp=linkBar();lkp.set(c.text);
     var bul=noteBullets(ta,function(){c.text=ta.value;save();lkp.set(c.text)});
-    var del=h('button',{type:'button',text:T.pinDel,onclick:function(){
+    var del=h('button',{type:'button',class:'pi','aria-label':T.pinDel,title:T.pinDel,html:TRASH_I,onclick:function(){
       var i=cards.indexOf(c);if(i<0)return;
-      cards.splice(i,1);var had=has(c);
+      cards.splice(i,1);var had=has(c),raw=null;
+      if(had){raw={id:c.id,text:c.text,d:Date.now()};if(c.ti&&c.ti.trim())raw.ti=c.ti.trim().slice(0,60);trashed.unshift(raw)}
       if(!cards.length)cards.push({id:uid(),text:''});
       act=Math.min(i,cards.length-1);
       save();draw();
       if(had)toast(T.pinGone,{label:T.undo,fn:function(){
+        var ri=trashed.indexOf(raw);if(ri>=0)trashed.splice(ri,1);
         cards=cards.filter(has);
         var k=Math.min(i,cards.length);cards.splice(k,0,c);act=k;save();if(sheet.querySelector('.pinwrap'))draw();
       }});
     }});
-    var mvBtn=h('button',{type:'button',text:T.pinHere,onclick:function(){
-      if(!c.text.trim())return;
-      pinToItem(c,'day',hereKey(),ta);
+    var mvBtn=h('button',{type:'button',class:'pi','aria-label':T.pinHere,title:T.pinHere,html:ARW_I+DAY_I,onclick:function(){
+      pinToItem(c,'day',hereKey());
+    }});
+    var nbBtn=h('button',{type:'button',class:'pi','aria-label':T.pinToNb,title:T.pinToNb,html:ARW_I+NB_I,onclick:function(){
+      if(!has(c))return;
+      var old=el.querySelector('.ppick');
+      if(old){old.remove();return}
+      if(!S.nb.tabs.length){toNb(c,'');return}
+      var pk=h('div',{class:'ppick'},[h('span',{class:'ppl',text:T.pinToNb})]);
+      pk.appendChild(h('button',{type:'button',class:'ppc',text:T.nbAll,onclick:function(){toNb(c,'')}}));
+      S.nb.tabs.forEach(function(t){pk.appendChild(h('button',{type:'button',class:'ppc',text:t.name,onclick:function(){toNb(c,t.id)}}))});
+      pk.appendChild(h('button',{type:'button',class:'ppc x','aria-label':T.close,html:XICON,onclick:function(){pk.remove()}}));
+      el.appendChild(pk);
     }});
     var ti=h('input',{class:'ptitle',type:'text',maxlength:'60',placeholder:T.pinTi,spellcheck:'false','aria-label':T.pinTi});
     ti.value=c.ti||'';
     ti.addEventListener('input',function(){c.ti=ti.value;save()});
     ti.addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();ta.focus()}});
     el=h('div',{class:'pin'},[ti,ta,lkp,h('div',{class:'pact'},[
-      h('button',{type:'button',onmousedown:function(e){e.preventDefault()},onclick:bul.chk,'aria-label':T.check2,html:'<span>☐</span>'}),
-      mvBtn,del])]);
+      h('button',{type:'button',class:'pi',onmousedown:function(e){e.preventDefault()},onclick:bul.chk,'aria-label':T.check2,html:'<span>☐</span>'}),
+      mvBtn,nbBtn,del])]);
     el.dataset.pid=c.id;
     el.addEventListener('click',function(){
       var i=cards.indexOf(c);
@@ -1866,21 +1976,75 @@ function openPins(){
   }
   var add=h('button',{class:'pinpill',type:'button',text:T.pinNew,onclick:function(){
     if(cards.length&&!has(cards[0])){act=0;layout();els[0]._ta.focus();return}
-    if(cards.length>=10){toast(T.pinMax);return}
+    if(cards.filter(has).length>=10){toast(T.pinMax);return}
     cards.unshift({id:uid(),text:''});act=0;draw();els[0]._ta.focus();
   }});
-  var sx0=null,sy0=0;
-  list.addEventListener('touchstart',function(e){if(e.touches.length!==1){sx0=null;return}sx0=e.touches[0].clientX;sy0=e.touches[0].clientY},{passive:true});
-  list.addEventListener('touchend',function(e){
-    if(sx0==null)return;
-    var t=e.changedTouches[0],dx=t.clientX-sx0,dy=t.clientY-sy0;sx0=null;
-    if(Math.abs(dx)>55&&Math.abs(dy)<45){
-      var n=act+(dx<0?1:-1);
-      if(n>=0&&n<cards.length){blurNow();act=n;layout()}
-    }
+  /* swipe between notes: pointer based, easy threshold, never starts typing */
+  var sw=null;
+  list.addEventListener('touchstart',function(e){
+    if(e.touches.length!==1||(e.target.closest&&e.target.closest('.ppick'))){sw=null;return}
+    sw={x:e.touches[0].clientX,y:e.touches[0].clientY,on:false,dx:0,dead:false};
   },{passive:true});
-  wrap.appendChild(h('div',{class:'pinbar'},[h('div',{class:'pinpill',text:T.pins}),h('div',{class:'sp'}),add,xBtn()]));
-  wrap.appendChild(list);wrap.appendChild(dots);
+  list.addEventListener('touchmove',function(e){
+    if(!sw||sw.dead)return;
+    var t=e.touches[0],dx=t.clientX-sw.x,dy=t.clientY-sw.y;
+    if(!sw.on){
+      if(Math.abs(dx)>8&&Math.abs(dx)>Math.abs(dy)*1.1){sw.on=true;blurNow();list.classList.add('swp')}
+      else if(Math.abs(dy)>14){sw.dead=true;return}
+      else return;
+    }
+    if(e.cancelable)e.preventDefault();
+    sw.dx=dx;
+    var f=els[act];if(f){f.style.transition='none';f.style.transform='translate('+(dx*0.55)+'px,0) rotate('+(-0.6+dx*0.02)+'deg)'}
+  },{passive:false});
+  function endSw(cancel){
+    if(!sw)return;var s=sw;sw=null;
+    list.classList.remove('swp');
+    var f=els[act];if(f)f.style.transition='';
+    if(!s.on)return;
+    lastSwipe=Date.now();
+    var n=act;if(!cancel&&Math.abs(s.dx)>36)n=act+(s.dx<0?1:-1);
+    if(n<0||n>=cards.length)n=act;
+    act=n;layout();
+  }
+  list.addEventListener('touchend',function(){endSw(false)});
+  list.addEventListener('touchcancel',function(){endSw(true)});
+  list.addEventListener('focusin',function(){if(Date.now()-lastSwipe<700)blurNow()});
+  /* trash for notes */
+  function drawTrash(){
+    trashBox.innerHTML='';
+    var head=h('div',{class:'ptrhead'},[h('span',{class:'ptrt',text:T.nbTrash})]);
+    if(trashed.length){
+      var sure=false,emp=h('button',{type:'button',class:'ptrdng',text:T.nbEmptyTrash,onclick:function(){
+        if(!sure){sure=true;emp.textContent=T.nbEmptySure;return}
+        trashed.length=0;save();drawTrash();
+      }});
+      head.appendChild(emp);
+    }
+    trashBox.appendChild(head);
+    if(!trashed.length){trashBox.appendChild(h('p',{class:'ptrempty',text:T.nbTrashEmpty}));return}
+    trashed.forEach(function(x){
+      var row=h('div',{class:'ptrrow'});
+      row.appendChild(h('div',{class:'ptrtx'},[x.ti?h('div',{class:'ptrti',text:x.ti}):null,h('div',{class:'ptrbd',text:x.text})]));
+      row.appendChild(h('button',{type:'button',class:'ptrbtn',text:T.putBack,onclick:function(){
+        if(cards.filter(has).length>=10){toast(T.pinMax);return}
+        var i=trashed.indexOf(x);if(i>=0)trashed.splice(i,1);
+        cards=cards.filter(has);cards.unshift({id:x.id,text:x.text,ti:x.ti||''});act=0;save();draw();setMode('deck');
+      }}));
+      row.appendChild(h('button',{type:'button',class:'ptrbtn ic','aria-label':T.nbPerm,title:T.nbPerm,html:TRASH_I,onclick:function(){
+        var i=trashed.indexOf(x);if(i>=0)trashed.splice(i,1);save();drawTrash();
+      }}));
+      trashBox.appendChild(row);
+    });
+  }
+  var trBtn=h('button',{class:'xbtn',type:'button','aria-label':T.nbTrash,title:T.nbTrash,'aria-pressed':'false',html:TRASH_I,onclick:function(){setMode(mode==='trash'?'deck':'trash')}});
+  function setMode(m){
+    mode=m;list.hidden=m!=='deck';dots.hidden=m!=='deck';trashBox.hidden=m!=='trash';add.hidden=m!=='deck';
+    trBtn.setAttribute('aria-pressed',String(m==='trash'));trBtn.classList.toggle('on',m==='trash');
+    if(m==='trash'){blurNow();drawTrash()}
+  }
+  wrap.appendChild(h('div',{class:'pinbar'},[h('div',{class:'pinpill',text:T.pins}),h('div',{class:'sp'}),add,trBtn,xBtn()]));
+  wrap.appendChild(list);wrap.appendChild(dots);wrap.appendChild(trashBox);
   showSheet(wrap,true);
   draw();
   if(!has(cards[0])&&els[0])els[0]._ta.focus();
@@ -1898,24 +2062,154 @@ function cleanNb(x){
   if(x&&Array.isArray(x.notes))x.notes.forEach(function(n){
     if(!n||typeof n.text!=='string'||!n.text.trim()||notes.length>=1000)return;
     var id=(typeof n.id==='string'&&n.id&&!ns[n.id])?n.id:uid();ns[id]=1;
-    notes.push({id:id,text:n.text.slice(0,4000),tab:(typeof n.tab==='string'&&ts[n.tab])?n.tab:''});
+    var no={id:id,text:n.text.slice(0,4000),tab:(typeof n.tab==='string'&&ts[n.tab])?n.tab:''};if(n.c===0||n.c===1)no.c=n.c;if(typeof n.d==='number'&&n.d>0)no.d=n.d;if(typeof n.t==='number'&&n.t>0)no.t=n.t;notes.push(no);
   });
   return {tabs:tabs,notes:notes};
 }
 var nbTab='all';
+var GRIP_I='<svg viewBox="0 0 24 24" aria-hidden="true"><g fill="currentColor"><circle cx="9" cy="6" r="1.6"/><circle cx="15" cy="6" r="1.6"/><circle cx="9" cy="12" r="1.6"/><circle cx="15" cy="12" r="1.6"/><circle cx="9" cy="18" r="1.6"/><circle cx="15" cy="18" r="1.6"/></g></svg>';
+var ARW_I='<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15M13.5 6.5L19 12l-5.5 5.5"/></svg>';
+var DAY_I='<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="8" r="3.6" style="fill:var(--today);stroke:none"/><path d="M4.5 15.5h15M4.5 20h15" opacity=".75"/></svg>';
+var TRI_DN='<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M6.2 9.2h11.6L12 16.2z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>';
+var TRI_UP='<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M5 15.5h14L12 7z" fill="currentColor"/></svg>';
 var LATER_I='<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg>';
+function nbWhen(t){
+  if(!t)return '';
+  try{
+    var d=new Date(t),y=d.getFullYear()!==new Date().getFullYear();
+    return d.toLocaleString(S.lang==='en'?'en-GB':'tr-TR',{day:'numeric',month:'long',year:y?'numeric':undefined,hour:'2-digit',minute:'2-digit'});
+  }catch(e){return ''}
+}
 function nbFit(t){t.style.height='auto';t.style.height=t.scrollHeight+'px'}
+function tabDrag(chip,tab,strip){
+  chip.addEventListener('pointerdown',function(e){
+    if(e.button>0)return;
+    var sx=e.clientX,sy=e.clientY,lx=sx,ly=sy,go=false,timer=0,touch=e.pointerType!=='mouse',target=null,after=false;
+    function chips(){return [].slice.call(strip.querySelectorAll('.nbt.ut'))}
+    function mark(c,aft){
+      chips().forEach(function(x){x.classList.remove('dl','dr')});
+      if(c){c.classList.add(aft?'dr':'dl')}
+    }
+    function pick(){
+      var el=document.elementFromPoint(lx,ly),c=el&&el.closest?el.closest('.nbt'):null;
+      target=null;
+      if(!c||c===chip||!strip.contains(c)){mark(null);return}
+      var r=c.getBoundingClientRect();
+      if(c.classList.contains('ut')){target=c;after=lx>r.left+r.width/2}
+      else if(c.classList.contains('plus')){var us=chips();target=us[us.length-1];after=true}
+      else{var us2=chips();target=us2[0];after=false}
+      if(target===chip)target=null;
+      mark(target,after);
+    }
+    function tm(ev){ev.preventDefault()}
+    function begin(){
+      go=true;chip._drag=true;chip.classList.add('tdrag');document.body.classList.add('nbdragging');
+      document.addEventListener('touchmove',tm,{passive:false});
+      try{chip.setPointerCapture(e.pointerId)}catch(x){}
+    }
+    function clean(){
+      clearTimeout(timer);
+      chip.removeEventListener('pointermove',mv);chip.removeEventListener('pointerup',up);chip.removeEventListener('pointercancel',cancel);
+      document.removeEventListener('touchmove',tm);
+      mark(null);chip.classList.remove('tdrag');document.body.classList.remove('nbdragging');
+    }
+    function mv(ev){
+      lx=ev.clientX;ly=ev.clientY;
+      if(!go){
+        if(Math.hypot(lx-sx,ly-sy)>(touch?10:6)){
+          if(touch){clean()}else{begin()}
+        }
+        if(!go)return;
+      }
+      pick();
+    }
+    function up(){
+      var was=go,t=target,aft=after;
+      clean();
+      if(!was)return;
+      setTimeout(function(){chip._drag=false},0);
+      if(!t)return;
+      var a=S.nb.tabs,from=a.indexOf(tab),to=a.indexOf(S.nb.tabs.filter(function(x){return x.id===t.getAttribute('data-nbtab')})[0]);
+      if(from<0||to<0)return;
+      a.splice(from,1);
+      var at=a.indexOf(S.nb.tabs.filter(function(x){return x.id===t.getAttribute('data-nbtab')})[0]);
+      a.splice(aft?at+1:at,0,tab);
+      queueSave();nbRedraw();
+    }
+    function cancel(){clean();setTimeout(function(){chip._drag=false},0)}
+    chip.addEventListener('pointermove',mv);chip.addEventListener('pointerup',up);chip.addEventListener('pointercancel',cancel);
+    if(touch){
+      timer=setTimeout(function(){begin();if(navigator.vibrate)try{navigator.vibrate(8)}catch(x){}},320);
+    }
+  });
+  chip.addEventListener('click',function(ev){if(chip._drag){ev.stopImmediatePropagation();ev.preventDefault();chip._drag=false}},true);
+}
+function nbDrag(more,row,n,trashMode,closeMenu){
+  more.addEventListener('pointerdown',function(e){
+        if(e.button>0)return;
+        var sx=e.clientX,sy=e.clientY,lx=sx,ly=sy,go=false,ghost=null,over=null,raf=0;
+        try{more.setPointerCapture(e.pointerId)}catch(x){}
+        function pick(){
+          var el=document.elementFromPoint(lx,ly),c=el&&el.closest?el.closest(trashMode?'.nbtabs .nbt[data-nbtab]':'.nbtabs .nbt[data-nbtab], .ntrash'):null;
+          if(c!==over){if(over)over.classList.remove('over');over=c;if(over)over.classList.add('over')}
+        }
+        function loop(){
+          if(!go)return;
+          if(ly<110)window.scrollBy(0,-10);else if(ly>window.innerHeight-90)window.scrollBy(0,10);
+          pick();raf=requestAnimationFrame(loop);
+        }
+        function clean(){
+          more.removeEventListener('pointermove',mv);more.removeEventListener('pointerup',up);more.removeEventListener('pointercancel',cancel);
+          cancelAnimationFrame(raf);
+          if(ghost)ghost.remove();
+          if(over)over.classList.remove('over');
+          row.classList.remove('ndrag');document.body.classList.remove('nbdragging');
+        }
+        function mv(ev){
+          lx=ev.clientX;ly=ev.clientY;
+          if(!go){
+            if(Math.hypot(lx-sx,ly-sy)<8)return;
+            go=true;more._drag=true;
+            closeMenu()
+            ghost=h('div',{class:'nghost',text:(n.text.split('\n')[0]||'').slice(0,40)});
+            document.body.appendChild(ghost);
+            row.classList.add('ndrag');document.body.classList.add('nbdragging');
+            loop();
+          }
+          ghost.style.left=Math.min(lx+14,window.innerWidth-200)+'px';ghost.style.top=(ly+26)+'px';
+          pick();
+        }
+        function up(){
+          var isTr=!!(over&&over.classList.contains('ntrash')),tid=over&&!isTr?over.getAttribute('data-nbtab'):null,was=go;
+          clean();
+          if(!was){return}
+          setTimeout(function(){more._drag=false},0);
+          if(isTr){
+            n.d=Date.now();queueSave();nbRedraw();
+            toast(T.moved+' · '+T.nbTrash,{label:T.undo,fn:function(){delete n.d;queueSave();nbRedraw()}});
+            return;
+          }
+          if(tid==null)return;
+          var to=tid==='all'?'':tid,from=n.tab||'',wasD=n.d;
+          if(to===from&&!wasD)return;
+          var nm=tid==='all'?T.nbAll:((S.nb.tabs.filter(function(t){return t.id===tid})[0]||{}).name||'');
+          n.tab=to;delete n.d;queueSave();nbRedraw();
+          toast(T.moved+' · '+nm,{label:T.undo,fn:function(){n.tab=from;if(wasD)n.d=wasD;queueSave();nbRedraw()}});
+        }
+        function cancel(){clean();setTimeout(function(){more._drag=false},0)}
+        more.addEventListener('pointermove',mv);more.addEventListener('pointerup',up);more.addEventListener('pointercancel',cancel);
+      });
+}
 function pageNb(){
   var tabs=S.nb.tabs;
-  if(nbTab!=='all'&&nbTab!=='def'&&!tabs.some(function(t){return t.id===nbTab}))nbTab='all';
+  if(nbTab!=='all'&&nbTab!=='def'&&nbTab!=='trash'&&!tabs.some(function(t){return t.id===nbTab}))nbTab='all';
   var p=h('div',{class:'nbp'});
   p.appendChild(h('div',{class:'nav'},[h('div',{class:'nslot l'}),h('div',{class:'ncenter'},[h('div',{class:'t'},[h('div',{class:'title',text:T.nb})])]),h('div',{class:'nslot r'})]));
   var strip=h('div',{class:'nbtabs'}),trow=h('div',{class:'nbrow'});
-  function chip(id,label){return h('button',{type:'button',class:'nbt','aria-pressed':String(nbTab===id),text:label,onclick:function(){nbRedraw(id)}})}
+  function chip(id,label){return h('button',{type:'button',class:'nbt','data-nbtab':id,'aria-pressed':String(nbTab===id),text:label,onclick:function(){nbRedraw(id)}})}
   strip.appendChild(chip('all',T.nbAll));
-  var nDef=stashed('pin').length;
-  var dc=h('button',{type:'button',class:'nbt defc','aria-pressed':String(nbTab==='def'),'aria-label':T.nbDef+(nDef?' · '+nDef:''),title:T.nbDef,html:LATER_I+(nDef?'<b>'+nDef+'</b>':''),onclick:function(){nbRedraw('def')}});strip.appendChild(dc);
-  tabs.forEach(function(t){strip.appendChild(chip(t.id,t.name))});
+  var dc=h('button',{type:'button',class:'nbt defc','aria-pressed':String(nbTab==='def'),'aria-label':T.nbDef,title:T.nbDef,html:LATER_I,onclick:function(){nbRedraw('def')}});strip.appendChild(dc);
+  tabs.forEach(function(t){var c=chip(t.id,t.name);c.classList.add('ut');tabDrag(c,t,strip);strip.appendChild(c)});
   var plus=h('button',{type:'button',class:'nbt plus','aria-label':T.nbNewTab,title:T.nbNewTab,text:'+',onclick:function(){
     if(tabs.length>=12){toast(T.nbTabMax);return}
     var inp=h('input',{class:'nbtin',type:'text',maxlength:'24',placeholder:T.nbTabPh,'aria-label':T.nbNewTab}),done=false;
@@ -1951,47 +2245,83 @@ function pageNb(){
     });
     body.appendChild(box);
   }else{
+    var trashed=S.nb.notes.filter(function(n){return n.d});
+    var tbtn=h('button',{type:'button',class:'ntrash','aria-pressed':String(nbTab==='trash'),'aria-label':T.nbTrash,title:T.nbTrash,html:TRASH_I,onclick:function(){
+      if(nbTab==='trash')nbRedraw(nbPrev||'all');else{nbPrev=nbTab;nbRedraw('trash')}
+    }});
+    var arow=h('div',{class:'naddrow'});
+    if(nbTab==='trash'){
+      var sure2=false,emp=h('button',{type:'button',class:'nbt dng',text:T.nbEmptyTrash,onclick:function(){
+        if(!trashed.length)return;
+        if(!sure2){sure2=true;emp.textContent=T.nbEmptySure;return}
+        S.nb.notes=S.nb.notes.filter(function(n){return !n.d});queueSave();nbRedraw();
+      }});
+      arow.appendChild(h('div',{class:'ntrhead'},[h('span',{class:'ntrt',text:T.nbTrash}),trashed.length?emp:null]));
+      arow.appendChild(tbtn);body.appendChild(arow);
+      if(!trashed.length)body.appendChild(h('p',{class:'pjempty',text:T.nbTrashEmpty}));
+      var tl=h('div',{class:'nlist'});
+      trashed.sort(function(a,b){return b.d-a.d}).forEach(function(n){
+        var row=h('div',{class:'nrow ntr'});
+        var tx=h('div',{class:'ntx'},[h('div',{class:'nclamp',text:n.text})]);
+        var tn=n.tab?tabs.filter(function(t){return t.id===n.tab})[0]:null,tparts=[];
+        if(tn)tparts.push(tn.name);
+        if(n.t)tparts.push(nbWhen(n.t));
+        if(tparts.length)tx.appendChild(h('div',{class:'ntag',text:tparts.join(' · ')}));
+        row.appendChild(tx);
+        var more=h('button',{class:'nmore',type:'button','aria-label':T.nbDrag,title:T.nbDrag,html:GRIP_I});
+        var perm=h('button',{class:'nmore',type:'button','aria-label':T.nbPerm,title:T.nbPerm,html:TRASH_I,onclick:function(){
+          var i=S.nb.notes.indexOf(n);if(i<0)return;S.nb.notes.splice(i,1);queueSave();nbRedraw();
+        }});
+        nbDrag(more,row,n,true,function(){});
+        row.appendChild(h('div',{class:'nside'},[more,perm]));
+        tl.appendChild(row);
+      });
+      body.appendChild(tl);
+    }else{
     var add=h('textarea',{class:'nadd',rows:'1',placeholder:T.nbAddPh,spellcheck:'false','aria-label':T.nbAddPh});
-    add.addEventListener('input',function(){nbFit(add)});
+    add.value=nbDraftGet();
+    add.addEventListener('input',function(){nbFit(add);nbDraftSet(add.value)});
     add.addEventListener('keydown',function(e){
       if(e.key==='Enter'&&!e.shiftKey){
         e.preventDefault();var v=add.value.trim();if(!v)return;
-        S.nb.notes.unshift({id:uid(),text:v.slice(0,4000),tab:nbTab==='all'?'':nbTab});queueSave();
-        nbRedraw();var a2=document.querySelector('.nadd');if(a2)a2.focus();
+        S.nb.notes.unshift({id:uid(),text:v.slice(0,4000),tab:nbTab==='all'?'':nbTab,t:Date.now()});queueSave();
+        nbDraftSet('');nbRedraw();var a2=document.querySelector('.nadd');if(a2)a2.focus();
       }
     });
-    body.appendChild(add);focusAdd=add;
-    var list=S.nb.notes.filter(function(n){return nbTab==='all'||n.tab===nbTab});
+    arow.appendChild(add);arow.appendChild(tbtn);body.appendChild(arow);focusAdd=add;
+    var list=S.nb.notes.filter(function(n){return !n.d&&(nbTab==='all'||n.tab===nbTab)});
     if(!list.length)body.appendChild(h('p',{class:'pjempty',text:T.nbEmpty}));
     var nl=h('div',{class:'nlist'});
     list.forEach(function(n){
       var row=h('div',{class:'nrow'});
       var ta=h('textarea',{rows:'1',spellcheck:'false','aria-label':T.nb});ta.value=n.text;
-      ta.addEventListener('input',function(){nbFit(ta)});
+      var tog=h('button',{type:'button',class:'ntog',hidden:true,onclick:function(){n.c=tog._col?0:1;queueSave();apply()}});
+      function apply(){
+        nbFit(ta);
+        var lh=parseFloat(getComputedStyle(ta).lineHeight)||27,lines=Math.round(ta.scrollHeight/lh),long=lines>4;
+        var col=long&&(n.c===1||(n.c===undefined&&lines>10))&&document.activeElement!==ta;
+        if(col)ta.style.height=(lh*4)+'px';
+        tog._col=col;tog.hidden=!long;tog.innerHTML=col?TRI_DN:TRI_UP;tog.setAttribute('aria-label',col?T.nbMoreTx:T.nbLess);tog.title=col?T.nbMoreTx:T.nbLess;
+        tog.setAttribute('aria-expanded',String(!col));
+      }
+      ta.addEventListener('input',apply);
+      ta.addEventListener('focus',apply);
       ta.addEventListener('keydown',function(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();ta.blur()}});
       ta.addEventListener('blur',function(){
+        apply();
         var v=ta.value.trim();
         if(!v){var i=S.nb.notes.indexOf(n);if(i>=0){S.nb.notes.splice(i,1);queueSave();toast(T.nbGone,{label:T.undo,fn:function(){S.nb.notes.splice(Math.min(i,S.nb.notes.length),0,n);queueSave();nbRedraw()}});nbRedraw()}return}
         if(v!==n.text){n.text=v.slice(0,4000);queueSave()}
       });
-      var tx=h('div',{class:'ntx'},[ta]);
-      if(nbTab==='all'&&n.tab){var tn=tabs.filter(function(t){return t.id===n.tab})[0];if(tn)tx.appendChild(h('div',{class:'ntag',text:tn.name}))}
+      var tx=h('div',{class:'ntx'},[ta]);row._apply=apply;
+      var parts=[];
+      if(nbTab==='all'&&n.tab){var tn=tabs.filter(function(t){return t.id===n.tab})[0];if(tn)parts.push(tn.name)}
+      if(n.t)parts.push(nbWhen(n.t));
+      if(parts.length)tx.appendChild(h('div',{class:'ntag',text:parts.join(' · ')}));
       row.appendChild(tx);
-      var menu=null;
-      var more=h('button',{class:'nmore',type:'button','aria-label':T.nbMore,title:T.nbMore,html:DOTS,onclick:function(){
-        if(menu){menu.remove();menu=null;return}
-        menu=h('div',{class:'nmenu'});
-        menu.appendChild(h('span',{class:'nml',text:T.nbMove}));
-        function mv(id,label){var c=h('button',{type:'button',class:'nbt','aria-pressed':String(n.tab===id),text:label,onclick:function(){n.tab=id;queueSave();nbRedraw()}});menu.appendChild(c)}
-        if(tabs.length)mv('',T.nbNone);
-        tabs.forEach(function(t){mv(t.id,t.name)});
-        menu.appendChild(h('button',{type:'button',class:'nbt del',text:T.nbDel,onclick:function(){
-          var i=S.nb.notes.indexOf(n);if(i<0)return;S.nb.notes.splice(i,1);queueSave();
-          toast(T.nbGone,{label:T.undo,fn:function(){S.nb.notes.splice(Math.min(i,S.nb.notes.length),0,n);queueSave();nbRedraw()}});nbRedraw();
-        }}));
-        row.appendChild(menu);
-      }});
-      row.appendChild(more);
+      var more=h('button',{class:'nmore',type:'button','aria-label':T.nbDrag,title:T.nbDrag,html:GRIP_I});
+      nbDrag(more,row,n,false,function(){});
+      row.appendChild(h('div',{class:'nside'},[more,tog]));
       nl.appendChild(row);
     });
     body.appendChild(nl);
@@ -2012,11 +2342,14 @@ function pageNb(){
       }});
       act.appendChild(ren);act.appendChild(del);body.appendChild(act);
     }
+    }
   }
-  setTimeout(function(){[].forEach.call(document.querySelectorAll('.nbp .nrow textarea'),nbFit);if(focusAdd&&document.body.contains(focusAdd)&&!('ontouchstart' in window))focusAdd.focus()},0);
+  setTimeout(function(){if(focusAdd&&document.body.contains(focusAdd))nbFit(focusAdd);[].forEach.call(document.querySelectorAll('.nbp .nrow'),function(r){if(r._apply)r._apply()});if(focusAdd&&document.body.contains(focusAdd)&&!('ontouchstart' in window))focusAdd.focus()},0);
   return p;
 }
-var nbFromKey='';
+var nbFromKey='',nbPrev='all';
+function nbDraftGet(){try{return localStorage.getItem('defter.nbdraft')||''}catch(e){return ''}}
+function nbDraftSet(v){try{if(v)localStorage.setItem('defter.nbdraft',v);else localStorage.removeItem('defter.nbdraft')}catch(e){}}
 function nbRedraw(tab){if(tab)nbTab=tab;if(view==='nb')render()}
 function openNotebook(tab){
   if(view!=='nb')nbFromKey=view==='day'?dkey(anchor):'';
@@ -2030,7 +2363,7 @@ var PJ_I='<svg viewBox="0 0 18 18" aria-hidden="true" fill="var(--blue-wash)" st
 var PJ_W='<svg viewBox="0 0 18 18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2.6 5.4a1.6 1.6 0 0 1 1.6-1.6h3l1.6 1.8h5a1.6 1.6 0 0 1 1.6 1.6v6a1.6 1.6 0 0 1-1.6 1.6H4.2a1.6 1.6 0 0 1-1.6-1.6Z"/></svg>';
 var EYE_ON='<svg viewBox="0 0 18 18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M1.8 9S4.5 4.2 9 4.2 16.2 9 16.2 9 13.5 13.8 9 13.8 1.8 9 1.8 9z"/><circle cx="9" cy="9" r="2.2"/></svg>';
 var EYE_OFF='<svg viewBox="0 0 18 18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M1.8 9S4.5 4.2 9 4.2 16.2 9 16.2 9 13.5 13.8 9 13.8 1.8 9 1.8 9z"/><circle cx="9" cy="9" r="2.2"/><path d="M3 15L15 3"/></svg>';
-var ARCH_I='<svg viewBox="0 0 18 18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="2.4" y="3.4" width="13.2" height="3.4" rx="1"/><path d="M3.5 6.8v6.7a1 1 0 0 0 1 1h9a1 1 0 0 0 1-1V6.8M7.2 10h3.6"/></svg>';
+var ARCH_I=LATER_I;
 var TRASH_I='<svg viewBox="0 0 18 18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3.4 5h11.2M7 5V3.4h4V5M4.8 5l.7 9.6h7l.7-9.6M7.6 7.8v4.4M10.4 7.8v4.4"/></svg>';
 var CAL_I='<svg viewBox="0 0 18 18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><rect x="2.8" y="3.8" width="12.4" height="11.4" rx="2.6"/><path d="M2.8 7.6h12.4M6 2.6v2.4M12 2.6v2.4"/></svg>';
 function findProject(id){if(!id)return null;for(var i=0;i<S.projects.length;i++)if(S.projects[i].id===id)return S.projects[i];return null}
@@ -2407,7 +2740,7 @@ function leaveSheet(){var f=onSheetClose;onSheetClose=null;if(f)f()}
 function sheetTabs(active,ctx){
   return h('div',{class:'ptabs'},[
     h('button',{class:'ptab k-'+(ctx.kind||'n')+(active==='cur'?' on':''),type:'button',text:ctx.label,onclick:function(){if(active!=='cur'){leaveSheet();ctx.open()}}}),
-    S.refined?null:h('button',{class:'ptab k-p'+(active==='list'?' on':''),type:'button',text:T.projects,onclick:function(){if(active!=='list'){leaveSheet();openProjectList(ctx)}}}),
+    null&&h('button',{class:'ptab k-p'+(active==='list'?' on':''),type:'button',text:T.projects,onclick:function(){if(active!=='list'){leaveSheet();openProjectList(ctx)}}}),
     h('span',{class:'sp'}),xBtn()
   ]);
 }
@@ -2497,8 +2830,8 @@ function openSheet(it){
     queueSave();render();openSheet(it);
   }
   if(rec){
-    var asNote=rec.n||S.refined;
-    ptask.appendChild(h('button',{class:'npb'+(asNote?' on':' p on'),type:'button','aria-label':asNote?T.pjMake:T.pjOff,title:asNote?T.pjMake:T.pjOff,html:asNote?NOTE:PJ_W,onclick:function(){if(!S.refined)setKind(!rec.n)}}));
+    var asNote=true;
+    ptask.appendChild(h('button',{class:'npb'+(asNote?' on':' p on'),type:'button','aria-label':asNote?T.pjMake:T.pjOff,title:asNote?T.pjMake:T.pjOff,html:asNote?NOTE:PJ_W,onclick:function(){}}));
     if(!asNote)p.classList.add('isproj');
   }else{
     var pcb=h('button',{class:'cb',type:'button','aria-label':T.check,'aria-pressed':String(!!it.done),html:BOX,onclick:function(){
@@ -2508,9 +2841,9 @@ function openSheet(it){
     ptask.appendChild(pcb);
   }
   ptask.appendChild(ttl);
-  var ctx={label:rec&&!rec.n&&!S.refined?T.project:T.note,kind:rec&&!rec.n&&!S.refined?'p':'n',open:function(){openSheet(it)}};
+  var ctx={label:T.note,kind:'n',open:function(){openSheet(it)}};
   var hm=h('div',{class:'hmeta'},[h('span',{class:'hd',text:itemDate(it)})]);
-  var upc=S.refined?null:parentOf(it);
+  var upc=null;
   var upEl=upc?h('button',{class:'upchip',type:'button','aria-label':T.subOf+': '+(upc.title.trim()||T.pjUntitled),onclick:function(){leaveSheet();openProject(upc.id)}},[h('span',{class:'ui',html:PJ_I}),h('span',{text:T.subOf+' \u00b7 '+(upc.title.trim()||T.pjUntitled)})]):null;
   p.appendChild(h('div',{class:'stick'},[sheetTabs('cur',ctx),h('div',{class:'phead'},rec?[ptask,hm]:[ptask])].concat(upEl?[upEl]:[])));
   var body=null;
@@ -2542,7 +2875,7 @@ function openSheet(it){
     var lkb=linkBar();lkb.set(it.text,ta.value);
     ta.addEventListener('input',function(){lkb.set(it.text,ta.value)});
     p.appendChild(ta);
-    p.appendChild(h('div',{class:'nbar under'},S.refined?[clr]:[nc,clr]));
+    p.appendChild(h('div',{class:'nbar under'},[clr]));
     p.appendChild(lkb);
   }
   /* compact actions */
@@ -2564,7 +2897,7 @@ function openSheet(it){
     var r=removeItem(it.id);closeSheet();render();
     if(r)toast(T.deleted,{label:T.undo,fn:function(){S.items.splice(Math.min(r.index,S.items.length),0,r.item);if(r.purged&&r.purged.length)S.items=S.items.concat(r.purged);if(r.rec){S.projects.splice(Math.min(r.rec.index,S.projects.length),0,r.rec.pj);S.items=S.items.concat(r.rec.items)}queueSave();render()}})}});
   var archBtn=soft?h('button',{class:'dtxt arch',type:'button','aria-label':T.arch,title:T.arch,html:ARCH_I,onclick:function(){
-    stash(it,'arch');closeSheet();render();toast(T.archived,{label:T.undo,fn:function(){unstash(it);render()}});
+    stash(it,'pin');closeSheet();render();toast(T.archived,{label:T.undo,fn:function(){unstash(it);render()}});
   }}):null;
   var rB=h('div',{class:'mvrow cmp2'},[h('label',{class:'dpill',for:'mvDate',title:T.moveTo},[di])]);
   var rroot=(it.src&&findItem(it.src))||it;
@@ -2576,7 +2909,7 @@ function openSheet(it){
     sel.addEventListener('change',function(){setRep(it,sel.value)});
     rB.appendChild(h('div',{class:'selbox'},[sel]));
   }
-  if(!S.refined)rA.appendChild(attachControl(it));
+  
   if(archBtn)rB.appendChild(archBtn);rB.appendChild(delBtn);
   p.appendChild(rA);p.appendChild(rB);
   showSheet(p,true);
@@ -2662,7 +2995,7 @@ function sameProj(rp){
 function sameNb(rn){return JSON.stringify(cleanNb(S.nb))===JSON.stringify(cleanNb(rn))}
 function nbCount(n){return n?(n.notes.length+n.tabs.length):0}
 function samePins(rp){
-  function n(l){return JSON.stringify((l||[]).map(function(i){return [i.id,i.text,i.ti||'']}).sort())}
+  function n(l){return JSON.stringify((l||[]).map(function(i){return [i.id,i.text,i.ti||'',i.d||0]}).sort())}
   return n(S.pins)===n(rp);
 }
 function editing(){var a=document.activeElement;return !!(a&&(a.tagName==='TEXTAREA'||a.tagName==='INPUT'))}
@@ -2815,6 +3148,8 @@ function openHelp(){
   ]));
   p.appendChild(h('div',{class:'htitle',text:T.howTitle}));
   p.appendChild(h('p',{class:'hintro',text:T.helpIntro}));
+  var htab=0;
+  var hseg=h('div',{class:'seg hseg',role:'tablist'});
   var G=function(d){return '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">'+d+'</svg>'};
   var HI=[
     BOX,CAL_I,
@@ -2824,21 +3159,39 @@ function openHelp(){
     G('<path d="M3 17l5-5 4 3 8-9"/><path d="M15 6h5v5"/>'),
     G('<path d="M12 4v16M8 8l4-4 4 4M8 16l4 4 4-4"/>'),
     NOTE+PJ_W,
-    G('<path d="M5 4.5h14v9.5l-5.5 5.5H5z"/><path d="M13.5 19.5V14H19"/>'),
     G('<path d="M7 18a4.5 4.5 0 0 1-.6-8.96A6 6 0 0 1 17.9 8.6 4.8 4.8 0 0 1 17 18z"/>')
   ];
   var cols=h('div',{class:'hcols'});
-  T.help.forEach(function(sec,i){
-    var txt=sec[1];
-    if(S.refined){
-      if(i===7)txt=S.lang==='tr'?'Satırın sağındaki ikon not sayfasını açar: madde listesi ve serbest not alanı. Maddeleri tutup sürükleyerek sıralar, takvim ikonuyla tarih verirsin; tarihli madde o günün sayfasına da düşer.':'The icon at the right of a line opens its note page: a list of items plus a free note field. Hold an item to drag it into order, and give it a date with the calendar icon; a dated item also shows up on that day.';
-      if(i===6)txt=txt.replace(', tekrar kur ya da bir projeye bağla',' ya da tekrar kur').replace(', set a repeat or attach it to a project',' or set a repeat').replace(' or attach it to a project','');
-    }
-    cols.appendChild(h('div',{class:'hx'},[
-      h('h3',{class:'hsec'},[h('span',{class:'hic',html:HI[i]||''}),h('span',{text:sec[0]})]),
-      h('p',{class:'hp',html:txt})
-    ]));
+  var HI_PIN=[
+    G('<path d="M5 4.5h14v9.5l-5.5 5.5H5z"/><path d="M13.5 19.5V14H19"/>'),
+    G('<path d="M5 5h14M5 9h9"/><rect x="4" y="3" width="16" height="18" rx="2"/>'),
+    G('<circle cx="7" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="17" cy="12" r="1.6"/>'),
+    ARW_I+DAY_I,
+    TRASH_I
+  ];
+  var HI_NB=[NB_I,G('<path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M13.5 6.5l4 4"/>'),
+    G('<path d="M3 8a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>'),
+    G('<path d="M6 9l6 6 6-6z"/>'),
+    GRIP_I,TRASH_I,LATER_I];
+  function drawHelp(){
+    cols.innerHTML='';
+    Array.prototype.forEach.call(hseg.children,function(b,k){b.setAttribute('aria-pressed',String(k===htab));b.setAttribute('aria-selected',String(k===htab))});
+    var secs=htab===0?T.help:htab===1?T.helpPin:T.helpNb;
+    secs.forEach(function(sec,i){
+      var txt=sec[1],ic=htab===0?HI[i]:htab===1?HI_PIN[i]:HI_NB[i];
+      if(htab===0&&i===6)txt=txt.replace(', tekrar kur ya da bir projeye bağla',' ya da tekrar kur').replace(', set a repeat or attach it to a project',' or set a repeat');
+      if(htab===0&&i===7)txt=S.lang==='tr'?'Satırın sağındaki ikon not sayfasını açar: madde listesi ve serbest not alanı. Maddeleri tutup sürükleyerek sıralar, takvim ikonuyla tarih verirsin; tarihli madde o günün sayfasına da düşer.':'The icon at the right of a line opens its note page: a list of items plus a free note field. Hold an item to drag it into order, and give it a date with the calendar icon; a dated item also shows up on that day.';
+      cols.appendChild(h('div',{class:'hx'},[
+        h('h3',{class:'hsec'},[h('span',{class:'hic',html:ic||''}),h('span',{text:sec[0]})]),
+        h('p',{class:'hp',html:txt})
+      ]));
+    });
+  }
+  T.helpTabs.forEach(function(nm,k){
+    hseg.appendChild(h('button',{type:'button',role:'tab',text:nm,onclick:function(){htab=k;drawHelp()}}));
   });
+  p.appendChild(hseg);
+  drawHelp();
   p.classList.add('helpp');p.appendChild(cols);
   showSheet(p,true);
 }
@@ -2849,10 +3202,10 @@ function openArchive(tab){
     xBtn()
   ]));
   p.appendChild(h('div',{class:'htitle',text:T.archive}));
-  var A=stashed('arch'),D=stashed('trash');
+  var A=stashed('pin'),D=stashed('trash');
   p.appendChild(h('div',{class:'seg archseg'},[
-    h('button',{type:'button',text:T.archive+' · '+A.length,'aria-pressed':String(tab==='arch'),onclick:function(){openArchive('arch')}}),
-    h('button',{type:'button',text:T.trashT+' · '+D.length,'aria-pressed':String(tab==='trash'),onclick:function(){openArchive('trash')}})
+    h('button',{type:'button',text:T.archive,'aria-pressed':String(tab==='arch'),onclick:function(){openArchive('arch')}}),
+    h('button',{type:'button',text:T.trashT,'aria-pressed':String(tab==='trash'),onclick:function(){openArchive('trash')}})
   ]));
   p.appendChild(h('p',{class:'snote',text:tab==='arch'?T.archNote:T.trashNote}));
   var list=tab==='arch'?A:D;
@@ -2904,6 +3257,9 @@ function openSettings(){
   icoBox.appendChild(h('button',{class:'fsbtn',type:'button','aria-label':dark?T.themeLight:T.themeDark,title:dark?T.themeLight:T.themeDark,html:dark?SUN_I:MOON_I,onclick:function(){
     S.theme=dark?'light':'dark';applyTheme();persist();openSettings();
   }}));
+  icoBox.insertBefore(h('button',{class:'fsbtn',type:'button','aria-label':T.hideDone,title:T.hideDone,'aria-pressed':String(!!S.hideDone),html:S.hideDone?EYE_OFF:EYE_ON,onclick:function(){
+    S.hideDone=!S.hideDone;revealDone=false;justDone={};persist();queueSave();render();openSettings();
+  }}),icoBox.firstChild);
   var showFs=!standaloneApp&&fsOK;
   if(showFs){
     var inFs=fsNow();
@@ -2929,13 +3285,9 @@ function openSettings(){
     h('button',{type:'button',text:'A+','aria-label':'+',disabled:zi>=ZOOMS.length-1,onclick:function(){setZoom(ZOOMS[zi+1])}})
   ])]);
   p.appendChild(h('div',{class:'srow2'},[fontCell,sizeCell]));
-  var rfB=h('button',{class:'hopen rf',type:'button',role:'switch','aria-checked':String(!!S.refined),onclick:function(){S.refined=!S.refined;document.documentElement.classList.toggle('refined',!!S.refined);persist();render();openSettings()}},[h('span',{class:'rft'},[h('b',{text:T.refine}),h('small',{text:T.refineNote})]),h('i',{class:'sw','aria-hidden':'true'})]);
-  var nA=stashed('arch').length,nT=stashed('trash').length;
-  var archB=h('button',{class:'hopen',type:'button',onclick:function(){openArchive('arch')}},[h('span',{text:T.archive+(nA?' \u00b7 '+nA:'')}),h('span',{html:ARCH_I})]);
-  var trashB=h('button',{class:'hopen',type:'button',onclick:function(){openArchive('trash')}},[h('span',{text:T.trashS+(nT?' \u00b7 '+nT:'')}),h('span',{html:TRASH_I})]);
-  var hideB=h('button',{class:'hopen tgl',type:'button',role:'switch','aria-checked':String(!!S.hideDone),onclick:function(){S.hideDone=!S.hideDone;revealDone=false;justDone={};persist();queueSave();render();openSettings()}},[h('span',{html:S.hideDone?EYE_OFF:EYE_ON})]);
-  hideB.classList.add('icon');hideB.setAttribute('aria-label',T.hideDone);hideB.title=T.hideDone;
-  p.appendChild(h('div',{class:'rfrow'},[rfB,hideB]));
+  
+  var archB=h('button',{class:'hopen',type:'button',onclick:function(){openArchive('arch')}},[h('span',{text:T.archive}),h('span',{html:ARCH_I})]);
+  var trashB=h('button',{class:'hopen',type:'button',onclick:function(){openArchive('trash')}},[h('span',{text:T.trashS}),h('span',{html:TRASH_I})]);
   p.appendChild(h('div',{class:'srow2 btnrow'},[archB,trashB]));
   var bk=[];
   bk.push(h('p',{class:'snote',text:T.backupNote}));
