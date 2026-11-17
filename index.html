@@ -3274,8 +3274,8 @@ function dateChip(key,onPick,onClear,extraCls,label,onDel){
       e.stopPropagation();
       if(window.matchMedia&&matchMedia('(max-width:520px)').matches){
         var ex=[{label:T.openDay,fn:function(){goToDay(key)}}];
-        if(onClear)ex.push({label:T.pjClr,dng:true,fn:onClear});
         if(onDel)ex.push({label:T.delTodo,dng:true,fn:onDel});
+        if(onClear)ex.push({label:T.pjClr,dng:true,fn:onClear});
         popCal(gob,key,function(v){onPick(v,{value:''})},'left',ex);
       }else goToDay(key);
     }},[h('span',{class:'dfull',text:shortDate(dd)}),h('span',{class:'dshort',text:S.lang==='tr'?dd.getDate()+' '+T.mo[dd.getMonth()].slice(0,3):T.mo[dd.getMonth()].slice(0,3)+' '+dd.getDate()})]);
