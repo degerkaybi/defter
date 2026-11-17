@@ -828,8 +828,8 @@ select option:disabled{color:var(--ink-faint)}
   .app{min-height:calc(100vh - 156px);display:flex;flex-direction:column}
   #page{flex:1;display:flex;flex-direction:column}
   #page>div{flex:1;display:flex;flex-direction:column}
-  #page>div>.lines.margin:last-child,#pbody>.lines.margin:last-child{flex:1}
-  #pbody{flex:1;display:flex;flex-direction:column}
+  #page>div>#pbody:last-child{flex:1;display:flex;flex-direction:column}
+  #pbody>.lines.margin{flex:1}
   .title{font-size:calc(36px*var(--hs))}
   .tabs{padding-bottom:44px}
   .backwrap{bottom:112px}
@@ -1989,8 +1989,12 @@ function render(){
   hold.appendChild(pinB);hold.appendChild(gearB);
   page.innerHTML='';
   page.appendChild({day:pageDay,week:pageWeek,month:pageMonth,year:pageYear,decade:pageDecade,nb:pageNb}[view]());
-  var proot=page.firstElementChild,pnav=proot&&proot.querySelector(':scope > .nav');
-  if(pnav&&view!=='nb'){var pb=h('div',{id:'pbody'});while(pnav.nextSibling)pb.appendChild(pnav.nextSibling);proot.appendChild(pb)}
+  /* only the main block (list / week / calendar / year card) slides on swipe; headings and quiet sections stay put */
+  var proot=page.firstElementChild,PBS={day:':scope > .lines',week:':scope > .wweek',month:':scope > .mgrid, :scope > .mcar',year:':scope > .yframe',decade:':scope > .yframe'};
+  if(proot&&PBS[view]){
+    var pbn=proot.querySelectorAll(PBS[view]);
+    if(pbn.length){var pb=h('div',{id:'pbody'});proot.insertBefore(pb,pbn[0]);for(var pi=0;pi<pbn.length;pi++)pb.appendChild(pbn[pi])}
+  }
   var sl=page.querySelector('.nslot.l'),sr=page.querySelector('.nslot.r');
   if(sl){sl.appendChild(pinB)}if(sr){sr.appendChild(gearB)}
   var bb=document.getElementById('backBtn');bb.hidden=view==='nb'||isCur();bb.textContent=T.back;
