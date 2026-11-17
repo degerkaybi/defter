@@ -143,6 +143,14 @@ h1{margin:0;font-weight:inherit}
 .pdots button i{display:block;width:8px;height:8px;border-radius:50%;background:#fff;opacity:.55}
 .pdots button.on i{background:var(--pin);opacity:1;transform:scale(1.4)}
 .pin textarea{display:block;flex:1 1 auto;width:100%;min-height:0;background:none;border:0;outline:0;resize:none;overflow-y:auto;padding:0;font:400 calc(24px*var(--hs))/1.28 var(--hand);color:var(--pin-ink)}
+.pin .pview{display:block;flex:1 1 auto;min-height:0;overflow-y:auto;font:400 calc(24px*var(--hs))/1.28 var(--hand);color:var(--pin-ink);white-space:pre-wrap;overflow-wrap:anywhere;cursor:text}
+.pin .pview .ilk{color:var(--blue);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
+.pin.pvon .lnks{display:none}
+.pin .lkform{padding:6px 0 2px;flex:none}
+.pin .lkin{flex:1 1 auto;min-width:0;font:15px var(--sans);color:var(--pin-ink);background:rgba(255,255,255,.45);border:0;border-radius:7px;padding:8px}
+.pin .lkok,.pin .lkno{font:600 13px/1 var(--sans);color:var(--pin-ink);padding:8px 6px;opacity:.8}
+.pinwrap.pdk .pin .lkin{background:rgba(235,229,205,.12)}
+.pinwrap.pdk .pin .pview .ilk{color:var(--pin-ink)}
 .pin textarea::placeholder{color:var(--pin-ink);opacity:.45}
 .pin .pact{display:flex;justify-content:space-between;align-items:center;margin-top:2px}
 .pin .pact .pi{display:inline-flex;align-items:center;gap:3px;padding:8px 7px;opacity:.78}
@@ -1364,7 +1372,9 @@ function ensureReps(){
 }
 
 /* ---------- inline links: [label](url) and [label](tbl:id) ---------- */
-var TOK_RE=/\[([^\]\n]+)\]\(([^)\s]+)\)/g;
+var TOK_RE=/\[([^\]\n]+)\]\((\[[^\]\n]*\]\([^)\s]*\)|[^)\s]+)\)/g;
+/* a link pasted from rendered markdown arrives nested: [word]([site](https://site)) */
+function tokUrl(tg){var m=/^\[[^\]]*\]\(([^)\s]*)\)$/.exec(tg);return m?m[1]:tg}
 function dispText(t){return String(t==null?'':t).replace(TOK_RE,'$1')}
 function tblById(id){return S.nb.notes.filter(function(x){return x.id===id&&x.tb})[0]||null}
 function renderInline(el,text){
@@ -1372,7 +1382,7 @@ function renderInline(el,text){
   var str=String(text||''),last=0,m;TOK_RE.lastIndex=0;
   while((m=TOK_RE.exec(str))){
     if(m.index>last)el.appendChild(document.createTextNode(str.slice(last,m.index)));
-    var tg=m[2],a;
+    var tg=tokUrl(m[2]),a;
     if(tg.indexOf('tbl:')===0){
       var tn=tblById(tg.slice(4));
       a=h('a',{class:'ilk tb',href:'#','data-tbl':tg.slice(4),html:TBL_I});
@@ -1403,7 +1413,7 @@ function renderRich(el,text){
   var str=String(text||''),last=0,m;TOK_RE.lastIndex=0;
   while((m=TOK_RE.exec(str))){
     if(m.index>last)linkifyInto(el,str.slice(last,m.index));
-    var tg=m[2],a;
+    var tg=tokUrl(m[2]),a;
     if(tg.indexOf('tbl:')===0){
       var tn=tblById(tg.slice(4));
       a=h('a',{class:'ilk tb',href:'#','data-tbl':tg.slice(4),html:TBL_I});
@@ -1463,6 +1473,7 @@ var URL_RE=/(https?:\/\/[^\s<>"']+|www\.[^\s<>"']+|[a-z0-9][a-z0-9-]*(?:\.[a-z0-
 function urlsIn(text){
   var out=[],seen={},m;
   text=String(text||'').replace(TOK_RE,function(all,label,tg){
+    tg=tokUrl(tg);
     if(tg.indexOf('tbl:')!==0){
       var hr=/^https?:\/\//i.test(tg)?tg:'https://'+tg;
       if(!seen[hr]){seen[hr]=1;out.push({href:hr,label:label})}
@@ -2295,7 +2306,42 @@ function openPins(){
     ta.value=c.text;
     var el;
     var lkp=linkBar();lkp.set(c.text);
+    var pv=h('div',{class:'pview'});
+    function pvSync(){
+      var has=urlsIn(c.text).length>0;
+      if(has&&document.activeElement!==ta){renderRich(pv,c.text);pv.style.display='';ta.style.display='none'}
+      else{pv.style.display='none';ta.style.display=''}
+      if(el)el.classList.toggle('pvon',pv.style.display==='');
+    }
+    pv.addEventListener('click',function(e){
+      if(e.target.closest&&e.target.closest('a'))return;
+      var i=cards.indexOf(c);if(i>=0&&i!==act)return;
+      pv.style.display='none';ta.style.display='';ta.focus();try{ta.setSelectionRange(ta.value.length,ta.value.length)}catch(x){}
+    });
+    ta.addEventListener('blur',function(){setTimeout(pvSync,0)});
     var bul=noteBullets(ta,function(){c.text=ta.value;save();lkp.set(c.text)});
+    var selS=0,selE=0;
+    function keepSel(){selS=ta.selectionStart||0;selE=ta.selectionEnd||0}
+    ['select','keyup','mouseup','touchend','blur'].forEach(function(ev){ta.addEventListener(ev,keepSel)});
+    var lkForm=h('div',{class:'lkform'});lkForm.hidden=true;
+    var lkIn=h('input',{type:'url',class:'lkin',placeholder:'https://\u2026',inputmode:'url','aria-label':T.lkUrl,autocapitalize:'off',autocomplete:'off',spellcheck:'false'});
+    function lkApply(){
+      var u=lkIn.value.trim();if(!u)return;
+      if(!/^https?:\/\//i.test(u))u='https://'+u;
+      u=u.replace(/\s/g,'').replace(/\(/g,'%28').replace(/\)/g,'%29');
+      var v=ta.value,lab=v.slice(selS,selE).replace(/[\[\]\r\n]/g,'').trim();if(!lab)return;
+      var nv=v.slice(0,selS)+'['+lab+']('+u+')'+v.slice(selE);
+      c.text=nv;ta.value=nv;save();lkp.set(c.text);lkForm.hidden=true;pvSync();toast(T.lkDone);
+    }
+    lkIn.addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();lkApply()}else if(e.key==='Escape'){e.stopPropagation();lkForm.hidden=true}});
+    lkForm.appendChild(lkIn);
+    lkForm.appendChild(h('button',{type:'button',class:'lkok',text:T.lkOk,onclick:lkApply}));
+    lkForm.appendChild(h('button',{type:'button',class:'lkno',text:T.lkCancel,onclick:function(){lkForm.hidden=true}}));
+    var lkBtn=h('button',{type:'button',class:'pi','aria-label':T.lkSet,title:T.lkSet,html:LINK_I,onmousedown:function(e){e.preventDefault()},onclick:function(){
+      if(document.activeElement===ta)keepSel();
+      if(selE-selS<1){toast(T.lkPick);return}
+      lkForm.hidden=false;lkIn.value='';lkIn.focus();
+    }});
     var del=h('button',{type:'button',class:'pi','aria-label':T.pinDel,title:T.pinDel,html:TRASH_I,onclick:function(){
       var i=cards.indexOf(c);if(i<0)return;
       cards.splice(i,1);var had=has(c),raw=null;
@@ -2327,9 +2373,10 @@ function openPins(){
     ti.value=c.ti||'';
     ti.addEventListener('input',function(){c.ti=ti.value;save()});
     ti.addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();ta.focus()}});
-    el=h('div',{class:'pin'},[ti,ta,lkp,h('div',{class:'pact'},[
+    el=h('div',{class:'pin'},[ti,ta,pv,lkForm,lkp,h('div',{class:'pact'},[
       h('button',{type:'button',class:'pi',onmousedown:function(e){e.preventDefault()},onclick:bul.chk,'aria-label':T.check2,html:'<span>☐</span>'}),
-      mvBtn,nbBtn,del])]);
+      lkBtn,mvBtn,nbBtn,del])]);
+    pvSync();
     el.dataset.pid=c.id;
     el.addEventListener('click',function(){
       var i=cards.indexOf(c);
