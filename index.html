@@ -94,10 +94,9 @@ h1{margin:0;font-weight:inherit}
 .gear{pointer-events:auto;position:relative;flex:none;width:36px;height:40px;border-radius:12px;display:grid;place-items:center;color:var(--ink-soft);background:none;border:0;box-shadow:none}
 
 .gear[hidden]{display:none}
-.syncbtn.busy svg{animation:spin 1s linear infinite}
-.eyebtn.dim{opacity:.4}
 @keyframes spin{to{transform:rotate(360deg)}}
-.syncbtn.pend::after{content:'';position:absolute;top:8px;right:6px;width:7px;height:7px;border-radius:50%;background:var(--blue)}
+.dhead.pend::after{content:'';display:inline-block;width:7px;height:7px;margin-left:8px;border-radius:50%;background:var(--blue);vertical-align:middle}
+.gear.pend::after{content:'';position:absolute;top:6px;right:4px;width:7px;height:7px;border-radius:50%;background:var(--blue)}
 
 .pinbtn svg .pn{fill:var(--pin);stroke:var(--ink-soft)}
 .pinwrap{width:min(100%,380px);max-height:min(88vh,calc(var(--vvh,100vh) - 20px));display:flex;flex-direction:column;gap:10px;animation:rise .22s ease}
@@ -223,8 +222,6 @@ body.nbdragging .nbtabs .nbt[data-nbtab]{box-shadow:inset 0 0 0 1.5px var(--blue
 .nbact{display:flex;align-items:center;gap:18px;margin:18px 2px 6px;font:500 13px/1 var(--sans);color:var(--ink-soft)}
 .nbact .dng{color:var(--danger)}
 
-.eyebtn{width:30px}
-.eyebtn svg{width:18px;height:18px}
 .nslot{width:36px;height:40px;margin-top:calc((36px*var(--hs) - 40px)/2)}
 .arrow{flex:none;width:30px;height:40px;margin-top:calc((36px*var(--hs) - 40px)/2);border-radius:12px;display:grid;place-items:center;color:var(--ink-soft);background:none}
 .nav .t{text-align:center;min-width:0}
@@ -746,14 +743,14 @@ body.arrows-on .arrow.over{background:var(--blue-soft);box-shadow:0 0 0 2px var(
 .arow .abtn.ic svg{width:18px;height:18px;display:block}
 .snote.acredit{margin:16px 4px 4px;padding-top:14px;border-top:1px solid var(--rule);color:var(--ink-soft);font-weight:400;font-size:12px;line-height:1.5}
 .acredit a{color:var(--blue);text-decoration:underline;text-underline-offset:2px}
-@media (prefers-reduced-motion:reduce){.syncbtn.busy svg{animation-duration:2.4s}.cb .tick,.cb rect{transition:none}.panel{animation:none}}
+@media (prefers-reduced-motion:reduce){.cb .tick,.cb rect{transition:none}.panel{animation:none}}
 </style>
 
 <div class="app">
-  <div id="topHold" hidden><button class="gear pinbtn" id="pinBtn" type="button" aria-label="Zamansız Notlar"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path class="pn" d="M5 4.5h14v9.5l-5.5 5.5H5z"/><path d="M13.5 19.5v-3.5a2 2 0 0 1 2-2H19" stroke="var(--ink-soft)"/><path d="M8.5 9h7M8.5 12.2h4" stroke="var(--ink-soft)" opacity=".7"/></svg></button><button class="gear eyebtn" id="eyeBtn" type="button" hidden></button><button class="gear" id="gear" type="button" aria-label="Ayarlar"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M4 7h10M18 7h2M4 17h2M10 17h10"/><circle cx="16" cy="7" r="2"/><circle cx="8" cy="17" r="2"/></svg></button></div>
+  <div id="topHold" hidden><button class="gear pinbtn" id="pinBtn" type="button" aria-label="Zamansız Notlar"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path class="pn" d="M5 4.5h14v9.5l-5.5 5.5H5z"/><path d="M13.5 19.5v-3.5a2 2 0 0 1 2-2H19" stroke="var(--ink-soft)"/><path d="M8.5 9h7M8.5 12.2h4" stroke="var(--ink-soft)" opacity=".7"/></svg></button><button class="gear" id="gear" type="button" aria-label="Ayarlar"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M4 7h10M18 7h2M4 17h2M10 17h10"/><circle cx="16" cy="7" r="2"/><circle cx="8" cy="17" r="2"/></svg></button></div>
   <main id="page"></main>
 </div>
-<nav class="tabs" aria-label="Yarın Defteri"><div class="bar"><div class="tabs-in" id="tabs"></div><button class="gear syncbtn" id="syncBtn" type="button" hidden><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11a8 8 0 0 0-14.3-4.2L4 9M4 4v5h5M4 13a8 8 0 0 0 14.3 4.2L20 15M20 20v-5h-5"/></svg></button>
+<nav class="tabs" aria-label="Yarın Defteri"><div class="bar"><div class="tabs-in" id="tabs"></div>
   
   </div></nav>
 <div class="backwrap"><button class="back" id="backBtn" type="button" hidden></button></div>
@@ -822,7 +819,7 @@ var TX={
       ['Yıl ve 10 yıl','Uzun ve çok uzun vadeli planlar içindir.'],
       ['Taşımak ve ertelemek','Kutucuğa basılı tut (bilgisayarda sürükle) ve başka bir güne, haftaya, aya ya da yıla bırak. Alttaki sekmelere bırakırsan görev o sayfaya (gün, hafta, ay, yıl, 10 yıl) gider; gün sayfasında üstteki <b>‹ ›</b> oklarına bırakırsan önceki ya da sonraki güne gider. Ya da satırı açıp <b>üç nokta</b> menüsünden <b>Yarına</b>, <b>Haftaya</b>, <b>Aya</b> de, tarih seç, tekrar kur ya da bir projeye bağla.'],
       ['Not ve proje','Satırın sağındaki ikon not sayfasını açar. Not ile proje aynı sayfadır: madde listesi ve serbest not alanı. Başlığın önündeki ikonla <b>Not</b> (mavi) ile <b>Proje</b> (turuncu) arasında geçersin, başlığa dokunup adını değiştirirsin. Maddeleri tutup sürükleyerek sıralar, takvim ikonuyla tarih verirsin; tarihli madde o günün sayfasına da düşer. Biten maddeyi <b>Arşivlemek için buraya bırak</b> alanına sürüklersen <b>Arşiv</b> bölümüne gider, ilerlemede sayılmaya devam eder. Bir notu ya da projeyi klasör düğmesiyle başka bir projeye bağlarsan onun alt başlığı olur; üst projede toplanır, satırın ikonunda küçük bir nokta görünür. Bütün projeler üstteki <b>Projeler</b> sekmesindedir.'],
-      ['Ayarlar','Ayarlar\u2019dan dili, açık ya da koyu temayı, yazı tipini ve boyutunu seçersin. <b>Yedek</b> defterini dosya olarak kaydeder, kopyalar ya da geri yükler. <b>Arşiv</b> arşivlediğin ve sildiğin satırları geri koyar (silinenler 30 gün durur); Göz ikonu (tema ve tam ekran düğmelerinin yanında) üstü çizili satırları saklar. <b>Senkron</b> ile Google hesabına bağlanıp aynı defteri telefonunda ve bilgisayarında kullanırsın; defter Drive\u2019ında yalnızca bu uygulamanın görebildiği gizli bir alanda durur, değişikliklerin kendiliğinden gider.']
+      ['Ayarlar','Ayarlar\u2019dan dili, açık ya da koyu temayı, yazı tipini ve boyutunu seçersin. <b>Yedek</b> defterini dosya olarak kaydeder, kopyalar ya da geri yükler. <b>Arşiv</b> arşivlediğin ve sildiğin satırları geri koyar (silinenler 30 gün durur); Göz ikonu (tema ve tam ekran düğmelerinin yanında) üstü çizili satırları saklar. <b>Senkron</b> ile Google hesabına bağlanıp aynı defteri telefonunda ve bilgisayarında kullanırsın; defter Drive\u2019ında yalnızca bu uygulamanın görebildiği gizli bir alanda durur, değişikliklerin kendiliğinden gider. Gönderilmesi gereken bir değişiklik varsa Ayarlar simgesinde küçük bir mavi nokta belirir; Senkron bölümünden <b>Senkronize et</b> demen yeterli.']
     ],
     credit:['Verimlilik için ',' tarafından tasarlandı, Claude ile birlikte geliştirildi.'],
     wd:['Pazartesi','Salı','Çarşamba','Perşembe','Cuma','Cumartesi','Pazar'],
@@ -885,7 +882,7 @@ var TX={
       ['Year and 10 years','These pages are for long and very long-term plans.'],
       ['Moving and postponing','Hold the box (drag on a computer) and drop a line on another day, week, month or year. Dropping it on a tab at the bottom sends it to that page (day, week, month, year, 10 years); on the day page, the <b>‹ ›</b> arrows at the top send it to the previous or next day. Or open a line and use the <b>three dots</b> to choose <b>Tomorrow</b>, <b>Week</b> or <b>Month</b>, pick a date, set a repeat or attach it to a project.'],
       ['Notes and projects','The icon at the right of a line opens its note page. A note and a project are the same page: a list of items plus a free note field. The icon before the title switches between <b>Note</b> (blue) and <b>Project</b> (orange), and tapping the title renames it. Hold an item to drag it into order, and give it a date with the calendar icon; a dated item also shows up on that day. Drag a finished item to <b>Drop here to archive</b> and it moves to the <b>Archive</b> section, still counted in the progress. Attach a note or project to another project with the folder button and it becomes its sub-heading: it is gathered in the parent project, and its icon gets a small dot. All projects are in the <b>Projects</b> tab at the top.'],
-      ['Settings','In Settings you choose the language, light or dark theme, font and text size. <b>Backup</b> saves your notebook as a file, copies it or restores it. <b>Archive</b> brings back lines you archived or deleted (deleted ones stay for 30 days); The eye icon (next to the theme and full-screen buttons) tucks away crossed-out lines. With <b>Sync</b> you connect your Google account and use the same notebook on your phone and computer; it lives in a hidden area of your Drive that only this app can see, and changes are sent automatically.']
+      ['Settings','In Settings you choose the language, light or dark theme, font and text size. <b>Backup</b> saves your notebook as a file, copies it or restores it. <b>Archive</b> brings back lines you archived or deleted (deleted ones stay for 30 days); The eye icon (next to the theme and full-screen buttons) tucks away crossed-out lines. With <b>Sync</b> you connect your Google account and use the same notebook on your phone and computer; it lives in a hidden area of your Drive that only this app can see, and changes are sent automatically. When something still needs sending, a small blue dot appears on the Settings icon; tap <b>Sync now</b> in the Sync section.']
     ],
     credit:['Designed for productivity by ',', built together with Claude.'],
     wd:['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'],
@@ -1679,28 +1676,17 @@ function buildTabs(){
   });
   box.appendChild(h('button',{class:'tab tabnb'+(view==='nb'?' on':''),type:'button',html:NB_I,'data-layer':'nb','aria-label':T.nb,title:T.nb,'aria-current':view==='nb'?'page':null,onclick:function(){openNotebook()}}));
 }
-var EYE_I='<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="2.8"/></svg>';
-var EYEOFF_I='<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="2.8"/><path d="M4 20L20 4"/></svg>';
-function eyeUpdate(){
-  var b=document.getElementById('eyeBtn');if(!b)return;
-  b.hidden=view==='nb';
-  var hiding=!!S.hideDone;
-  b.innerHTML=hiding?EYEOFF_I:EYE_I;
-  b.classList.toggle('dim',!hiding);
-  var lab=hiding?(hidN?hidN+' '+T.hidS:T.hideDoneL):T.hideDone;
-  b.setAttribute('aria-label',lab);b.title=lab;
-}
 var lastNav='';
 function render(){
   var nk=view+'|'+keyOf(view,anchor);if(nk!==lastNav){lastNav=nk;justDone={};revealDone=false}
   purgeTrash();ensureReps();syncProjects();hidN=0;doneN=0;
   var page=document.getElementById('page'),hold=document.getElementById('topHold');
-  var pinB=document.getElementById('pinBtn'),gearB=document.getElementById('gear'),eyeB=document.getElementById('eyeBtn');
-  hold.appendChild(pinB);hold.appendChild(eyeB);hold.appendChild(gearB);
+  var pinB=document.getElementById('pinBtn'),gearB=document.getElementById('gear');
+  hold.appendChild(pinB);hold.appendChild(gearB);
   page.innerHTML='';
   page.appendChild({day:pageDay,week:pageWeek,month:pageMonth,year:pageYear,decade:pageDecade,nb:pageNb}[view]());
   var sl=page.querySelector('.nslot.l'),sr=page.querySelector('.nslot.r');
-  if(sl){sl.appendChild(pinB)}if(sr){sr.appendChild(eyeB);sr.appendChild(gearB)}
+  if(sl){sl.appendChild(pinB)}if(sr){sr.appendChild(gearB)}
   var bb=document.getElementById('backBtn');bb.hidden=view==='nb'||isCur();bb.textContent=T.back;
   var tabs=document.querySelectorAll('.tab');
   for(var i=0;i<tabs.length;i++){
@@ -1708,7 +1694,7 @@ function render(){
     tabs[i].classList.toggle('on',on);
     if(on)tabs[i].setAttribute('aria-current','page');else tabs[i].removeAttribute('aria-current');
   }
-  pinB.hidden=false;eyeUpdate();fitAll();fitTitle();
+  pinB.hidden=false;fitAll();fitTitle();
 }
 
 /* ---------- sheets ---------- */
@@ -3007,10 +2993,9 @@ function syncStatusText(){
   return S.syncLast?T.syncLast+fmtTime(S.syncLast):T.syncNever;
 }
 function syncBtnUpdate(){
-  var b=document.getElementById('syncBtn');if(!b)return;
-  b.hidden=!(SYNC_OK&&S.syncOn);
-  b.classList.toggle('busy',syncBusy&&syncSpin);b.classList.toggle('pend',!!S.dirty&&!syncBusy);
-  b.setAttribute('aria-label',T.syncNow);b.title=T.syncNow;
+  var on=!!(SYNC_OK&&S.syncOn&&S.dirty&&!syncBusy);
+  var g=document.getElementById('gear');if(g)g.classList.toggle('pend',on);
+  var d=document.querySelector('.dhead[data-k="sync"]');if(d)d.classList.toggle('pend',on);
 }
 function setStatus(){var e=document.getElementById('syncStatus');if(e)e.textContent=syncStatusText();syncBtnUpdate()}
 function autoPushSoon(){
@@ -3135,7 +3120,7 @@ function setZoom(z){
 var drOpen={};
 function drawer(key,title,kids){
   var body=h('div',{class:'dbody'},kids);body.hidden=!drOpen[key];
-  var hd=h('button',{class:'dhead',type:'button','aria-expanded':String(!!drOpen[key]),text:title,onclick:function(){
+  var hd=h('button',{class:'dhead','data-k':key,type:'button','aria-expanded':String(!!drOpen[key]),text:title,onclick:function(){
     drOpen[key]=!drOpen[key];body.hidden=!drOpen[key];hd.setAttribute('aria-expanded',String(!!drOpen[key]));
   }});
   return h('div',{class:'sdrawer'},[hd,body]);
@@ -3245,7 +3230,7 @@ function openSettings(){
       sb.appendChild(h('button',{class:'sbtn',type:'button',text:T.syncNow,onclick:function(){syncNow(false)}}));
       sb.appendChild(h('button',{class:'sbtn',type:'button',text:T.disconnect,onclick:syncOff}));
     }
-    sk.push(sb);var syncDrawer=drawer('sync',T.sync,sk);
+    sk.push(sb);var syncDrawer=drawer('sync',T.sync,sk);syncDrawer.firstChild.classList.toggle('pend',!!(S.syncOn&&S.dirty&&!syncBusy));
   }
   function seg(l,name){return h('button',{type:'button',text:name,'aria-pressed':String(S.lang===l),onclick:function(){if(S.lang!==l)setLang(l)}})}
   var fe=document.documentElement,fsOK=!!(fe.requestFullscreen||fe.webkitRequestFullscreen);
@@ -3331,7 +3316,6 @@ function openSettings(){
   showSheet(p,true);
 }
 document.getElementById('gear').addEventListener('click',openSettings);
-document.getElementById('eyeBtn').addEventListener('click',function(){S.hideDone=!S.hideDone;revealDone=false;justDone={};persist();queueSave();render()});
 document.getElementById('pinBtn').addEventListener('click',openPins);
 document.getElementById('backBtn').addEventListener('click',function(){go(view,today())});
 
@@ -3473,7 +3457,7 @@ document.getElementById('gear').setAttribute('aria-label',T.settings);
 document.getElementById('pinBtn').setAttribute('aria-label',T.pins);
 buildTabs();render();
 syncBtnUpdate();
-document.getElementById('syncBtn').addEventListener('click',function(){syncNow(false)});
+
 if(SYNC_OK&&S.syncOn)setTimeout(function(){syncNow(true,true)},600);
 })();
 
