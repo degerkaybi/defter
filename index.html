@@ -104,24 +104,26 @@ h1{margin:0;font-weight:inherit}
 .pinbar{display:flex;align-items:center;gap:8px}
 .pinpill{background:var(--sheet);color:var(--ink);border-radius:999px;padding:10px 15px;font:600 13px/1 var(--sans);box-shadow:var(--lift)}
 .pinbar .sp{flex:1}
-.pinlist{flex:1 1 auto;min-height:0;overflow-y:auto;display:flex;flex-direction:row;flex-wrap:wrap;align-content:flex-start;gap:18px 14px;padding:8px 6px 18px;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:var(--pin-scroll) transparent}
-.pinlist::-webkit-scrollbar{width:8px}
-.pinlist::-webkit-scrollbar-track{background:transparent}
-.pinlist::-webkit-scrollbar-thumb{background:var(--pin-scroll);border-radius:8px}
-.pin{position:relative;flex:0 0 100%;min-width:0;background:var(--pin);color:var(--pin-ink);border-radius:2px;padding:24px 18px 8px;box-shadow:0 14px 20px -10px rgba(0,0,0,.45),0 2px 4px rgba(0,0,0,.12);transform:rotate(-.8deg)}
-.pin:nth-child(even){transform:rotate(.7deg)}
-.pin.half{flex:0 0 calc(50% - 7px);padding:22px 12px 6px;aspect-ratio:1/1;align-self:flex-start;display:flex;flex-direction:column}
-.pin.half textarea{flex:1 1 auto;min-height:0;height:auto;overflow-y:auto}
+.pstack{position:relative;flex:none;height:clamp(250px,calc(var(--vvh,100vh)*.5),400px);margin:4px 0 0;touch-action:pan-y;user-select:none;-webkit-user-select:none}
+.pstack textarea{user-select:text;-webkit-user-select:text}
+.pin{position:absolute;left:11%;top:6px;width:78%;height:calc(100% - 22px);box-sizing:border-box;display:flex;flex-direction:column;background:var(--pin);color:var(--pin-ink);border-radius:2px;padding:24px 14px 4px;box-shadow:0 14px 20px -10px rgba(0,0,0,.45),0 2px 4px rgba(0,0,0,.12);transform-origin:50% 100%;transition:transform .3s cubic-bezier(.3,.7,.3,1),opacity .2s,filter .2s}
+.pin:not(.front){cursor:pointer;filter:brightness(.95)}
+.pin:not(.front)>*{pointer-events:none}
+.pin:not(.front) textarea,.pin:not(.front) .pact,.pin:not(.front) .ptitle{opacity:.4}
+.ptitle{display:block;flex:none;width:100%;box-sizing:border-box;background:none;border:0;border-bottom:1px solid rgba(0,0,0,.14);outline:0;border-radius:0;padding:0 0 6px;margin:0 0 8px;font:600 calc(22px*var(--hs))/1.2 var(--hand);color:var(--pin-ink)}
+.ptitle::placeholder{color:var(--pin-ink);opacity:.38;font-weight:400}
+.ptitle:focus{border-bottom-color:rgba(0,0,0,.35)}
+.pin.far{opacity:0;pointer-events:none}
 .pin::before{content:'';position:absolute;left:0;right:0;top:0;height:16px;background:linear-gradient(rgba(0,0,0,.09),rgba(0,0,0,0))}
-.phandle{position:absolute;right:0;bottom:0;width:30px;height:30px;cursor:nwse-resize;touch-action:none;background:linear-gradient(315deg,var(--sheet) 50%,rgba(0,0,0,.18) 50%);box-shadow:-2px -2px 4px rgba(0,0,0,.08)}
-.pin textarea{display:block;width:100%;min-height:48px;background:none;border:0;outline:0;resize:none;overflow:hidden;padding:0;font:400 calc(24px*var(--hs))/1.28 var(--hand);color:var(--pin-ink)}
-.pin.half textarea{font-size:calc(20px*var(--hs))}
+.pdots{display:flex;justify-content:center;gap:2px;padding:0 0 2px;min-height:22px}
+.pdots button{width:22px;height:22px;display:grid;place-items:center;padding:0}
+.pdots button i{display:block;width:8px;height:8px;border-radius:50%;background:var(--sheet);opacity:.55}
+.pdots button.on i{background:var(--pin);opacity:1}
+.pin textarea{display:block;flex:1 1 auto;width:100%;min-height:0;background:none;border:0;outline:0;resize:none;overflow-y:auto;padding:0;font:400 calc(24px*var(--hs))/1.28 var(--hand);color:var(--pin-ink)}
 .pin textarea::placeholder{color:var(--pin-ink);opacity:.45}
-.pin .pact{display:flex;justify-content:space-between;align-items:center;margin-top:4px;padding-right:26px}
+.pin .pact{display:flex;justify-content:space-between;align-items:center;margin-top:2px}
 .pin .pact button{font:600 12px/1 var(--sans);color:var(--pin-ink);opacity:.62;padding:10px 6px}
 .pin .pact button:hover,.pin .pact button.on{opacity:1}
-.pin.half .pact{padding-right:22px}.pin.half .pact button{font-size:11px;padding:10px 3px}
-.pin.half .bt-l{display:none}
 .pmove{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:2px 0 8px;padding:8px;border-radius:8px;background:rgba(0,0,0,.07)}
 .ptasks{background:var(--sheet);border-radius:12px;padding:2px 10px 2px 4px}
 .pin .ptasks{margin:0 0 10px;transform:rotate(.8deg)}
@@ -142,10 +144,39 @@ h1{margin:0;font-weight:inherit}
 .pmove .mc{flex:1 1 auto;padding:8px 10px;border-radius:7px;background:rgba(255,255,255,.45);font:600 12px/1 var(--sans);color:var(--pin-ink);text-align:center}
 
 /* period navigation */
-.nav{display:grid;grid-template-columns:36px minmax(0,1fr) auto;align-items:start;gap:0;margin:0 0 20px}
+.nav{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:start;gap:0;margin:0 0 20px}
 .ncenter{display:flex;align-items:flex-start;justify-content:center;min-width:0}
 .ncenter .t{flex:1 1 auto;max-width:calc(300px*var(--hs))}
 .nslot.r{display:flex;justify-content:flex-end;width:auto;min-width:36px}
+.nslot.l{display:flex;justify-content:flex-start;width:auto;min-width:36px}
+.pinbtn{width:32px}
+.nbp{display:flex;flex-direction:column}
+.nbrow{display:flex;align-items:center;gap:6px;margin:0 -2px;padding-bottom:12px}
+.nbtabs{flex:1 1 auto;min-width:0;display:flex;flex-wrap:wrap;gap:8px 6px;padding:2px}
+.nbt.defc{display:inline-flex;align-items:center;gap:6px;padding:7px 12px}.nbt.defc svg{display:block}.nbt.defc b{font:600 12.5px/1 var(--sans)}
+.nbt.defc{background:none;box-shadow:inset 0 0 0 1.5px var(--rule-strong)}
+.nbt.defc[aria-pressed="true"]{background:var(--blue-wash);box-shadow:inset 0 0 0 1.5px var(--blue-soft)}
+.nbt{flex:none;padding:8px 14px;border-radius:999px;background:var(--chip);font:500 13.5px/1 var(--sans);color:var(--ink-soft);white-space:nowrap}
+.nbt[aria-pressed="true"]{background:var(--blue-wash);color:var(--blue);box-shadow:inset 0 0 0 1.5px var(--blue-soft)}
+.nbt.plus{padding:8px 14px;font-size:17px;line-height:1}
+.nbt.del{color:var(--danger)}
+.nbtin{flex:none;width:130px;padding:7px 12px;border-radius:999px;border:1px solid var(--blue);background:var(--sheet);font:500 13.5px/1 var(--sans);color:var(--ink);outline:0}
+.nbtin.wide{width:min(260px,70%)}
+.nadd{display:block;width:100%;box-sizing:border-box;resize:none;border:0;outline:0;background:var(--chip);border-radius:14px;padding:12px 14px;overflow:hidden;font:400 calc(20px*var(--hs))/1.3 var(--hand);color:var(--ink)}
+.nadd::placeholder{color:var(--ink-faint)}
+.nlist{margin-top:6px}
+.nrow{display:flex;flex-wrap:wrap;align-items:flex-start;gap:6px;padding:11px 2px;border-bottom:1px solid var(--rule)}
+.nrow .ntx{flex:1 1 0;min-width:0}
+.nrow textarea{display:block;width:100%;box-sizing:border-box;resize:none;border:0;outline:0;background:none;padding:0;overflow:hidden;font:400 calc(21px*var(--hs))/1.3 var(--hand);color:var(--ink)}
+.ntag{margin-top:4px;font:12px/1 var(--sans);color:var(--ink-soft)}
+.nmore{flex:none;width:30px;height:30px;display:grid;place-items:center;border-radius:8px;color:var(--ink-faint)}
+.nmore svg{width:18px;height:18px;display:block}
+.nmenu{flex:1 1 100%;display:flex;flex-wrap:wrap;align-items:center;gap:6px;padding:6px 0 2px}
+.nmenu .nbt{padding:6px 11px;font-size:12.5px}
+.nmenu .nml{font:500 12px/1 var(--sans);color:var(--ink-soft);margin-right:2px}
+.nbact{display:flex;align-items:center;gap:18px;margin:18px 2px 6px;font:500 13px/1 var(--sans);color:var(--ink-soft)}
+.nbact .dng{color:var(--danger)}
+
 .eyebtn{width:30px}
 .eyebtn svg{width:18px;height:18px}
 .nslot{width:36px;height:40px;margin-top:calc((36px*var(--hs) - 40px)/2)}
@@ -496,6 +527,8 @@ h1{margin:0;font-weight:inherit}
 }
 .tab{flex:1;min-width:0;height:42px;border-radius:16px;text-align:center;font:500 14px/1 var(--sans);color:var(--ink-soft)}
 .tab.on{background:var(--sheet);color:var(--blue);font-weight:600;box-shadow:var(--lift)}
+.tab.tabnb{flex:none;width:46px;display:grid;place-items:center;padding:0}
+.tab.tabnb svg{display:block}
 
 /* sheets and toast */
 .backdrop{position:fixed;left:0;right:0;top:var(--vvt,0px);height:var(--vvh,100%);z-index:40;background:var(--scrim);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px);display:flex;align-items:flex-end;justify-content:center}
@@ -617,8 +650,6 @@ select option:disabled{color:var(--ink-faint)}
 .cb{-webkit-touch-callout:none;-webkit-user-select:none;user-select:none;cursor:grab}
 body.dragging-now{-webkit-user-select:none;user-select:none;cursor:grabbing}
 .row.dragging,.qrow.dragging{opacity:.3}
-body.dragging-now .pinbtn{box-shadow:0 0 0 1.5px var(--blue-soft);color:var(--blue);background:var(--blue-wash)}
-body.dragging-now .pinbtn.over{background:var(--blue-soft);box-shadow:0 0 0 2px var(--blue)}
 body.arrows-on .arrow{box-shadow:0 0 0 1.5px var(--blue-soft);color:var(--blue);background:var(--blue-wash)}
 body.tabs-on .tab:not(.on){box-shadow:inset 0 0 0 1.5px var(--blue-soft)}
 body.tabs-on .tab.over{background:var(--blue-wash);box-shadow:inset 0 0 0 2px var(--blue);color:var(--blue)}
@@ -700,7 +731,7 @@ var TX={
     hint:'Bir satıra dokun ve yazmaya başla.',still:'hâlâ duruyor',
     carryweek:'geçen haftadan',subOf:'Alt başlık',subs:'Alt başlıklar',carryyear:'geçen yıldan',pastY:'Geçmiş yıllar',tpYear:'Yıl %{P} geçti',tpYearR:'{N} gün kaldı',tpDec:'10 yıl %{P} geçti',tpDecR:'Yıl {K} / 10',carrymonth:'geçen aydan',bring:'buraya al',
     pull:'bitmeyenleri bugüne al',wkShort:'H',openDay:'Güne git',mprevPh:'bu gün…',mprojects:'Aktif projeler',mexp:'Genişlet',mcol:'Daralt',moreN:'+{N} daha',days:'Bu ay',noDays:'Bu ay henüz bir güne yazılmadı.',
-    openLink:'Linki aç',projects:'Projeler',rename:'Başlığı düzenle',pjArch:'Arşiv',pjDrop:'Arşivlemek için buraya bırak',pjArchived:'Arşivlendi',pjRestore:'Geri al',pjAttach:'Projeye ekle',pjDetach:'Projeden çıkar',pjNone:'Henüz proje yok',pjAdded:'Projeye eklendi',pinMax:'En fazla 10 not',pinNoRep:'Bu görev taşınamaz',pinTasks:'Taşınan görevler',pinHere:'Bu güne taşı',trashS:'Çöp',pinDropHint:'Post-it dışında tutmak için görevi buraya sürükle',pinPick:'Taşımak için bir satıra dokun',pinSub:'alt madde',calendar:'Takvim',pjNeedTitle:'Önce proje adı yaz',chkS:'+ Madde',bulS:'• Liste',pjNoItems:'madde yok',pjOff:'Nota çevir',hereS:'Bu güne',tmrwS:'Yarına',nextS:'Ertesi güne',toWeekS:'Haftaya',toMonthS:'Aya',delS:'Sil',tabNotes:'Notlar',project:'Proje',pjNew:'+ Yeni proje',pjUntitled:'Adsız proje',pjTitlePh:'Proje adı',pjEmpty:'Henüz proje yok. Uzun soluklu işler için bir proje aç, maddelere tarih verirsen o günün defterine de düşer.',pjAdd:'+ Madde ekle',pjTodoPh:'Yapılacak…',pjNotes:'Akla gelenler',pjNotesPh:'Not…',pjDel:'Projeyi sil',pjGone:'Proje silindi',pjMake:'Proje yap',pjOpen:'Projeyi aç',pjDate:'Tarih ver',pjClr:'Tarihi kaldır',pjDone:'tamam',pjBack:'Projeler',pjMade:'Proje oluşturuldu',here:'Bu güne al',moveTo:'Güne taşı',repeat:'Tekrarla',repNone:'Tekrarsız',repW:'Her hafta',repM:'Her ay',repY:'Her yıl',toWeek:'Haftaya al',toMonth:'Aya al',tmrw:'Yarına ertele',nextday:'Ertesi güne ertele',bullet:'• Madde',check2:'☐ Görev',noteClr:'Notu temizle',undoCap:'Geri al',del:'Görevi sil',pins:'Zamansız Notlar',pinNew:'+ Yeni not',pinPh:'Telefon, alışveriş, aklına gelen…',pinDel:'Sil',pinGone:'Not silindi',pinMove:'Taşı',fs:'Tam ekran',brand:['YARIN','DEFTERİ'],themeLight:'Açık tema',themeDark:'Koyu tema',fsOn:'Aç',fsOff:'Kapat',fsFail:'Tarayıcı tam ekrana izin vermedi',fsIos:'Tam ekran için Paylaş › Ana Ekrana Ekle de, sonra defteri ana ekrandan aç; tarayıcı çubukları olmadan açılır.',pinDay:'Güne',pinWeek:'Haftaya',pinMonth:'Aya',pinSize:'Boyutu sürükle',
+    openLink:'Linki aç',projects:'Projeler',rename:'Başlığı düzenle',pjArch:'Arşiv',pjDrop:'Arşivlemek için buraya bırak',pjArchived:'Arşivlendi',pjRestore:'Geri al',pjAttach:'Projeye ekle',pjDetach:'Projeden çıkar',pjNone:'Henüz proje yok',pjAdded:'Projeye eklendi',pinMax:'En fazla 10 not',pinNoRep:'Bu görev taşınamaz',pinTasks:'Taşınan görevler',pinHere:'Bu güne taşı',trashS:'Çöp',pinDropHint:'Post-it dışında tutmak için görevi buraya sürükle',pinPick:'Taşımak için bir satıra dokun',pinSub:'alt madde',calendar:'Takvim',pjNeedTitle:'Önce proje adı yaz',chkS:'+ Madde',bulS:'• Liste',pjNoItems:'madde yok',pjOff:'Nota çevir',hereS:'Bu güne',tmrwS:'Yarına',nextS:'Ertesi güne',toWeekS:'Haftaya',toMonthS:'Aya',delS:'Sil',tabNotes:'Notlar',project:'Proje',pjNew:'+ Yeni proje',pjUntitled:'Adsız proje',pjTitlePh:'Proje adı',pjEmpty:'Henüz proje yok. Uzun soluklu işler için bir proje aç, maddelere tarih verirsen o günün defterine de düşer.',pjAdd:'+ Madde ekle',pjTodoPh:'Yapılacak…',pjNotes:'Akla gelenler',pjNotesPh:'Not…',pjDel:'Projeyi sil',pjGone:'Proje silindi',pjMake:'Proje yap',pjOpen:'Projeyi aç',pjDate:'Tarih ver',pjClr:'Tarihi kaldır',pjDone:'tamam',pjBack:'Projeler',pjMade:'Proje oluşturuldu',here:'Bu güne al',moveTo:'Güne taşı',repeat:'Tekrarla',repNone:'Tekrarsız',repW:'Her hafta',repM:'Her ay',repY:'Her yıl',toWeek:'Haftaya al',toMonth:'Aya al',tmrw:'Yarına ertele',nextday:'Ertesi güne ertele',bullet:'• Madde',check2:'☐ Görev',noteClr:'Notu temizle',undoCap:'Geri al',del:'Görevi sil',pins:'Post-it',nb:'Zamansız Notlar',nbAll:'Tümü',nbDef:'Sonra',nbAddPh:'Yeni not…',nbTabPh:'Sekme adı',nbNewTab:'Yeni sekme',nbEmpty:'Henüz not yok. Aklındakini yukarıya yaz.',nbDefEmpty:'Ertelemek istediğin görevi alttaki defter simgesine sürükle; alt maddeleri ve notuyla burada bekler.',nbMove:'Taşı',nbNone:'Sekmesiz',nbRename:'Adı değiştir',nbDelTab:'Sekmeyi sil',nbDelSure:'Emin misin? Notlar Tümü\'nde kalır',nbTabMax:'En fazla 12 sekme',nbGone:'Not silindi',nbMore:'Seçenekler',nbDel:'Sil',pinNew:'+ Yeni not',pinPh:'Telefon, alışveriş, aklına gelen…',pinTi:'Başlık',pinDel:'Sil',pinGone:'Not silindi',pinMove:'Taşı',fs:'Tam ekran',brand:['YARIN','DEFTERİ'],themeLight:'Açık tema',themeDark:'Koyu tema',fsOn:'Aç',fsOff:'Kapat',fsFail:'Tarayıcı tam ekrana izin vermedi',fsIos:'Tam ekran için Paylaş › Ana Ekrana Ekle de, sonra defteri ana ekrandan aç; tarayıcı çubukları olmadan açılır.',pinDay:'Güne',pinWeek:'Haftaya',pinMonth:'Aya',pinSize:'Boyutu sürükle',
     deleted:'Silindi',undo:'geri al',moved:'Taşındı',archive:'Arşiv',arch:'Arşivle',archived:'Arşivlendi',trashT:'Silinenler',archEmpty:'Arşivde madde yok.',trashEmpty:'Silinen madde yok.',archNote:'Arşivlenenler sayfalardan kalkar, burada saklanır.',trashNote:'Silinenler 30 gün burada kalır, sonra kalıcı olarak silinir.',putBack:'Geri koy',delForever:'Kalıcı sil',emptyTrash:'Silinenleri boşalt',emptySure:'Emin misin? Tekrar dokun',backed:'Geri konuldu',refine:'Rafine mod',refineNote:'Projeler ve klasörler gizlenir',hideDone:'Bitenleri gizle',hidS:'biten gizli',hideAgain:'Bitenleri gizle',hideDoneL:'Biten yok',
     settings:'Ayarlar',lang:'Dil',font:'Yazı tipi',fontHand:'El yazısı',fontPlain:'Düz yazı',note:'Not',notePh:'Bu satır için not…',backup:'Yedek',
     backupNote:'Defterin bu tarayıcıda saklanır. Arada bir yedek al.',
@@ -747,7 +778,7 @@ var TX={
     hint:'Tap a line and start writing.',still:'still here',
     carryweek:'from last week',subOf:'Sub-heading',subs:'Sub-headings',carryyear:'from last year',pastY:'Past years',tpYear:'Year {P}% elapsed',tpYearR:'{N} days left',tpDec:'Decade {P}% elapsed',tpDecR:'Year {K} / 10',carrymonth:'from last month',bring:'bring here',
     pull:'move unfinished to today',wkShort:'W',openDay:'Go to day',mprevPh:'this day…',mprojects:'Active projects',mexp:'Expand',mcol:'Collapse',moreN:'+{N} more',days:'This month',noDays:'Nothing written on a day this month yet.',
-    openLink:'Open link',projects:'Projects',rename:'Edit title',pjArch:'Archive',pjDrop:'Drop here to archive',pjArchived:'Archived',pjRestore:'Restore',pjAttach:'Add to project',pjDetach:'Remove from project',pjNone:'No projects yet',pjAdded:'Added to project',pinMax:'Up to 10 notes',pinNoRep:"This task can't be moved",pinTasks:'Moved tasks',pinHere:'Move to this day',trashS:'Trash',pinDropHint:'Drag a task here to keep it outside the notes',pinPick:'Tap a line to move it',pinSub:'sub-items',calendar:'Calendar',pjNeedTitle:'Give the project a name first',chkS:'+ Item',bulS:'• Bullet',pjNoItems:'no items',pjOff:'Make it a note',hereS:'This day',tmrwS:'Tomorrow',nextS:'Next day',toWeekS:'Week',toMonthS:'Month',delS:'Delete',tabNotes:'Notes',project:'Project',pjNew:'+ New project',pjUntitled:'Untitled project',pjTitlePh:'Project name',pjEmpty:'No projects yet. Start one for long-running work; give an item a date and it also shows up on that day.',pjAdd:'+ Add item',pjTodoPh:'To do…',pjNotes:'Ideas',pjNotesPh:'Note…',pjDel:'Delete project',pjGone:'Project deleted',pjMake:'Make project',pjOpen:'Open project',pjDate:'Set date',pjClr:'Remove date',pjDone:'done',pjBack:'Projects',pjMade:'Project created',here:'Move to this day',moveTo:'Move to day',repeat:'Repeat',repNone:'No repeat',repW:'Every week',repM:'Every month',repY:'Every year',toWeek:'Move to week',toMonth:'Move to month',tmrw:'Postpone to tomorrow',nextday:'Postpone a day',bullet:'• Bullet',check2:'☐ Task',noteClr:'Clear note',undoCap:'Undo',del:'Delete task',pins:'Timeless Notes',pinNew:'+ New note',pinPh:'A phone number, shopping, a stray thought…',pinDel:'Delete',pinGone:'Note deleted',pinMove:'Move',fs:'Full screen',brand:['TOMORROW’S','NOTEBOOK'],themeLight:'Light theme',themeDark:'Dark theme',fsOn:'Enter',fsOff:'Exit',fsFail:'The browser did not allow full screen',fsIos:'For full screen, tap Share › Add to Home Screen, then open the notebook from there; it opens without browser bars.',pinDay:'To day',pinWeek:'To week',pinMonth:'To month',pinSize:'Drag to resize',
+    openLink:'Open link',projects:'Projects',rename:'Edit title',pjArch:'Archive',pjDrop:'Drop here to archive',pjArchived:'Archived',pjRestore:'Restore',pjAttach:'Add to project',pjDetach:'Remove from project',pjNone:'No projects yet',pjAdded:'Added to project',pinMax:'Up to 10 notes',pinNoRep:"This task can't be moved",pinTasks:'Moved tasks',pinHere:'Move to this day',trashS:'Trash',pinDropHint:'Drag a task here to keep it outside the notes',pinPick:'Tap a line to move it',pinSub:'sub-items',calendar:'Calendar',pjNeedTitle:'Give the project a name first',chkS:'+ Item',bulS:'• Bullet',pjNoItems:'no items',pjOff:'Make it a note',hereS:'This day',tmrwS:'Tomorrow',nextS:'Next day',toWeekS:'Week',toMonthS:'Month',delS:'Delete',tabNotes:'Notes',project:'Project',pjNew:'+ New project',pjUntitled:'Untitled project',pjTitlePh:'Project name',pjEmpty:'No projects yet. Start one for long-running work; give an item a date and it also shows up on that day.',pjAdd:'+ Add item',pjTodoPh:'To do…',pjNotes:'Ideas',pjNotesPh:'Note…',pjDel:'Delete project',pjGone:'Project deleted',pjMake:'Make project',pjOpen:'Open project',pjDate:'Set date',pjClr:'Remove date',pjDone:'done',pjBack:'Projects',pjMade:'Project created',here:'Move to this day',moveTo:'Move to day',repeat:'Repeat',repNone:'No repeat',repW:'Every week',repM:'Every month',repY:'Every year',toWeek:'Move to week',toMonth:'Move to month',tmrw:'Postpone to tomorrow',nextday:'Postpone a day',bullet:'• Bullet',check2:'☐ Task',noteClr:'Clear note',undoCap:'Undo',del:'Delete task',pins:'Sticky notes',nb:'Timeless Notes',nbAll:'All',nbDef:'Later',nbAddPh:'New note…',nbTabPh:'Tab name',nbNewTab:'New tab',nbEmpty:'No notes yet. Write what is on your mind above.',nbDefEmpty:'Drag a task onto the notebook icon below to defer it; it waits here with its sub-items and notes.',nbMove:'Move',nbNone:'No tab',nbRename:'Rename',nbDelTab:'Delete tab',nbDelSure:"Sure? Notes stay in All",nbTabMax:'Up to 12 tabs',nbGone:'Note deleted',nbMore:'Options',nbDel:'Delete',pinNew:'+ New note',pinPh:'A phone number, shopping, a stray thought…',pinTi:'Title',pinDel:'Delete',pinGone:'Note deleted',pinMove:'Move',fs:'Full screen',brand:['TOMORROW’S','NOTEBOOK'],themeLight:'Light theme',themeDark:'Dark theme',fsOn:'Enter',fsOff:'Exit',fsFail:'The browser did not allow full screen',fsIos:'For full screen, tap Share › Add to Home Screen, then open the notebook from there; it opens without browser bars.',pinDay:'To day',pinWeek:'To week',pinMonth:'To month',pinSize:'Drag to resize',
     deleted:'Deleted',undo:'undo',moved:'Moved',archive:'Archive',arch:'Archive',archived:'Archived',trashT:'Deleted',archEmpty:'Nothing archived.',trashEmpty:'Nothing deleted.',archNote:'Archived items leave the pages and are kept here.',trashNote:'Deleted items stay here for 30 days, then are removed for good.',putBack:'Put back',delForever:'Delete for good',emptyTrash:'Empty deleted',emptySure:'Sure? Tap again',backed:'Put back',refine:'Refined mode',refineNote:'Projects and folders are hidden',hideDone:'Hide done',hidS:'done hidden',hideAgain:'Hide done',hideDoneL:'No done items',
     settings:'Settings',lang:'Language',font:'Font',fontHand:'Handwriting',fontPlain:'Plain',note:'Note',notePh:'A note for this line…',backup:'Backup',
     backupNote:'Your notebook is stored in this browser. A backup now and then is a good idea.',
@@ -874,9 +905,11 @@ function cleanPins(a){
   if(!Array.isArray(a))return null;
   var out=[],seen={};
   a.forEach(function(x){
-    if(!x||typeof x.text!=='string'||(!x.text.trim()&&!x.tk))return;
+    if(!x||typeof x.text!=='string')return;
+    var ti=(typeof x.ti==='string')?x.ti.trim().slice(0,60):'';
+    if(!x.text.trim()&&!ti)return;
     var id=(typeof x.id==='string'&&x.id&&!seen[x.id])?x.id:uid();
-    seen[id]=1;var o={id:id,text:x.text};if(x.tk)o.tk=1;if(x.src&&typeof x.src==='object'&&x.src.it&&typeof x.src.it.text==='string'&&typeof x.src.text==='string')o.src={it:x.src.it,rec:x.src.rec||null,ritems:Array.isArray(x.src.ritems)?x.src.ritems:[],text:x.src.text};if(x.w===0.5)o.w=0.5;if(typeof x.h==='number'&&x.h>=40&&x.h<=900)o.h=Math.round(x.h);out.push(o);
+    seen[id]=1;var o={id:id,text:x.text};if(ti)o.ti=ti;if(x.tk)o.tk=1;if(x.src&&typeof x.src==='object'&&x.src.it&&typeof x.src.it.text==='string'&&typeof x.src.text==='string')o.src={it:x.src.it,rec:x.src.rec||null,ritems:Array.isArray(x.src.ritems)?x.src.ritems:[],text:x.src.text};if(x.w===0.5)o.w=0.5;if(typeof x.h==='number'&&x.h>=40&&x.h<=900)o.h=Math.round(x.h);out.push(o);
   });
   return out;
 }
@@ -885,14 +918,14 @@ function load(){
     var raw=localStorage.getItem(STORE);
     if(raw){
       var o=JSON.parse(raw);
-      return {lang:o&&o.lang==='en'?'en':'tr',font:o&&o.font==='plain'?'plain':'hand',decadeStart:(o&&typeof o.decadeStart==='number')?o.decadeStart:new Date().getFullYear(),zoom:zoomOk(o&&o.zoom),theme:(o&&(o.theme==='light'||o.theme==='dark'))?o.theme:null,yrev:!!(o&&o.yrev),hideDone:!!(o&&o.hideDone),refined:!(o&&o.refined===false),syncOn:!!(o&&o.syncOn),syncRev:(o&&typeof o.syncRev==='number')?o.syncRev:null,dirty:!!(o&&o.dirty),syncLast:(o&&typeof o.syncLast==='number')?o.syncLast:0,pins:cleanPins(o&&o.pins)||[],projects:cleanProjects(o&&o.projects)||[],items:clean(o)||[]};
+      return {lang:o&&o.lang==='en'?'en':'tr',font:o&&o.font==='plain'?'plain':'hand',decadeStart:(o&&typeof o.decadeStart==='number')?o.decadeStart:new Date().getFullYear(),zoom:zoomOk(o&&o.zoom),theme:(o&&(o.theme==='light'||o.theme==='dark'))?o.theme:null,yrev:!!(o&&o.yrev),hideDone:!!(o&&o.hideDone),refined:!(o&&o.refined===false),syncOn:!!(o&&o.syncOn),syncRev:(o&&typeof o.syncRev==='number')?o.syncRev:null,dirty:!!(o&&o.dirty),syncLast:(o&&typeof o.syncLast==='number')?o.syncLast:0,pins:cleanPins(o&&o.pins)||[],nb:cleanNb(o&&o.nb),projects:cleanProjects(o&&o.projects)||[],items:clean(o)||[]};
     }
   }catch(e){storageOK=false}
-  return {lang:'tr',font:'hand',decadeStart:new Date().getFullYear(),zoom:1,theme:null,yrev:false,hideDone:false,refined:true,syncOn:false,syncRev:null,dirty:false,syncLast:0,pins:[],projects:[],items:[]};
+  return {lang:'tr',font:'hand',decadeStart:new Date().getFullYear(),zoom:1,theme:null,yrev:false,hideDone:false,refined:true,syncOn:false,syncRev:null,dirty:false,syncLast:0,pins:[],nb:{tabs:[],notes:[]},projects:[],items:[]};
 }
 function persist(){
   clearTimeout(saveTimer);saveTimer=null;
-  try{localStorage.setItem(STORE,JSON.stringify({v:1,lang:S.lang,font:S.font,zoom:S.zoom,theme:S.theme,yrev:S.yrev,hideDone:S.hideDone,refined:S.refined,syncOn:S.syncOn,syncRev:S.syncRev,dirty:S.dirty,syncLast:S.syncLast,decadeStart:S.decadeStart,pins:S.pins,projects:S.projects,items:S.items}));}
+  try{localStorage.setItem(STORE,JSON.stringify({v:1,lang:S.lang,font:S.font,zoom:S.zoom,theme:S.theme,yrev:S.yrev,hideDone:S.hideDone,refined:S.refined,syncOn:S.syncOn,syncRev:S.syncRev,dirty:S.dirty,syncLast:S.syncLast,decadeStart:S.decadeStart,pins:S.pins,nb:S.nb,projects:S.projects,items:S.items}));}
   catch(e){storageOK=false;if(!warned){warned=true;toast(T.noStore)}}
 }
 function queueSave(){editSeq++;S.dirty=true;clearTimeout(saveTimer);saveTimer=setTimeout(persist,300);autoPushSoon()}
@@ -1221,6 +1254,7 @@ function linesBlock(layer,key,o){
 function isCur(){return keyOf(view,anchor)===keyOf(view,today())}
 function go(layer,date){view=layer;anchor=date;render();window.scrollTo(0,0)}
 function shift(dir){
+  if(view==='nb')return;
   var y=anchor.getFullYear(),m=anchor.getMonth();
   if(view==='day')anchor=addDays(anchor,dir);
   else if(view==='week')anchor=addDays(anchor,7*dir);
@@ -1558,21 +1592,23 @@ function pageYear(){
 }
 
 /* ---------- tabs + render ---------- */
+var NB_I='<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11a1.5 1.5 0 0 1 1.5 1.5v14a1.5 1.5 0 0 1-1.5 1.5h-11z"/><path d="M6.5 3.5v17"/><path d="M13.5 3.5v6l1.5-1.2 1.5 1.2v-6"/><path d="M9.5 13.5h6M9.5 16.5h4" opacity=".7"/></svg>';
 function buildTabs(){
   var box=document.getElementById('tabs');box.innerHTML='';
   LAYERS.forEach(function(l){
     box.appendChild(h('button',{class:'tab'+(l===view?' on':''),type:'button',text:T[l],'data-layer':l,'aria-current':l===view?'page':null,onclick:function(){view=l;render();window.scrollTo(0,0)}}));
   });
+  box.appendChild(h('button',{class:'tab tabnb'+(view==='nb'?' on':''),type:'button',html:NB_I,'data-layer':'nb','aria-label':T.nb,title:T.nb,'aria-current':view==='nb'?'page':null,onclick:function(){openNotebook()}}));
 }
 var EYE_I='<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="2.8"/></svg>';
 var EYEOFF_I='<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="2.8"/><path d="M4 20L20 4"/></svg>';
 function eyeUpdate(){
   var b=document.getElementById('eyeBtn');if(!b)return;
-  b.hidden=!S.hideDone;if(!S.hideDone)return;
-  var hiding=!revealDone;
+  b.hidden=view==='nb';
+  var hiding=!!S.hideDone;
   b.innerHTML=hiding?EYEOFF_I:EYE_I;
-  b.classList.toggle('dim',!doneN);
-  var lab=hiding?(hidN?hidN+' '+T.hidS:T.hideDoneL):T.hideAgain;
+  b.classList.toggle('dim',!hiding);
+  var lab=hiding?(hidN?hidN+' '+T.hidS:T.hideDoneL):T.hideDone;
   b.setAttribute('aria-label',lab);b.title=lab;
 }
 var lastNav='';
@@ -1583,17 +1619,17 @@ function render(){
   var pinB=document.getElementById('pinBtn'),gearB=document.getElementById('gear'),eyeB=document.getElementById('eyeBtn');
   hold.appendChild(pinB);hold.appendChild(eyeB);hold.appendChild(gearB);
   page.innerHTML='';
-  page.appendChild({day:pageDay,week:pageWeek,month:pageMonth,year:pageYear,decade:pageDecade}[view]());
+  page.appendChild({day:pageDay,week:pageWeek,month:pageMonth,year:pageYear,decade:pageDecade,nb:pageNb}[view]());
   var sl=page.querySelector('.nslot.l'),sr=page.querySelector('.nslot.r');
-  if(sl)sl.appendChild(pinB);if(sr){sr.appendChild(eyeB);sr.appendChild(gearB)}
-  var bb=document.getElementById('backBtn');bb.hidden=isCur();bb.textContent=T.back;
+  if(sl){sl.appendChild(pinB)}if(sr){sr.appendChild(eyeB);sr.appendChild(gearB)}
+  var bb=document.getElementById('backBtn');bb.hidden=view==='nb'||isCur();bb.textContent=T.back;
   var tabs=document.querySelectorAll('.tab');
   for(var i=0;i<tabs.length;i++){
     var on=tabs[i].getAttribute('data-layer')===view;
     tabs[i].classList.toggle('on',on);
     if(on)tabs[i].setAttribute('aria-current','page');else tabs[i].removeAttribute('aria-current');
   }
-  eyeUpdate();fitAll();fitTitle();
+  pinB.hidden=false;eyeUpdate();fitAll();fitTitle();
 }
 
 /* ---------- sheets ---------- */
@@ -1690,25 +1726,20 @@ function noteBullets(ta,onChange){
   toggle.chk=checks;
   return toggle;
 }
-function tasksOf(pid){return S.items.filter(function(x){return x.layer==='pin'&&x.key===pid})}
+function hereKey(){return view==='day'?dkey(anchor):(view==='nb'&&nbFromKey?nbFromKey:dkey(today()))}
 function openPins(){
-  var orph=stashed('pin').filter(function(x){return x.key!=='pin'&&!S.pins.some(function(p){return p.id===x.key})});
-  if(orph.length){orph.forEach(function(x){x.key='pin'});queueSave()}
-  var cards=S.pins.map(function(x){return {id:x.id,text:x.text,w:x.w,h:x.h,src:x.src}});
+  var cards=S.pins.map(function(x){return {id:x.id,text:x.text,ti:x.ti||'',w:x.w,h:x.h,src:x.src}});
+  function has(c){return !!(c.text.trim()||(c.ti&&c.ti.trim()))}
   if(!cards.length)cards.push({id:uid(),text:''});
   var wrap=h('div',{class:'pinwrap',role:'dialog','aria-modal':'true','aria-label':T.pins});
-  var list=h('div',{class:'pinlist'});
+  var list=h('div',{class:'pstack'});
   function save(){
-    S.pins=cards.filter(function(c){return c.text.trim()||tasksOf(c.id).length}).map(function(c){
-      var o={id:c.id,text:c.text};if(!c.text.trim()||tasksOf(c.id).length)o.tk=1;if(c.w===0.5)o.w=0.5;if(c.h)o.h=c.h;if(c.src&&c.src.text===c.text)o.src=c.src;return o;
+    S.pins=cards.filter(has).map(function(c){
+      var o={id:c.id,text:c.text};if(c.ti&&c.ti.trim())o.ti=c.ti.trim().slice(0,60);if(c.w===0.5)o.w=0.5;if(c.h)o.h=c.h;if(c.src&&c.src.text===c.text)o.src=c.src;return o;
     });
     queueSave();
   }
-  function grow(ta,c){
-    if(c.w===0.5){ta.style.height='';ta.style.overflowY='auto'}
-    else if(c.h){ta.style.height=c.h+'px';ta.style.overflowY='auto'}
-    else{ta.style.overflowY='hidden';ta.style.height='auto';ta.style.height=Math.max(92,ta.scrollHeight)+'px'}
-  }
+  function grow(){}
   function indentOf(l){return l.length-l.replace(/^\s+/,'').length}
   function gather(text,st,en){
     var lines=text.split('\n'),pos=0,hit=[];
@@ -1756,7 +1787,7 @@ function openPins(){
     });
     var before=c.text,snap0=c.src;
     c.text=lines.filter(function(_,i){return !drop[i]}).join('\n').replace(/^\n+|\n+$/g,'');
-    var idx=cards.indexOf(c),gone=!c.text.trim();
+    var idx=cards.indexOf(c),gone=!has(c);
     its.forEach(function(it){S.items.push(it)});
     if(xrec){S.projects.push(xrec);extra.forEach(function(x){S.items.push(x)})}
     c.src=undefined;
@@ -1767,139 +1798,232 @@ function openPins(){
       S.items=S.items.filter(function(x){return its.indexOf(x)<0&&extra.indexOf(x)<0});
       if(xrec)S.projects=S.projects.filter(function(p){return p!==xrec});
       c.text=before;c.src=snap0;
-      if(gone){cards=cards.filter(function(x){return x.text.trim()});cards.splice(Math.min(idx,cards.length),0,c)}
+      if(gone){cards=cards.filter(has);cards.splice(Math.min(idx,cards.length),0,c)}
       save();render();
       if(sheet.querySelector('.pinwrap'))draw();
     }});
+  }
+  var act=0,els=[],dots=h('div',{class:'pdots'});
+  function jit(id){var n=0;for(var i=0;i<id.length;i++)n=(n*31+id.charCodeAt(i))|0;return ((n%7)+7)%7-3}
+  function blurNow(){var a=document.activeElement;if(a&&a.blur&&a!==document.body)a.blur()}
+  function layout(){
+    if(act>=cards.length)act=cards.length-1;if(act<0)act=0;
+    els.forEach(function(el,i){
+      var d=i-act,a=Math.abs(d),j=jit(cards[i].id),sg=d<0?-1:1;
+      var tx=d===0?0:sg*(a===1?7.7:13.2),rot=d===0?-0.6:sg*(a===1?2.2:4.2)+j*0.5,ty=d===0?0:(a===1?5:10)+Math.abs(j);
+      el.style.transform='translate('+tx+'%,'+ty+'px) rotate('+rot+'deg)';
+      el.style.zIndex=String(50-a);
+      el.classList.toggle('front',d===0);el.classList.toggle('far',a>2);
+      el.setAttribute('aria-hidden',d===0?'false':'true');
+      el._ta.tabIndex=d===0?0:-1;el._ti.tabIndex=d===0?0:-1;
+    });
+    dots.innerHTML='';
+    if(cards.length>1)cards.forEach(function(c,i){
+      dots.appendChild(h('button',{type:'button',class:i===act?'on':'','aria-label':(i+1)+' / '+cards.length,html:'<i></i>',onclick:function(){if(i!==act){blurNow();act=i;layout()}}}));
+    });
   }
   function build(c){
     var ta=h('textarea',{rows:'3',placeholder:T.pinPh,spellcheck:'false','aria-label':T.pins});
     ta.value=c.text;
     var el;
     var lkp=linkBar();lkp.set(c.text);
-    var bul=noteBullets(ta,function(){c.text=ta.value;grow(ta,c);save();lkp.set(c.text)});
+    var bul=noteBullets(ta,function(){c.text=ta.value;save();lkp.set(c.text)});
     var del=h('button',{type:'button',text:T.pinDel,onclick:function(){
       var i=cards.indexOf(c);if(i<0)return;
-      var tk=tasksOf(c.id);
-      tk.forEach(function(x){x.key='pin'});
-      cards.splice(i,1);var had=c.text.trim()||tk.length;
+      cards.splice(i,1);var had=has(c);
       if(!cards.length)cards.push({id:uid(),text:''});
-      save();draw();if(tk.length)render();
+      act=Math.min(i,cards.length-1);
+      save();draw();
       if(had)toast(T.pinGone,{label:T.undo,fn:function(){
-        tk.forEach(function(x){x.layer='pin';x.key=c.id});
-        cards=cards.filter(function(x){return x.text.trim()||tasksOf(x.id).length});
-        cards.splice(Math.min(i,cards.length),0,c);save();if(sheet.querySelector('.pinwrap'))draw();
+        cards=cards.filter(has);
+        var k=Math.min(i,cards.length);cards.splice(k,0,c);act=k;save();if(sheet.querySelector('.pinwrap'))draw();
       }});
     }});
     var mvBtn=h('button',{type:'button',text:T.pinHere,onclick:function(){
       if(!c.text.trim())return;
       pinToItem(c,'day',hereKey(),ta);
     }});
-    var handle=h('div',{class:'phandle',title:T.pinSize,'aria-label':T.pinSize});
-    var tl=taskList(c,false);
-    el=h('div',{class:'pin'+(c.w===0.5&&!tl?' half':'')},[tl,ta,lkp,h('div',{class:'pact'},[
+    var ti=h('input',{class:'ptitle',type:'text',maxlength:'60',placeholder:T.pinTi,spellcheck:'false','aria-label':T.pinTi});
+    ti.value=c.ti||'';
+    ti.addEventListener('input',function(){c.ti=ti.value;save()});
+    ti.addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();ta.focus()}});
+    el=h('div',{class:'pin'},[ti,ta,lkp,h('div',{class:'pact'},[
       h('button',{type:'button',onmousedown:function(e){e.preventDefault()},onclick:bul.chk,'aria-label':T.check2,html:'<span>☐</span>'}),
-      mvBtn,del]),handle]);
+      mvBtn,del])]);
     el.dataset.pid=c.id;
-    handle.addEventListener('pointerdown',function(e){
-      e.preventDefault();
-      try{handle.setPointerCapture(e.pointerId)}catch(x){}
-      var inner=list.clientWidth-12,sx=e.clientX,sy=e.clientY,sw=el.offsetWidth,sh=ta.offsetHeight,moved=false;
-      function mv(ev){
-        var dx=ev.clientX-sx,dy=ev.clientY-sy;
-        if(Math.abs(dx)>4||Math.abs(dy)>4)moved=true;
-        if(!moved)return;
-        el.style.flex='0 0 '+Math.max(120,Math.min(inner,sw+dx))+'px';
-        c.h=Math.round(Math.max(48,Math.min(window.innerHeight*.7,sh+dy)));
-        ta.style.height=c.h+'px';ta.style.overflowY='auto';
-      }
-      function up(){
-        handle.removeEventListener('pointermove',mv);handle.removeEventListener('pointerup',up);handle.removeEventListener('pointercancel',up);
-        var w=el.offsetWidth;el.style.flex='';
-        if(moved)c.w=(w<inner*0.72)?0.5:1;
-        else c.w=(c.w===0.5)?1:0.5;
-        el.classList.toggle('half',c.w===0.5);
-        if(c.w!==0.5)delete c.w;
-        grow(ta,c);save();
-      }
-      handle.addEventListener('pointermove',mv);handle.addEventListener('pointerup',up);handle.addEventListener('pointercancel',up);
+    el.addEventListener('click',function(){
+      var i=cards.indexOf(c);
+      if(i>=0&&i!==act){blurNow();act=i;layout()}
     });
-    el._ta=ta;el._grow=function(){grow(ta,c)};
+    el._ta=ta;el._ti=ti;
     return el;
-  }
-  function hereKey(){return view==='day'?dkey(anchor):dkey(today())}
-  var GRIP='<svg viewBox="0 0 12 18" width="10" height="16" aria-hidden="true" fill="currentColor"><circle cx="3" cy="4" r="1.3"/><circle cx="9" cy="4" r="1.3"/><circle cx="3" cy="9" r="1.3"/><circle cx="9" cy="9" r="1.3"/><circle cx="3" cy="14" r="1.3"/><circle cx="9" cy="14" r="1.3"/></svg>';
-  function startTaskDrag(e,it,row){
-    e.preventDefault();var grip=e.currentTarget;
-    try{grip.setPointerCapture(e.pointerId)}catch(x){}
-    var ghost=h('div',{class:'ghost',text:it.text});document.body.appendChild(ghost);
-    row.classList.add('tdrag');var tgt=null;
-    function clear(){[].forEach.call(wrap.querySelectorAll('.tb,.ta,.dover'),function(n){n.classList.remove('tb','ta','dover')})}
-    function mv(ev){
-      ghost.style.transform='translate('+Math.round(ev.clientX+16)+'px,'+Math.round(ev.clientY-26)+'px)';
-      clear();tgt=null;
-      var el=document.elementFromPoint(ev.clientX,ev.clientY);
-      var tr=el&&el.closest?el.closest('.trow'):null,pn=el&&el.closest?el.closest('.pin,.ptop'):null;
-      if(tr&&tr!==row){var r=tr.getBoundingClientRect(),after=ev.clientY>r.top+r.height/2;tr.classList.add(after?'ta':'tb');tgt={row:tr,after:after,pin:tr.closest('.pin,.ptop')}}
-      else if(pn){pn.classList.add('dover');tgt={row:null,pin:pn}}
-      var lr=list.getBoundingClientRect();
-      if(ev.clientY<lr.top+40)list.scrollTop-=12;else if(ev.clientY>lr.bottom-40)list.scrollTop+=12;
-    }
-    function up(){
-      grip.removeEventListener('pointermove',mv);grip.removeEventListener('pointerup',up);grip.removeEventListener('pointercancel',up);
-      ghost.remove();clear();row.classList.remove('tdrag');
-      if(!tgt||!tgt.pin)return;
-      var pid=tgt.pin.dataset.pid,i=S.items.indexOf(it);if(i<0)return;
-      S.items.splice(i,1);
-      var idx;
-      if(tgt.row){var o=findItem(tgt.row.dataset.tid),oi=S.items.indexOf(o);idx=oi<0?S.items.length:(tgt.after?oi+1:oi)}
-      else{var last=-1;S.items.forEach(function(x,j){if(x.layer==='pin'&&x.key===pid)last=j});idx=last>=0?last+1:S.items.length}
-      it.key=pid;S.items.splice(idx,0,it);
-      save();draw();
-    }
-    grip.addEventListener('pointermove',mv);grip.addEventListener('pointerup',up);grip.addEventListener('pointercancel',up);
-    mv(e);
-  }
-  function taskList(c,top){
-    var A=tasksOf(top?'pin':c.id);
-    if(!A.length&&(!top||!S.items.some(function(x){return x.layer==='pin'})))return null;
-    var box=h('div',{class:'ptasks'+(top?' ptop':'')});
-    if(top)box.dataset.pid='pin';
-    if(top&&!A.length)box.appendChild(h('div',{class:'phint',text:T.pinDropHint}));
-    A.forEach(function(it){
-      var rc=recOf(it),n=rc?rc.todos.length:0,meta=origLabel(it)+(n?' · '+n+' '+T.pinSub:'');
-      var row=h('div',{class:'arow trow'+(it.done?' done':''),'data-tid':it.id});
-      var grip=h('div',{class:'grip','aria-label':T.moveTo,html:GRIP});
-      grip.addEventListener('pointerdown',function(e){startTaskDrag(e,it,row)});
-      row.appendChild(grip);
-      row.appendChild(h('div',{class:'atxt'},[h('div',{class:'at',text:it.text}),h('div',{class:'am',text:meta})]));
-      row.appendChild(h('button',{class:'abtn',type:'button',text:T.putBack,onclick:function(){
-        var k=hereKey();delete it.ol;delete it.ok;delete it.dt;it.layer='day';it.key=k;queueSave();save();render();draw();
-        toast(T.backed+' · '+shortDate(pd(k)));
-      }}));
-      row.appendChild(h('button',{class:'abtn ic','aria-label':T.del,title:T.del,html:TRASH_I,onclick:function(){stash(it,'trash');save();render();draw()}}));
-      box.appendChild(row);
-    });
-    return box;
   }
   function draw(){
     list.innerHTML='';
-    var tcard=taskList(null,true);if(tcard)list.appendChild(tcard);
-    cards.forEach(function(c){list.appendChild(build(c))});
-    var all=list.children;for(var i=0;i<all.length;i++)if(all[i]._grow)all[i]._grow();
+    els=cards.map(build);
+    els.forEach(function(e){list.appendChild(e)});
+    layout();
   }
   var add=h('button',{class:'pinpill',type:'button',text:T.pinNew,onclick:function(){
-    var ft=list.querySelector('.pin textarea');
-    if(cards.length&&!cards[0].text.trim()&&!tasksOf(cards[0].id).length){if(ft)ft.focus();return}
+    if(cards.length&&!has(cards[0])){act=0;layout();els[0]._ta.focus();return}
     if(cards.length>=10){toast(T.pinMax);return}
-    cards.unshift({id:uid(),text:''});draw();var nt=list.querySelector('.pin textarea');if(nt)nt.focus();list.scrollTop=0;
+    cards.unshift({id:uid(),text:''});act=0;draw();els[0]._ta.focus();
   }});
+  var sx0=null,sy0=0;
+  list.addEventListener('touchstart',function(e){if(e.touches.length!==1){sx0=null;return}sx0=e.touches[0].clientX;sy0=e.touches[0].clientY},{passive:true});
+  list.addEventListener('touchend',function(e){
+    if(sx0==null)return;
+    var t=e.changedTouches[0],dx=t.clientX-sx0,dy=t.clientY-sy0;sx0=null;
+    if(Math.abs(dx)>55&&Math.abs(dy)<45){
+      var n=act+(dx<0?1:-1);
+      if(n>=0&&n<cards.length){blurNow();act=n;layout()}
+    }
+  },{passive:true});
   wrap.appendChild(h('div',{class:'pinbar'},[h('div',{class:'pinpill',text:T.pins}),h('div',{class:'sp'}),add,xBtn()]));
-  wrap.appendChild(list);
+  wrap.appendChild(list);wrap.appendChild(dots);
   showSheet(wrap,true);
   draw();
-  var f0=list.querySelector('.pin textarea');if(!cards[0].text.trim()&&f0)f0.focus();
+  if(!has(cards[0])&&els[0])els[0]._ta.focus();
 }
+
+
+/* ---------- notebook (Zamansız Notlar) ---------- */
+function cleanNb(x){
+  var tabs=[],notes=[],seen={},ts={},ns={};
+  if(x&&Array.isArray(x.tabs))x.tabs.forEach(function(t){
+    if(!t||typeof t.name!=='string'||!t.name.trim()||tabs.length>=12)return;
+    var id=(typeof t.id==='string'&&t.id&&!seen[t.id])?t.id:uid();seen[id]=1;ts[id]=1;
+    tabs.push({id:id,name:t.name.trim().slice(0,24)});
+  });
+  if(x&&Array.isArray(x.notes))x.notes.forEach(function(n){
+    if(!n||typeof n.text!=='string'||!n.text.trim()||notes.length>=1000)return;
+    var id=(typeof n.id==='string'&&n.id&&!ns[n.id])?n.id:uid();ns[id]=1;
+    notes.push({id:id,text:n.text.slice(0,4000),tab:(typeof n.tab==='string'&&ts[n.tab])?n.tab:''});
+  });
+  return {tabs:tabs,notes:notes};
+}
+var nbTab='all';
+var LATER_I='<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg>';
+function nbFit(t){t.style.height='auto';t.style.height=t.scrollHeight+'px'}
+function pageNb(){
+  var tabs=S.nb.tabs;
+  if(nbTab!=='all'&&nbTab!=='def'&&!tabs.some(function(t){return t.id===nbTab}))nbTab='all';
+  var p=h('div',{class:'nbp'});
+  p.appendChild(h('div',{class:'nav'},[h('div',{class:'nslot l'}),h('div',{class:'ncenter'},[h('div',{class:'t'},[h('div',{class:'title',text:T.nb})])]),h('div',{class:'nslot r'})]));
+  var strip=h('div',{class:'nbtabs'}),trow=h('div',{class:'nbrow'});
+  function chip(id,label){return h('button',{type:'button',class:'nbt','aria-pressed':String(nbTab===id),text:label,onclick:function(){nbRedraw(id)}})}
+  strip.appendChild(chip('all',T.nbAll));
+  var nDef=stashed('pin').length;
+  var dc=h('button',{type:'button',class:'nbt defc','aria-pressed':String(nbTab==='def'),'aria-label':T.nbDef+(nDef?' · '+nDef:''),title:T.nbDef,html:LATER_I+(nDef?'<b>'+nDef+'</b>':''),onclick:function(){nbRedraw('def')}});strip.appendChild(dc);
+  tabs.forEach(function(t){strip.appendChild(chip(t.id,t.name))});
+  var plus=h('button',{type:'button',class:'nbt plus','aria-label':T.nbNewTab,title:T.nbNewTab,text:'+',onclick:function(){
+    if(tabs.length>=12){toast(T.nbTabMax);return}
+    var inp=h('input',{class:'nbtin',type:'text',maxlength:'24',placeholder:T.nbTabPh,'aria-label':T.nbNewTab}),done=false;
+    function commit(){
+      if(done)return;done=true;
+      var v=inp.value.trim();
+      if(v){var t={id:uid(),name:v.slice(0,24)};S.nb.tabs.push(t);nbTab=t.id;queueSave()}
+      nbRedraw();
+    }
+    inp.addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();commit()}else if(e.key==='Escape'){e.stopPropagation();done=true;nbRedraw()}});
+    inp.addEventListener('blur',commit);
+    plus.hidden=true;strip.appendChild(inp);inp.focus();
+  }});
+  strip.appendChild(plus);trow.appendChild(strip);
+  p.appendChild(trow);
+  var body=h('div',{class:'nbbody'});
+  p.appendChild(body);
+  var focusAdd=null;
+  if(nbTab==='def'){
+    var A=stashed('pin');
+    if(!A.length)body.appendChild(h('p',{class:'pjempty',text:T.nbDefEmpty}));
+    var box=h('div',{class:'alist'});
+    A.forEach(function(it){
+      var rc=recOf(it),n=rc?rc.todos.length:0,meta=origLabel(it)+(n?' · '+n+' '+T.pinSub:'');
+      var row=h('div',{class:'arow'+(it.done?' done':'')});
+      row.appendChild(h('div',{class:'atxt'},[h('div',{class:'at',text:it.text}),h('div',{class:'am',text:meta})]));
+      row.appendChild(h('button',{class:'abtn',type:'button',text:T.putBack,onclick:function(){
+        var k=hereKey();delete it.ol;delete it.ok;delete it.dt;it.layer='day';it.key=k;queueSave();render();
+        toast(T.backed+' · '+shortDate(pd(k)));nbRedraw();
+      }}));
+      row.appendChild(h('button',{class:'abtn ic','aria-label':T.del,title:T.del,html:TRASH_I,onclick:function(){stash(it,'trash');render();nbRedraw()}}));
+      box.appendChild(row);
+    });
+    body.appendChild(box);
+  }else{
+    var add=h('textarea',{class:'nadd',rows:'1',placeholder:T.nbAddPh,spellcheck:'false','aria-label':T.nbAddPh});
+    add.addEventListener('input',function(){nbFit(add)});
+    add.addEventListener('keydown',function(e){
+      if(e.key==='Enter'&&!e.shiftKey){
+        e.preventDefault();var v=add.value.trim();if(!v)return;
+        S.nb.notes.unshift({id:uid(),text:v.slice(0,4000),tab:nbTab==='all'?'':nbTab});queueSave();
+        nbRedraw();var a2=document.querySelector('.nadd');if(a2)a2.focus();
+      }
+    });
+    body.appendChild(add);focusAdd=add;
+    var list=S.nb.notes.filter(function(n){return nbTab==='all'||n.tab===nbTab});
+    if(!list.length)body.appendChild(h('p',{class:'pjempty',text:T.nbEmpty}));
+    var nl=h('div',{class:'nlist'});
+    list.forEach(function(n){
+      var row=h('div',{class:'nrow'});
+      var ta=h('textarea',{rows:'1',spellcheck:'false','aria-label':T.nb});ta.value=n.text;
+      ta.addEventListener('input',function(){nbFit(ta)});
+      ta.addEventListener('keydown',function(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();ta.blur()}});
+      ta.addEventListener('blur',function(){
+        var v=ta.value.trim();
+        if(!v){var i=S.nb.notes.indexOf(n);if(i>=0){S.nb.notes.splice(i,1);queueSave();toast(T.nbGone,{label:T.undo,fn:function(){S.nb.notes.splice(Math.min(i,S.nb.notes.length),0,n);queueSave();nbRedraw()}});nbRedraw()}return}
+        if(v!==n.text){n.text=v.slice(0,4000);queueSave()}
+      });
+      var tx=h('div',{class:'ntx'},[ta]);
+      if(nbTab==='all'&&n.tab){var tn=tabs.filter(function(t){return t.id===n.tab})[0];if(tn)tx.appendChild(h('div',{class:'ntag',text:tn.name}))}
+      row.appendChild(tx);
+      var menu=null;
+      var more=h('button',{class:'nmore',type:'button','aria-label':T.nbMore,title:T.nbMore,html:DOTS,onclick:function(){
+        if(menu){menu.remove();menu=null;return}
+        menu=h('div',{class:'nmenu'});
+        menu.appendChild(h('span',{class:'nml',text:T.nbMove}));
+        function mv(id,label){var c=h('button',{type:'button',class:'nbt','aria-pressed':String(n.tab===id),text:label,onclick:function(){n.tab=id;queueSave();nbRedraw()}});menu.appendChild(c)}
+        if(tabs.length)mv('',T.nbNone);
+        tabs.forEach(function(t){mv(t.id,t.name)});
+        menu.appendChild(h('button',{type:'button',class:'nbt del',text:T.nbDel,onclick:function(){
+          var i=S.nb.notes.indexOf(n);if(i<0)return;S.nb.notes.splice(i,1);queueSave();
+          toast(T.nbGone,{label:T.undo,fn:function(){S.nb.notes.splice(Math.min(i,S.nb.notes.length),0,n);queueSave();nbRedraw()}});nbRedraw();
+        }}));
+        row.appendChild(menu);
+      }});
+      row.appendChild(more);
+      nl.appendChild(row);
+    });
+    body.appendChild(nl);
+    if(nbTab!=='all'){
+      var cur=tabs.filter(function(t){return t.id===nbTab})[0];
+      var act=h('div',{class:'nbact'});
+      var ren=h('button',{type:'button',text:T.nbRename,onclick:function(){
+        var inp=h('input',{class:'nbtin wide',type:'text',maxlength:'24',value:cur.name,'aria-label':T.nbRename}),done=false;
+        function commit(){if(done)return;done=true;var v=inp.value.trim();if(v&&v!==cur.name){cur.name=v.slice(0,24);queueSave()}nbRedraw()}
+        inp.addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();commit()}else if(e.key==='Escape'){e.stopPropagation();done=true;nbRedraw()}});
+        inp.addEventListener('blur',commit);
+        act.innerHTML='';act.appendChild(inp);inp.focus();inp.select();
+      }});
+      var sure=false,del=h('button',{type:'button',class:'dng',text:T.nbDelTab,onclick:function(){
+        if(!sure){sure=true;del.textContent=T.nbDelSure;return}
+        S.nb.notes.forEach(function(n){if(n.tab===cur.id)n.tab=''});
+        S.nb.tabs=S.nb.tabs.filter(function(t){return t!==cur});nbTab='all';queueSave();nbRedraw();
+      }});
+      act.appendChild(ren);act.appendChild(del);body.appendChild(act);
+    }
+  }
+  setTimeout(function(){[].forEach.call(document.querySelectorAll('.nbp .nrow textarea'),nbFit);if(focusAdd&&document.body.contains(focusAdd)&&!('ontouchstart' in window))focusAdd.focus()},0);
+  return p;
+}
+var nbFromKey='';
+function nbRedraw(tab){if(tab)nbTab=tab;if(view==='nb')render()}
+function openNotebook(tab){
+  if(view!=='nb')nbFromKey=view==='day'?dkey(anchor):'';
+  if(tab)nbTab=tab;
+  view='nb';render();window.scrollTo(0,0);
+}
+
 
 /* ---------- projects ---------- */
 var PJ_I='<svg viewBox="0 0 18 18" aria-hidden="true" fill="var(--blue-wash)" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.6 5.4a1.6 1.6 0 0 1 1.6-1.6h3l1.6 1.8h5a1.6 1.6 0 0 1 1.6 1.6v6a1.6 1.6 0 0 1-1.6 1.6H4.2a1.6 1.6 0 0 1-1.6-1.6Z"/></svg>';
@@ -2526,7 +2650,7 @@ function updateFile(id,body){
 function parseRemote(j){
   var items=j&&j.app==='defter'?clean(j):null;
   if(!items)return null;
-  return {items:items,pins:cleanPins(j.pins),projects:cleanProjects(j.projects),ds:typeof j.decadeStart==='number'?j.decadeStart:null,savedAt:typeof j.savedAt==='number'?j.savedAt:0};
+  return {items:items,pins:cleanPins(j.pins),nb:cleanNb(j.nb),projects:cleanProjects(j.projects),ds:typeof j.decadeStart==='number'?j.decadeStart:null,savedAt:typeof j.savedAt==='number'?j.savedAt:0};
 }
 function sameItems(a,b){
   function n(l){return JSON.stringify(l.map(function(i){return [i.id,i.text,!!i.done,i.layer,i.key,i.note||'']}).sort())}
@@ -2535,8 +2659,10 @@ function sameItems(a,b){
 function sameProj(rp){
   return JSON.stringify(cleanProjects(S.projects)||[])===JSON.stringify(cleanProjects(rp||[])||[]);
 }
+function sameNb(rn){return JSON.stringify(cleanNb(S.nb))===JSON.stringify(cleanNb(rn))}
+function nbCount(n){return n?(n.notes.length+n.tabs.length):0}
 function samePins(rp){
-  function n(l){return JSON.stringify((l||[]).map(function(i){return [i.id,i.text]}).sort())}
+  function n(l){return JSON.stringify((l||[]).map(function(i){return [i.id,i.text,i.ti||'']}).sort())}
   return n(S.pins)===n(rp);
 }
 function editing(){var a=document.activeElement;return !!(a&&(a.tagName==='TEXTAREA'||a.tagName==='INPUT'))}
@@ -2564,10 +2690,10 @@ function syncOff(){
   S.syncOn=false;S.syncRev=null;S.dirty=false;syncMsg='';persist();syncBtnUpdate();toast(T.disconnected);openSettings();
 }
 function applyRemote(rm){
-  S.items=rm.items;if(rm.pins)S.pins=rm.pins;if(rm.projects)S.projects=rm.projects;if(rm.ds)S.decadeStart=rm.ds;S.syncRev=rm.savedAt;S.dirty=false;S.syncLast=Date.now();persist();render();
+  S.items=rm.items;if(rm.pins)S.pins=rm.pins;if(rm.nb)S.nb=rm.nb;if(rm.projects)S.projects=rm.projects;if(rm.ds)S.decadeStart=rm.ds;S.syncRev=rm.savedAt;S.dirty=false;S.syncLast=Date.now();persist();render();
 }
 function pushNow(id,seq){
-  var pl={app:'defter',v:1,savedAt:Date.now(),decadeStart:S.decadeStart,pins:S.pins,projects:S.projects,items:S.items};
+  var pl={app:'defter',v:1,savedAt:Date.now(),decadeStart:S.decadeStart,pins:S.pins,nb:S.nb,projects:S.projects,items:S.items};
   var body=JSON.stringify(pl);
   return (id?updateFile(id,body):createFile(body)).then(function(){
     S.syncRev=pl.savedAt;if(editSeq===seq)S.dirty=false;S.syncLast=Date.now();persist();
@@ -2601,9 +2727,9 @@ function syncNow(auto,silentOk){
       if(!rm)throw new Error('remote');
       var changed=S.syncRev!==rm.savedAt;
       if(S.syncRev==null){
-        if(!S.items.length&&!S.pins.length&&!S.projects.length){applyRemote(rm);return endSync('pulled',auto)}
-        if(!rm.items.length&&!(rm.pins&&rm.pins.length)&&!(rm.projects&&rm.projects.length))return pushNow(id,seq).then(function(){endSync('pushed',auto)});
-        if(sameItems(S.items,rm.items)&&samePins(rm.pins)&&sameProj(rm.projects)){S.syncRev=rm.savedAt;S.dirty=false;S.syncLast=Date.now();return endSync('ok',auto)}
+        if(!S.items.length&&!S.pins.length&&!S.projects.length&&!nbCount(S.nb)){applyRemote(rm);return endSync('pulled',auto)}
+        if(!rm.items.length&&!(rm.pins&&rm.pins.length)&&!(rm.projects&&rm.projects.length)&&!nbCount(rm.nb))return pushNow(id,seq).then(function(){endSync('pushed',auto)});
+        if(sameItems(S.items,rm.items)&&samePins(rm.pins)&&sameNb(rm.nb)&&sameProj(rm.projects)){S.syncRev=rm.savedAt;S.dirty=false;S.syncLast=Date.now();return endSync('ok',auto)}
         if(auto&&editing())return endSync('skip',auto);
         conf={rm:rm,id:id};endSync('conflict',auto);return openConflict();
       }
@@ -2644,6 +2770,7 @@ function openConflict(){
       var seen={};S.items.forEach(function(i){seen[i.id]=1});
       c.rm.items.forEach(function(i){if(!seen[i.id])S.items.push(i)});
       if(c.rm.pins){var ps={};S.pins.forEach(function(i){ps[i.id]=1});c.rm.pins.forEach(function(i){if(!ps[i.id])S.pins.push(i)})}
+      if(c.rm.nb){var nt={},nn={};S.nb.tabs.forEach(function(i){nt[i.id]=1});S.nb.notes.forEach(function(i){nn[i.id]=1});c.rm.nb.tabs.forEach(function(i){if(!nt[i.id])S.nb.tabs.push(i)});c.rm.nb.notes.forEach(function(i){if(!nn[i.id])S.nb.notes.push(i)})}
       if(c.rm.projects){var pr={};S.projects.forEach(function(i){pr[i.id]=1});c.rm.projects.forEach(function(i){if(!pr[i.id])S.projects.push(i)})}
       persist();render();
     }
@@ -2659,7 +2786,7 @@ function openConflict(){
 }
 
 /* ---------- settings ---------- */
-function backupJson(){return JSON.stringify({app:'defter',v:1,savedAt:new Date().toISOString(),lang:S.lang,font:S.font,zoom:S.zoom,yrev:S.yrev,decadeStart:S.decadeStart,pins:S.pins,projects:S.projects,items:S.items},null,1)}
+function backupJson(){return JSON.stringify({app:'defter',v:1,savedAt:new Date().toISOString(),lang:S.lang,font:S.font,zoom:S.zoom,yrev:S.yrev,decadeStart:S.decadeStart,pins:S.pins,nb:S.nb,projects:S.projects,items:S.items},null,1)}
 function setLang(l){
   S.lang=l;T=TX[l];document.documentElement.lang=l;persist();
   document.getElementById('gear').setAttribute('aria-label',T.settings);document.getElementById('pinBtn').setAttribute('aria-label',T.pins);syncBtnUpdate();buildTabs();render();openSettings();
@@ -2837,10 +2964,10 @@ function openSettings(){
   ta.addEventListener('input',function(){confirming=false;rb.textContent=T.restoreGo});
   rb.addEventListener('click',function(){
     var raw=ta.value.trim();if(!raw)return;
-    var items=null,ds=null,pn=null,pr=null;try{var oo=JSON.parse(raw);items=clean(oo);if(oo&&Array.isArray(oo.projects))pr=cleanProjects(oo.projects);if(oo&&typeof oo.decadeStart==='number')ds=oo.decadeStart;if(oo&&Array.isArray(oo.pins))pn=cleanPins(oo.pins)}catch(e){}
+    var items=null,ds=null,pn=null,pr=null,nbk=null;try{var oo=JSON.parse(raw);items=clean(oo);if(oo&&Array.isArray(oo.projects))pr=cleanProjects(oo.projects);if(oo&&typeof oo.decadeStart==='number')ds=oo.decadeStart;if(oo&&Array.isArray(oo.pins))pn=cleanPins(oo.pins);if(oo&&oo.nb)nbk=cleanNb(oo.nb)}catch(e){}
     if(!items){toast(T.bad);return}
     if(!confirming){confirming=true;rb.textContent=T.confirmRestore;return}
-    S.items=items;if(ds)S.decadeStart=ds;if(pn)S.pins=pn;if(pr)S.projects=pr;S.dirty=true;editSeq++;persist();closeSheet();render();toast(T.restored);autoPushSoon();
+    S.items=items;if(ds)S.decadeStart=ds;if(pn)S.pins=pn;if(nbk)S.nb=nbk;if(pr)S.projects=pr;S.dirty=true;editSeq++;persist();closeSheet();render();toast(T.restored);autoPushSoon();
   });
   rbox.appendChild(ta);rbox.appendChild(h('div',{class:'sbtns'},[rb]));bk.push(rbox);
   if(typeof syncDrawer!=='undefined'&&syncDrawer)p.appendChild(syncDrawer);
@@ -2852,7 +2979,7 @@ function openSettings(){
   showSheet(p,true);
 }
 document.getElementById('gear').addEventListener('click',openSettings);
-document.getElementById('eyeBtn').addEventListener('click',function(){revealDone=!revealDone;render()});
+document.getElementById('eyeBtn').addEventListener('click',function(){S.hideDone=!S.hideDone;revealDone=false;justDone={};persist();queueSave();render()});
 document.getElementById('pinBtn').addEventListener('click',openPins);
 document.getElementById('backBtn').addEventListener('click',function(){go(view,today())});
 
@@ -2900,13 +3027,13 @@ function updateDrag(){
   ghost.style.transform='translate('+Math.round(x+16)+'px,'+Math.round(y-26)+'px)';
   var el=document.elementFromPoint(x,y);
   var zone=el&&el.closest?el.closest('[data-layer][data-key]'):null;
-  var old=document.querySelectorAll('.dz-over,.dchip.over,.arrow.over,.tab.over,.pinbtn.over');
+  var old=document.querySelectorAll('.dz-over,.dchip.over,.arrow.over,.tab.over');
   for(var i=0;i<old.length;i++){old[i].classList.remove('dz-over');old[i].classList.remove('over')}
   drag.target=null;drag.overChip=false;dropline.hidden=true;
+  var nt=el&&el.closest?el.closest('.tabnb'):null;
+  if(nt){drag.overChip=true;nt.classList.add('over');drag.target={pin:true};return}
   var tb=el&&el.closest?el.closest('.tab[data-layer]'):null;
   if(tb){drag.overChip=true;tb.classList.add('over');drag.target={layer:tb.dataset.layer,key:keyOf(tb.dataset.layer,anchor),beforeId:null};return}
-  var pb=el&&el.closest?el.closest('.pinbtn'):null;
-  if(pb){drag.overChip=true;pb.classList.add('over');drag.target={pin:true};return}
   var ar=view==='day'&&el&&el.closest?el.closest('.arrow'):null;
   if(ar){ar.classList.add('over');drag.target={layer:'day',key:dkey(addDays(anchor,+ar.dataset.dir)),beforeId:null};return}
   if(!zone)return;
@@ -2940,7 +3067,7 @@ function dropLabel(layer,key){
 function toPin(it){
   if(it.rep||it.pt){toast(T.pinNoRep);return}
   stash(it,'pin');render();
-  toast(T.moved+' \u00b7 '+T.pins,{label:T.undo,fn:function(){unstash(it);render()}});
+  toast(T.moved+' \u00b7 '+T.nbDef,{label:T.undo,fn:function(){unstash(it);render()}});
 }
 function applyDrop(d){
   if(d.target.pin){toPin(d.it);return}
@@ -2962,7 +3089,7 @@ function finishDrag(commit){
   lastDragEnd=Date.now();
   if(ghost){ghost.remove();ghost=null}
   dock.hidden=true;dropline.hidden=true;document.body.classList.remove('dragging-now');document.body.classList.remove('arrows-on');document.body.classList.remove('tabs-on');
-  var l=document.querySelectorAll('.dz-over,.dchip.over,.dragging,.arrow.over,.tab.over,.pinbtn.over');
+  var l=document.querySelectorAll('.dz-over,.dchip.over,.dragging,.arrow.over,.tab.over');
   for(var i=0;i<l.length;i++){l[i].classList.remove('dz-over');l[i].classList.remove('over');l[i].classList.remove('dragging')}
   setTimeout(function(){suppressClick=false},80);
   if(commit&&d&&d.target)applyDrop(d);
