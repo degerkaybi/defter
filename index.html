@@ -2251,8 +2251,14 @@ function openPins(){
   }
   function layout(){
     if(act>=cards.length)act=cards.length-1;if(act<0)act=0;
+    var nc=cards.length;
     els.forEach(function(el,i){
-      var d=i-act,a=Math.abs(d),j=jit(cards[i].id),sg=d<0?-1:1;
+      var d=i-act;
+      /* endless loop: a card sits at its shortest distance around the ring */
+      if(nc>2){if(d>nc/2)d-=nc;else if(d<-nc/2)d+=nc}
+      var wrapped=el._d!==undefined&&Math.abs(d-el._d)>2;el._d=d;
+      if(wrapped){el.style.transition='none';requestAnimationFrame(function(){requestAnimationFrame(function(){el.style.transition=''})})}
+      var a=Math.abs(d),j=jit(cards[i].id),sg=d<0?-1:1;
       var tx=d===0?0:sg*(a===1?7.7:13.2),rot=d===0?-0.6:sg*(a===1?2.2:4.2)+j*0.5,ty=d===0?0:(a===1?5:10)+Math.abs(j);
       el.style.transform='translate('+tx+'%,'+ty+'px) rotate('+rot+'deg)';
       el.style.zIndex=String(50-a);
@@ -2368,7 +2374,7 @@ function openPins(){
     if(!s.on)return;
     lastSwipe=Date.now();
     var n=act;if(!cancel&&Math.abs(s.dx)>36)n=act+(s.dx<0?1:-1);
-    if(n<0||n>=cards.length)n=act;
+    var nn=cards.length;if(nn>1)n=((n%nn)+nn)%nn;else n=act;
     act=n;layout();
   }
   list.addEventListener('touchend',function(){endSw(false)});
