@@ -440,6 +440,19 @@ body.nbdragging .nbtabs .nbt[data-nbtab]{box-shadow:inset 0 0 0 1.5px var(--blue
 .mvrow.cmp{flex-wrap:wrap;gap:6px;padding:12px 0 6px;margin-top:10px;border-top:1px solid var(--rule)}
 .mvrow.cmp .chip{flex:0 0 auto;min-width:0;padding:9px 12px;font-size:13px;background:none;border:1px solid var(--rule-strong);border-radius:999px;white-space:nowrap;text-align:center;overflow:hidden;text-overflow:ellipsis}
 .mvrow.cmp .dtxt{flex:none;padding:10px 8px;font:500 14px/1.1 var(--sans);color:var(--danger)}
+@media (max-width:520px){
+  .ptd{grid-template-columns:30px minmax(0,1fr) auto}
+  .ptd .pdel{display:none}
+  .ptd:has(textarea:focus) .pdt{display:none}
+  .ptd:has(textarea:focus) .pdel{display:grid;width:30px}
+  .pdt.has .pdp,.pdt.has .pdx{display:none}
+  .pdt .dfull{display:none}
+  .pdt.has .pdl{padding:5px 10px}
+}
+@media (min-width:521px){.pdt .dshort{display:none}}
+.pcb.dng{color:var(--danger)}
+.pcb.dng:hover{background:rgba(200,80,70,.1)}
+.pcf{flex-wrap:wrap;gap:2px}
 .pdt .pdov{position:absolute;inset:0;width:100%;height:100%;opacity:0;border-radius:inherit}
 .popbd{position:fixed;inset:0;z-index:450;background:transparent}
 .pop{position:fixed;background:var(--sheet);color:var(--ink);border:1px solid var(--rule);border-radius:16px;box-shadow:0 14px 38px rgba(30,28,22,.26),0 2px 6px rgba(30,28,22,.1);animation:popin .14s ease-out;transform-origin:50% 100%}
@@ -474,6 +487,9 @@ body.nbdragging .nbtabs .nbt[data-nbtab]{box-shadow:inset 0 0 0 1.5px var(--blue
 .ibg .ibtn input,.ibg .ibtn select{position:absolute;inset:0;width:100%;height:100%;opacity:0;font-size:16px;border:0;padding:0;margin:0;cursor:pointer;-webkit-appearance:none;appearance:none}
 .ibg .ibtn:hover,.ibg .dtxt:hover{background:var(--chip)}
 .ibg .dtxt.arch{color:var(--ink-soft)}
+.mvrow.cmp .ibg .dtxt,.mvrow.cmp .ibg .ibtn{padding:0}
+.mvrow.cmp .ibg .dtxt svg,.mvrow.cmp .ibg .ico svg{width:20px;height:20px}
+@media (max-width:400px){.mvrow.cmp .ibg .dtxt svg,.mvrow.cmp .ibg .ico svg{width:19px;height:19px}}
 @media (max-width:400px){.mvrow.cmp .chip{padding:9px 8px;font-size:12.5px}.mvrow.cmp{gap:4px}.ibg{gap:0}.ibg .ibtn,.ibg .dtxt{width:32px;height:34px;border-radius:12px}.ibg .ico svg,.ibg .dtxt svg{width:19px;height:19px}}
 .mvrow.cmp2{display:flex;flex-wrap:nowrap;gap:8px;padding:2px 0 4px;margin:0;border:0}
 .dpill{flex:1 1 0;min-width:0;display:flex;align-items:center;background:none;border:1px solid var(--rule-strong);border-radius:999px;padding:0 10px 0 14px}
@@ -805,6 +821,11 @@ select option:disabled{color:var(--ink-faint)}
 .sbtns{display:flex;flex-wrap:wrap;gap:8px;margin:0 4px 10px}
 .rbox .paste{min-height:56px;height:56px;margin-top:0}
 .sbtns{row-gap:8px}
+.sbtns.cf{display:block;margin:0 4px 10px}
+.sbtns.cf .sbtn{text-align:center}
+.sbtns.cf .big{display:block;width:100%;padding:14px 12px;margin:0 0 8px}
+.cfpair{display:flex;gap:8px}
+.cfpair .sbtn{flex:1 1 0;min-width:0;padding:11px 8px;line-height:1.2;white-space:normal}
 .sbtns.two{flex-wrap:nowrap}
 .sbtns.two .sbtn{flex:1 1 0;min-width:0;padding:10px 6px;text-align:center;white-space:nowrap}
 .phg{display:flex;align-items:center;gap:2px;flex:none}
@@ -3174,7 +3195,7 @@ function popOpen(anchor,box,align){
   box.style.visibility='hidden';place();
   return place;
 }
-function popCal(anchor,val,onPick,align){
+function popCal(anchor,val,onPick,align,extra){
   var sel=val?pd(val):null,t0=dkey(today());
   var vm=new Date((sel||today()).getFullYear(),(sel||today()).getMonth(),1);
   var box=h('div',{class:'pcal',role:'dialog'});
@@ -3205,7 +3226,9 @@ function popCal(anchor,val,onPick,align){
       })(addDays(first,i));
     }
     box.appendChild(g);
-    box.appendChild(h('div',{class:'pcf'},[h('button',{class:'pcb',type:'button',text:T.today.charAt(0).toUpperCase()+T.today.slice(1),onclick:function(){popClose();onPick(t0)}})]));
+    var pf=h('div',{class:'pcf'},[h('button',{class:'pcb',type:'button',text:T.today.charAt(0).toUpperCase()+T.today.slice(1),onclick:function(){popClose();onPick(t0)}})]);
+    (extra||[]).forEach(function(x){pf.appendChild(h('button',{class:'pcb'+(x.dng?' dng':''),type:'button',text:x.label,onclick:function(){popClose();x.fn()}}))});
+    box.appendChild(pf);
     if(place)place();
   }
   draw();
@@ -3234,7 +3257,15 @@ function dateChip(key,onPick,onClear,extraCls,label){
   if(key){
     var pill=h('span',{class:'pdl'});
     pill.appendChild(h('span',{class:'pdp'},[h('span',{html:CAL_I}),di]));
-    pill.appendChild(h('button',{class:'pdgo',type:'button',text:shortDate(pd(key)),'aria-label':shortDate(pd(key)),onclick:function(e){e.stopPropagation();goToDay(key)}}));
+    var dd=pd(key),gob=h('button',{class:'pdgo',type:'button','aria-label':shortDate(dd),onclick:function(e){
+      e.stopPropagation();
+      if(window.matchMedia&&matchMedia('(max-width:520px)').matches){
+        var ex=[{label:T.openDay,fn:function(){goToDay(key)}}];
+        if(onClear)ex.push({label:T.pjClr,dng:true,fn:onClear});
+        popCal(gob,key,function(v){onPick(v,{value:''})},'left',ex);
+      }else goToDay(key);
+    }},[h('span',{class:'dfull',text:shortDate(dd)}),h('span',{class:'dshort',text:S.lang==='tr'?dd.getDate()+' '+T.mo[dd.getMonth()].slice(0,3):T.mo[dd.getMonth()].slice(0,3)+' '+dd.getDate()})]);
+    pill.appendChild(gob);
     dt.appendChild(pill);
     if(onClear)dt.appendChild(h('button',{class:'pdx',type:'button','aria-label':T.pjClr,text:'\u00d7',onclick:function(e){e.stopPropagation();onClear()}}));
   }else{
@@ -3704,10 +3735,12 @@ function openConflict(){
     getToken(true).then(function(){return pushNow(c.id,editSeq)}).then(function(){endSync('pushed',false);toast(T.pushed)})
       .catch(function(){syncBusy=false;S.dirty=true;syncMsg=T.syncFail;persist();setStatus();toast(T.syncFail)});
   }
-  p.appendChild(h('div',{class:'sbtns'},[
-    h('button',{class:'sbtn',type:'button',text:T.merge,onclick:function(){run('merge')}}),
-    h('button',{class:'sbtn',type:'button',text:T.takeRemote,onclick:function(){run('remote')}}),
-    h('button',{class:'sbtn',type:'button',text:T.takeLocal,onclick:function(){run('local')}})
+  p.appendChild(h('div',{class:'sbtns cf'},[
+    h('button',{class:'sbtn big',type:'button',text:T.takeRemote,onclick:function(){run('remote')}}),
+    h('div',{class:'cfpair'},[
+      h('button',{class:'sbtn',type:'button',text:T.merge,onclick:function(){run('merge')}}),
+      h('button',{class:'sbtn',type:'button',text:T.takeLocal,onclick:function(){run('local')}})
+    ])
   ]));
   showSheet(p,true);
 }
