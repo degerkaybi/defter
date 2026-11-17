@@ -643,9 +643,12 @@ body.nbdragging .nbtabs .nbt[data-nbtab]{box-shadow:inset 0 0 0 1.5px var(--blue
 .msec{position:relative}
 @keyframes slR{from{opacity:.2;transform:translateX(38px)}to{opacity:1;transform:translateX(0)}}
 @keyframes slL{from{opacity:.2;transform:translateX(-38px)}to{opacity:1;transform:translateX(0)}}
-#page.slR{animation:slR .26s cubic-bezier(.2,.7,.2,1)}
-#page.slL{animation:slL .26s cubic-bezier(.2,.7,.2,1)}
-@media (prefers-reduced-motion:reduce){#page.slR,#page.slL{animation:none}}
+#pbody.slR{animation:slR .26s cubic-bezier(.2,.7,.2,1)}
+#pbody.slL{animation:slL .26s cubic-bezier(.2,.7,.2,1)}
+@media (prefers-reduced-motion:reduce){#pbody.slR,#pbody.slL{animation:none}}
+html{overflow-x:hidden}
+#page{touch-action:pan-y pinch-zoom}
+#pbody{will-change:auto}
 .mcnt{display:inline-block;align-self:center;margin-left:2px;min-width:22px;padding:3px 8px;border-radius:999px;background:var(--chip);font:500 13px/1 var(--sans);color:var(--ink-soft);text-align:center}
 .mfold{position:absolute;right:8px;top:8px;width:34px;height:34px;display:grid;place-items:center;border-radius:10px;color:var(--ink-faint)}
 .mfold svg{width:18px;height:18px;display:block}
@@ -707,13 +710,15 @@ body.nbdragging .nbtabs .nbt[data-nbtab]{box-shadow:inset 0 0 0 1.5px var(--blue
   padding:22px max(20px,env(safe-area-inset-left,0px)) calc(14px + env(safe-area-inset-bottom,0px));
   animation:rise .2s ease;
 }
-/* slim scrollbar that respects the rounded corners */
-.panel::-webkit-scrollbar,.ptrash::-webkit-scrollbar{width:12px}
-.panel::-webkit-scrollbar-track,.ptrash::-webkit-scrollbar-track{background:transparent;margin:22px 0}
-.panel::-webkit-scrollbar-thumb,.ptrash::-webkit-scrollbar-thumb{background:var(--rule-strong);border-radius:8px;border:4px solid transparent;background-clip:content-box;min-height:40px}
-.panel::-webkit-scrollbar-thumb:hover,.ptrash::-webkit-scrollbar-thumb:hover{background:var(--ink-faint);background-clip:content-box}
-.panel::-webkit-scrollbar-button,.ptrash::-webkit-scrollbar-button{display:none;width:0;height:0}
-@supports not selector(::-webkit-scrollbar){.panel,.ptrash{scrollbar-width:thin;scrollbar-color:var(--rule-strong) transparent}}
+/* slim scrollbar everywhere (sheets, notes, textareas), clear of the rounded corners */
+*::-webkit-scrollbar{width:12px;height:12px}
+*::-webkit-scrollbar-track{background:transparent}
+.panel::-webkit-scrollbar-track,.ptrash::-webkit-scrollbar-track{margin:22px 0}
+*::-webkit-scrollbar-thumb{background:var(--rule-strong,rgba(60,72,100,.22));border-radius:8px;border:4px solid transparent;background-clip:content-box;min-height:40px;min-width:40px}
+*::-webkit-scrollbar-thumb:hover{background:var(--ink-faint);background-clip:content-box}
+*::-webkit-scrollbar-button{display:none;width:0;height:0}
+*::-webkit-scrollbar-corner{background:transparent}
+@supports not selector(::-webkit-scrollbar){*{scrollbar-width:thin;scrollbar-color:var(--rule-strong,rgba(60,72,100,.22)) transparent}}
 .backdrop.center .panel{max-width:440px;max-height:80%;border-radius:24px;padding-bottom:14px}
 .panel{padding-top:0!important}
 .panel.note{max-width:600px!important;padding-left:max(14px,env(safe-area-inset-left,0px));padding-right:max(14px,env(safe-area-inset-right,0px))}
@@ -823,7 +828,8 @@ select option:disabled{color:var(--ink-faint)}
   .app{min-height:calc(100vh - 156px);display:flex;flex-direction:column}
   #page{flex:1;display:flex;flex-direction:column}
   #page>div{flex:1;display:flex;flex-direction:column}
-  #page>div>.lines.margin:last-child{flex:1}
+  #page>div>.lines.margin:last-child,#pbody>.lines.margin:last-child{flex:1}
+  #pbody{flex:1;display:flex;flex-direction:column}
   .title{font-size:calc(36px*var(--hs))}
   .tabs{padding-bottom:44px}
   .backwrap{bottom:112px}
@@ -1610,7 +1616,7 @@ function shift(dir){
 }
 var slT=0;
 function slideIn(dir){
-  var pg=document.getElementById('page');if(!pg)return;
+  var pg=document.getElementById('pbody');if(!pg)return;
   pg.classList.remove('slL','slR');void pg.offsetWidth;
   pg.classList.add(dir>0?'slR':'slL');
   clearTimeout(slT);slT=setTimeout(function(){pg.classList.remove('slL','slR')},300);
@@ -1983,6 +1989,8 @@ function render(){
   hold.appendChild(pinB);hold.appendChild(gearB);
   page.innerHTML='';
   page.appendChild({day:pageDay,week:pageWeek,month:pageMonth,year:pageYear,decade:pageDecade,nb:pageNb}[view]());
+  var proot=page.firstElementChild,pnav=proot&&proot.querySelector(':scope > .nav');
+  if(pnav&&view!=='nb'){var pb=h('div',{id:'pbody'});while(pnav.nextSibling)pb.appendChild(pnav.nextSibling);proot.appendChild(pb)}
   var sl=page.querySelector('.nslot.l'),sr=page.querySelector('.nslot.r');
   if(sl){sl.appendChild(pinB)}if(sr){sr.appendChild(gearB)}
   var bb=document.getElementById('backBtn');bb.hidden=view==='nb'||isCur();bb.textContent=T.back;
@@ -4045,21 +4053,23 @@ pageEl.addEventListener('touchstart',function(e){
   sx=e.touches[0].clientX;sy=e.touches[0].clientY;st=Date.now();
 },{passive:true});
 var swOn=false;
+function swEl(){return document.getElementById('pbody')}
 function swReset(anim){
-  swOn=false;
-  pageEl.style.transition=anim?'transform .18s ease-out,opacity .18s':'none';
-  pageEl.style.transform='';pageEl.style.opacity='';
-  if(anim)setTimeout(function(){pageEl.style.transition=''},220);else pageEl.style.transition='';
+  swOn=false;var el=swEl();if(!el)return;
+  el.style.transition=anim?'transform .18s ease-out,opacity .18s':'none';
+  el.style.transform='';el.style.opacity='';
+  if(anim)setTimeout(function(){el.style.transition=''},220);else el.style.transition='';
 }
 pageEl.addEventListener('touchmove',function(e){
   if(sx==null||drag||view==='nb'||e.touches.length!==1)return;
+  var el=swEl();if(!el)return;
   var t=e.touches[0],dx=t.clientX-sx,dy=t.clientY-sy;
   if(Math.abs(dx)<14||Math.abs(dx)<Math.abs(dy)*1.6){if(swOn)swReset(true);return}
   swOn=true;
   var off=Math.max(-44,Math.min(44,Math.round(dx*.4)));
-  pageEl.style.transition='none';
-  pageEl.style.transform='translateX('+off+'px)';
-  pageEl.style.opacity=String(1-Math.min(.35,Math.abs(off)/130));
+  el.style.transition='none';
+  el.style.transform='translateX('+off+'px)';
+  el.style.opacity=String(1-Math.min(.35,Math.abs(off)/130));
 },{passive:true});
 pageEl.addEventListener('touchcancel',function(){sx=null;if(swOn)swReset(true)},{passive:true});
 pageEl.addEventListener('touchend',function(e){
