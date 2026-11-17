@@ -599,10 +599,22 @@ body.nbdragging .nbtabs .nbt[data-nbtab]{box-shadow:inset 0 0 0 1.5px var(--blue
 .mhead{display:flex;align-items:baseline;gap:8px;font:400 calc(26px*var(--hs))/1.2 var(--hand);color:var(--ink);padding:10px 0 2px}
 .mhead i{font-style:normal;font-size:calc(24px*var(--hs));color:var(--ink-faint)}
 .msec.now .mhead{color:var(--blue)}
+.msec{position:relative}
+.mcnt{display:inline-block;align-self:center;margin-left:2px;min-width:22px;padding:3px 8px;border-radius:999px;background:var(--chip);font:500 13px/1 var(--sans);color:var(--ink-soft);text-align:center}
+.mfold{position:absolute;right:8px;top:8px;width:34px;height:34px;display:grid;place-items:center;border-radius:10px;color:var(--ink-faint)}
+.mfold svg{width:18px;height:18px;display:block}
+.msec.empty .mfold{top:3px;width:32px;height:32px}
+.msec.empty .lines{margin-right:112px}
+.mgo{position:absolute;right:46px;top:8px;display:flex;align-items:center;gap:3px;padding:6px 10px;border-radius:999px;background:var(--chip);font:500 12.5px/1 var(--sans);color:var(--ink-soft)}
+.mgo i{font-style:normal;font-size:15px;line-height:1;color:var(--ink-faint)}
+.msec.empty .mgo{top:4px}
 .msec.empty{display:grid;grid-template-columns:auto minmax(0,1fr);column-gap:4px;align-items:start;padding:2px 14px 2px}
 .msec.empty .mhead{font-size:calc(23px*var(--hs));line-height:32px;padding:0;height:32px}
 .msec .lines{background-image:none}
 .msec.empty .lines{min-height:0}
+.msec.folded,.msec.folded.empty{display:flex;align-items:center;gap:8px;padding:2px 44px 2px 14px;min-height:42px}
+.msec.folded .mhead,.msec.folded.empty .mhead{padding:6px 0;height:auto;line-height:1.2;font-size:calc(23px*var(--hs))}
+.msec.folded .mfold,.msec.folded.empty .mfold{top:4px;width:34px;height:34px}
 .tprog{margin:0 4px 14px}
 .tprog .bar{height:5px;border-radius:3px;background:var(--chip);overflow:hidden}
 .tprog .bar i{display:block;height:100%;border-radius:3px;background:var(--blue-soft)}
@@ -915,7 +927,7 @@ var TX={
     seedNbs:[{tx:'\"Zamansız Notlar\" nasıl çalışır\n\u2022 Enter notu kaydeder; uzun notun altındaki üçgen yazıyı kısaltır ya da açar (\u25b3 kapalı, \u25b2 açık).'},{tx:'\u2022 Sağdaki \u283f tutamacı sürükle: üstteki bir sekmeye bırakırsan not oraya taşınır, çöp ikonuna bırakırsan çöpe gider.\n\u2022 Notun altında hangi sekmede olduğu ve ne zaman yazıldığı görünür.'},{tx:'Sekmeler ve Arşiv\n\u2022 + ile yeni sekme açarsın; sekmeyi uzun basıp sürükleyerek sıralarsın.\n\u2022 \u25f7 saat ikonu Arşiv: görevi alttaki defter ikonuna sürüklediğinde ya da satır menüsünden arşivlediğinde burada bekler.\n\u2022 Geri koy ile görev bugüne döner.',tab:1}],
     seedTab:'Örnek Sekme',
     welcomeT:'Yarın Defterine hoş geldiniz',welcomeTx:'Örnek içeriği yüklemek için aşağıya dokunun ya da direkt başlayın. Örnek içeriği istediğiniz zaman silebilirsiniz.',welcomeLoad:'Örnek içeriği yükle',welcomeGo:'Direkt başlayın',welcomeHint:'Kullanım kılavuzu: Ayarlar \u203a Nasıl kullanılır',welcomeReset:'Kalıcı olarak silip sıfırdan başlamak için:\nAyarlar \u203a Yedek \u203a Baştan başla',
-    seedBtn:'Örnekleri ekle',seedWarn:'Örnek veriler yüklenecek: görevler, post-itler, notlar ve bir sekme. Bunlar uygulamayı öğrenmen için tasarlandı; istemezsen tek tek silmen gerekir. Kendi notların etkilenmez.',seedGo:'Yükle',seedNo:'Vazgeç',tblAdd:'Tablo ekle',tblTitlePh:'Tablo adı',tblColPh:'Tarih',tblRowPh:'Ad',tblAddCol:'Sütun ekle',tblAddRow:'Satır ekle',tblEdit:'Düzenle',tblDone:'Bitti',tblDel:'Tabloyu sil',tblGone:'Tablo silindi',tblColGone:'Sütun silindi',tblRowGone:'Satır silindi',tblDelCol:'Sütunu sil',tblDelRow:'Satırı sil',tblWord:'Tablo',tblMissing:'Tablo bulunamadı',tblTrashed:'Bu tablo çöpte',lkSet:'Seçili sözcüğe bağlantı ver',lkPick:'Önce başlıkta bir sözcük seç',lkUrl:'Bağlantı adresi',lkOk:'Tamam',lkCancel:'Vazgeç',lkDone:'Bağlantı eklendi',tblOpen:'Tabloyu aç',tblClose:'Tabloyu daralt',seedDone:'Örnekler eklendi',freshBtn:'Baştan başla: her şeyi sil',freshSure:'Emin misin? Tüm notlar silinir, dokun',freshSureSync:'Emin misin? Tüm notlar ve Drive kopyası silinir, dokun',freshDone:'Defter temizlendi',
+    seedBtn:'Örnekleri ekle',secFold:'Daralt',secUnfold:'Genişlet',goMonth:'Aya git',goYear:'Yıla git',seedWarn:'Örnek veriler yüklenecek: görevler, post-itler, notlar ve bir sekme. Bunlar uygulamayı öğrenmen için tasarlandı; istemezsen tek tek silmen gerekir. Kendi notların etkilenmez.',seedGo:'Yükle',seedNo:'Vazgeç',tblAdd:'Tablo ekle',tblTitlePh:'Tablo adı',tblColPh:'Tarih',tblRowPh:'Ad',tblAddCol:'Sütun ekle',tblAddRow:'Satır ekle',tblEdit:'Düzenle',tblDone:'Bitti',tblDel:'Tabloyu sil',tblGone:'Tablo silindi',tblColGone:'Sütun silindi',tblRowGone:'Satır silindi',tblDelCol:'Sütunu sil',tblDelRow:'Satırı sil',tblWord:'Tablo',tblMissing:'Tablo bulunamadı',tblTrashed:'Bu tablo çöpte',lkSet:'Seçili sözcüğe bağlantı ver',lkPick:'Önce başlıkta bir sözcük seç',lkUrl:'Bağlantı adresi',lkOk:'Tamam',lkCancel:'Vazgeç',lkDone:'Bağlantı eklendi',tblOpen:'Tabloyu aç',tblClose:'Tabloyu daralt',seedDone:'Örnekler eklendi',freshBtn:'Baştan başla: her şeyi sil',freshSure:'Emin misin? Tüm notlar silinir, dokun',freshSureSync:'Emin misin? Tüm notlar ve Drive kopyası silinir, dokun',freshDone:'Defter temizlendi',
     dragT:'Sürükle-bırak',
     dragTx:'Görevi tutup başka bir güne, haftaya, aya ya da yıla bırak; alttaki sayfa sekmesine bırakırsan o sayfaya gider, defter ikonuna bırakırsan Arşiv\u2019e kalkar. Zamansız Notlar\u2019da notun üç nokta tutamacını sekmeye ya da çöpe sürükle.',
     helpNoSync:'',
@@ -999,7 +1011,7 @@ var TX={
     seedNbs:[{tx:'\"Timeless Notes\" – how it works\n\u2022 Enter saves a note; the triangle under a long note folds or opens it (\u25b3 folded, \u25b2 open).'},{tx:'\u2022 Drag the \u283f handle on the right: drop it on a tab above to move the note there, or on the trash icon to delete it.\n\u2022 Under each note you see its tab and when it was written.'},{tx:'Tabs and Archive\n\u2022 + opens a new tab; long-press a tab and drag to reorder.\n\u2022 The \u25f7 clock icon is the Archive: tasks you drag onto the notebook icon, or archive from a row\u2019s menu, wait there.\n\u2022 Put back returns a task to today.',tab:1}],
     seedTab:'Sample Tab',
     welcomeT:'Welcome to Yarın Defteri',welcomeTx:'Tap below to load example content, or just start. You can delete the examples whenever you like.',welcomeLoad:'Load example content',welcomeGo:'Just start',welcomeHint:'Guide: Settings \u203a How to use',welcomeReset:'To delete for good and start from scratch:\nSettings \u203a Backup \u203a Start fresh',
-    seedBtn:'Add the examples',seedWarn:'Example data will be added: tasks, sticky notes, notes and a tab. They are designed to help you learn the app; if you don\u2019t want them, you\u2019ll have to delete them one by one. Your own notes are not affected.',seedGo:'Add',seedNo:'Cancel',tblAdd:'Add table',tblTitlePh:'Table name',tblColPh:'Date',tblRowPh:'Name',tblAddCol:'Add column',tblAddRow:'Add row',tblEdit:'Edit',tblDone:'Done',tblDel:'Delete table',tblGone:'Table deleted',tblColGone:'Column deleted',tblRowGone:'Row deleted',tblDelCol:'Delete column',tblDelRow:'Delete row',tblWord:'Table',tblMissing:'Table not found',tblTrashed:'That table is in the trash',lkSet:'Link the selected word',lkPick:'Select a word in the title first',lkUrl:'Link address',lkOk:'OK',lkCancel:'Cancel',lkDone:'Link added',tblOpen:'Expand table',tblClose:'Collapse table',seedDone:'Examples added',freshBtn:'Start fresh: delete everything',freshSure:'Are you sure? All notes are deleted, tap',freshSureSync:'Are you sure? All notes and the Drive copy are deleted, tap',freshDone:'Notebook cleared',
+    seedBtn:'Add the examples',secFold:'Collapse',secUnfold:'Expand',goMonth:'Open month',goYear:'Open year',seedWarn:'Example data will be added: tasks, sticky notes, notes and a tab. They are designed to help you learn the app; if you don\u2019t want them, you\u2019ll have to delete them one by one. Your own notes are not affected.',seedGo:'Add',seedNo:'Cancel',tblAdd:'Add table',tblTitlePh:'Table name',tblColPh:'Date',tblRowPh:'Name',tblAddCol:'Add column',tblAddRow:'Add row',tblEdit:'Edit',tblDone:'Done',tblDel:'Delete table',tblGone:'Table deleted',tblColGone:'Column deleted',tblRowGone:'Row deleted',tblDelCol:'Delete column',tblDelRow:'Delete row',tblWord:'Table',tblMissing:'Table not found',tblTrashed:'That table is in the trash',lkSet:'Link the selected word',lkPick:'Select a word in the title first',lkUrl:'Link address',lkOk:'OK',lkCancel:'Cancel',lkDone:'Link added',tblOpen:'Expand table',tblClose:'Collapse table',seedDone:'Examples added',freshBtn:'Start fresh: delete everything',freshSure:'Are you sure? All notes are deleted, tap',freshSureSync:'Are you sure? All notes and the Drive copy are deleted, tap',freshDone:'Notebook cleared',
     dragT:'Drag and drop',
     dragTx:'Hold a task and drop it on another day, week, month or year; drop it on a page tab at the bottom and it goes to that page, drop it on the notebook icon and it goes to the Archive. In Timeless Notes, drag a note\u2019s three-dot handle onto a tab or the trash.',
     helpNoSync:'',
@@ -1124,14 +1136,14 @@ function load(){
     var raw=localStorage.getItem(STORE);
     if(raw){
       var o=JSON.parse(raw);
-      return {lang:o&&o.lang==='tr'?'tr':'en',font:o&&o.font==='hand'?'hand':'plain',pinDark:(o&&typeof o.pinDark==='boolean')?o.pinDark:null,seeded:!!(o&&o.seeded),decadeStart:(o&&typeof o.decadeStart==='number')?o.decadeStart:new Date().getFullYear(),zoom:zoomOk(o&&o.zoom),theme:(o&&(o.theme==='light'||o.theme==='dark'))?o.theme:null,yrev:!!(o&&o.yrev),hideDone:!!(o&&o.hideDone),syncOn:!!(o&&o.syncOn),syncRev:(o&&typeof o.syncRev==='number')?o.syncRev:null,dirty:!!(o&&o.dirty),syncLast:(o&&typeof o.syncLast==='number')?o.syncLast:0,pins:cleanPins(o&&o.pins)||[],nb:cleanNb(o&&o.nb),projects:cleanProjects(o&&o.projects)||[],items:clean(o)||[]};
+      return {lang:o&&o.lang==='tr'?'tr':'en',font:o&&o.font==='hand'?'hand':'plain',pinDark:(o&&typeof o.pinDark==='boolean')?o.pinDark:null,seeded:!!(o&&o.seeded),mfold:(o&&o.mfold&&typeof o.mfold==='object'&&!Array.isArray(o.mfold))?o.mfold:{},decadeStart:(o&&typeof o.decadeStart==='number')?o.decadeStart:new Date().getFullYear(),zoom:zoomOk(o&&o.zoom),theme:(o&&(o.theme==='light'||o.theme==='dark'))?o.theme:null,yrev:!!(o&&o.yrev),hideDone:!!(o&&o.hideDone),syncOn:!!(o&&o.syncOn),syncRev:(o&&typeof o.syncRev==='number')?o.syncRev:null,dirty:!!(o&&o.dirty),syncLast:(o&&typeof o.syncLast==='number')?o.syncLast:0,pins:cleanPins(o&&o.pins)||[],nb:cleanNb(o&&o.nb),projects:cleanProjects(o&&o.projects)||[],items:clean(o)||[]};
     }
   }catch(e){storageOK=false}
-  return {lang:'en',font:'plain',pinDark:null,seeded:false,decadeStart:new Date().getFullYear(),zoom:1,theme:null,yrev:false,hideDone:false,syncOn:false,syncRev:null,dirty:false,syncLast:0,pins:[],nb:{tabs:[],notes:[]},projects:[],items:[]};
+  return {lang:'en',font:'plain',pinDark:null,seeded:false,mfold:{},decadeStart:new Date().getFullYear(),zoom:1,theme:null,yrev:false,hideDone:false,syncOn:false,syncRev:null,dirty:false,syncLast:0,pins:[],nb:{tabs:[],notes:[]},projects:[],items:[]};
 }
 function persist(){
   clearTimeout(saveTimer);saveTimer=null;
-  try{localStorage.setItem(STORE,JSON.stringify({v:1,lang:S.lang,font:S.font,pinDark:S.pinDark,seeded:S.seeded,zoom:S.zoom,theme:S.theme,yrev:S.yrev,hideDone:S.hideDone,syncOn:S.syncOn,syncRev:S.syncRev,dirty:S.dirty,syncLast:S.syncLast,decadeStart:S.decadeStart,pins:S.pins,nb:S.nb,projects:S.projects,items:S.items}));}
+  try{localStorage.setItem(STORE,JSON.stringify({v:1,lang:S.lang,font:S.font,pinDark:S.pinDark,seeded:S.seeded,mfold:S.mfold,zoom:S.zoom,theme:S.theme,yrev:S.yrev,hideDone:S.hideDone,syncOn:S.syncOn,syncRev:S.syncRev,dirty:S.dirty,syncLast:S.syncLast,decadeStart:S.decadeStart,pins:S.pins,nb:S.nb,projects:S.projects,items:S.items}));}
   catch(e){storageOK=false;if(!warned){warned=true;toast(T.noStore)}}
 }
 function queueSave(){editSeq++;S.dirty=true;clearTimeout(saveTimer);saveTimer=setTimeout(persist,300);autoPushSoon()}
@@ -1323,7 +1335,15 @@ function tpkBind(ta){
 /* ---------- links ---------- */
 var URL_RE=/(https?:\/\/[^\s<>"']+|www\.[^\s<>"']+|[a-z0-9][a-z0-9-]*(?:\.[a-z0-9-]+)*\.(?:com|net|org|io|app|live|art|dev|co|me|info|xyz|tv|ly|tr)(?:\/[^\s<>"']*)?)/gi;
 function urlsIn(text){
-  var out=[],seen={},m;URL_RE.lastIndex=0;
+  var out=[],seen={},m;
+  text=String(text||'').replace(TOK_RE,function(all,label,tg){
+    if(tg.indexOf('tbl:')!==0){
+      var hr=/^https?:\/\//i.test(tg)?tg:'https://'+tg;
+      if(!seen[hr]){seen[hr]=1;out.push({href:hr,label:label})}
+    }
+    return label;
+  });
+  URL_RE.lastIndex=0;
   while((m=URL_RE.exec(text||''))){
     var raw=m[0],st=m.index,prev=st>0?text.charAt(st-1):'';
     if(/[@\w\/.-]/.test(prev))continue;
@@ -1779,22 +1799,38 @@ function pageMonth(){
   }
   return f;
 }
+function secHead(layer,key,label,onGo){
+  var fk=layer+':'+key,fold=!!(S.mfold&&S.mfold[fk]);
+  var n=listFor(layer,key).filter(function(i){return i.text.trim()}).length;
+  function toggle(){
+    if(!S.mfold)S.mfold={};
+    if(fold)delete S.mfold[fk];else S.mfold[fk]=1;
+    persist();render();
+  }
+  var kids=[h('button',{class:'mhead',type:'button','aria-expanded':String(!fold),onclick:toggle},[label])];
+  if(fold&&n)kids.push(h('span',{class:'mcnt',text:String(n)}));
+  if(!fold)kids.push(h('button',{class:'mgo',type:'button',onclick:onGo},[layer==='month'?T.goMonth:T.goYear,h('i',{text:'\u203a'})]));
+  var tg=h('button',{class:'mfold',type:'button','aria-expanded':String(!fold),'aria-label':fold?T.secUnfold:T.secFold,title:fold?T.secUnfold:T.secFold,html:fold?TRI_DN:TRI_UP,onclick:toggle});
+  return {fold:fold,els:kids.concat([tg])};
+}
 function monthSection(y,m){
-  var t=today(),now=(y===t.getFullYear()&&m===t.getMonth());
-  var empty=!listFor('month',y+'-'+pad(m+1)).length;
-  var sec=h('section',{class:'msec'+(now?' now':'')+(empty?' empty':'')});
-  sec.appendChild(h('button',{class:'mhead',type:'button',onclick:function(){go('month',monthAnchor(y,m))}},[T.mo[m],h('i',{text:'›'})]));
-  sec.setAttribute('data-layer','month');sec.setAttribute('data-key',y+'-'+pad(m+1));
-  sec.appendChild(linesBlock('month',y+'-'+pad(m+1),{row:32,min:empty?1:2}));
+  var t=today(),now=(y===t.getFullYear()&&m===t.getMonth()),key=y+'-'+pad(m+1);
+  var empty=!listFor('month',key).length;
+  var hd=secHead('month',key,T.mo[m],function(){go('month',monthAnchor(y,m))});
+  var sec=h('section',{class:'msec'+(now?' now':'')+(empty?' empty':'')+(hd.fold?' folded':'')});
+  hd.els.forEach(function(e){sec.appendChild(e)});
+  sec.setAttribute('data-layer','month');sec.setAttribute('data-key',key);
+  if(!hd.fold)sec.appendChild(linesBlock('month',key,{row:32,min:empty?1:2}));
   return sec;
 }
 function yearSection(y){
   var now=(y===today().getFullYear());
   var empty=!listFor('year',String(y)).length;
-  var sec=h('section',{class:'msec'+(now?' now':'')+(empty?' empty':'')});
-  sec.appendChild(h('button',{class:'mhead',type:'button',onclick:function(){go('year',monthAnchor(y,0))}},[String(y),h('i',{text:'›'})]));
+  var hd=secHead('year',String(y),String(y),function(){go('year',monthAnchor(y,0))});
+  var sec=h('section',{class:'msec'+(now?' now':'')+(empty?' empty':'')+(hd.fold?' folded':'')});
+  hd.els.forEach(function(e){sec.appendChild(e)});
   sec.setAttribute('data-layer','year');sec.setAttribute('data-key',String(y));
-  sec.appendChild(linesBlock('year',String(y),{row:32,min:empty?1:2}));
+  if(!hd.fold)sec.appendChild(linesBlock('year',String(y),{row:32,min:empty?1:2}));
   return sec;
 }
 var pastYOpen=false;
