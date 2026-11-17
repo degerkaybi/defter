@@ -225,7 +225,7 @@ body.nbdragging .nbtabs .nbt[data-nbtab]{box-shadow:inset 0 0 0 1.5px var(--blue
 .nmenu .nbt{padding:6px 11px;font-size:12.5px}
 .nmenu .nml{font:500 12px/1 var(--sans);color:var(--ink-soft);margin-right:2px}
 .nbact{display:flex;align-items:center;gap:18px;margin:18px 2px 6px;font:500 13px/1 var(--sans);color:var(--ink-soft)}
-.nbact .dng{color:var(--danger)}
+.nbact .dng,.sbtn.dng{color:var(--danger)}
 
 .nslot{width:36px;height:40px;margin-top:calc((36px*var(--hs) - 40px)/2)}
 .arrow{flex:none;width:30px;height:40px;margin-top:calc((36px*var(--hs) - 40px)/2);border-radius:12px;display:grid;place-items:center;color:var(--ink-soft);background:none}
@@ -275,7 +275,8 @@ body.nbdragging .nbtabs .nbt[data-nbtab]{box-shadow:inset 0 0 0 1.5px var(--blue
 .lines.margin{background-clip:padding-box;background-color:var(--sheet);border:1px solid var(--rule);border-radius:20px;padding:0 10px 0 4px;overflow:hidden}
 .lines.margin::before{content:"";position:absolute;left:37px;top:0;bottom:0;width:1px;background:var(--blue-soft);pointer-events:none}
 .row{display:grid;grid-template-columns:30px minmax(0,1fr) auto auto auto auto auto;align-items:start;min-height:var(--row)}
-.cb{height:var(--row);display:grid;place-items:center;color:var(--ink-faint)}
+.cb{height:var(--row);display:grid;place-items:center;color:var(--ink-faint);cursor:grab}
+.cb:active{cursor:grabbing}
 .cb svg{width:18px;height:18px;overflow:visible}
 .cb rect{transition:fill .2s,stroke .2s}
 .cb .tick{stroke:var(--blue);stroke-width:1.9;stroke-dasharray:14;stroke-dashoffset:14;transition:stroke-dashoffset .25s ease}
@@ -721,6 +722,13 @@ body.arrows-on .arrow.over{background:var(--blue-soft);box-shadow:0 0 0 2px var(
 .hseg{gap:4px}
 .hseg button{flex:1 1 auto;min-width:0;padding:10px 10px;white-space:nowrap;line-height:1.15;font-size:12.5px}
 @media (max-width:370px){.hseg button{padding:10px 6px;font-size:12px}}
+.welcome .wtx{margin:8px 4px 16px;font:15px/1.6 var(--sans);color:var(--ink-soft)}
+.welcome .sbtn{display:block;width:calc(100% - 8px);margin:0 4px 8px;padding:14px 12px;text-align:center}
+.welcome .wpri{background:var(--blue);color:var(--paper)}
+.welcome .whint{margin:12px 4px 4px;font:12.5px/1.5 var(--sans);color:var(--ink-faint);text-align:center}
+.hdrag{display:flex;gap:12px;align-items:flex-start;margin:4px 4px 12px;padding:14px;border-radius:14px;background:var(--blue-wash)}
+.hdrag b{font:600 14px/1.2 var(--sans);color:var(--ink)}
+.hdrag p{margin:5px 0 0;font:13.5px/1.55 var(--sans);color:var(--ink-soft)}
 .hsec{display:flex;align-items:center;gap:10px;margin:0;padding:16px 4px 2px;border-top:1px solid var(--rule);font:600 14px/1.2 var(--sans);letter-spacing:.01em;color:var(--ink)}
 .hic{flex:none;display:inline-flex;align-items:center;justify-content:center;gap:1px;min-width:30px;height:30px;padding:0 6px;border-radius:15px;background:var(--blue-wash);color:var(--blue)}
 .hic svg{width:17px;height:17px;display:block;flex:none}
@@ -794,7 +802,7 @@ var TX={
     conflictTitle:'İki defter farklı',conflictText:'Bu cihazda ve Drive’da farklı değişiklikler var. Nasıl devam edelim?',onThis:'Bu cihazda',onDrive:'Drive’da',lines:'satır',
     merge:'Birleştir, ikisini de tut',takeRemote:'Drive’dakini al',takeLocal:'Bu cihazdakini gönder',
     about:'Hakkında',
-    aboutIntro:'Yarın Defteri, zamanı ve günleri daha iyi algılamak ve yönetebilmek için ortaya çıktı.\nGün, hafta, ay, yıl ve 10 yıl sayfalarının hepsi birbirine bağlı. Bugünü daha geniş bir zamanın içinden görebilirsiniz. Zamansız işleri ve fikirleri not almak, önemli projeleri takip etmek de mümkün.',
+    aboutIntro:'Yarın Defteri, zamanı ve günleri daha iyi algılamak ve yönetebilmek için ortaya çıktı.\nGün, hafta, ay, yıl ve 10 yıllık birbirine bağlı sayfalar, bugünü daha geniş bir zaman bağlamında görmeni sağlar. Her işin bir güne sığması gerekmez; ne zaman yapacağını bilmediğin görevleri uygun zaman aralığına (\u201cbu hafta\u201d, \u201cbu ay\u201d, \u201cbu yıl\u201d) bırakıp vakti gelince bir güne taşıyabilirsin. Böylece işleri tek güne sıkıştırmak yerine zamana yayar, yetişemediklerini ertelersin.\nSürükleme bu işin kalbidir: görevi tutup farklı bir zamana, sayfa sekmesine bırakarak ilgili tarihe taşıyabilir ya da defter ikonuna bırakıp arşivleyebilirsin. Benzer şekilde, Zamansız Notlar\u2019daki notları da sürükleyerek sekmelere veya çöpe taşıyabilirsin.\nBir zamanı olmayan notlar için post-it ve Zamansız Notlar var; fikirler, hatırlanacaklar ve kenara koyduğun işler orada bekler.',
     howTitle:'Nasıl kullanılır',
     helpIntro:'Yarın Defteri, kâğıt defterin boş bıraktığı yerleri tamamlamak için yapıldı: yaz, işaretle, yetişmeyeni yarına bırak. Gün, hafta, ay, yıl ve 10 yıl sayfaları birbirine bağlıdır; hepsinde hem liste hem takvim gibi planlayabilirsin. Tarihi belli olmayan işi \u201cbu hafta\u201d ya da \u201cbu ay içinde\u201d diye yazarsın; kâğıt parçası gibi kullan-at notlar için post-it, kalıcı fikirler için Zamansız Notlar, uzun işler için projeler var.',
     helpTabs:['Yarın Defteri','Post-it','Zamansız Notlar'],
@@ -814,6 +822,26 @@ var TX={
       ['Çöp','Yeni not kutusunun sağındaki çöp ikonuna dokununca silinen notlar açılır. Bir notu sekmeye sürükleyerek geri koyarsın, notun yanındaki çöp ikonuyla kalıcı silersin, <b>Çöpü boşalt</b> hepsini siler. Çöpte sayaç yoktur; burası serbest alan.'],
       ['Arşiv: kenara konan görevler','Bir görevi sayfadan tutup alttaki defter simgesine bırakırsan ya da satır menüsündeki <b>saat ikonuna</b> basarsan <b>Arşiv</b> sekmesine gider; alt maddeleri ve notuyla birlikte bekler. Aynı liste Ayarlar\u2019daki <b>Arşiv</b> düğmesinde de açılır. Sayaç yoktur. İstediğinde <b>Geri koy</b> ile bugüne ya da başka bir sayfaya döndürürsün.']
     ],
+    seedTasks:[
+      {t:'\u270e Buraya görevlerini yaz',done:true},
+      {t:'Uzun satırı aç: dokun. Uzun yazılar satırda … ile kısalır. \u21e9 Satıra dokunursan tamamı açılır ve düzenlersin.'},
+      {t:'\u261c Kutucuğu tut, sürükle'},
+      {t:'\u2190 Beni + alanlarına bırak',note:'Kutucuğu basılı tut (bilgisayarda tut ve sürükle) ve yukarıdaki ya da aşağıdaki + alanlarına bırak: bu hafta içinde, bu ay içinde.'},
+      {t:'\u2190 Gün, Hafta, Ay\u2019a sürükle',note:'Alttaki Gün, Hafta, Ay, Yıl, 10 Yıl sekmelerinden birine bırakırsan o sayfaya giderim; defter ikonuna bırakırsan Arşiv\u2019e kalkarım.'},
+      {t:'Bu hafta içinde bir ara \u2191',layer:'week',note:'Bu alan haftaya ait ama bir güne atanmamış işler içindir. Vakti gelince kutucuğundan tutup bir güne sürükle.'},
+      {t:'Bu ay içinde bir ara \u2193',layer:'month',note:'Bu alan aya ait ama henüz bir güne ya da haftaya atanmamış işler içindir. Hazır olunca kutucuğundan tutup bir güne sürükle.'},
+      {t:'Üç nokta \u22ef ya da not ikonu \u2192',todos:['Madde ekle düğmesiyle maddeler eklersin.','Madde satırındaki takvim ikonuyla maddeyi o günün takviminde görünür bir göreve çevirirsin.'],notes:'Aşağıdan yarına, haftaya ya da aya erteler, bir tarihe taşır, tekrarlatır, arşivler ya da silersin.\nTuru bitirince bu satırları sil: satırı açıp çöp ikonuna bas. Hepsini birden silmek için Ayarlar \u203a Yedek \u203a Baştan başla.'}
+    ],
+    seedPins:[
+      {ti:'Post-it',text:'\u2022 Hiçbir güne bağlı olmayan kullan-at not alanı; hemen yaz.\n\u2022 Sağa sola kaydır ya da alttaki noktalara dokun \u25cf \u25cb; bir noktaya uzun basınca başlığı görünür.\n\u2022 Silmek için alttaki çöp ikonuna bas; silinenler üstteki çöp ikonunda durur.\n\u2192 Bu ilk post-iti şimdi silebilirsin.'},
+      {ti:'Taşımak',text:'\u2022 Alttaki ilk ok ikonu (\u2192 gün) post-iti bugüne taşır: başlık görev, yazı görevin notu olur.\n\u2022 \u2610 ile başlayan satırlar görevde madde olur.\n\u2022 İkinci ok ikonu (\u2192 defter) Zamansız Notlar\u2019a taşır.\n\u2022 Üstteki ay ikonu post-iti koyu yapar.'}
+    ],
+    seedNbs:[{tx:'\"Zamansız Notlar\" nasıl çalışır\n\u2022 Enter notu kaydeder; uzun notun altındaki üçgen yazıyı kısaltır ya da açar (\u25b3 kapalı, \u25b2 açık).'},{tx:'\u2022 Sağdaki \u283f tutamacı sürükle: üstteki bir sekmeye bırakırsan not oraya taşınır, çöp ikonuna bırakırsan çöpe gider.\n\u2022 Notun altında hangi sekmede olduğu ve ne zaman yazıldığı görünür.'},{tx:'Sekmeler ve Arşiv\n\u2022 + ile yeni sekme açarsın; sekmeyi uzun basıp sürükleyerek sıralarsın.\n\u2022 \u25f7 saat ikonu Arşiv: görevi alttaki defter ikonuna sürüklediğinde ya da satır menüsünden arşivlediğinde burada bekler.\n\u2022 Geri koy ile görev bugüne döner.',tab:1}],
+    seedTab:'Örnek Sekme',
+    welcomeT:'Yarın Defterine hoş geldin',welcomeTx:'Örnek içeriği yüklemek için aşağıya dokun ya da direkt başla. Örnek içeriği istediğin zaman silebilirsin.',welcomeLoad:'Örnek içeriği yükle',welcomeGo:'Direkt başla',welcomeHint:'Kullanım kılavuzu: Ayarlar \u203a Nasıl kullanılır',
+    seedBtn:'Örnekleri ekle',seedDone:'Örnekler eklendi',freshBtn:'Baştan başla: her şeyi sil',freshSure:'Emin misin? Tüm notlar silinir, dokun',freshSureSync:'Emin misin? Tüm notlar ve Drive kopyası silinir, dokun',freshDone:'Defter temizlendi',
+    dragT:'Sürükle-bırak',
+    dragTx:'Görevi tutup başka bir güne, haftaya, aya ya da yıla bırak; alttaki sayfa sekmesine bırakırsan o sayfaya gider, defter ikonuna bırakırsan Arşiv\u2019e kalkar. Zamansız Notlar\u2019da notun üç nokta tutamacını sekmeye ya da çöpe sürükle.',
     helpNoSync:'',
     help:[
       ['Yazmak ve işaretlemek','Bir satıra dokun ve yaz, <b>Enter</b> yeni satır açar. Kutucuk satırın üstünü çizer, hiçbir şey silinmez. Notlardaki web adresleri tıklanabilir olur; <b>☐ Görev</b> ile onay kutulu satırlar eklersin.'],
@@ -822,7 +850,7 @@ var TX={
       ['Hafta sayfası','Yedi gün alt alta kart olarak durur; kartın başlığına dokunmak o günü açar. En üstteki <b>Bu hafta içinde</b> alanı haftaya ait ama güne atanmamış işlerindir, geçen haftadan kalanlar <b>buraya al</b> ile gelir.'],
       ['Ay sayfası','Takvimde her günün işleri başlık olarak görünür (biten soluk ve üstü çizili, fazlası <b>+2</b> gibi). Bir güne dokununca altta <b>Bu ay</b> bölümünde açılır; ikinci dokunuş ya da <b>Güne git</b> gün sayfasını açar. <b>Genişlet</b> bütün günleri alt alta gösterir. <b>Bu ay içinde</b> işlerini ya da takvimdeki başlıkları tutup başka bir güne bırakırsın.'],
       ['Yıl ve 10 yıl','Uzun ve çok uzun vadeli planlar içindir.'],
-      ['Taşımak ve ertelemek','Kutucuğa basılı tut (bilgisayarda sürükle) ve başka bir güne, haftaya, aya ya da yıla bırak. Alttaki sekmelere bırakırsan görev o sayfaya (gün, hafta, ay, yıl, 10 yıl) gider; gün sayfasında üstteki <b>‹ ›</b> oklarına bırakırsan önceki ya da sonraki güne gider. Ya da satırı açıp <b>üç nokta</b> menüsünden <b>Yarına</b>, <b>Haftaya</b>, <b>Aya</b> de, tarih seç, tekrar kur ya da bir projeye bağla.'],
+      ['Taşımak ve ertelemek','Kutucuğa basılı tut (bilgisayarda sürükle) ve başka bir güne, haftaya, aya ya da yıla bırak. Alttaki sekmelere bırakırsan görev o sayfaya (gün, hafta, ay, yıl, 10 yıl) gider; gün sayfasında üstteki <b>‹ ›</b> oklarına bırakırsan önceki ya da sonraki güne gider; alttaki <b>defter ikonuna</b> bırakırsan Arşiv\u2019e kalkar. Ya da satırı açıp <b>üç nokta</b> menüsünden <b>Yarına</b>, <b>Haftaya</b>, <b>Aya</b> de, tarih seç, tekrar kur ya da bir projeye bağla.'],
       ['Not ve proje','Satırın sağındaki ikon not sayfasını açar. Not ile proje aynı sayfadır: madde listesi ve serbest not alanı. Başlığın önündeki ikonla <b>Not</b> (mavi) ile <b>Proje</b> (turuncu) arasında geçersin, başlığa dokunup adını değiştirirsin. Maddeleri tutup sürükleyerek sıralar, takvim ikonuyla tarih verirsin; tarihli madde o günün sayfasına da düşer. Biten maddeyi <b>Arşivlemek için buraya bırak</b> alanına sürüklersen <b>Arşiv</b> bölümüne gider, ilerlemede sayılmaya devam eder. Bir notu ya da projeyi klasör düğmesiyle başka bir projeye bağlarsan onun alt başlığı olur; üst projede toplanır, satırın ikonunda küçük bir nokta görünür. Bütün projeler üstteki <b>Projeler</b> sekmesindedir.'],
       ['Ayarlar','Ayarlar\u2019dan dili, açık ya da koyu temayı, yazı tipini ve boyutunu seçersin. <b>Yedek</b> defterini dosya olarak kaydeder, kopyalar ya da geri yükler. <b>Arşiv</b> arşivlediğin ve sildiğin satırları geri koyar (silinenler 30 gün durur); Göz ikonu (tema ve tam ekran düğmelerinin yanında) üstü çizili satırları saklar. <b>Senkron</b> ile Google hesabına bağlanıp aynı defteri telefonunda ve bilgisayarında kullanırsın; defter Drive\u2019ında yalnızca bu uygulamanın görebildiği gizli bir alanda durur, değişikliklerin kendiliğinden gider. Gönderilmesi gereken bir değişiklik varsa Ayarlar simgesinde küçük bir mavi nokta belirir; Senkron bölümünden <b>Senkronize et</b> demen yeterli.']
     ],
@@ -857,7 +885,7 @@ var TX={
     conflictTitle:'The two notebooks differ',conflictText:'This device and Drive both have different changes. How should we continue?',onThis:'On this device',onDrive:'In Drive',lines:'lines',
     merge:'Merge, keep both',takeRemote:'Use the one in Drive',takeLocal:'Send this device’s',
     about:'About',
-    aboutIntro:'Yarın Defteri (Tomorrow\u2019s Notebook) came about to perceive and manage time and days better.\nThe day, week, month, year and 10-year pages are all connected. You can see today from inside a wider stretch of time. You can also note down timeless items and ideas, and keep track of your important projects.',
+    aboutIntro:'Yarın Defteri (Tomorrow\u2019s Notebook) came about to perceive and manage time and days better.\nThe connected day, week, month, year and 10-year pages let you see today in a wider context of time. Not every task has to fit into a day; tasks you don\u2019t know when to do can wait in a suitable stretch of time (\u201cthis week\u201d, \u201cthis month\u201d, \u201cthis year\u201d) and move to a day when their time comes. That way you spread work across time instead of squeezing it into one day, and you postpone what you couldn\u2019t get to.\nDragging is the heart of it: hold a task and drop it on another time or on a page tab to move it to that date, or drop it on the notebook icon to archive it. In the same way, you can drag notes in Timeless Notes onto tabs or the trash.\nFor notes that have no time attached there are post-its and Timeless Notes; ideas, things to remember and tasks you set aside wait there.',
     howTitle:'How to use',
     helpIntro:'Tomorrow\u2019s Notebook was made to fill the gaps a paper notebook leaves: write, tick things off, and leave what did not fit for tomorrow. The day, week, month, year and 10-year pages are connected, and on all of them you can plan like in a list and a calendar at once. An item with no date can be noted as \u201csometime this week\u201d or \u201cthis month\u201d; there are post-its for throwaway notes, Timeless Notes for ideas you want to keep, and projects for long work.',
     helpTabs:['Notebook','Post-it','Timeless Notes'],
@@ -877,6 +905,26 @@ var TX={
       ['Trash','Tap the trash icon at the right of the new-note box to open deleted notes. Drag a note onto a tab to put it back, use the trash icon next to a note to delete it forever, or <b>Empty trash</b> to clear all. The trash has no counter; this is a free space.'],
       ['Archive: tasks set aside','Hold a task and drop it on the notebook icon at the bottom, or tap the <b>clock icon</b> in its menu, and it goes to the <b>Archive</b> tab, waiting with its sub-items and note. The same list opens from <b>Archive</b> in Settings. There is no counter. <b>Put back</b> returns it to today or any other page when you want.']
     ],
+    seedTasks:[
+      {t:'\u270e Write your tasks here',done:true},
+      {t:'Open a long line: tap it. Long text is cut off with \u2026 on the row. \u21e9 Tap the row and it opens in full for editing.'},
+      {t:'\u261c Hold the checkbox, drag'},
+      {t:'\u2190 Drop me on the + areas',note:'Hold the checkbox (on a computer, click and drag) and drop it on the + areas above or below: this week, this month.'},
+      {t:'\u2190 Drag to Day, Week, Month',note:'Drop me on one of the Day, Week, Month, Year or 10 Yr tabs at the bottom and I go to that page; drop me on the notebook icon and I go to the Archive.'},
+      {t:'Sometime this week \u2191',layer:'week',note:'This area is for things that belong to the week but not to a day yet. When the time comes, hold the checkbox and drag it onto a day.'},
+      {t:'Sometime this month \u2193',layer:'month',note:'This area is for things that belong to the month but not to a day or week yet. When you are ready, hold the checkbox and drag it onto a day.'},
+      {t:'Three dots \u22ef or note icon \u2192',todos:['Add items with the Add item button.','The calendar icon on an item makes it show up on that day\u2019s calendar as a task.'],notes:'Below you can postpone to tomorrow, week or month, move to a date, repeat, archive or delete.\nWhen the tour is over, delete these rows: open a row and tap the trash icon. To delete everything at once: Settings \u203a Backup \u203a Start fresh.'}
+    ],
+    seedPins:[
+      {ti:'Post-it',text:'\u2022 A throwaway space tied to no day; just start typing.\n\u2022 Swipe left or right, or tap the dots at the bottom \u25cf \u25cb; press and hold a dot to see the title.\n\u2022 Tap the trash icon at the bottom to delete; deleted ones wait in the trash icon at the top.\n\u2192 You can delete this first post-it right now.'},
+      {ti:'Moving',text:'\u2022 The first arrow icon at the bottom (\u2192 day) sends the post-it to today: the title becomes the task, the text its note.\n\u2022 Lines starting with \u2610 become items in the task.\n\u2022 The second arrow icon (\u2192 notebook) sends it to Timeless Notes.\n\u2022 The moon icon at the top makes the post-it dark.'}
+    ],
+    seedNbs:[{tx:'\"Timeless Notes\" – how it works\n\u2022 Enter saves a note; the triangle under a long note folds or opens it (\u25b3 folded, \u25b2 open).'},{tx:'\u2022 Drag the \u283f handle on the right: drop it on a tab above to move the note there, or on the trash icon to delete it.\n\u2022 Under each note you see its tab and when it was written.'},{tx:'Tabs and Archive\n\u2022 + opens a new tab; long-press a tab and drag to reorder.\n\u2022 The \u25f7 clock icon is the Archive: tasks you drag onto the notebook icon, or archive from a row\u2019s menu, wait there.\n\u2022 Put back returns a task to today.',tab:1}],
+    seedTab:'Sample Tab',
+    welcomeT:'Welcome to Yarın Defteri',welcomeTx:'Tap below to load example content, or just start. You can delete the examples whenever you like.',welcomeLoad:'Load example content',welcomeGo:'Just start',welcomeHint:'Guide: Settings \u203a How to use',
+    seedBtn:'Add the examples',seedDone:'Examples added',freshBtn:'Start fresh: delete everything',freshSure:'Are you sure? All notes are deleted, tap',freshSureSync:'Are you sure? All notes and the Drive copy are deleted, tap',freshDone:'Notebook cleared',
+    dragT:'Drag and drop',
+    dragTx:'Hold a task and drop it on another day, week, month or year; drop it on a page tab at the bottom and it goes to that page, drop it on the notebook icon and it goes to the Archive. In Timeless Notes, drag a note\u2019s three-dot handle onto a tab or the trash.',
     helpNoSync:'',
     help:[
       ['Writing and ticking off','Tap a line and write, <b>Enter</b> opens a new line. The box crosses a line out, nothing is ever deleted. Web addresses in notes become tappable; use <b>☐ Task</b> to add lines with checkboxes.'],
@@ -885,7 +933,7 @@ var TX={
       ['Week page','The seven days stand one under another as cards; tapping a card\u2019s title opens that day. The <b>Sometime this week</b> area at the top holds what belongs to the week but not to a day, and leftovers from last week come in with <b>bring here</b>.'],
       ['Month page','Each day shows its items as small titles (done ones are faded and crossed out, extras become <b>+2</b>). Tap a day and it opens in the <b>This month</b> section below; a second tap or <b>Go to day</b> opens the day page. <b>Expand</b> lists every day. Hold a <b>Sometime this month</b> item or a title in the calendar and drop it on another day.'],
       ['Year and 10 years','These pages are for long and very long-term plans.'],
-      ['Moving and postponing','Hold the box (drag on a computer) and drop a line on another day, week, month or year. Dropping it on a tab at the bottom sends it to that page (day, week, month, year, 10 years); on the day page, the <b>‹ ›</b> arrows at the top send it to the previous or next day. Or open a line and use the <b>three dots</b> to choose <b>Tomorrow</b>, <b>Week</b> or <b>Month</b>, pick a date, set a repeat or attach it to a project.'],
+      ['Moving and postponing','Hold the box (drag on a computer) and drop a line on another day, week, month or year. Dropping it on a tab at the bottom sends it to that page (day, week, month, year, 10 years); on the day page, the <b>‹ ›</b> arrows at the top send it to the previous or next day; the <b>notebook icon</b> at the bottom sends it to the Archive. Or open a line and use the <b>three dots</b> to choose <b>Tomorrow</b>, <b>Week</b> or <b>Month</b>, pick a date, set a repeat or attach it to a project.'],
       ['Notes and projects','The icon at the right of a line opens its note page. A note and a project are the same page: a list of items plus a free note field. The icon before the title switches between <b>Note</b> (blue) and <b>Project</b> (orange), and tapping the title renames it. Hold an item to drag it into order, and give it a date with the calendar icon; a dated item also shows up on that day. Drag a finished item to <b>Drop here to archive</b> and it moves to the <b>Archive</b> section, still counted in the progress. Attach a note or project to another project with the folder button and it becomes its sub-heading: it is gathered in the parent project, and its icon gets a small dot. All projects are in the <b>Projects</b> tab at the top.'],
       ['Settings','In Settings you choose the language, light or dark theme, font and text size. <b>Backup</b> saves your notebook as a file, copies it or restores it. <b>Archive</b> brings back lines you archived or deleted (deleted ones stay for 30 days); The eye icon (next to the theme and full-screen buttons) tucks away crossed-out lines. With <b>Sync</b> you connect your Google account and use the same notebook on your phone and computer; it lives in a hidden area of your Drive that only this app can see, and changes are sent automatically. When something still needs sending, a small blue dot appears on the Settings icon; tap <b>Sync now</b> in the Sync section.']
     ],
@@ -999,14 +1047,14 @@ function load(){
     var raw=localStorage.getItem(STORE);
     if(raw){
       var o=JSON.parse(raw);
-      return {lang:o&&o.lang==='tr'?'tr':'en',font:o&&o.font==='hand'?'hand':'plain',pinDark:(o&&typeof o.pinDark==='boolean')?o.pinDark:null,decadeStart:(o&&typeof o.decadeStart==='number')?o.decadeStart:new Date().getFullYear(),zoom:zoomOk(o&&o.zoom),theme:(o&&(o.theme==='light'||o.theme==='dark'))?o.theme:null,yrev:!!(o&&o.yrev),hideDone:!!(o&&o.hideDone),syncOn:!!(o&&o.syncOn),syncRev:(o&&typeof o.syncRev==='number')?o.syncRev:null,dirty:!!(o&&o.dirty),syncLast:(o&&typeof o.syncLast==='number')?o.syncLast:0,pins:cleanPins(o&&o.pins)||[],nb:cleanNb(o&&o.nb),projects:cleanProjects(o&&o.projects)||[],items:clean(o)||[]};
+      return {lang:o&&o.lang==='tr'?'tr':'en',font:o&&o.font==='hand'?'hand':'plain',pinDark:(o&&typeof o.pinDark==='boolean')?o.pinDark:null,seeded:!!(o&&o.seeded),decadeStart:(o&&typeof o.decadeStart==='number')?o.decadeStart:new Date().getFullYear(),zoom:zoomOk(o&&o.zoom),theme:(o&&(o.theme==='light'||o.theme==='dark'))?o.theme:null,yrev:!!(o&&o.yrev),hideDone:!!(o&&o.hideDone),syncOn:!!(o&&o.syncOn),syncRev:(o&&typeof o.syncRev==='number')?o.syncRev:null,dirty:!!(o&&o.dirty),syncLast:(o&&typeof o.syncLast==='number')?o.syncLast:0,pins:cleanPins(o&&o.pins)||[],nb:cleanNb(o&&o.nb),projects:cleanProjects(o&&o.projects)||[],items:clean(o)||[]};
     }
   }catch(e){storageOK=false}
-  return {lang:'en',font:'plain',pinDark:null,decadeStart:new Date().getFullYear(),zoom:1,theme:null,yrev:false,hideDone:false,syncOn:false,syncRev:null,dirty:false,syncLast:0,pins:[],nb:{tabs:[],notes:[]},projects:[],items:[]};
+  return {lang:'en',font:'plain',pinDark:null,seeded:false,decadeStart:new Date().getFullYear(),zoom:1,theme:null,yrev:false,hideDone:false,syncOn:false,syncRev:null,dirty:false,syncLast:0,pins:[],nb:{tabs:[],notes:[]},projects:[],items:[]};
 }
 function persist(){
   clearTimeout(saveTimer);saveTimer=null;
-  try{localStorage.setItem(STORE,JSON.stringify({v:1,lang:S.lang,font:S.font,pinDark:S.pinDark,zoom:S.zoom,theme:S.theme,yrev:S.yrev,hideDone:S.hideDone,syncOn:S.syncOn,syncRev:S.syncRev,dirty:S.dirty,syncLast:S.syncLast,decadeStart:S.decadeStart,pins:S.pins,nb:S.nb,projects:S.projects,items:S.items}));}
+  try{localStorage.setItem(STORE,JSON.stringify({v:1,lang:S.lang,font:S.font,pinDark:S.pinDark,seeded:S.seeded,zoom:S.zoom,theme:S.theme,yrev:S.yrev,hideDone:S.hideDone,syncOn:S.syncOn,syncRev:S.syncRev,dirty:S.dirty,syncLast:S.syncLast,decadeStart:S.decadeStart,pins:S.pins,nb:S.nb,projects:S.projects,items:S.items}));}
   catch(e){storageOK=false;if(!warned){warned=true;toast(T.noStore)}}
 }
 function queueSave(){editSeq++;S.dirty=true;clearTimeout(saveTimer);saveTimer=setTimeout(persist,300);autoPushSoon()}
@@ -3134,6 +3182,35 @@ function drawer(key,title,kids){
   }});
   return h('div',{class:'sdrawer'},[hd,body]);
 }
+function seedSamples(){
+  var key=dkey(today());
+  T.seedTasks.forEach(function(x){
+    var ly=x.layer||'day',it={id:uid(),text:x.t,done:!!x.done,layer:ly,key:ly==='day'?key:keyOf(ly,today())};
+    if(x.note)it.note=x.note;
+    if(x.todos){
+      var rec={id:uid(),title:x.t,todos:x.todos.map(function(t){return {id:uid(),text:t,done:false}}),n:1};
+      if(x.notes)rec.notes=x.notes;
+      S.projects.push(rec);it.pj=rec.id;
+    }
+    S.items.push(it);
+  });
+  T.seedPins.slice().reverse().forEach(function(x){if(S.pins.filter(function(y){return y.text||y.ti}).length<10)S.pins.unshift({id:uid(),ti:x.ti,text:x.text})});
+  var tab=S.nb.tabs.filter(function(t){return t.name===T.seedTab})[0];
+  if(!tab&&S.nb.tabs.length<12){tab={id:uid(),name:T.seedTab};S.nb.tabs.push(tab)}
+  var t0=Date.now(),n=T.seedNbs.length;
+  T.seedNbs.slice().reverse().forEach(function(x,k){S.nb.notes.unshift({id:uid(),text:x.tx,tab:(x.tab&&tab)?tab.id:'',t:t0-(n-1-k)*1000})});
+  persist();queueSave();
+}
+function openWelcome(){
+  var p=h('div',{class:'panel welcome',role:'dialog','aria-modal':'true','aria-label':T.welcomeT});
+  p.appendChild(h('div',{class:'phead'},[h('div',{class:'sheet-title sicon',role:'img','aria-label':T.brand[0]+' '+T.brand[1],html:SUNICON+'<span class="stxt"><span>'+T.brand[0]+'</span><span>'+T.brand[1]+'</span></span>'}),xBtn()]));
+  p.appendChild(h('div',{class:'htitle',text:T.welcomeT}));
+  p.appendChild(h('p',{class:'wtx',text:T.welcomeTx}));
+  p.appendChild(h('button',{class:'sbtn wpri',type:'button',text:T.welcomeLoad,onclick:function(){seedSamples();closeSheet();render();toast(T.seedDone)}}));
+  p.appendChild(h('button',{class:'sbtn wsec',type:'button',text:T.welcomeGo,onclick:closeSheet}));
+  p.appendChild(h('p',{class:'whint',text:T.welcomeHint}));
+  showSheet(p,true);
+}
 function openHelp(){
   var p=h('div',{class:'panel',role:'dialog','aria-modal':'true','aria-label':T.howTitle});
   p.appendChild(h('div',{class:'phead'},[
@@ -3142,6 +3219,9 @@ function openHelp(){
   ]));
   p.appendChild(h('div',{class:'htitle',text:T.howTitle}));
   p.appendChild(h('p',{class:'hintro',text:T.helpIntro}));
+  var DRAG_I='<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M3 12h18M9 6l3-3 3 3M9 18l3 3 3-3M6 9l-3 3 3 3M18 9l3 3-3 3"/></svg>';
+  p.appendChild(h('div',{class:'hdrag'},[h('span',{class:'hic',html:DRAG_I}),h('div',{},[h('b',{text:T.dragT}),h('p',{text:T.dragTx})])]));
+  p.appendChild(h('button',{class:'hopen',type:'button',onclick:function(){seedSamples();closeSheet();render();toast(T.seedDone)}},[h('span',{text:T.seedBtn})]));
   var htab=0;
   var hseg=h('div',{class:'seg hseg',role:'tablist'});
   var G=function(d){return '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">'+d+'</svg>'};
@@ -3305,6 +3385,12 @@ function openSettings(){
   function openBox(){rbox.hidden=false}
   btns.appendChild(h('button',{class:'sbtn',type:'button',text:T.restoreBtn,onclick:function(){rbox.hidden=!rbox.hidden;if(!rbox.hidden)ta.focus()}}));
   bk.push(btns);
+  var fsure=false,fb=h('button',{class:'sbtn dng',type:'button',text:T.freshBtn,onclick:function(){
+    if(!fsure){fsure=true;fb.textContent=S.syncOn?T.freshSureSync:T.freshSure;return}
+    S.items=[];S.projects=[];S.pins=[];S.nb={tabs:[],notes:[]};
+    S.seeded=true;persist();queueSave();closeSheet();render();openWelcome();
+  }});
+  bk.push(h('div',{class:'sbtns'},[fb]));
   var confirming=false;
   var rb=h('button',{class:'sbtn',type:'button',id:'restoreBtn',text:T.restoreGo});
   ta.addEventListener('input',function(){confirming=false;rb.textContent=T.restoreGo});
@@ -3462,10 +3548,16 @@ document.addEventListener('visibilitychange',function(){
 if(document.fonts&&document.fonts.ready)document.fonts.ready.then(function(){fitAll();fitTitle()});
 window.addEventListener('resize',function(){fitAll();fitTitle()});
 
+var needWelcome=false;
+if(!S.seeded){
+  if(!S.syncOn&&!S.items.length&&!S.pins.length&&!S.nb.notes.length&&!S.projects.length)needWelcome=true;
+  S.seeded=true;persist();
+}
 document.getElementById('gear').setAttribute('aria-label',T.settings);
 document.getElementById('pinBtn').setAttribute('aria-label',T.pins);
 buildTabs();render();
 syncBtnUpdate();
+if(needWelcome)setTimeout(openWelcome,350);
 
 if(SYNC_OK&&S.syncOn)setTimeout(function(){syncNow(true,true)},600);
 })();
