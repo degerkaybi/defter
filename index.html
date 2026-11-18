@@ -957,6 +957,7 @@ body.arrows-on .arrow.over{background:var(--blue-soft);box-shadow:0 0 0 2px var(
 .tcard .th{font:600 17px/1.25 var(--sans);margin:0 0 6px;display:flex;align-items:center;gap:9px}.tcard .tic{flex:none;display:grid;place-items:center;width:26px;height:26px;border-radius:9px;background:var(--blue-wash);color:var(--blue)}.tcard .tic svg{width:16px;height:16px}
 .tcard .tt{font:400 14.5px/1.55 var(--sans);color:var(--ink-soft)}
 .tcard .tinl{display:inline-block;vertical-align:-3px;margin:0 1px}.tcard .tinl svg{width:1.15em;height:1.15em;display:block}
+.tcard .tlang{display:inline-flex;gap:2px;margin-top:12px;padding:2px;border-radius:11px;background:var(--chip)}.tcard .tlang button{font:600 13px/1 var(--sans);padding:8px 14px;border-radius:9px;color:var(--ink-soft)}.tcard .tlang button[aria-pressed=true]{background:var(--sheet);color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.14)}
 .tcard .tt2{font:400 12.5px/1.5 var(--sans);color:var(--ink-soft);opacity:.8;margin-top:9px}
 .tcard .tb{display:flex;align-items:center;gap:8px;margin-top:14px}
 .tcard .tb .sp{flex:1}
@@ -1063,8 +1064,8 @@ var TX={
       day:[
         ['Yarın Defterine hoş geldiniz','İşlerinizi gün, hafta, ay, yıl ve 10 yıl katmanlarına yazarsınız. İstediğiniz kadar erteleyebilirsiniz, ama gözünüzden kaçmaz, unutmazsınız. Özgürce erteleyin, bir gün elbet yapacaksınız.\nKısa bir turla nasıl çalıştığına bakalım, İleri’ye dokunun. Bu turu istediğiniz zaman Ayarlar’daki “Detaylı bir tura çıkın” bağlantısından yeniden açıp pratik yapabilirsiniz.'],
         ['Yazın','Bir satıra dokunun ve yazın. Enter yeni satır açar. \nBoş bir satırda Backspace satırı siler.'],
-        ['Tamamlayın, sürükleyin, taşıyın','Kutucuğa dokunun: iş tamam. Kutucuğu basılı tutup sürükleyin (bilgisayarda tıklayıp sürükleyin). Tarihin yanında çıkan {lr} oklara bırakırsanız bir gün ertelenir. Alttaki Hafta, Ay, Yıl sekmelerine bırakırsanız o katmana taşınır. En sağdaki Zamansız Notlar {nb} simgesine bırakırsanız nota dönüşür.'],
-        ['Üç nokta','Üç noktaya {dots} dokunun, yazdığınız satırı detaylandırın.\nNota ayrıntı yazın, tarih ve saat verin, tekrar kurun, bağlantı ekleyin ya da silin.'],
+        ['Tamamlayın, sürükleyin, taşıyın','Kutucuğa dokunun: iş tamam. Kutucuğu basılı tutup sürükleyin (bilgisayarda tıklayıp sürükleyin).\nTarihin yanında çıkan {lr} oklara bırakırsanız bir gün ertelenir. Alttaki Hafta, Ay, Yıl sekmelerine bırakırsanız o katmana taşınır. En sağdaki Zamansız Notlar {nb} simgesine bırakırsanız nota dönüşür.'],
+        ['Üç nokta','Üç noktaya {dots} dokunun, yazdığınız satırı detaylandırın.\nNota ayrıntı yazın, tarih ve saat verin, tekrar kurun, bağlantı ekleyin ya da silin.\nNot alınan satırlarda simge değişir: üç nokta yerine {note} not simgesi görünür.'],
         ['Bu hafta içinde','Üstteki + satırı Bu hafta içinde bölümü. Buraya yazarsanız ya da bir satırı sürükleyip bırakırsanız iş, günü belli olmadan o haftaya ait olur. Sayfanın altındaki Bu ay içinde bölümü aynı şekilde aya ait işler içindir.'],
         ['Günler arasında gezin','Tarihin iki yanındaki oklara dokunun ya da sayfayı sağa sola kaydırın: günler arasında gezersiniz. Tarihe dokununca takvim açılır.\nKlavyede ← → ile gezilir, T bugüne döner.'],
         ['Katmanlar','Gün, Hafta, Ay, Yıl, 10 Yıl: aynı işi farklı ölçekte planlarsınız. En sağdaki {nb} simgesi Zamansız Notlar.\nBurası zamansız bir defter gibi çalışır.'],
@@ -1178,8 +1179,8 @@ var TX={
       day:[
         ['Welcome to Yarın Defteri','You write your tasks into layers: day, week, month, year and 10 years. Postpone as much as you like, it won\u2019t slip out of sight and you won\u2019t forget. Postpone freely, you\u2019ll get to it one day. \nA short tour shows how it works, tap Next. You can reopen this tour any time from \u201cTake a detailed tour\u201d in Settings and practise.'],
         ['Write','Tap a line and write. Enter opens a new line. \nBackspace on an empty line removes it.'],
-        ['Done, drag, move','Tap the box: task done. Press and hold the box, then drag (on a computer, click and drag). Drop on the arrows next to the date {lr} to postpone by a day. Drop on the Week, Month or Year tab below to move it to that layer. Drop on the Timeless Notes {nb} icon at the far right to turn it into a note.'],
-        ['Three dots','Tap the three dots {dots} to detail the line you wrote.\nAdd a note, give a date and time, set a repeat, attach a link or delete.'],
+        ['Done, drag, move','Tap the box: task done. Press and hold the box, then drag (on a computer, click and drag).\nDrop on the arrows next to the date {lr} to postpone by a day. Drop on the Week, Month or Year tab below to move it to that layer. Drop on the Timeless Notes {nb} icon at the far right to turn it into a note.'],
+        ['Three dots','Tap the three dots {dots} to detail the line you wrote.\nAdd a note, give a date and time, set a repeat, attach a link or delete.\nOn lines with a note the icon changes: a {note} note icon appears instead of the three dots.'],
         ['Sometime this week','The + line on top is the Sometime this week section. Write here, or drag a line into it, and the task belongs to that week without a day. The Sometime this month section at the bottom does the same for the month.'],
         ['Move between days','Tap the arrows or swipe the main area left and right to move between days. Tap the date in the title to open a calendar.\nOn a keyboard, use \u2190 \u2192, and T returns to today.'],
         ['Layers','Day, Week, Month, Year, 10 Yr: plan the same work at different scales. The {nb} icon at the far right is Timeless Notes.\nIt works like a timeless notebook.'],
@@ -4456,7 +4457,8 @@ var TOUR_ICO={
 var TOUR_INL={
   lr:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l-6 6 6 6M15 6l6 6-6 6"/></svg>',
   dots:'<svg viewBox="0 0 24 24" fill="currentColor"><circle cx="5.5" cy="12" r="1.8"/><circle cx="12" cy="12" r="1.8"/><circle cx="18.5" cy="12" r="1.8"/></svg>',
-  nb:NB_I
+  nb:NB_I,
+  note:NOTE
 };
 function tourRich(str){
   var out=[],re=/\{(\w+)\}/g,last=0,m;
@@ -4531,6 +4533,18 @@ function tourShow(i){
   var tp=st[i][1].split(/\s*\n\s*/);
   card.appendChild(h('div',{class:'tt'},tourRich(tp[0])));
   for(var q=1;q<tp.length;q++)card.appendChild(h('div',{class:'tt2'},tourRich(tp[q])));
+  if(tour.key==='day'&&i===0){
+    var lg=h('div',{class:'tlang',role:'group','aria-label':'Language / Dil'});
+    [['tr','Türkçe'],['en','English']].forEach(function(o){
+      lg.appendChild(h('button',{type:'button',text:o[1],lang:o[0],'aria-pressed':String(S.lang===o[0]),onclick:function(){
+        if(S.lang===o[0])return;
+        applyLang(o[0]);
+        tour.root.setAttribute('aria-label',T.tour[tour.key][0][0]);
+        tourShow(0);
+      }}));
+    });
+    card.appendChild(lg);
+  }
   var nx=h('button',{type:'button',class:'tnext',text:i===n-1?T.tourDone:T.tourNext,onclick:function(){tourGo(1)}});
   var bar=h('div',{class:'tb'},[
     h('button',{type:'button',class:'tskip',text:T.tourSkip,onclick:tourEnd}),
