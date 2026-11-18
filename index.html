@@ -143,6 +143,13 @@ h1{margin:0;font-weight:inherit}
 .pdots button i{display:block;width:8px;height:8px;border-radius:50%;background:#fff;opacity:.55}
 .pdots button.on i{background:var(--pin);opacity:1;transform:scale(1.4)}
 .pin textarea{display:block;flex:1 1 auto;width:100%;min-height:0;background:none;border:0;outline:0;resize:none;overflow-y:auto;padding:0;font:400 calc(24px*var(--hs))/1.28 var(--hand);color:var(--pin-ink)}
+.view strong.fb,.nview strong.fb,.pview strong.fb,.ttview strong.fb{font-weight:700}
+mark.hl{background:var(--hl,rgba(255,214,10,.34));color:inherit;border-radius:4px;padding:0 .12em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+:root{--hl:rgba(255,205,40,.42)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--hl:rgba(255,205,40,.30)}}
+:root[data-theme="dark"]{--hl:rgba(255,205,40,.30)}
+.pin mark.hl{background:rgba(255,92,120,.28)}
+.pinwrap.pdk .pin mark.hl{background:rgba(255,205,40,.30)}
 .pin .pview{display:block;flex:1 1 auto;min-height:0;overflow-y:auto;font:400 calc(24px*var(--hs))/1.28 var(--hand);color:var(--pin-ink);white-space:pre-wrap;overflow-wrap:anywhere;cursor:text}
 .pin .pview .ilk{color:var(--blue);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
 .pin.pvon .lnks{display:none}
@@ -204,6 +211,12 @@ h1{margin:0;font-weight:inherit}
 .ntrash{position:relative;flex:none;width:calc(26px*var(--hs) + 18px);height:calc(26px*var(--hs) + 18px);display:grid;place-items:center;border-radius:14px;background:none;color:var(--ink-faint)}
 .ntrash svg{width:20px;height:20px;display:block}
 .ntrash[aria-pressed="true"]{color:var(--blue)}
+.nbfl{position:fixed;z-index:90;left:10px;right:10px;bottom:calc(10px + env(safe-area-inset-bottom,0px));display:flex;flex-wrap:wrap;gap:6px;align-items:center;justify-content:center;padding:8px;border-radius:20px;background:var(--sheet);box-shadow:0 10px 34px rgba(0,0,0,.38),0 0 0 1px var(--rule);animation:popin .16s ease-out}
+.nbfl .nbt{flex:0 1 auto;max-width:42%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;pointer-events:auto}
+.nbfl .nbfc.over{background:var(--blue-wash);color:var(--blue);box-shadow:inset 0 0 0 2px var(--blue)}
+.nbfl .ntrash.nbftr{flex:1 0 100%;width:auto;height:46px;display:flex;align-items:center;justify-content:center;gap:8px;color:var(--danger);background:rgba(214,84,84,.12);border-radius:14px;font:600 14px/1 var(--sans)}
+.nbfl .nbftr .ico svg{width:20px;height:20px;display:block}
+.nbfl .nbftr.over{background:rgba(214,84,84,.32);box-shadow:inset 0 0 0 2px var(--danger)}
 .ntrash.over{background:rgba(214,84,84,.28);color:var(--danger);box-shadow:inset 0 0 0 2px var(--danger)}
 body.nbdragging .ntrash{color:var(--ink-soft)}
 .ntrhead{flex:1 1 auto;min-width:0;display:flex;align-items:center;gap:12px;min-height:calc(26px*var(--hs) + 18px)}
@@ -213,6 +226,8 @@ body.nbdragging .ntrash{color:var(--ink-soft)}
 body.nbdragging{user-select:none;-webkit-user-select:none;cursor:grabbing}
 body.nbdragging .nbtabs .nbt[data-nbtab]{box-shadow:inset 0 0 0 1.5px var(--blue-soft)}
 .nrow.ndrag{opacity:.35}
+.nrow.nins-b{box-shadow:0 -2px 0 0 var(--blue,#4a6fa5)}
+.nrow.nins-a{box-shadow:0 2px 0 0 var(--blue,#4a6fa5)}
 .nghost{position:fixed;z-index:400;pointer-events:none;max-width:220px;padding:8px 12px;border-radius:10px;background:var(--sheet);box-shadow:var(--lift);font:400 calc(18px*var(--hs))/1.2 var(--hand);color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;transform:rotate(-1.5deg)}
 .nbtin{flex:none;width:130px;padding:7px 12px;border-radius:999px;border:1px solid var(--blue);background:var(--sheet);font:500 13.5px/1 var(--sans);color:var(--ink);outline:0}
 .nbtin.wide{width:min(260px,70%)}
@@ -227,6 +242,8 @@ body.nbdragging .nbtabs .nbt[data-nbtab]{box-shadow:inset 0 0 0 1.5px var(--blue
 @keyframes tflash{0%,55%{box-shadow:0 0 0 2px var(--blue)}100%{box-shadow:0 0 0 2px transparent}}
 .lkset{flex:none;width:30px;height:30px;display:grid;place-items:center;border-radius:8px;color:var(--ink-faint)}
 .lkset svg{width:17px;height:17px;display:block}
+.lkset.fmt{display:none}
+.ptask:focus-within .lkset.fmt{display:grid}
 .lkform{display:flex;gap:6px;align-items:center;padding:8px 0 2px}
 .lkform[hidden]{display:none}
 .lkin{flex:1 1 auto;min-width:0;padding:9px 12px;border-radius:999px;border:1px solid var(--blue);background:var(--sheet);font:500 14px/1 var(--sans);color:var(--ink);outline:0}
@@ -338,6 +355,10 @@ body.nbdragging .nbtabs .nbt[data-nbtab]{box-shadow:inset 0 0 0 1.5px var(--blue
 .qrow .cb{height:30px}
 .qrow .cb svg{width:16px;height:16px}
 .qtext{font:400 calc(21px*var(--hs))/30px var(--hand);color:var(--ink-soft);min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.qtext{cursor:pointer;text-align:left}
+.qtext .ilk,.float .view .ilk,.mprev .view .ilk{font-weight:700;color:var(--blue)!important;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px;pointer-events:auto}
+.qrow.done .qtext .ilk{color:var(--ink-faint)!important}
+.qtext strong.fb{font-weight:700}
 .qrow.done .qtext{text-decoration:line-through;text-decoration-thickness:1.5px;color:var(--ink-faint)}
 .qrow.done .notebtn{display:none}
 .qrow .nudge{line-height:30px;font-size:calc(18px*var(--hs))}
@@ -596,7 +617,10 @@ body.nbdragging .nbtabs .nbt[data-nbtab]{box-shadow:inset 0 0 0 1.5px var(--blue
 .row .notebtn.has,.qrow .notebtn{width:34px;min-width:34px}
 .row .notebtn.has~.more{display:none}
 .nudge{font:400 calc(19px*var(--hs))/var(--row) var(--hand);color:var(--blue);opacity:.85;white-space:nowrap;padding:0 4px 0 8px}
-.done .nudge,.draft .nudge{display:none}
+.done .nudge{display:none}
+/* an empty new line keeps the room its buttons will take, so the field does not narrow on the first letter */
+.draft .nudge{visibility:hidden}
+.row.draft .more{display:grid;width:34px;visibility:hidden}
 .pull{display:inline-block;margin:16px 0 0;padding:9px 15px;border-radius:999px;background:var(--blue-wash);color:var(--blue);font:500 13.5px/1 var(--sans)}
 
 /* week page */
@@ -611,6 +635,17 @@ body.nbdragging .nbtabs .nbt[data-nbtab]{box-shadow:inset 0 0 0 1.5px var(--blue
 .wlab{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;min-height:32px;padding-top:1px;font-family:var(--hand);line-height:1;color:var(--ink-soft)}
 .wlab .n{font-size:calc(24px*var(--hs));color:var(--ink)}
 .wlab .d{font-size:calc(17px*var(--hs))}
+.wday.wfold{align-items:center;padding-top:3px;padding-bottom:3px}
+.wday.wfold::before{display:none}
+.wday.wfold .wlab{min-height:30px}
+.wday.wfold .wlab .n,.wday.wfold .wlab .d{color:var(--ink-soft)}
+.wsum{display:flex;align-items:center;justify-content:flex-end;gap:6px;min-height:32px;width:100%;color:var(--ink-faint)}
+.wsum .mcnt{margin:0}
+.wsum .wnone{font:400 15px/1 var(--sans);opacity:.5}
+.wsum .wch svg,.wcol svg{width:18px;height:18px;display:block}
+.wlc{display:flex;flex-direction:column;align-items:center;gap:0}
+.wcol{width:44px;height:30px;display:grid;place-items:center;color:var(--blue);background:var(--blue-wash);border-radius:10px;margin-top:4px}
+.wcol svg{width:22px;height:22px}
 .wday.today .wlab .n,.wday.today .wlab .d{color:var(--blue);font-weight:600}
 
 /* month page */
@@ -1030,7 +1065,7 @@ var TX={
     seedNbs:[{tx:'\"Zamansız Notlar\" nasıl çalışır\n\u2022 Enter notu kaydeder; uzun notun altındaki üçgen yazıyı kısaltır ya da açar (\u25b3 kapalı, \u25b2 açık).'},{tx:'\u2022 Sağdaki \u283f tutamacı sürükle: üstteki bir sekmeye bırakırsan not oraya taşınır, çöp ikonuna bırakırsan çöpe gider.\n\u2022 Notun altında hangi sekmede olduğu ve ne zaman yazıldığı görünür.'},{tx:'Sekmeler ve Arşiv\n\u2022 + ile yeni sekme açarsın; sekmeyi uzun basıp sürükleyerek sıralarsın.\n\u2022 \u25f7 saat ikonu Arşiv: görevi alttaki defter ikonuna sürüklediğinde ya da satır menüsünden arşivlediğinde burada bekler.\n\u2022 Geri koy ile görev bugüne döner.',tab:1}],
     seedTab:'Örnek Sekme',
     welcomeT:'Yarın Defterine hoş geldiniz',welcomeTx:'Örnek içeriği yüklemek için aşağıya dokunun ya da direkt başlayın. Örnek içeriği istediğiniz zaman silebilirsiniz.',welcomeLoad:'Örnek içeriği yükle',welcomeGo:'Direkt başlayın',welcomeHint:'Kullanım kılavuzu: Ayarlar \u203a Nasıl kullanılır',welcomeReset:'Kalıcı olarak silip sıfırdan başlamak için:\nAyarlar \u203a Yedek \u203a Baştan başla',
-    seedBtn:'Örnekleri ekle',secFold:'Daralt',secUnfold:'Genişlet',goMonth:'Aya git',goYear:'Yıla git',seedWarn:'Örnek veriler yüklenecek: görevler, post-itler, notlar ve bir sekme. Bunlar uygulamayı öğrenmen için tasarlandı; istemezsen tek tek silmen gerekir. Kendi notların etkilenmez.',seedGo:'Yükle',seedNo:'Vazgeç',tblAdd:'Tablo ekle',tblTitlePh:'Tablo adı',tblColPh:'Tarih',tblRowPh:'Ad',tblAddCol:'Sütun ekle',tblAddRow:'Satır ekle',tblEdit:'Düzenle',tblDone:'Bitti',tblDel:'Tabloyu sil',tblGone:'Tablo silindi',tblColGone:'Sütun silindi',tblRowGone:'Satır silindi',tblDelCol:'Sütunu sil',tblDelRow:'Satırı sil',tblWord:'Tablo',tblMissing:'Tablo bulunamadı',tblTrashed:'Bu tablo çöpte',lkSet:'Seçili sözcüğe bağlantı ver',lkPick:'Önce başlıkta bir sözcük seç',lkUrl:'Bağlantı adresi',lkOk:'Tamam',lkCancel:'Vazgeç',lkDone:'Bağlantı eklendi',tblOpen:'Tabloyu aç',tblClose:'Tabloyu daralt',seedDone:'Örnekler eklendi',freshBtn:'Baştan başla: her şeyi sil',freshSure:'Emin misin? Tüm notlar silinir, dokun',freshSureSync:'Emin misin? Tüm notlar ve Drive kopyası silinir, dokun',freshDone:'Defter temizlendi',
+    seedBtn:'Örnekleri ekle',nbOrd:'Sıra değişti',fmtB:'Kalın',fmtH:'Vurgula',secFold:'Daralt',secUnfold:'Genişlet',goMonth:'Aya git',goYear:'Yıla git',seedWarn:'Örnek veriler yüklenecek: görevler, post-itler, notlar ve bir sekme. Bunlar uygulamayı öğrenmen için tasarlandı; istemezsen tek tek silmen gerekir. Kendi notların etkilenmez.',seedGo:'Yükle',seedNo:'Vazgeç',tblAdd:'Tablo ekle',tblTitlePh:'Tablo adı',tblColPh:'Tarih',tblRowPh:'Ad',tblAddCol:'Sütun ekle',tblAddRow:'Satır ekle',tblEdit:'Düzenle',tblDone:'Bitti',tblDel:'Tabloyu sil',tblGone:'Tablo silindi',tblColGone:'Sütun silindi',tblRowGone:'Satır silindi',tblDelCol:'Sütunu sil',tblDelRow:'Satırı sil',tblWord:'Tablo',tblMissing:'Tablo bulunamadı',tblTrashed:'Bu tablo çöpte',lkSet:'Seçili sözcüğe bağlantı ver',lkPick:'Önce başlıkta bir sözcük seç',lkUrl:'Bağlantı adresi',lkOk:'Tamam',lkCancel:'Vazgeç',lkDone:'Bağlantı eklendi',tblOpen:'Tabloyu aç',tblClose:'Tabloyu daralt',seedDone:'Örnekler eklendi',freshBtn:'Baştan başla: her şeyi sil',freshSure:'Emin misin? Tüm notlar silinir, dokun',freshSureSync:'Emin misin? Tüm notlar ve Drive kopyası silinir, dokun',freshDone:'Defter temizlendi',
     dragT:'Sürükle-bırak',
     dragTx:'Görevi tutup başka bir güne, haftaya, aya ya da yıla bırak; alttaki sayfa sekmesine bırakırsan o sayfaya gider, defter ikonuna bırakırsan Arşiv\u2019e kalkar. Zamansız Notlar\u2019da notun üç nokta tutamacını sekmeye ya da çöpe sürükle.',
     helpNoSync:'',
@@ -1114,7 +1149,7 @@ var TX={
     seedNbs:[{tx:'\"Timeless Notes\" – how it works\n\u2022 Enter saves a note; the triangle under a long note folds or opens it (\u25b3 folded, \u25b2 open).'},{tx:'\u2022 Drag the \u283f handle on the right: drop it on a tab above to move the note there, or on the trash icon to delete it.\n\u2022 Under each note you see its tab and when it was written.'},{tx:'Tabs and Archive\n\u2022 + opens a new tab; long-press a tab and drag to reorder.\n\u2022 The \u25f7 clock icon is the Archive: tasks you drag onto the notebook icon, or archive from a row\u2019s menu, wait there.\n\u2022 Put back returns a task to today.',tab:1}],
     seedTab:'Sample Tab',
     welcomeT:'Welcome to Yarın Defteri',welcomeTx:'Tap below to load example content, or just start. You can delete the examples whenever you like.',welcomeLoad:'Load example content',welcomeGo:'Just start',welcomeHint:'Guide: Settings \u203a How to use',welcomeReset:'To delete for good and start from scratch:\nSettings \u203a Backup \u203a Start fresh',
-    seedBtn:'Add the examples',secFold:'Collapse',secUnfold:'Expand',goMonth:'Open month',goYear:'Open year',seedWarn:'Example data will be added: tasks, sticky notes, notes and a tab. They are designed to help you learn the app; if you don\u2019t want them, you\u2019ll have to delete them one by one. Your own notes are not affected.',seedGo:'Add',seedNo:'Cancel',tblAdd:'Add table',tblTitlePh:'Table name',tblColPh:'Date',tblRowPh:'Name',tblAddCol:'Add column',tblAddRow:'Add row',tblEdit:'Edit',tblDone:'Done',tblDel:'Delete table',tblGone:'Table deleted',tblColGone:'Column deleted',tblRowGone:'Row deleted',tblDelCol:'Delete column',tblDelRow:'Delete row',tblWord:'Table',tblMissing:'Table not found',tblTrashed:'That table is in the trash',lkSet:'Link the selected word',lkPick:'Select a word in the title first',lkUrl:'Link address',lkOk:'OK',lkCancel:'Cancel',lkDone:'Link added',tblOpen:'Expand table',tblClose:'Collapse table',seedDone:'Examples added',freshBtn:'Start fresh: delete everything',freshSure:'Are you sure? All notes are deleted, tap',freshSureSync:'Are you sure? All notes and the Drive copy are deleted, tap',freshDone:'Notebook cleared',
+    seedBtn:'Add the examples',nbOrd:'Order changed',fmtB:'Bold',fmtH:'Highlight',secFold:'Collapse',secUnfold:'Expand',goMonth:'Open month',goYear:'Open year',seedWarn:'Example data will be added: tasks, sticky notes, notes and a tab. They are designed to help you learn the app; if you don\u2019t want them, you\u2019ll have to delete them one by one. Your own notes are not affected.',seedGo:'Add',seedNo:'Cancel',tblAdd:'Add table',tblTitlePh:'Table name',tblColPh:'Date',tblRowPh:'Name',tblAddCol:'Add column',tblAddRow:'Add row',tblEdit:'Edit',tblDone:'Done',tblDel:'Delete table',tblGone:'Table deleted',tblColGone:'Column deleted',tblRowGone:'Row deleted',tblDelCol:'Delete column',tblDelRow:'Delete row',tblWord:'Table',tblMissing:'Table not found',tblTrashed:'That table is in the trash',lkSet:'Link the selected word',lkPick:'Select a word in the title first',lkUrl:'Link address',lkOk:'OK',lkCancel:'Cancel',lkDone:'Link added',tblOpen:'Expand table',tblClose:'Collapse table',seedDone:'Examples added',freshBtn:'Start fresh: delete everything',freshSure:'Are you sure? All notes are deleted, tap',freshSureSync:'Are you sure? All notes and the Drive copy are deleted, tap',freshDone:'Notebook cleared',
     dragT:'Drag and drop',
     dragTx:'Hold a task and drop it on another day, week, month or year; drop it on a page tab at the bottom and it goes to that page, drop it on the notebook icon and it goes to the Archive. In Timeless Notes, drag a note\u2019s three-dot handle onto a tab or the trash.',
     helpNoSync:'',
@@ -1375,25 +1410,43 @@ function ensureReps(){
 var TOK_RE=/\[([^\]\n]+)\]\((\[[^\]\n]*\]\([^)\s]*\)|[^)\s]+)\)/g;
 /* a link pasted from rendered markdown arrives nested: [word]([site](https://site)) */
 function tokUrl(tg){var m=/^\[[^\]]*\]\(([^)\s]*)\)$/.exec(tg);return m?m[1]:tg}
-function dispText(t){return String(t==null?'':t).replace(TOK_RE,'$1')}
-function tblById(id){return S.nb.notes.filter(function(x){return x.id===id&&x.tb})[0]||null}
-function renderInline(el,text){
-  el.textContent='';
-  var str=String(text||''),last=0,m;TOK_RE.lastIndex=0;
-  while((m=TOK_RE.exec(str))){
-    if(m.index>last)el.appendChild(document.createTextNode(str.slice(last,m.index)));
-    var tg=tokUrl(m[2]),a;
-    if(tg.indexOf('tbl:')===0){
-      var tn=tblById(tg.slice(4));
-      a=h('a',{class:'ilk tb',href:'#','data-tbl':tg.slice(4),html:TBL_I});
-      a.appendChild(document.createTextNode((tn&&tn.tb.ti)||m[1]));
-    }else{
-      a=h('a',{class:'ilk',href:/^https?:\/\//i.test(tg)?tg:'https://'+tg,target:'_blank',rel:'noopener noreferrer',text:m[1]});
-    }
-    el.appendChild(a);last=m.index+m[0].length;
+/* inline codes: [word](url)  **bold**  ==highlight== */
+var FMT_SRC="\\[([^\\]\\n]+)\\]\\((\\[[^\\]\\n]*\\]\\([^)\\s]*\\)|[^)\\s]+)\\)|\\*\\*(?=\\S)([^\\n]*?\\S)\\*\\*|==(?=\\S)([^\\n]*?\\S)==";
+function hasFmt(t){return new RegExp(FMT_SRC).test(String(t||''))}
+function dispText(t){
+  var str=String(t==null?'':t);
+  for(var i=0;i<3;i++){
+    var nx=str.replace(new RegExp(FMT_SRC,'g'),function(a,l,u,b,hl){return l!=null?l:(b!=null?b:hl)});
+    if(nx===str)break;str=nx;
   }
-  if(last<str.length)el.appendChild(document.createTextNode(str.slice(last)));
+  return str;
 }
+function tblById(id){return S.nb.notes.filter(function(x){return x.id===id&&x.tb})[0]||null}
+function fmtInto(el,str,rich,depth){
+  var re=new RegExp(FMT_SRC,'g'),last=0,m;
+  function plain(seg){if(!seg)return;if(rich)linkifyInto(el,seg);else el.appendChild(document.createTextNode(seg))}
+  while((m=re.exec(str))){
+    plain(str.slice(last,m.index));
+    if(m[1]!=null){
+      var tg=tokUrl(m[2]),a;
+      if(tg.indexOf('tbl:')===0){
+        var tn=tblById(tg.slice(4));
+        a=h('a',{class:'ilk tb',href:'#','data-tbl':tg.slice(4),html:TBL_I});
+        a.appendChild(document.createTextNode((tn&&tn.tb.ti)||m[1]));
+      }else{
+        a=h('a',{class:'ilk',href:/^https?:\/\//i.test(tg)?tg:'https://'+tg,target:'_blank',rel:'noopener noreferrer',text:m[1]});
+      }
+      el.appendChild(a);
+    }else{
+      var isB=m[3]!=null,inner=isB?m[3]:m[4],nd=h(isB?'strong':'mark',{class:isB?'fb':'hl'});
+      if(depth<2)fmtInto(nd,inner,rich,depth+1);else nd.textContent=inner;
+      el.appendChild(nd);
+    }
+    last=m.index+m[0].length;
+  }
+  plain(str.slice(last));
+}
+function renderInline(el,text){el.textContent='';fmtInto(el,String(text||''),false,0)}
 /* like renderInline, plus bare urls in plain text become links (used by Timeless Notes) */
 function linkifyInto(el,seg){
   var last=0,m;URL_RE.lastIndex=0;
@@ -1408,23 +1461,7 @@ function linkifyInto(el,seg){
   }
   if(last<seg.length)el.appendChild(document.createTextNode(seg.slice(last)));
 }
-function renderRich(el,text){
-  el.textContent='';
-  var str=String(text||''),last=0,m;TOK_RE.lastIndex=0;
-  while((m=TOK_RE.exec(str))){
-    if(m.index>last)linkifyInto(el,str.slice(last,m.index));
-    var tg=tokUrl(m[2]),a;
-    if(tg.indexOf('tbl:')===0){
-      var tn=tblById(tg.slice(4));
-      a=h('a',{class:'ilk tb',href:'#','data-tbl':tg.slice(4),html:TBL_I});
-      a.appendChild(document.createTextNode((tn&&tn.tb.ti)||m[1]));
-    }else{
-      a=h('a',{class:'ilk',href:/^https?:\/\//i.test(tg)?tg:'https://'+tg,target:'_blank',rel:'noopener noreferrer',text:m[1]});
-    }
-    el.appendChild(a);last=m.index+m[0].length;
-  }
-  if(last<str.length)linkifyInto(el,str.slice(last));
-}
+function renderRich(el,text){el.textContent='';fmtInto(el,String(text||''),true,0)}
 var tblFlash=null;
 function openTable(id){
   var n=tblById(id);
@@ -1491,6 +1528,23 @@ function urlsIn(text){
     out.push({href:href,label:raw.replace(/^https?:\/\/(www\.)?/i,'').replace(/\/$/,'')});
   }
   return out;
+}
+var HL_I='<svg viewBox="0 0 18 18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M10.6 3.4l4 4-5.6 5.6H5l-.2-3.8z"/><path d="M3 15.2h6"/></svg>';
+var BOLD_I='<svg viewBox="0 0 18 18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5.6 3.6h4.1a2.5 2.5 0 0 1 0 5H5.6zM5.6 8.6h4.7a2.5 2.5 0 0 1 0 5H5.6z"/></svg>';
+/* wrap / unwrap the selection with ** or == ; returns {v,s,e} or null */
+function fmtWrap(v,s,e,mk){
+  var L=mk.length;if(e-s<1)return null;
+  /* already wrapped (directly, or with the other marker in between: **==x==**)? then unwrap */
+  var oth=mk==='**'?'==':'**';
+  if(v.slice(s-L,s)===mk&&v.slice(e,e+L)===mk)return{v:v.slice(0,s-L)+v.slice(s,e)+v.slice(e+L),s:s-L,e:e-L};
+  if(v.slice(s-L,s)===oth&&v.slice(e,e+L)===oth&&v.slice(s-2*L,s-L)===mk&&v.slice(e+L,e+2*L)===mk)
+    return{v:v.slice(0,s-2*L)+oth+v.slice(s,e)+oth+v.slice(e+2*L),s:s-L,e:e-L};
+  var sel=v.slice(s,e);
+  if(sel.length>2*L&&sel.slice(0,L)===mk&&sel.slice(-L)===mk){var in_=sel.slice(L,-L);return{v:v.slice(0,s)+in_+v.slice(e),s:s,e:s+in_.length}}
+  var lead=sel.match(/^\s*/)[0].length,trail=sel.match(/\s*$/)[0].length;
+  if(lead+trail>=sel.length)return null;
+  var a=s+lead,b=e-trail;
+  return{v:v.slice(0,a)+mk+v.slice(a,b)+mk+v.slice(b),s:a+L,e:b+L};
 }
 function linkBar(){
   var box=h('div',{class:'lnks'});box.hidden=true;
@@ -1779,7 +1833,9 @@ function quiet(layer,always){
     var row=h('div',{class:'qrow'+(it.done?' done':'')});
     row.dataset.id=it.id;
     row.appendChild(checkBtn(row));
-    row.appendChild(h('button',{class:'qtext',type:'button',text:dispText(it.text),onclick:function(){openSheet(it)}}));
+    var qt=h('div',{class:'qtext',role:'button',tabindex:'0',onclick:function(e){if(e.target.closest&&e.target.closest('a.ilk'))return;openSheet(it)},onkeydown:function(e){if(e.target===qt&&(e.key==='Enter'||e.key===' ')){e.preventDefault();openSheet(it)}}});
+    renderInline(qt,it.text);
+    row.appendChild(qt);
     row.appendChild(h('span',{class:'nudge',text:nud?T.still:''}));
     row.appendChild(linkBtn(it.text));
     row.appendChild(pjBtn(it));
@@ -1828,11 +1884,21 @@ function pageWeek(){
   for(var i=0;i<7;i++){(function(i){
     var d=addDays(mon,i),key=dkey(d);
     var empty=!listFor('day',key).length;
-    var sec=h('section',{class:'wday'+(key===tk?' today':'')+(empty?' empty':''),'data-layer':'day','data-key':key});
-    sec.appendChild(h('button',{class:'wlab',type:'button',onclick:function(){go('day',d)}},[
+    var past=key<tk,fold=past&&!wOpen[key];
+    var sec=h('section',{class:'wday'+(key===tk?' today':'')+(empty?' empty':'')+(fold?' wfold':'')+(past&&!fold?' wopen':''),'data-layer':'day','data-key':key});
+    var lab=h('button',{class:'wlab',type:'button',onclick:function(){go('day',d)}},[
       h('span',{class:'n',text:String(d.getDate())}),h('span',{class:'d',text:T.wds[i]})
-    ]));
-    sec.appendChild(linesBlock('day',key,{row:32,min:empty?1:2}));
+    ]);
+    if(past&&!fold){
+      sec.appendChild(h('div',{class:'wlc'},[lab,h('button',{class:'wcol',type:'button','aria-label':T.secFold,title:T.secFold,html:TRI_UP,onclick:function(){delete wOpen[key];render()}})]));
+    }else sec.appendChild(lab);
+    if(fold){
+      var its=listFor('day',key).filter(function(x){return x.text.trim()}),nn=its.length;
+      sec.appendChild(h('button',{class:'wsum',type:'button','aria-expanded':'false','aria-label':T.secUnfold,title:T.secUnfold,onclick:function(){wOpen[key]=1;render()}},[
+        nn?h('span',{class:'mcnt',text:String(nn)}):h('span',{class:'wnone',text:'\u2013'}),
+        h('span',{class:'wch',html:TRI_DN})
+      ]));
+    }else sec.appendChild(linesBlock('day',key,{row:32,min:empty?1:2}));
     frame.appendChild(sec);
   })(i)}
   f.appendChild(frame);
@@ -1840,7 +1906,7 @@ function pageWeek(){
   if(qm){qm.style.marginTop='18px';f.appendChild(qm)}
   return f;
 }
-var monthSel=null;
+var monthSel=null,wOpen={};
 function activeProjects(){return S.projects.filter(function(pj){return !pj.n&&!pjIsDone(pj)})}
 var monthListOpen=false;
 function pageMonth(){
@@ -2308,7 +2374,7 @@ function openPins(){
     var lkp=linkBar();lkp.set(c.text);
     var pv=h('div',{class:'pview'});
     function pvSync(){
-      var has=urlsIn(c.text).length>0;
+      var has=urlsIn(c.text).length>0||hasFmt(c.text);
       if(has&&document.activeElement!==ta){renderRich(pv,c.text);pv.style.display='';ta.style.display='none'}
       else{pv.style.display='none';ta.style.display=''}
       if(el)el.classList.toggle('pvon',pv.style.display==='');
@@ -2342,6 +2408,14 @@ function openPins(){
       if(selE-selS<1){toast(T.lkPick);return}
       lkForm.hidden=false;lkIn.value='';lkIn.focus();
     }});
+    function fmtPin(mk){
+      if(document.activeElement===ta)keepSel();
+      var r=fmtWrap(ta.value,selS,selE,mk);if(!r){toast(T.lkPick);return}
+      ta.value=r.v;c.text=r.v;save();lkp.set(c.text);selS=r.s;selE=r.e;
+      ta.focus();try{ta.setSelectionRange(r.s,r.e)}catch(x){}
+    }
+    var fbBtn=h('button',{type:'button',class:'pi','aria-label':T.fmtB,title:T.fmtB,html:BOLD_I,onmousedown:function(e){e.preventDefault()},onclick:function(){fmtPin('**')}});
+    var hlBtn=h('button',{type:'button',class:'pi','aria-label':T.fmtH,title:T.fmtH,html:HL_I,onmousedown:function(e){e.preventDefault()},onclick:function(){fmtPin('==')}});
     var del=h('button',{type:'button',class:'pi','aria-label':T.pinDel,title:T.pinDel,html:TRASH_I,onclick:function(){
       var i=cards.indexOf(c);if(i<0)return;
       cards.splice(i,1);var had=has(c),raw=null;
@@ -2375,7 +2449,7 @@ function openPins(){
     ti.addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();ta.focus()}});
     el=h('div',{class:'pin'},[ti,ta,pv,lkForm,lkp,h('div',{class:'pact'},[
       h('button',{type:'button',class:'pi',onmousedown:function(e){e.preventDefault()},onclick:bul.chk,'aria-label':T.check2,html:'<span>☐</span>'}),
-      lkBtn,mvBtn,nbBtn,del])]);
+      fbBtn,hlBtn,lkBtn,mvBtn,nbBtn,del])]);
     pvSync();
     el.dataset.pid=c.id;
     el.addEventListener('click',function(){
@@ -2464,6 +2538,9 @@ function openPins(){
   var dkBtn=h('button',{class:'xbtn',type:'button',onclick:function(){S.pinDark=!pinDk();persist();dkSet()}});
   function dkSet(){var d=pinDk();wrap.classList.toggle('pdk',d);dkBtn.innerHTML=d?SUN_I:MOON_I;var l=d?T.pinLight:T.pinDarkT;dkBtn.setAttribute('aria-label',l);dkBtn.title=l}
   dkSet();
+  /* keyboard: the global handler asks the open deck to step or add */
+  wrap._nav=function(dir){var nn=cards.length;if(mode!=='deck'||nn<2)return;blurNow();act=(((act+dir)%nn)+nn)%nn;layout()};
+  wrap._new=function(){if(mode==='deck')add.click()};
   wrap.appendChild(h('div',{class:'pinbar'},[h('div',{class:'pinpill',text:T.pins}),h('div',{class:'sp'}),add,dkBtn,trBtn,xBtn()]));
   wrap.appendChild(list);wrap.appendChild(dots);wrap.appendChild(trashBox);
   showSheet(wrap,true);
@@ -2583,17 +2660,45 @@ function nbDrag(more,row,n,trashMode,closeMenu){
         function pick(){
           var el=document.elementFromPoint(lx,ly),c=el&&el.closest?el.closest(trashMode?'.nbtabs .nbt[data-nbtab]':'.nbtabs .nbt[data-nbtab], .ntrash'):null;
           if(c!==over){if(over)over.classList.remove('over');over=c;if(over)over.classList.add('over')}
+          pickIns();
+        }
+        /* dropping between rows (not on a tab or the bin) puts the note there */
+        var ins=null;
+        function clearIns(){[].forEach.call(document.querySelectorAll('.nins-a,.nins-b'),function(r){r.classList.remove('nins-a','nins-b')})}
+        function pickIns(){
+          clearIns();ins=null;
+          if(trashMode||over)return;
+          var list=row.parentNode;if(!list)return;
+          var lr=list.getBoundingClientRect();
+          if(ly<lr.top-40||ly>lr.bottom+70)return;
+          var rows=[].filter.call(list.children,function(r){return r!==row&&r.getAttribute('data-nid')});
+          if(!rows.length)return;
+          var tg=null,after=false;
+          for(var i=0;i<rows.length;i++){var rc=rows[i].getBoundingClientRect();if(ly<rc.top+rc.height/2){tg=rows[i];break}}
+          if(!tg){tg=rows[rows.length-1];after=true}
+          ins={id:tg.getAttribute('data-nid'),after:after};
+          tg.classList.add(after?'nins-a':'nins-b');
         }
         function loop(){
           if(!go)return;
-          if(ly<110)window.scrollBy(0,-10);else if(ly>window.innerHeight-90)window.scrollBy(0,10);
+          if(!over){if(ly<110)window.scrollBy(0,-12);else if(ly>window.innerHeight-170)window.scrollBy(0,12)}
           pick();raf=requestAnimationFrame(loop);
+        }
+        /* drop bar pinned to the bottom while dragging: no need to carry the note back up to the top */
+        var fb=null;
+        function floatBar(){
+          fb=h('div',{class:'nbtabs nbfl'});
+          if(!trashMode)fb.appendChild(h('div',{class:'ntrash nbftr','aria-label':T.nbTrash},[h('span',{class:'ico',html:TRASH_I}),h('span',{class:'lb',text:T.nbTrash})]));
+          fb.appendChild(h('div',{class:'nbt nbfc','data-nbtab':'all',text:T.nbAll}));
+          fb.appendChild(h('div',{class:'nbt nbfc defc','data-nbtab':'def','aria-label':T.nbDef,html:LATER_I}));
+          S.nb.tabs.forEach(function(t){fb.appendChild(h('div',{class:'nbt nbfc','data-nbtab':t.id,text:t.name}))});
+          document.body.appendChild(fb);
         }
         function clean(){
           more.removeEventListener('pointermove',mv);more.removeEventListener('pointerup',up);more.removeEventListener('pointercancel',cancel);
           cancelAnimationFrame(raf);
-          if(ghost)ghost.remove();
-          if(over)over.classList.remove('over');
+          if(ghost)ghost.remove();if(fb){fb.remove();fb=null}
+          if(over)over.classList.remove('over');clearIns();
           row.classList.remove('ndrag');document.body.classList.remove('nbdragging');
         }
         function mv(ev){
@@ -2605,13 +2710,13 @@ function nbDrag(more,row,n,trashMode,closeMenu){
             ghost=h('div',{class:'nghost',text:((n.text||(n.tb&&n.tb.ti)||T.tblWord).split('\n')[0]||'').slice(0,40)});
             document.body.appendChild(ghost);
             row.classList.add('ndrag');document.body.classList.add('nbdragging');
-            loop();
+            floatBar();loop();
           }
           ghost.style.left=Math.min(lx+14,window.innerWidth-200)+'px';ghost.style.top=(ly+26)+'px';
           pick();
         }
         function up(){
-          var isTr=!!(over&&over.classList.contains('ntrash')),tid=over&&!isTr?over.getAttribute('data-nbtab'):null,was=go;
+          var isTr=!!(over&&over.classList.contains('ntrash')),tid=over&&!isTr?over.getAttribute('data-nbtab'):null,was=go,insv=ins;
           clean();
           if(!was){return}
           setTimeout(function(){more._drag=false},0);
@@ -2620,7 +2725,23 @@ function nbDrag(more,row,n,trashMode,closeMenu){
             toast(T.moved+' · '+T.nbTrash,{label:T.undo,fn:function(){delete n.d;queueSave();nbRedraw()}});
             return;
           }
-          if(tid==null)return;
+          if(tid==null){
+            if(!insv)return;
+            var arr=S.nb.notes,before=arr.map(function(x){return x.id}),tg=null;
+            arr.forEach(function(x){if(x.id===insv.id)tg=x});
+            if(!tg||tg===n)return;
+            arr.splice(arr.indexOf(n),1);
+            arr.splice(arr.indexOf(tg)+(insv.after?1:0),0,n);
+            if(arr.map(function(x){return x.id}).join()===before.join())return;
+            queueSave();nbRedraw();
+            toast(T.nbOrd,{label:T.undo,fn:function(){
+              var by={};S.nb.notes.forEach(function(x){by[x.id]=x});
+              var back=before.map(function(id){return by[id]}).filter(Boolean);
+              S.nb.notes.forEach(function(x){if(before.indexOf(x.id)<0)back.push(x)});
+              S.nb.notes=back;queueSave();nbRedraw();
+            }});
+            return;
+          }
           var to=tid==='all'?'':tid,from=n.tab||'',wasD=n.d;
           if(to===from&&!wasD)return;
           var nm=tid==='all'?T.nbAll:((S.nb.tabs.filter(function(t){return t.id===tid})[0]||{}).name||'');
@@ -2730,7 +2851,7 @@ function pageNb(){
     var nl=h('div',{class:'nlist'});
     list.forEach(function(n){
       if(n.tb){nl.appendChild(tblRow(n,tabs));return}
-      var row=h('div',{class:'nrow'});
+      var row=h('div',{class:'nrow','data-nid':n.id});
       var ta=h('textarea',{rows:'1',spellcheck:'false','aria-label':T.nb});ta.value=n.text;
       var tog=h('button',{type:'button',class:'ntog',hidden:true,onclick:function(){n.c=tog._col?0:1;queueSave();apply()}});
       var nv=h('div',{class:'nview',onclick:function(e){
@@ -3481,7 +3602,7 @@ function openSheet(it){
   tt.addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();tt.blur()}});
   var tv=h('div',{class:'sheet-text sedit ttview'});
   function ttSync(){
-    TOK_RE.lastIndex=0;var has=TOK_RE.test(it.text);TOK_RE.lastIndex=0;
+    var has=hasFmt(it.text);
     if(has&&document.activeElement!==tt){renderInline(tv,it.text);tv.style.display='';tt.style.display='none'}
     else{tv.style.display='none';tt.style.display='';fitTt()}
   }
@@ -3523,6 +3644,14 @@ function openSheet(it){
   lkForm.appendChild(lkIn);
   lkForm.appendChild(h('button',{type:'button',class:'lkok',text:T.lkOk,onclick:lkApply}));
   lkForm.appendChild(h('button',{type:'button',class:'lkno',text:T.lkCancel,onclick:function(){lkForm.hidden=true}}));
+  function fmtTt(mk){
+    if(document.activeElement===tt)keepSel();
+    var r=fmtWrap(tt.value,selS,selE,mk);if(!r){toast(T.lkPick);return}
+    tt.value=r.v;it.text=r.v;queueSave();fitTt();selS=r.s;selE=r.e;
+    tt.focus();try{tt.setSelectionRange(r.s,r.e)}catch(x){}
+  }
+  ptask.appendChild(h('button',{class:'lkset fmt',type:'button','aria-label':T.fmtB,title:T.fmtB,html:BOLD_I,onmousedown:function(e){e.preventDefault()},onclick:function(){fmtTt('**')}}));
+  ptask.appendChild(h('button',{class:'lkset fmt',type:'button','aria-label':T.fmtH,title:T.fmtH,html:HL_I,onmousedown:function(e){e.preventDefault()},onclick:function(){fmtTt('==')}}));
   ptask.appendChild(h('button',{class:'lkset',type:'button','aria-label':T.lkSet,title:T.lkSet,html:LINK_I,onmousedown:function(e){e.preventDefault()},onclick:function(){
     if(document.activeElement===tt)keepSel();
     if(selE-selS<1){toast(T.lkPick);return}
@@ -4116,10 +4245,32 @@ function beginDrag(x,y){
   pending=null;suppressClick=true;
   drag.row.classList.add('dragging');
   ghost=h('div',{class:'ghost',text:dispText(it.text)});document.body.appendChild(ghost);
-  document.body.classList.add('dragging-now');document.body.classList.toggle('arrows-on',view==='day');
+  document.body.classList.add('dragging-now');document.body.classList.toggle('arrows-on',view!=='nb');
   document.body.classList.add('tabs-on');
   try{if(navigator.vibrate)navigator.vibrate(12)}catch(e){}
   updateDrag();rafId=requestAnimationFrame(autoLoop);
+}
+/* postpone by arrow: shift an item by one step of the page it is dropped on (or its own, if coarser) */
+var UORD={day:0,week:1,month:2,year:3,decade:4};
+function addMonthsClamp(d,n){
+  var y=d.getFullYear(),m=d.getMonth()+n,day=d.getDate();
+  var ny=y+Math.floor(m/12),nm=((m%12)+12)%12,dim=new Date(ny,nm+1,0).getDate();
+  return new Date(ny,nm,Math.min(day,dim));
+}
+function postponeKey(it,dir){
+  var L=it.layer,unit=UORD[L]>=UORD[view]?L:view,base;
+  if(L==='day'||L==='week')base=pd(it.key);
+  else if(L==='month')base=pd(it.key+'-01');
+  else base=new Date(+it.key,0,1);
+  var nd;
+  if(unit==='day')nd=addDays(base,dir);
+  else if(unit==='week')nd=addDays(base,7*dir);
+  else if(unit==='month')nd=addMonthsClamp(base,dir);
+  else if(unit==='year')nd=addMonthsClamp(base,12*dir);
+  else nd=addMonthsClamp(base,120*dir);
+  /* a finer item dropped on the month / year / 10-year arrow lands in the "this month / this year" part of the next one, undated */
+  var NL=(UORD[L]<UORD[view]&&UORD[view]>=2)?view:L;
+  return {layer:NL,key:keyOf(NL,nd)};
 }
 function updateDrag(){
   if(!drag)return;
@@ -4134,8 +4285,13 @@ function updateDrag(){
   if(nt){drag.overChip=true;nt.classList.add('over');drag.target={pin:true};return}
   var tb=el&&el.closest?el.closest('.tab[data-layer]'):null;
   if(tb){drag.overChip=true;tb.classList.add('over');drag.target={layer:tb.dataset.layer,key:keyOf(tb.dataset.layer,anchor),beforeId:null};return}
-  var ar=view==='day'&&el&&el.closest?el.closest('.arrow'):null;
-  if(ar){ar.classList.add('over');drag.target={layer:'day',key:dkey(addDays(anchor,+ar.dataset.dir)),beforeId:null};return}
+  var ar=view!=='nb'&&el&&el.closest?el.closest('.arrow'):null;
+  if(ar){
+    ar.classList.add('over');
+    if(view==='day')drag.target={layer:'day',key:dkey(addDays(anchor,+ar.dataset.dir)),beforeId:null};
+    else (function(pk){drag.target={layer:pk.layer,key:pk.key,beforeId:null}})(postponeKey(drag.it,+ar.dataset.dir));
+    return;
+  }
   if(!zone)return;
   var isChip=zone.classList.contains('dchip');
   drag.overChip=isChip;
@@ -4162,12 +4318,27 @@ function dropLabel(layer,key){
   if(layer==='day')return shortDate(pd(key));
   if(layer==='month')return T.mo[+key.split('-')[1]-1];
   if(layer==='year')return key;
+  if(layer==='week')return S.lang==='tr'?shortDate(pd(key))+' haftası':'Week of '+shortDate(pd(key));
   return T[layer];
 }
 function toPin(it){
+  /* dropped on the Zamansız tab: it becomes a plain note there (title, its note and any checklist lines) */
   if(it.rep||it.pt){toast(T.pinNoRep);return}
-  stash(it,'pin');render();
-  toast(T.moved+' \u00b7 '+T.nbDef,{label:T.undo,fn:function(){unstash(it);render()}});
+  if(S.nb.notes.length>=1000)return;
+  var rc=it.pj?findProject(it.pj):null,parts=[(it.text||'').trim()];
+  var body=((rc?rc.notes:it.note)||'').trim();
+  if(body)parts.push(body);
+  if(rc&&rc.todos&&rc.todos.length)parts.push(rc.todos.map(function(t){return (t.done?'\u2611 ':'\u2610 ')+t.text}).join('\n'));
+  var text=parts.filter(Boolean).join('\n').slice(0,4000);
+  if(!text.trim()){toast(T.pinNoRep);return}
+  var note={id:uid(),text:text,tab:'',t:Date.now()},idx=S.items.indexOf(it);
+  if(rc)stash(it,'trash');else S.items.splice(idx,1);
+  S.nb.notes.unshift(note);queueSave();render();
+  toast(T.moved+' \u00b7 '+T.nb,{label:T.undo,fn:function(){
+    S.nb.notes=S.nb.notes.filter(function(x){return x!==note});
+    if(rc)unstash(it);else S.items.splice(Math.min(idx<0?S.items.length:idx,S.items.length),0,it);
+    queueSave();render();
+  }});
 }
 function applyDrop(d){
   if(d.target.pin){toPin(d.it);return}
@@ -4195,6 +4366,28 @@ function finishDrag(commit){
   if(commit&&d&&d.target)applyDrop(d);
 }
 document.addEventListener('keydown',function(e){if(e.key==='Escape'&&drag)finishDrag(false)});
+/* keyboard shortcuts: arrows step through days/weeks/months/years or through post-its */
+document.addEventListener('keydown',function(e){
+  if(e.defaultPrevented||e.ctrlKey||e.metaKey||drag||e.isComposing)return;
+  var k=e.key,a=document.activeElement,tag=a&&a.tagName,typing=!!(a&&(tag==='TEXTAREA'||tag==='INPUT'||tag==='SELECT'||a.isContentEditable));
+  if(popEl&&popEl.parentNode)return;
+  var arrow=k==='ArrowLeft'?-1:k==='ArrowRight'?1:0;
+  var pw=sheet.hidden?null:sheet.querySelector('.pinwrap');
+  if(pw){
+    /* post-it deck: plain arrows when not typing, Alt+arrows while writing */
+    if(arrow&&!e.shiftKey&&(typing?e.altKey:!e.altKey)){e.preventDefault();pw._nav(arrow)}
+    else if(!typing&&!e.altKey&&(k==='n'||k==='N')){e.preventDefault();pw._new()}
+    return;
+  }
+  if(typing&&k==='Escape'&&sheet.hidden&&tag!=='SELECT'){a.blur();return}
+  if(!sheet.hidden||typing||e.altKey)return;
+  if(arrow&&!e.shiftKey){if(view!=='nb'){e.preventDefault();shift(arrow)}return}
+  if(e.shiftKey)return;
+  if(k==='t'||k==='T'||k==='b'||k==='B'){if(view!=='nb'){e.preventDefault();go(view,today())}return}
+  var ni=+k;
+  if(ni>=1&&ni<=5){e.preventDefault();view=LAYERS[ni-1];render();window.scrollTo(0,0)}
+  else if(ni===6){var nbt=document.querySelector('.tabnb');if(nbt){e.preventDefault();nbt.click()}}
+});
 
 /* ---------- gestures ---------- */
 var pageEl=document.getElementById('page'),sx=null,sy=0,st=0,swAx=null,swVx=0,swLx=0,swLt=0;
