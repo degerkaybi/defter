@@ -4500,7 +4500,7 @@ function tourStart(key,askLang){
   if(askLang){
     card.style.display='none';
     var lc=h('div',{class:'tlcard',role:'group','aria-label':'Select your language'},[
-      h('div',{class:'tlogo','aria-hidden':'true',html:SUNICON+'<span class="stxt"><span>'+T.brand[0]+'</span><span>'+T.brand[1]+'</span></span>'}),
+      h('div',{class:'tlogo','aria-hidden':'true',html:SUNICON}),
       h('div',{class:'tlt',text:'Select your language'}),
       h('div',{class:'tls',text:'Dilinizi seçin'}),
       h('div',{class:'tlb'},[['tr','Türkçe'],['en','English']].map(function(o){
