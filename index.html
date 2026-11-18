@@ -151,7 +151,7 @@ mark.hl{background:var(--hl,rgba(255,214,10,.34));color:inherit;border-radius:4p
 .pin mark.hl{background:rgba(255,92,120,.28)}
 .pinwrap.pdk .pin mark.hl{background:rgba(255,205,40,.30)}
 .pin .pview{display:block;flex:1 1 auto;min-height:0;overflow-y:auto;font:400 calc(24px*var(--hs))/1.28 var(--hand);color:var(--pin-ink);white-space:pre-wrap;overflow-wrap:anywhere;cursor:text}
-.pin .pview .ilk{color:var(--blue);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
+.pin .pview .ilk{color:var(--blue);font-weight:700;text-decoration:none}
 .pin.pvon .lnks{display:none}
 .pin .lkform{padding:6px 0 2px;flex:none}
 .pin .lkin{flex:1 1 auto;min-width:0;font:15px var(--sans);color:var(--pin-ink);background:rgba(255,255,255,.45);border:0;border-radius:7px;padding:8px}
@@ -231,7 +231,7 @@ body.nbdragging .nbtabs .nbt[data-nbtab]{box-shadow:inset 0 0 0 1.5px var(--blue
 .nghost{position:fixed;z-index:400;pointer-events:none;max-width:220px;padding:8px 12px;border-radius:10px;background:var(--sheet);box-shadow:var(--lift);font:400 calc(18px*var(--hs))/1.2 var(--hand);color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;transform:rotate(-1.5deg)}
 .nbtin{flex:none;width:130px;padding:7px 12px;border-radius:999px;border:1px solid var(--blue);background:var(--sheet);font:500 13.5px/1 var(--sans);color:var(--ink);outline:0}
 .nbtin.wide{width:min(260px,70%)}
-.ttview .ilk,.view .ilk{color:var(--blue)!important;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px;pointer-events:auto}
+.ttview .ilk,.view .ilk{color:var(--blue)!important;font-weight:700;text-decoration:none;pointer-events:auto}
 .done .view .ilk{color:var(--ink-faint)}
 .ilk.tb svg{width:.78em;height:.78em;vertical-align:-1px;margin-right:4px}
 .tpk{position:fixed;z-index:400;min-width:180px;max-width:min(300px,calc(100vw - 16px));background:var(--sheet);border:1px solid var(--rule);border-radius:12px;padding:4px;box-shadow:0 8px 24px rgba(0,0,0,.28)}
@@ -303,7 +303,7 @@ body.nbdragging .nbtabs .nbt[data-nbtab]{box-shadow:inset 0 0 0 1.5px var(--blue
 .nview{display:none;font:400 calc(21px*var(--hs))/1.3 var(--hand);color:var(--ink);white-space:pre-wrap;overflow-wrap:anywhere;word-break:break-word;overflow:hidden;min-height:1.3em;cursor:text}
 .nrow:not(.ntbl):not(.ntr) .ntx:not(.ed) .nview{display:block}
 .nrow:not(.ntbl):not(.ntr) .ntx:not(.ed) textarea{position:absolute;left:0;right:0;top:0;opacity:0;pointer-events:none}
-.nview .ilk{color:var(--blue);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
+.nview .ilk{color:var(--blue);font-weight:700;text-decoration:none}
 
 .nrow textarea{display:block;width:100%;box-sizing:border-box;resize:none;border:0;outline:0;background:none;padding:0;overflow:hidden;font:400 calc(21px*var(--hs))/1.3 var(--hand);color:var(--ink)}
 .nside{flex:none;display:flex;flex-direction:column;align-items:center;gap:0}
@@ -356,7 +356,7 @@ body.nbdragging .nbtabs .nbt[data-nbtab]{box-shadow:inset 0 0 0 1.5px var(--blue
 .qrow .cb svg{width:16px;height:16px}
 .qtext{font:400 calc(21px*var(--hs))/30px var(--hand);color:var(--ink-soft);min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .qtext{cursor:pointer;text-align:left}
-.qtext .ilk,.float .view .ilk,.mprev .view .ilk{font-weight:700;color:var(--blue)!important;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px;pointer-events:auto}
+.qtext .ilk,.float .view .ilk,.mprev .view .ilk{font-weight:700;color:var(--blue)!important;text-decoration:none;pointer-events:auto}
 .qrow.done .qtext .ilk{color:var(--ink-faint)!important}
 .qtext strong.fb{font-weight:700}
 .qrow.done .qtext{text-decoration:line-through;text-decoration-thickness:1.5px;color:var(--ink-faint)}
@@ -939,13 +939,6 @@ body.arrows-on .arrow.over{background:var(--blue-soft);box-shadow:0 0 0 2px var(
 .hseg{gap:4px}
 .hseg button{flex:1 1 auto;min-width:0;padding:10px 10px;white-space:nowrap;line-height:1.15;font-size:12.5px}
 @media (max-width:370px){.hseg button{padding:10px 6px;font-size:12px}}
-.welcome .wtx{margin:8px 4px 16px;font:15px/1.6 var(--sans);color:var(--ink-soft)}
-.welcome .sbtn{display:block;width:calc(100% - 8px);margin:0 4px 8px;padding:14px 12px;text-align:center}
-.welcome .wpri{background:var(--blue);color:var(--paper)}
-.welcome .wlang{margin-bottom:10px}
-.welcome .htitle+.wlang{margin-top:16px}
-.welcome .wmid{margin:0 4px 14px}
-.welcome .whint{white-space:pre-line;margin:10px 4px 0;font:12.5px/1.5 var(--sans);color:var(--ink-faint);text-align:center}
 .hdrag{display:flex;gap:12px;align-items:flex-start;margin:4px 4px 12px;padding:14px;border-radius:14px;background:var(--blue-wash)}
 .hdrag b{font:600 14px/1.2 var(--sans);color:var(--ink)}
 .hdrag p{margin:5px 0 0;font:13.5px/1.55 var(--sans);color:var(--ink-soft)}
@@ -954,9 +947,26 @@ body.arrows-on .arrow.over{background:var(--blue-soft);box-shadow:0 0 0 2px var(
 .hic svg{width:17px;height:17px;display:block;flex:none}
 .hp{margin:6px 4px 6px;font:14px/1.6 var(--sans);color:var(--ink-soft)}
 .hp b{color:var(--ink);font-weight:600}
+.tour{position:fixed;inset:0;z-index:2000;touch-action:none;-webkit-tap-highlight-color:transparent}
+.tour.nospot{background:rgba(20,22,28,.58)}
+.tspot{position:fixed;border-radius:14px;box-shadow:0 0 0 100vmax rgba(20,22,28,.58);outline:2px solid var(--blue);outline-offset:0;pointer-events:none;transition:left .22s ease,top .22s ease,width .22s ease,height .22s ease}
+.tcard{position:fixed;box-sizing:border-box;background:var(--sheet);color:var(--ink);border-radius:18px;box-shadow:var(--lift);padding:16px 16px 12px;font-family:var(--sans)}
+.tdots{display:flex;gap:5px;margin-bottom:10px}
+.tdots i{width:6px;height:6px;border-radius:50%;background:var(--rule-strong)}
+.tdots i.on{background:var(--blue);width:16px;border-radius:4px}
+.tcard .th{font:600 17px/1.25 var(--sans);margin:0 0 6px;display:flex;align-items:center;gap:9px}.tcard .tic{flex:none;display:grid;place-items:center;width:26px;height:26px;border-radius:9px;background:var(--blue-wash);color:var(--blue)}.tcard .tic svg{width:16px;height:16px}
+.tcard .tt{font:400 14.5px/1.55 var(--sans);color:var(--ink-soft)}
+.tcard .tinl{display:inline-block;vertical-align:-3px;margin:0 1px}.tcard .tinl svg{width:1.15em;height:1.15em;display:block}
+.tcard .tt2{font:400 12.5px/1.5 var(--sans);color:var(--ink-soft);opacity:.8;margin-top:9px}
+.tcard .tb{display:flex;align-items:center;gap:8px;margin-top:14px}
+.tcard .tb .sp{flex:1}
+.tcard .tb button{font:600 14px/1 var(--sans);padding:11px 16px;border-radius:12px}
+.tcard .tskip{color:var(--ink-faint);padding:11px 4px!important}
+.tcard .tback{background:var(--chip);color:var(--ink)}
+.tcard .tnext{background:var(--blue);color:var(--paper)}
 .hopen{display:flex;align-items:center;justify-content:space-between;width:calc(100% - 8px);margin:4px 4px 12px;padding:13px 16px;border-radius:14px;background:var(--chip);font:600 14px/1 var(--sans);color:var(--ink)}
 .hopen svg{width:18px;height:18px;color:var(--ink-soft)}
-.hseed{margin:18px 0 6px}
+.slinks{display:flex;flex-wrap:wrap;align-items:center;gap:4px 10px;margin:2px 4px 10px}.slink{font:600 14px/1.4 var(--sans);color:var(--blue);padding:6px 0;background:none;border:0;cursor:pointer;text-decoration:none}.slink:hover{opacity:.75}.sdot{color:var(--ink-faint)}
 .hwarn{margin:4px 4px 12px;font:13px/1.5 var(--sans);color:var(--ink-soft)}
 .hbtns{display:flex;gap:8px;padding:0 4px}
 .hbtns .sbtn{flex:1}
@@ -980,7 +990,7 @@ body.arrows-on .arrow.over{background:var(--blue-soft);box-shadow:0 0 0 2px var(
 .arow .abtn.ic{padding:8px;display:grid;place-items:center;color:var(--danger)}
 .arow .abtn.ic svg{width:18px;height:18px;display:block}
 .snote.acredit{margin:16px 4px 4px;padding-top:14px;border-top:1px solid var(--rule);color:var(--ink-soft);font-weight:400;font-size:12px;line-height:1.5}
-.acredit a{color:var(--blue);text-decoration:underline;text-underline-offset:2px}
+.acredit a{color:var(--blue);font-weight:700;text-decoration:none}
 @media (prefers-reduced-motion:reduce){.cb .tick,.cb rect{transition:none}.panel{animation:none}}
 </style>
 
@@ -1008,77 +1018,108 @@ var TX={
     lab_week:'Bu hafta içinde',lab_month:'Bu ay içinde',lab_year:'Bu yıl içinde',lab_decade:'Bu 10 yıl içinde',
     weeknotes:'Hafta notları',monthnotes:'Ay notları',yearnotes:'Yıl notları',decadenotes:'10 yıl notları',
     ph_week:'bu hafta içinde…',ph_month:'bu ay içinde…',ph_year:'bu yıl içinde…',ph_decade:'önümüzdeki yıllarda…',
-    today:'bugün',tomorrow:'yarın',yesterday:'dün',back:'bugüne dön',
-    hint:'Bir satıra dokun ve yazmaya başla.',still:'hâlâ duruyor',
-    carryweek:'geçen haftadan',subOf:'Alt başlık',subs:'Alt başlıklar',carryyear:'geçen yıldan',pastY:'Geçmiş yıllar',tpYear:'Yıl %{P} geçti',tpYearR:'{N} gün kaldı',tpDec:'10 yıl %{P} geçti',tpDecR:'Yıl {K} / 10',carrymonth:'geçen aydan',bring:'buraya al',
-    pull:'bitmeyenleri bugüne al',wkShort:'H',openDay:'Güne git',mprevPh:'bu gün…',mprojects:'Aktif projeler',mexp:'Genişlet',mcol:'Daralt',moreN:'+{N} daha',days:'Bu ay',noDays:'Bu ay henüz bir güne yazılmadı.',
-    openLink:'Linki aç',projects:'Projeler',rename:'Başlığı düzenle',pjArch:'Arşiv',pjDrop:'Arşivlemek için buraya bırak',pjArchived:'Arşivlendi',pjRestore:'Geri al',pjAttach:'Projeye ekle',pjDetach:'Projeden çıkar',pjNone:'Henüz proje yok',pjAdded:'Projeye eklendi',pinMax:'En fazla 10 not',pinNoRep:'Bu görev taşınamaz',pinTasks:'Taşınan görevler',pinHere:'Bu güne taşı',pinToNb:'Zamansız Notlara taşı',trashS:'Çöp',pinDropHint:'Post-it dışında tutmak için görevi buraya sürükle',pinPick:'Boş post-it taşınamaz',pinSub:'alt madde',calendar:'Takvim',pjNeedTitle:'Önce proje adı yaz',chkS:'+ Madde',bulS:'• Liste',pjNoItems:'madde yok',pjOff:'Nota çevir',hereS:'Bu güne',tmrwS:'Yarına',nextS:'Ertesi güne',toWeekS:'Haftaya',toMonthS:'Aya',delS:'Sil',tabNotes:'Notlar',project:'Proje',pjNew:'+ Yeni proje',pjUntitled:'Adsız proje',pjTitlePh:'Proje adı',pjEmpty:'Henüz proje yok. Uzun soluklu işler için bir proje aç, maddelere tarih verirsen o günün defterine de düşer.',pjAdd:'+ Madde ekle',pjTodoPh:'Yapılacak…',delTodo:'Maddeyi sil',pjNotes:'Akla gelenler',pjNotesPh:'Not…',pjDel:'Projeyi sil',pjGone:'Proje silindi',pjMake:'Proje yap',pjOpen:'Projeyi aç',pjDate:'Tarih ver',pjClr:'Tarihi kaldır',pjDone:'tamam',pjBack:'Projeler',pjMade:'Proje oluşturuldu',here:'Bu güne al',moveTo:'Güne taşı',repeat:'Tekrarla',repNone:'Tekrarsız',repW:'Her hafta',repM:'Her ay',repY:'Her yıl',toWeek:'Haftaya al',toMonth:'Aya al',tmrw:'Yarına ertele',nextday:'Ertesi güne ertele',bullet:'• Madde',check2:'☐ Görev',noteClr:'Notu temizle',undoCap:'Geri al',del:'Görevi sil',pins:'Post-it',nb:'Zamansız Notlar',nbAll:'Tümü',nbDef:'Arşiv',nbAddPh:'Yeni not…',nbTabPh:'Sekme adı',nbNewTab:'Yeni sekme',nbEmpty:'Henüz not yok. Aklındakini yukarıya yaz.',nbDefEmpty:'Arşivlemek istediğin görevi alttaki defter simgesine sürükle ya da satır menüsündeki saat ikonuna bas; alt maddeleri ve notuyla burada bekler.',nbMove:'Taşı',nbNone:'Sekmesiz',nbRename:'Adı değiştir',nbDelTab:'Sekmeyi sil',nbDelSure:'Emin misin? Notlar Tümü\'nde kalır',nbTabMax:'En fazla 12 sekme',nbGone:'Not silindi',nbMore:'Seçenekler',nbDrag:'Sürükle',nbTrash:'Çöp',nbEmptyTrash:'Çöpü boşalt',nbEmptySure:'Emin misin? Dokun',nbTrashEmpty:'Çöp boş.',nbPerm:'Kalıcı sil',nbMoreTx:'Devamını göster',nbLess:'Kısalt',nbDel:'Sil',pinNew:'+ Yeni not',pinDarkT:'Koyu post-it',pinLight:'Sarı post-it',pinPh:'Telefon, alışveriş, aklına gelen…',pinTi:'Başlık',pinDel:'Sil',pinGone:'Not silindi',pinMove:'Taşı',fs:'Tam ekran',brand:['YARIN','DEFTERİ'],themeLight:'Açık tema',themeDark:'Koyu tema',fsOn:'Aç',fsOff:'Kapat',fsFail:'Tarayıcı tam ekrana izin vermedi',fsIos:'Tam ekran için Paylaş › Ana Ekrana Ekle de, sonra defteri ana ekrandan aç; tarayıcı çubukları olmadan açılır.',pinDay:'Güne',pinWeek:'Haftaya',pinMonth:'Aya',pinSize:'Boyutu sürükle',
-    deleted:'Silindi',undo:'geri al',moved:'Taşındı',archive:'Arşiv',arch:'Arşivle',archived:'Arşivlendi',trashT:'Silinenler',archEmpty:'Arşivde madde yok.',trashEmpty:'Silinen madde yok.',archNote:'Arşivlenenler sayfalardan kalkar; Zamansız Notlar\u2019daki Arşiv sekmesiyle aynı yerdir.',trashNote:'Silinenler 30 gün burada kalır, sonra kalıcı olarak silinir.',putBack:'Geri koy',delForever:'Kalıcı sil',emptyTrash:'Silinenleri boşalt',emptySure:'Emin misin? Tekrar dokun',backed:'Geri konuldu',hideDone:'Bitenleri gizle',hidS:'biten gizli',hideAgain:'Bitenleri gizle',hideDoneL:'Biten yok',
+    today:'bugün',tomorrow:'yarın',yesterday:'dün',back:'bugüne dönün',
+    hint:'Bir satıra dokunun ve yazmaya başlayın.',still:'hâlâ duruyor',
+    carryweek:'geçen haftadan',subOf:'Alt başlık',subs:'Alt başlıklar',carryyear:'geçen yıldan',pastY:'Geçmiş yıllar',tpYear:'Yıl %{P} geçti',tpYearR:'{N} gün kaldı',tpDec:'10 yıl %{P} geçti',tpDecR:'Yıl {K} / 10',carrymonth:'geçen aydan',bring:'buraya alın',
+    pull:'bitmeyenleri bugüne alın',wkShort:'H',openDay:'Güne gidin',mprevPh:'bu gün…',mprojects:'Aktif projeler',mexp:'Genişletin',mcol:'Daraltın',moreN:'+{N} daha',days:'Bu ay',noDays:'Bu ay henüz bir güne yazılmadı.',
+    openLink:'Linki açın',projects:'Projeler',rename:'Başlığı düzenleyin',pjArch:'Arşiv',pjDrop:'Arşivlemek için buraya bırakın',pjArchived:'Arşivlendi',pjRestore:'Geri alın',pjAttach:'Projeye ekleyin',pjDetach:'Projeden çıkarın',pjNone:'Henüz proje yok',pjAdded:'Projeye eklendi',pinMax:'En fazla 10 not',pinNoRep:'Bu görev taşınamaz',pinTasks:'Taşınan görevler',pinHere:'Bu güne taşıyın',pinToNb:'Zamansız Notlara taşıyın',trashS:'Çöp',pinDropHint:'Post-it dışında tutmak için görevi buraya sürükleyin',pinPick:'Boş post-it taşınamaz',pinSub:'alt madde',calendar:'Takvim',pjNeedTitle:'Önce proje adı yazın',chkS:'+ Madde',bulS:'• Liste',pjNoItems:'madde yok',pjOff:'Nota çevirin',hereS:'Bu güne',tmrwS:'Yarına',nextS:'Ertesi güne',toWeekS:'Haftaya',toMonthS:'Aya',delS:'Silin',tabNotes:'Notlar',project:'Proje',pjNew:'+ Yeni proje',pjUntitled:'Adsız proje',pjTitlePh:'Proje adı',pjEmpty:'Henüz proje yok. Uzun soluklu işler için bir proje açın, maddelere tarih verirseniz o günün defterine de düşer.',pjAdd:'+ Madde ekleyin',pjTodoPh:'Yapılacak…',delTodo:'Maddeyi silin',pjNotes:'Akla gelenler',pjNotesPh:'Not…',pjDel:'Projeyi silin',pjGone:'Proje silindi',pjMake:'Proje yapın',pjOpen:'Projeyi açın',pjDate:'Tarih verin',pjClr:'Tarihi kaldırın',pjDone:'tamam',pjBack:'Projeler',pjMade:'Proje oluşturuldu',here:'Bu güne alın',moveTo:'Güne taşıyın',repeat:'Tekrarlayın',repNone:'Tekrarsız',repW:'Her hafta',repM:'Her ay',repY:'Her yıl',toWeek:'Haftaya alın',toMonth:'Aya alın',tmrw:'Yarına erteleyin',nextday:'Ertesi güne erteleyin',bullet:'• Madde',check2:'☐ Görev',noteClr:'Notu temizleyin',undoCap:'Geri alın',del:'Görevi silin',pins:'Post-it',nb:'Zamansız Notlar',nbAll:'Tümü',nbDef:'Arşiv',nbAddPh:'Yeni not…',nbTabPh:'Sekme adı',nbNewTab:'Yeni sekme',nbEmpty:'Henüz not yok. Aklınızdakini yukarıya yazın.',nbDefEmpty:'Arşivlemek istediğiniz görevi alttaki defter simgesine sürükleyin ya da satır menüsündeki saat ikonuna basın; alt maddeleri ve notuyla burada bekler.',nbMove:'Taşıyın',nbNone:'Sekmesiz',nbRename:'Adı değiştirin',nbDelTab:'Sekmeyi silin',nbDelSure:'Emin misiniz? Notlar Tümü\'nde kalır',nbTabMax:'En fazla 12 sekme',nbGone:'Not silindi',nbMore:'Seçenekler',nbDrag:'Sürükleyin',nbTrash:'Çöp',nbEmptyTrash:'Çöpü boşaltın',nbEmptySure:'Emin misiniz? Dokunun',nbTrashEmpty:'Çöp boş.',nbPerm:'Kalıcı silin',nbMoreTx:'Devamını gösterin',nbLess:'Kısaltın',nbDel:'Silin',pinNew:'+ Yeni not',pinDarkT:'Koyu post-it',pinLight:'Sarı post-it',pinPh:'Telefon, alışveriş, aklınıza gelen…',pinTi:'Başlık',pinDel:'Silin',pinGone:'Not silindi',pinMove:'Taşıyın',fs:'Tam ekran',brand:['YARIN','DEFTERİ'],themeLight:'Açık tema',themeDark:'Koyu tema',fsOn:'Açın',fsOff:'Kapatın',fsFail:'Tarayıcı tam ekrana izin vermedi',fsIos:'Tam ekran için Paylaş › Ana Ekrana Ekle deyin, sonra defteri ana ekrandan açın; tarayıcı çubukları olmadan açılır.',pinDay:'Güne',pinWeek:'Haftaya',pinMonth:'Aya',pinSize:'Boyutu sürükleyin',
+    deleted:'Silindi',undo:'geri alın',moved:'Taşındı',archive:'Arşiv',arch:'Arşivleyin',archived:'Arşivlendi',trashT:'Silinenler',archEmpty:'Arşivde madde yok.',trashEmpty:'Silinen madde yok.',archNote:'Arşivlenenler sayfalardan kalkar; Zamansız Notlar\u2019daki Arşiv sekmesiyle aynı yerdir.',trashNote:'Silinenler 30 gün burada kalır, sonra kalıcı olarak silinir.',putBack:'Geri koyun',delForever:'Kalıcı silin',emptyTrash:'Silinenleri boşaltın',emptySure:'Emin misiniz? Tekrar dokunun',backed:'Geri konuldu',hideDone:'Bitenleri gizleyin',hidS:'biten gizli',hideAgain:'Bitenleri gizleyin',hideDoneL:'Biten yok',
     settings:'Ayarlar',lang:'Dil',font:'Yazı tipi',fontHand:'El yazısı',fontPlain:'Düz yazı',note:'Not',notePh:'Bu satır için not…',backup:'Yedek',
-    backupNote:'Defterin bu tarayıcıda saklanır. Arada bir yedek al.',
-    saveBackup:'Kaydet',copyBackup:'Kopyala',pasteHere:'Yedek metnini yapıştır',
-    restoreBtn:'Geri yükle',restoreGo:'Yükle',confirmRestore:'Mevcut defterin yerine geçecek. Onayla',
+    backupNote:'Defteriniz bu tarayıcıda saklanır. Arada bir yedek alın.',
+    saveBackup:'Kaydedin',copyBackup:'Kopyalayın',pasteHere:'Yedek metnini yapıştırın',
+    restoreBtn:'Geri yükleyin',restoreGo:'Yükleyin',confirmRestore:'Mevcut defterinizin yerine geçecek. Onaylayın',
     restored:'Yedek yüklendi',bad:'Yedek okunamadı',copied:'Kopyalandı',saved:'Kaydedildi',
-    noStore:'Bu tarayıcı kayıt tutmuyor, yedek almayı unutma.',close:'Kapat',size:'Yazı boyutu',order:'Yıl sırası',fwd:'Ocak → Aralık',rev:'Aralık → Ocak',past:'Geçmiş aylar',noteDel:'Notu sil',noteAdd:'Not ekle',noteEdit:'Notu düzenle',weekof:'haftası',
-    check:'Yaptım',more:'Seçenekler',prev:'Önceki',next:'Sonraki',pick:'Tarih seç',
-    sync:'Senkron (yakında)',syncNote:'Notlarını Google Drive ile cihazlar arasında taşı. Defter, Drive’ında yalnızca bu uygulamanın görebildiği gizli bir alana kaydedilir. Bağlantıyı kesersen Drive’daki kopya silinmez.',
-    connect:'Google ile bağlan',syncNow:'Senkronize et',disconnect:'Bağlantıyı kes',syncing:'Senkronize ediliyor…',syncLast:'Son senkron: ',syncNever:'Henüz senkronize edilmedi',syncPending:'Gönderilmeyi bekleyen değişiklik var',
-    upToDate:'Güncel',pulled:'Drive’dan güncellendi',pushed:'Drive’a kaydedildi',syncFail:'Senkron olmadı, bağlantını kontrol et',syncNeed:'Giriş gerekiyor, “Senkronize et”e dokun',disconnected:'Bağlantı kesildi',
+    noStore:'Bu tarayıcı kayıt tutmuyor, yedek almayı unutmayın.',close:'Kapatın',size:'Yazı boyutu',order:'Yıl sırası',fwd:'Ocak → Aralık',rev:'Aralık → Ocak',past:'Geçmiş aylar',noteDel:'Notu silin',noteAdd:'Not ekleyin',noteEdit:'Notu düzenleyin',weekof:'haftası',
+    check:'Yaptım',more:'Seçenekler',prev:'Önceki',next:'Sonraki',pick:'Tarih seçin',
+    sync:'Senkron (yakında)',syncNote:'Notlarınızı Google Drive ile cihazlar arasında taşıyın. Defter, Drive’ınızda yalnızca bu uygulamanın görebildiği gizli bir alana kaydedilir. Bağlantıyı keserseniz Drive’daki kopya silinmez.',
+    connect:'Google ile bağlanın',syncNow:'Senkronize edin',disconnect:'Bağlantıyı kesin',syncing:'Senkronize ediliyor…',syncLast:'Son senkron: ',syncNever:'Henüz senkronize edilmedi',syncPending:'Gönderilmeyi bekleyen değişiklik var',
+    upToDate:'Güncel',pulled:'Drive’dan güncellendi',pushed:'Drive’a kaydedildi',syncFail:'Senkron olmadı, bağlantınızı kontrol edin',syncNeed:'Giriş gerekiyor, “Senkronize edin”e dokunun',disconnected:'Bağlantı kesildi',
     conflictTitle:'İki defter farklı',conflictText:'Bu cihazda ve Drive’da farklı değişiklikler var. Nasıl devam edelim?',onThis:'Bu cihazda',onDrive:'Drive’da',lines:'satır',
-    merge:'Birleştir, ikisini de tut',takeRemote:'Drive’dakini al',takeLocal:'Bu cihazdakini gönder',
+    merge:'Birleştirin, ikisini de tutun',takeRemote:'Drive’dakini alın',takeLocal:'Bu cihazdakini gönderin',
     about:'Hakkında',
-    aboutIntro:'Yarın Defteri, zamanı ve günleri daha iyi algılamak ve yönetebilmek için ortaya çıktı.\nGün, hafta, ay, yıl ve 10 yıllık birbirine bağlı sayfalar, bugünü daha geniş bir zaman bağlamında görmeni sağlar. Her işin bir güne sığması gerekmez; ne zaman yapacağını bilmediğin görevleri uygun zaman aralığına (\u201cbu hafta\u201d, \u201cbu ay\u201d, \u201cbu yıl\u201d) bırakıp vakti gelince bir güne taşıyabilirsin. Böylece işleri tek güne sıkıştırmak yerine zamana yayar, yetişemediklerini ertelersin.\nSürükleme bu işin kalbidir: görevi tutup farklı bir zamana, sayfa sekmesine bırakarak ilgili tarihe taşıyabilir ya da defter ikonuna bırakıp arşivleyebilirsin. Benzer şekilde, Zamansız Notlar\u2019daki notları da sürükleyerek sekmelere veya çöpe taşıyabilirsin.\nBir zamanı olmayan notlar için post-it ve Zamansız Notlar var; fikirler, hatırlanacaklar ve kenara koyduğun işler orada bekler.',
+    aboutIntro:'Yarın Defteri, zamanı ve günleri daha iyi algılamak ve yönetebilmek için ortaya çıktı.\nGün, hafta, ay, yıl ve 10 yıllık birbirine bağlı sayfalar, bugünü daha geniş bir zaman bağlamında görmenizi sağlar. Her işin bir güne sığması gerekmez; ne zaman yapacağını bilmediğiniz görevleri uygun zaman aralığına (\u201cbu hafta\u201d, \u201cbu ay\u201d, \u201cbu yıl\u201d) bırakıp vakti gelince bir güne taşıyabilirsiniz. Böylece işleri tek güne sıkıştırmak yerine zamana yayar, yetişemediklerinizi ertelersiniz.\nSürükleme bu işin kalbidir: görevi tutup farklı bir zamana, sayfa sekmesine bırakarak ilgili tarihe taşıyabilir ya da defter ikonuna bırakıp arşivleyebilirsiniz. Benzer şekilde, Zamansız Notlar\u2019daki notları da sürükleyerek sekmelere veya çöpe taşıyabilirsiniz.\nBir zamanı olmayan notlar için post-it ve Zamansız Notlar var; fikirler, hatırlanacaklar ve kenara koyduğunuzuz işler orada bekler.',
     howTitle:'Nasıl kullanılır',
-    helpIntro:'Yarın Defteri, kâğıt defterin boş bıraktığı yerleri tamamlamak için yapıldı: yaz, işaretle, yetişmeyeni yarına bırak. Gün, hafta, ay, yıl ve 10 yıl sayfaları birbirine bağlıdır; hepsinde hem liste hem takvim gibi planlayabilirsin. Tarihi belli olmayan işi \u201cbu hafta\u201d ya da \u201cbu ay içinde\u201d diye yazarsın; kâğıt parçası gibi kullan-at notlar için post-it, kalıcı fikirler için Zamansız Notlar, uzun işler için projeler var.',
+    helpIntro:'Yarın Defteri, kâğıt defterin boş bıraktığı yerleri tamamlamak için yapıldı: yazın, işaretleyin, yetişmeyeni yarına bırakın. Gün, hafta, ay, yıl ve 10 yıl sayfaları birbirine bağlıdır; hepsinde hem liste hem takvim gibi planlayabilirsiniz. Tarihi belli olmayan işi \u201cbu hafta\u201d ya da \u201cbu ay içinde\u201d diye yazarsınız; kâğıt parçası gibi kullan-at notlar için post-it, kalıcı fikirler için Zamansız Notlar, uzun işler için projeler var.',
     helpTabs:['Yarın Defteri','Post-it','Zamansız Notlar'],
     helpPin:[
-      ['Post-it nedir','Üstteki post-it düğmesi hiçbir güne bağlı olmayan, kullan-at bir alandır: telefon numarası, alışveriş listesi, aklına gelen bir cümle. Yazdığın anda kaydedilir. En fazla 10 post-it tutarsın.'],
-      ['Başlık ve yazı','Her post-itin üstünde küçük bir <b>Başlık</b> alanı vardır, istersen doldurursun. Altına yazdıkların notun kendisidir; <b>☐</b> ile onay kutulu satırlar ekleyebilirsin. <b>+ Yeni not</b> yeni bir post-it açar. Üstteki <b>ay ikonu</b> post-iti koyu yapar (gece parlamasın diye); uygulama koyu temadayken post-it zaten koyu açılır, <b>güneş ikonu</b> sarıya döndürür.'],
-      ['Post-itler arasında gezmek','Post-itler üst üste durur. Parmağınla sağa ya da sola kaydırarak, kenardaki yanına dokunarak ya da alttaki noktalara basarak diğerine geçersin. Bir noktaya <b>uzun basarsan</b> o post-itin başlığı görünür; pasif noktalar soluktur.'],
-      ['Güne ya da Zamansız Notlara taşı','Alttaki ikonlar post-iti başka yere taşır. <b>Okla güneşli sayfa ikonu</b> post-iti bütünüyle bugünün sayfasına gönderir: başlık görevin kendisi olur, altına yazdıkların görevin notuna, ☐ ile işaretli satırlar ise notun madde listesine geçer. Başlık boşsa ilk satır görev olur. <b>Okla defter ikonu</b> post-iti Zamansız Notlar’a gönderir; birden fazla sekmen varsa hangisine gideceğini seçersin.'],
-      ['Çöp','Çöp ikonu post-iti siler, ama hemen kaybolmaz: üstteki çöp ikonuyla <b>Çöp</b> görünümünü açarsın. Oradan <b>Geri koy</b> ile post-iti geri getirir, satırdaki çöp ikonuyla tamamen kaldırır, <b>Çöpü boşalt</b> ile hepsini silersin (emin olmak için iki kere dokunursun).']
+      ['Post-it nedir','Üstteki post-it düğmesi hiçbir güne bağlı olmayan, kullan-at bir alandır: telefon numarası, alışveriş listesi, aklınıza gelen bir cümle. Yazdığınız anda kaydedilir. En fazla 10 post-it tutarsınız.'],
+      ['Başlık ve yazı','Her post-itin üstünde küçük bir <b>Başlık</b> alanı vardır, isterseniz doldurursunuz. Altına yazdıklarınız notun kendisidir; <b>☐</b> ile onay kutulu satırlar ekleyebilirsiniz. <b>+ Yeni not</b> yeni bir post-it açar. Üstteki <b>ay ikonu</b> post-iti koyu yapar (gece parlamasın diye); uygulama koyu temadayken post-it zaten koyu açılır, <b>güneş ikonu</b> sarıya döndürür.'],
+      ['Post-itler arasında gezmek','Post-itler üst üste durur. Parmağınızla sağa ya da sola kaydırarak, kenardaki yanına dokunarak ya da alttaki noktalara basarak diğerine geçersiniz. Bir noktaya <b>uzun basarsanız</b> o post-itin başlığı görünür; pasif noktalar soluktur.'],
+      ['Güne ya da Zamansız Notlara taşıyın','Alttaki ikonlar post-iti başka yere taşır. <b>Okla güneşli sayfa ikonu</b> post-iti bütünüyle bugünün sayfasına gönderir: başlık görevin kendisi olur, altına yazdıklarınız görevin notuna, ☐ ile işaretli satırlar ise notun madde listesine geçer. Başlık boşsa ilk satır görev olur. <b>Okla defter ikonu</b> post-iti Zamansız Notlar’a gönderir; birden fazla sekmeniz varsa hangisine gideceğini seçersiniz.'],
+      ['Çöp','Çöp ikonu post-iti siler, ama hemen kaybolmaz: üstteki çöp ikonuyla <b>Çöp</b> görünümünü açarsınız. Oradan <b>Geri koyun</b> düğmesiyle post-iti geri getirir, satırdaki çöp ikonuyla tamamen kaldırır, <b>Çöpü boşaltın</b> düğmesiyle hepsini silersiniz (emin olmak için iki kere dokunursunuz).']
     ],
     helpNb:[
       ['Zamansız Notlar nedir','Alttaki çubukta sağdaki defter ikonu Zamansız Notlar’ı açar. Burası bir görev alanı değil, bir hatırlama alanıdır: günlük gibi, fikir ve not defteri gibi. Hiçbir güne bağlı değildir, sayılmaz, bitmesi gerekmez.'],
-      ['Not yazmak','Üstteki kutuya yaz, <b>Enter</b> ile kaydedersin (yeni satır için Shift+Enter). Yazıp kaydetmediysen başka bir yere dokunsan bile yazın kutuda durur; sen kaydedene ya da silene kadar kaybolmaz.'],
-      ['Sekmeler','<b>Tümü</b> bütün notları gösterir. Saat ikonlu <b>Arşiv</b> kenara koyduğun görevlerin yeridir. <b>+</b> ile kendi sekmelerini açarsın (en fazla 12); bir sekme seçiliyken altta <b>Adı değiştir</b> ve <b>Sekmeyi sil</b> görünür; sekmeye uzun basıp sürükleyerek sırasını değiştirirsin. Sekme silinince notlar Tümü’nde kalır.'],
+      ['Not yazmak','Üstteki kutuya yazın, <b>Enter</b> ile kaydedersiniz (yeni satır için Shift+Enter). Yazıp kaydetmediyseniz başka bir yere dokunsanız bile yazınız kutuda durur; siz kaydedene ya da silene kadar kaybolmaz.'],
+      ['Sekmeler','<b>Tümü</b> bütün notları gösterir. Saat ikonlu <b>Arşiv</b> kenara koyduğunuzuz görevlerin yeridir. <b>+</b> ile kendi sekmelerinizi açarsınız (en fazla 12); bir sekme seçiliyken altta <b>Adı değiştirin</b> ve <b>Sekmeyi silin</b> görünür; sekmeye uzun basıp sürükleyerek sırasını değiştirirsiniz. Sekme silinince notlar Tümü’nde kalır.'],
       ['Uzun notlar','Notun altındaki üçgen uzun yazıyı 4 satıra kısaltır ya da açar: <b>içi boş üçgen</b> kapalı, <b>dolu üçgen</b> açık demektir. 10 satırdan uzun notlar kapalı gelir.'],
-      ['Üç nokta, tarih ve taşımak','Notun altında hangi sekmede olduğu ve yazıldığı tarih görünür (sekme adı yalnızca Tümü’de). Üç noktalı tutamaçtan <b>sürükleyerek</b> notu üstteki sekmelerden birine bırakırsın, taşınmış olur. Sürüklerken tutamacı çöp ikonuna bırakırsan not çöpe gider.'],
-      ['Çöp','Yeni not kutusunun sağındaki çöp ikonuna dokununca silinen notlar açılır. Bir notu sekmeye sürükleyerek geri koyarsın, notun yanındaki çöp ikonuyla kalıcı silersin, <b>Çöpü boşalt</b> hepsini siler. Çöpte sayaç yoktur; burası serbest alan.'],
-      ['Arşiv: kenara konan görevler','Bir görevi sayfadan tutup alttaki defter simgesine bırakırsan ya da satır menüsündeki <b>saat ikonuna</b> basarsan <b>Arşiv</b> sekmesine gider; alt maddeleri ve notuyla birlikte bekler. Aynı liste Ayarlar\u2019daki <b>Arşiv</b> düğmesinde de açılır. Sayaç yoktur. İstediğinde <b>Geri koy</b> ile bugüne ya da başka bir sayfaya döndürürsün.']
+      ['Üç nokta, tarih ve taşımak','Notun altında hangi sekmede olduğu ve yazıldığı tarih görünür (sekme adı yalnızca Tümü’de). Üç noktalı tutamaçtan <b>sürükleyerek</b> notu üstteki sekmelerden birine bırakırsınız, taşınmış olur. Sürüklerken tutamacı çöp ikonuna bırakırsanız not çöpe gider.'],
+      ['Çöp','Yeni not kutusunun sağındaki çöp ikonuna dokununca silinen notlar açılır. Bir notu sekmeye sürükleyerek geri koyarsınız, notun yanındaki çöp ikonuyla kalıcı silersiniz, <b>Çöpü boşaltın</b> düğmesi hepsini siler. Çöpte sayaç yoktur; burası serbest alan.'],
+      ['Arşiv: kenara konan görevler','Bir görevi sayfadan tutup alttaki defter simgesine bırakırsanız ya da satır menüsündeki <b>saat ikonuna</b> basarsanız <b>Arşiv</b> sekmesine gider; alt maddeleri ve notuyla birlikte bekler. Aynı liste Ayarlar\u2019daki <b>Arşiv</b> düğmesinde de açılır. Sayaç yoktur. İstediğinizde <b>Geri koyun</b> düğmesiyle bugüne ya da başka bir sayfaya döndürürsünüz.']
     ],
-    seedTasks:[
-      {t:'\u270e Buraya görevlerini yaz',done:true},
-      {t:'Uzun satırı aç: dokun. Uzun yazılar satırda … ile kısalır. \u21e9 Satıra dokunursan tamamı açılır ve düzenlersin.'},
-      {t:'\u261c Kutucuğu tut, sürükle'},
-      {t:'\u2190 Beni + alanlarına bırak',note:'Kutucuğu basılı tut (bilgisayarda tut ve sürükle) ve yukarıdaki ya da aşağıdaki + alanlarına bırak: bu hafta içinde, bu ay içinde.'},
-      {t:'\u2190 Gün, Hafta, Ay\u2019a sürükle',note:'Alttaki Gün, Hafta, Ay, Yıl, 10 Yıl sekmelerinden birine bırakırsan o sayfaya giderim; defter ikonuna bırakırsan Arşiv\u2019e kalkarım.'},
-      {t:'Bu hafta bir ara yapılacaklar buraya',layer:'week',note:'Bu alan haftaya ait ama bir güne atanmamış işler içindir. Vakti gelince kutucuğundan tutup bir güne sürükle.'},
-      {t:'Bu ay bir ara yapılacaklar buraya',layer:'month',note:'Bu alan aya ait ama henüz bir güne ya da haftaya atanmamış işler içindir. Hazır olunca kutucuğundan tutup bir güne sürükle.'},
-      {t:'Üç nokta \u22ef ya da not ikonu \u2192',todos:['Madde ekle düğmesiyle maddeler eklersin.','Madde satırındaki takvim ikonuyla maddeyi o günün takviminde görünür bir göreve çevirirsin.'],notes:'Aşağıdan yarına, haftaya ya da aya erteler, bir tarihe taşır, tekrarlatır, arşivler ya da silersin.\nTuru bitirince bu satırları sil: satırı açıp çöp ikonuna bas. Hepsini birden silmek için Ayarlar \u203a Yedek \u203a Baştan başla.'},
-      {t:'Demo içeriğini sil: Ayarlar \u203a Yedek \u203a Baştan başla'}
-    ],
-    seedPins:[
-      {ti:'Post-it',text:'\u2022 Hiçbir güne bağlı olmayan kullan-at not alanı; hemen yaz.\n\u2022 Sağa sola kaydır ya da alttaki noktalara dokun \u25cf \u25cb; bir noktaya uzun basınca başlığı görünür.\n\u2022 Silmek için alttaki çöp ikonuna bas; silinenler üstteki çöp ikonunda durur.\n\u2192 Bu ilk post-iti şimdi silebilirsin.'},
-      {ti:'Taşımak',text:'\u2022 Alttaki ilk ok ikonu (\u2192 gün) post-iti bugüne taşır: başlık görev, yazı görevin notu olur.\n\u2022 \u2610 ile başlayan satırlar görevde madde olur.\n\u2022 İkinci ok ikonu (\u2192 defter) Zamansız Notlar\u2019a taşır.\n\u2022 Üstteki ay ikonu post-iti koyu yapar.'}
-    ],
-    seedNbs:[{tx:'\"Zamansız Notlar\" nasıl çalışır\n\u2022 Enter notu kaydeder; uzun notun altındaki üçgen yazıyı kısaltır ya da açar (\u25b3 kapalı, \u25b2 açık).'},{tx:'\u2022 Sağdaki \u283f tutamacı sürükle: üstteki bir sekmeye bırakırsan not oraya taşınır, çöp ikonuna bırakırsan çöpe gider.\n\u2022 Notun altında hangi sekmede olduğu ve ne zaman yazıldığı görünür.'},{tx:'Sekmeler ve Arşiv\n\u2022 + ile yeni sekme açarsın; sekmeyi uzun basıp sürükleyerek sıralarsın.\n\u2022 \u25f7 saat ikonu Arşiv: görevi alttaki defter ikonuna sürüklediğinde ya da satır menüsünden arşivlediğinde burada bekler.\n\u2022 Geri koy ile görev bugüne döner.',tab:1}],
-    seedTab:'Örnek Sekme',
-    welcomeT:'Yarın Defterine hoş geldiniz',welcomeTx:'Örnek içeriği yüklemek için aşağıya dokunun ya da direkt başlayın. Örnek içeriği istediğiniz zaman silebilirsiniz.',welcomeLoad:'Örnek içeriği yükle',welcomeGo:'Direkt başlayın',welcomeHint:'Kullanım kılavuzu: Ayarlar \u203a Nasıl kullanılır',welcomeReset:'Kalıcı olarak silip sıfırdan başlamak için:\nAyarlar \u203a Yedek \u203a Baştan başla',
-    seedBtn:'Örnekleri ekle',nbOrd:'Sıra değişti',fmtB:'Kalın',fmtH:'Vurgula',secFold:'Daralt',secUnfold:'Genişlet',goMonth:'Aya git',goYear:'Yıla git',seedWarn:'Örnek veriler yüklenecek: görevler, post-itler, notlar ve bir sekme. Bunlar uygulamayı öğrenmen için tasarlandı; istemezsen tek tek silmen gerekir. Kendi notların etkilenmez.',seedGo:'Yükle',seedNo:'Vazgeç',tblAdd:'Tablo ekle',tblTitlePh:'Tablo adı',tblColPh:'Tarih',tblRowPh:'Ad',tblAddCol:'Sütun ekle',tblAddRow:'Satır ekle',tblEdit:'Düzenle',tblDone:'Bitti',tblDel:'Tabloyu sil',tblGone:'Tablo silindi',tblColGone:'Sütun silindi',tblRowGone:'Satır silindi',tblDelCol:'Sütunu sil',tblDelRow:'Satırı sil',tblWord:'Tablo',tblMissing:'Tablo bulunamadı',tblTrashed:'Bu tablo çöpte',lkSet:'Seçili sözcüğe bağlantı ver',lkPick:'Önce başlıkta bir sözcük seç',lkUrl:'Bağlantı adresi',lkOk:'Tamam',lkCancel:'Vazgeç',lkDone:'Bağlantı eklendi',tblOpen:'Tabloyu aç',tblClose:'Tabloyu daralt',seedDone:'Örnekler eklendi',freshBtn:'Baştan başla: her şeyi sil',freshSure:'Emin misin? Tüm notlar silinir, dokun',freshSureSync:'Emin misin? Tüm notlar ve Drive kopyası silinir, dokun',freshDone:'Defter temizlendi',
+    
+    tourNext:'İleri',tourBack:'Geri',tourSkip:'Atlayın',tourDone:'Bitti',tourAgain:'Turu yeniden gösterin',tourMore:'Detaylı bir tura çıkın',tourOf:'{n} / {m}',
+    tour:{
+      day:[
+        ['Yarın Defterine hoş geldiniz','İşlerinizi gün, hafta, ay, yıl ve 10 yıl katmanlarına yazarsınız. İstediğiniz kadar erteleyebilirsiniz, ama gözünüzden kaçmaz, unutmazsınız. Özgürce erteleyin, bir gün elbet yapacaksınız.\nKısa bir turla nasıl çalıştığına bakalım, İleri’ye dokunun. Bu turu istediğiniz zaman Ayarlar’daki “Detaylı bir tura çıkın” bağlantısından yeniden açıp pratik yapabilirsiniz.'],
+        ['Yazın','Bir satıra dokunun ve yazın. Enter yeni satır açar. \nBoş bir satırda Backspace satırı siler.'],
+        ['Tamamlayın, sürükleyin, taşıyın','Kutucuğa dokunun: iş tamam. Kutucuğu basılı tutup sürükleyin (bilgisayarda tıklayıp sürükleyin). Tarihin yanında çıkan {lr} oklara bırakırsanız bir gün ertelenir. Alttaki Hafta, Ay, Yıl sekmelerine bırakırsanız o katmana taşınır. En sağdaki Zamansız Notlar {nb} simgesine bırakırsanız nota dönüşür.'],
+        ['Üç nokta','Üç noktaya {dots} dokunun, yazdığınız satırı detaylandırın.\nNota ayrıntı yazın, tarih ve saat verin, tekrar kurun, bağlantı ekleyin ya da silin.'],
+        ['Bu hafta içinde','Üstteki + satırı Bu hafta içinde bölümü. Buraya yazarsanız ya da bir satırı sürükleyip bırakırsanız iş, günü belli olmadan o haftaya ait olur. Sayfanın altındaki Bu ay içinde bölümü aynı şekilde aya ait işler içindir.'],
+        ['Günler arasında gezin','Tarihin iki yanındaki oklara dokunun ya da sayfayı sağa sola kaydırın: günler arasında gezersiniz. Tarihe dokununca takvim açılır.\nKlavyede ← → ile gezilir, T bugüne döner.'],
+        ['Katmanlar','Gün, Hafta, Ay, Yıl, 10 Yıl: aynı işi farklı ölçekte planlarsınız. En sağdaki {nb} simgesi Zamansız Notlar.\nBurası zamansız bir defter gibi çalışır.'],
+        ['Post-it','Kısa, hızlı notlar için. Kartları sağa sola kaydırarak değiştirirsiniz.\nBir kartı göreve taşıyabilirsiniz.'],
+        ['Ayarlar','Tema, dil, yazı boyutu, yedek ve senkron burada.\nTuru, Hakkında bölümündeki “Detaylı bir tura çıkın” bağlantısından istediğiniz zaman yeniden açabilirsiniz.']
+      ],
+      week:[
+        ['Hafta','Haftanın yedi günü alt alta. Oklara dokunun ya da sayfayı sağa sola kaydırın: haftalar arasında gezersiniz.'],
+        ['Günün satırı','Bir günün satırına dokunun ve yazın. Soldaki tarihe dokununca o günün sayfası açılır. Geçmiş günler daralır; üçgene dokunarak açıp kapatırsınız.'],
+        ['Sürükleyin','Kutucuğu sürükleyip başka günün satırına bırakın. Başlığın yanında çıkan {lr} oklara bırakırsanız bir hafta ileri ya da geri gider. Alttaki Ay, Yıl sekmelerine bırakırsanız o katmana taşınır.'],
+        ['Bu hafta içinde','Günü belli olmayan haftalık işler üstte, aylık işler altta durur. Bir satırı oraya bırakırsanız günü olmadan o haftaya ya da aya ait olur.']
+      ],
+      month:[
+        ['Ay','Oklara dokunun ya da sayfayı sağa sola kaydırın: aylar arasında gezersiniz.'],
+        ['Takvim','Her gün bir kutu; işi olan günde işaret görünür. Güne bir kez dokunun: altında o günün işleri açılır. İkinci kez dokunursanız gün sayfasına gidersiniz.'],
+        ['Taşıyın','Takvimdeki bir işi tutup başka günün kutusuna sürükleyin: o güne taşınır. Başlığın yanında çıkan {lr} oklara bırakırsanız sonraki ya da önceki ayın Bu ay içinde bölümüne düşer. Alttaki sekmelere bırakırsanız Yıl ya da 10 Yıl’a gider.'],
+        ['Bu ay içinde','Üstteki + satırı: günü belli olmayan aylık işler burada. Yazabilir ya da günlük işleri buraya sürükleyebilirsiniz.']
+      ],
+      year:[
+        ['Yıl','Oklara dokunun ya da sayfayı sağa sola kaydırın: yıllar arasında gezersiniz.'],
+        ['Aylar','Her ayın kendi satırları var. Ay adına dokununca o ayın sayfası açılır, üçgen ayı daraltır. Geçmiş aylar tek satırda toplanır.'],
+        ['Sürükleyin','Bir işi başka ayın satırına sürükleyin: o aya taşınır. Başlığın yanında çıkan {lr} oklara bırakırsanız sonraki ya da önceki yılın Bu yıl içinde bölümüne düşer.'],
+        ['Bu yıl içinde','Üstteki + satırı: ayı belli olmayan yıllık işler burada. Yazabilir ya da iş sürükleyebilirsiniz.']
+      ],
+      decade:[
+        ['10 Yıl','Oklara dokunun ya da sayfayı sağa sola kaydırın: on yıllık dilimler arasında gezersiniz.'],
+        ['Yıllar','On yıl alt alta. Yıl adına dokununca o yılın sayfası açılır. Uzun vadeli hedeflerinizi yılın satırına yazın.'],
+        ['Sürükleyin','Bir işi başka yılın satırına sürükleyin: o yıla taşınır. Başlığın yanında çıkan {lr} oklara bırakırsanız sonraki ya da önceki on yılın üst bölümüne düşer.']
+      ],
+      nb:[
+        ['Sekmeler','Notlarınızı sekmelere ayırın. + ile yeni sekme açın, sekme adını sürükleyerek sıralayın. Tümü bütün notları gösterir.'],
+        ['Not ekleyin','Yazın ve Enter’a basın: not en üste eklenir. Yanındaki tablo simgesi tablo notu ekler, çöp simgesi silinenleri gösterir.'],
+        ['Sürükleyin','Notun yanındaki tutamaçtan sürükleyin. İki notun arasına bırakırsanız sıra değişir. Bir sekmeye bırakırsanız o sekmeye, Çöp’e bırakırsanız çöpe gider. Sürüklerken sekmeler ve Çöp altta görünür.'],
+        ['Biçim','Notlardaki bağlantılar tıklanır. **kalın** ve ==vurgu== yazabilirsiniz, [kelime](adres) kelimeye bağlantı verir. Uzun notlar üçgenle kısalır.']
+      ],
+      pins:[
+        ['Post-it','Hızlı, kısa notlar için kâğıtlar. + Yeni not yeni kâğıt açar. Ay simgesi rengi değiştirir, çöp silinenleri gösterir.'],
+        ['Yazın ve kaydırın','Kâğıda dokunun ve yazın. Kartları sağa sola kaydırarak değiştirirsiniz (klavyede ← →). Sondan başa döner.'],
+        ['Düğmeler','Alttaki simgeler: kutucuk satırı ekler, B ve işaretleyici seçili kelimeyi kalın ya da vurgulu yapar, bağlantı verir, bu güne ya da Zamansız Notlar’a taşır, siler.']
+      ]
+    },
+    nbOrd:'Sıra değişti',fmtB:'Kalın',fmtH:'Vurgulayın',secFold:'Daraltın',secUnfold:'Genişletin',goMonth:'Aya gidin',goYear:'Yıla gidin',tblAdd:'Tablo ekleyin',tblTitlePh:'Tablo adı',tblColPh:'Tarih',tblRowPh:'Ad',tblAddCol:'Sütun ekleyin',tblAddRow:'Satır ekleyin',tblEdit:'Düzenleyin',tblDone:'Bitti',tblDel:'Tabloyu silin',tblGone:'Tablo silindi',tblColGone:'Sütun silindi',tblRowGone:'Satır silindi',tblDelCol:'Sütunu silin',tblDelRow:'Satırı silin',tblWord:'Tablo',tblMissing:'Tablo bulunamadı',tblTrashed:'Bu tablo çöpte',lkSet:'Seçili sözcüğe bağlantı verin',lkPick:'Önce başlıkta bir sözcük seçin',lkUrl:'Bağlantı adresi',lkOk:'Tamam',lkCancel:'Vazgeçin',lkDone:'Bağlantı eklendi',tblOpen:'Tabloyu açın',tblClose:'Tabloyu daraltın',freshBtn:'Baştan başlayın: her şeyi silin',freshSure:'Emin misiniz? Tüm notlar silinir, dokunun',freshSureSync:'Emin misiniz? Tüm notlar ve Drive kopyası silinir, dokunun',freshDone:'Defter temizlendi',
     dragT:'Sürükle-bırak',
-    dragTx:'Görevi tutup başka bir güne, haftaya, aya ya da yıla bırak; alttaki sayfa sekmesine bırakırsan o sayfaya gider, defter ikonuna bırakırsan Arşiv\u2019e kalkar. Zamansız Notlar\u2019da notun üç nokta tutamacını sekmeye ya da çöpe sürükle.',
+    dragTx:'Görevi tutup başka bir güne, haftaya, aya ya da yıla bırakın; alttaki sayfa sekmesine bırakırsanız o sayfaya gider, defter ikonuna bırakırsanız Arşiv\u2019e kalkar. Zamansız Notlar\u2019da notun üç nokta tutamacını sekmeye ya da çöpe sürükleyin.',
     helpNoSync:'',
     help:[
-      ['Yazmak ve işaretlemek','Bir satıra dokun ve yaz, <b>Enter</b> yeni satır açar. Kutucuk satırın üstünü çizer, hiçbir şey silinmez. Notlardaki web adresleri tıklanabilir olur; <b>☐ Görev</b> ile onay kutulu satırlar eklersin.'],
-      ['Sayfalar','Gün, hafta, ay, yıl ve 10 yıl sayfaları birbirine bağlıdır; alttaki çubuktan seçer, kaydırarak ilerlersin. Her sayfada <b>Bu hafta içinde</b>, <b>Bu ay içinde</b> gibi alanlar vardır: o döneme ait ama bir güne atanmamış işler buraya yazılır.'],
-      ['Gün sayfası','Günün işlerini yazarsın. Üstte haftanın, altta ayın <b>içinde</b> alanı görünür; böylece günün yanında yaklaşan işleri de görürsün. Geçmiş bir günde bitmeyenleri <b>bugüne al</b> ile taşırsın, başlığa dokunup tarih seçersin.'],
-      ['Hafta sayfası','Yedi gün alt alta kart olarak durur; kartın başlığına dokunmak o günü açar. En üstteki <b>Bu hafta içinde</b> alanı haftaya ait ama güne atanmamış işlerindir, geçen haftadan kalanlar <b>buraya al</b> ile gelir.'],
-      ['Ay sayfası','Takvimde her günün işleri başlık olarak görünür (biten soluk ve üstü çizili, fazlası <b>+2</b> gibi). Bir güne dokununca altta <b>Bu ay</b> bölümünde açılır; ikinci dokunuş ya da <b>Güne git</b> gün sayfasını açar. <b>Genişlet</b> bütün günleri alt alta gösterir. <b>Bu ay içinde</b> işlerini ya da takvimdeki başlıkları tutup başka bir güne bırakırsın.'],
+      ['Yazmak ve işaretlemek','Bir satıra dokunup yazın, <b>Enter</b> yeni satır açar. Kutucuk satırın üstünü çizer, hiçbir şey silinmez. Notlardaki web adresleri tıklanabilir olur; <b>☐ Görev</b> ile onay kutulu satırlar eklersiniz.'],
+      ['Sayfalar','Gün, hafta, ay, yıl ve 10 yıl sayfaları birbirine bağlıdır; alttaki çubuktan seçer, kaydırarak ilerlersiniz. Her sayfada <b>Bu hafta içinde</b>, <b>Bu ay içinde</b> gibi alanlar vardır: o döneme ait ama bir güne atanmamış işler buraya yazılır.'],
+      ['Gün sayfası','Günün işlerini yazarsınız. Üstte haftanın, altta ayın <b>içinde</b> alanı görünür; böylece günün yanında yaklaşan işleri de görürsünüz. Geçmiş bir günde bitmeyenleri <b>bugüne alın</b> ile taşırsınız, başlığa dokunup tarih seçersiniz.'],
+      ['Hafta sayfası','Yedi gün alt alta kart olarak durur; kartın başlığına dokunmak o günü açar. En üstteki <b>Bu hafta içinde</b> alanı haftaya ait ama güne atanmamış işlerindir, geçen haftadan kalanlar <b>buraya alın</b> ile gelir.'],
+      ['Ay sayfası','Takvimde her günün işleri başlık olarak görünür (biten soluk ve üstü çizili, fazlası <b>+2</b> gibi). Bir güne dokununca altta <b>Bu ay</b> bölümünde açılır; ikinci dokunuş ya da <b>Güne gidin</b> gün sayfasını açar. <b>Genişletin</b> bütün günleri alt alta gösterir. <b>Bu ay içinde</b> işlerini ya da takvimdeki başlıkları tutup başka bir güne bırakırsınız.'],
       ['Yıl ve 10 yıl','Uzun ve çok uzun vadeli planlar içindir.'],
-      ['Taşımak ve ertelemek','Kutucuğa basılı tut (bilgisayarda sürükle) ve başka bir güne, haftaya, aya ya da yıla bırak. Alttaki sekmelere bırakırsan görev o sayfaya (gün, hafta, ay, yıl, 10 yıl) gider; gün sayfasında üstteki <b>‹ ›</b> oklarına bırakırsan önceki ya da sonraki güne gider; alttaki <b>defter ikonuna</b> bırakırsan Arşiv\u2019e kalkar. Ya da satırı açıp <b>üç nokta</b> menüsünden <b>Yarına</b>, <b>Haftaya</b>, <b>Aya</b> de, tarih seç, tekrar kur ya da bir projeye bağla.'],
-      ['Not ve proje','Satırın sağındaki ikon not sayfasını açar. Not ile proje aynı sayfadır: madde listesi ve serbest not alanı. Başlığın önündeki ikonla <b>Not</b> (mavi) ile <b>Proje</b> (turuncu) arasında geçersin, başlığa dokunup adını değiştirirsin. Maddeleri tutup sürükleyerek sıralar, takvim ikonuyla tarih verirsin; tarihli madde o günün sayfasına da düşer. Biten maddeyi <b>Arşivlemek için buraya bırak</b> alanına sürüklersen <b>Arşiv</b> bölümüne gider, ilerlemede sayılmaya devam eder. Bir notu ya da projeyi klasör düğmesiyle başka bir projeye bağlarsan onun alt başlığı olur; üst projede toplanır, satırın ikonunda küçük bir nokta görünür. Bütün projeler üstteki <b>Projeler</b> sekmesindedir.'],
-      ['Ayarlar','Ayarlar\u2019dan dili, açık ya da koyu temayı, yazı tipini ve boyutunu seçersin. <b>Yedek</b> defterini dosya olarak kaydeder, kopyalar ya da geri yükler. <b>Arşiv</b> arşivlediğin ve sildiğin satırları geri koyar (silinenler 30 gün durur); Göz ikonu (tema ve tam ekran düğmelerinin yanında) üstü çizili satırları saklar. <b>Senkron</b> ile Google hesabına bağlanıp aynı defteri telefonunda ve bilgisayarında kullanırsın; defter Drive\u2019ında yalnızca bu uygulamanın görebildiği gizli bir alanda durur, değişikliklerin kendiliğinden gider. Gönderilmesi gereken bir değişiklik varsa Ayarlar simgesinde küçük bir mavi nokta belirir; Senkron bölümünden <b>Senkronize et</b> demen yeterli.']
+      ['Taşımak ve ertelemek','Kutucuğa basılı tutun (bilgisayarda sürükleyin) ve başka bir güne, haftaya, aya ya da yıla bırakın. Alttaki sekmelere bırakırsanız görev o sayfaya (gün, hafta, ay, yıl, 10 yıl) gider; gün sayfasında üstteki <b>‹ ›</b> oklarına bırakırsanız önceki ya da sonraki güne gider; alttaki <b>defter ikonuna</b> bırakırsanız Arşiv\u2019e kalkar. Ya da satırı açıp <b>üç nokta</b> menüsünden <b>Yarına</b>, <b>Haftaya</b>, <b>Aya</b> deyin, tarih seçin, tekrar kurun ya da bir projeye bağlayın.'],
+      ['Not ve proje','Satırın sağındaki ikon not sayfasını açar. Not ile proje aynı sayfadır: madde listesi ve serbest not alanı. Başlığın önündeki ikonla <b>Not</b> (mavi) ile <b>Proje</b> (turuncu) arasında geçersiniz, başlığa dokunup adını değiştirirsiniz. Maddeleri tutup sürükleyerek sıralar, takvim ikonuyla tarih verirsiniz; tarihli madde o günün sayfasına da düşer. Biten maddeyi <b>Arşivlemek için buraya bırakın</b> alanına sürüklerseniz <b>Arşiv</b> bölümüne gider, ilerlemede sayılmaya devam eder. Bir notu ya da projeyi klasör düğmesiyle başka bir projeye bağlarsanız onun alt başlığı olur; üst projede toplanır, satırın ikonunda küçük bir nokta görünür. Bütün projeler üstteki <b>Projeler</b> sekmesindedir.'],
+      ['Ayarlar','Ayarlar\u2019dan dili, açık ya da koyu temayı, yazı tipini ve boyutunu seçersiniz. <b>Yedek</b> defterinizi dosya olarak kaydeder, kopyalar ya da geri yükler. <b>Arşiv</b> arşivlediğiniz ve sildiğiniz satırları geri koyar (silinenler 30 gün durur); Göz ikonu (tema ve tam ekran düğmelerinin yanında) üstü çizili satırları saklar. <b>Senkron</b> ile Google hesabınıza bağlanıp aynı defteri telefonunuzda ve bilgisayarınızda kullanırsınız; defter Drive\u2019ınızda yalnızca bu uygulamanın görebildiği gizli bir alanda durur, değişiklikleriniz kendiliğinden gider. Gönderilmesi gereken bir değişiklik varsa Ayarlar simgesinde küçük bir mavi nokta belirir; Senkron bölümünden <b>Senkronize edin</b> demeniz yeterli.']
     ],
     credit:['Verimlilik için ',' tarafından tasarlandı, Claude ile birlikte geliştirildi.'],
     wd:['Pazartesi','Salı','Çarşamba','Perşembe','Cuma','Cumartesi','Pazar'],
@@ -1131,25 +1172,56 @@ var TX={
       ['Trash','Tap the trash icon at the right of the new-note box to open deleted notes. Drag a note onto a tab to put it back, use the trash icon next to a note to delete it forever, or <b>Empty trash</b> to clear all. The trash has no counter; this is a free space.'],
       ['Archive: tasks set aside','Hold a task and drop it on the notebook icon at the bottom, or tap the <b>clock icon</b> in its menu, and it goes to the <b>Archive</b> tab, waiting with its sub-items and note. The same list opens from <b>Archive</b> in Settings. There is no counter. <b>Put back</b> returns it to today or any other page when you want.']
     ],
-    seedTasks:[
-      {t:'\u270e Write your tasks here',done:true},
-      {t:'Open a long line: tap it. Long text is cut off with \u2026 on the row. \u21e9 Tap the row and it opens in full for editing.'},
-      {t:'\u261c Hold the checkbox, drag'},
-      {t:'\u2190 Drop me on the + areas',note:'Hold the checkbox (on a computer, click and drag) and drop it on the + areas above or below: this week, this month.'},
-      {t:'\u2190 Drag to Day, Week, Month',note:'Drop me on one of the Day, Week, Month, Year or 10 Yr tabs at the bottom and I go to that page; drop me on the notebook icon and I go to the Archive.'},
-      {t:'Things for sometime this week go here',layer:'week',note:'This area is for things that belong to the week but not to a day yet. When the time comes, hold the checkbox and drag it onto a day.'},
-      {t:'Things for sometime this month go here',layer:'month',note:'This area is for things that belong to the month but not to a day or week yet. When you are ready, hold the checkbox and drag it onto a day.'},
-      {t:'Three dots \u22ef or note icon \u2192',todos:['Add items with the Add item button.','The calendar icon on an item makes it show up on that day\u2019s calendar as a task.'],notes:'Below you can postpone to tomorrow, week or month, move to a date, repeat, archive or delete.\nWhen the tour is over, delete these rows: open a row and tap the trash icon. To delete everything at once: Settings \u203a Backup \u203a Start fresh.'},
-      {t:'Delete the demo content: Settings \u203a Backup \u203a Start fresh'}
-    ],
-    seedPins:[
-      {ti:'Post-it',text:'\u2022 A throwaway space tied to no day; just start typing.\n\u2022 Swipe left or right, or tap the dots at the bottom \u25cf \u25cb; press and hold a dot to see the title.\n\u2022 Tap the trash icon at the bottom to delete; deleted ones wait in the trash icon at the top.\n\u2192 You can delete this first post-it right now.'},
-      {ti:'Moving',text:'\u2022 The first arrow icon at the bottom (\u2192 day) sends the post-it to today: the title becomes the task, the text its note.\n\u2022 Lines starting with \u2610 become items in the task.\n\u2022 The second arrow icon (\u2192 notebook) sends it to Timeless Notes.\n\u2022 The moon icon at the top makes the post-it dark.'}
-    ],
-    seedNbs:[{tx:'\"Timeless Notes\" – how it works\n\u2022 Enter saves a note; the triangle under a long note folds or opens it (\u25b3 folded, \u25b2 open).'},{tx:'\u2022 Drag the \u283f handle on the right: drop it on a tab above to move the note there, or on the trash icon to delete it.\n\u2022 Under each note you see its tab and when it was written.'},{tx:'Tabs and Archive\n\u2022 + opens a new tab; long-press a tab and drag to reorder.\n\u2022 The \u25f7 clock icon is the Archive: tasks you drag onto the notebook icon, or archive from a row\u2019s menu, wait there.\n\u2022 Put back returns a task to today.',tab:1}],
-    seedTab:'Sample Tab',
-    welcomeT:'Welcome to Yarın Defteri',welcomeTx:'Tap below to load example content, or just start. You can delete the examples whenever you like.',welcomeLoad:'Load example content',welcomeGo:'Just start',welcomeHint:'Guide: Settings \u203a How to use',welcomeReset:'To delete for good and start from scratch:\nSettings \u203a Backup \u203a Start fresh',
-    seedBtn:'Add the examples',nbOrd:'Order changed',fmtB:'Bold',fmtH:'Highlight',secFold:'Collapse',secUnfold:'Expand',goMonth:'Open month',goYear:'Open year',seedWarn:'Example data will be added: tasks, sticky notes, notes and a tab. They are designed to help you learn the app; if you don\u2019t want them, you\u2019ll have to delete them one by one. Your own notes are not affected.',seedGo:'Add',seedNo:'Cancel',tblAdd:'Add table',tblTitlePh:'Table name',tblColPh:'Date',tblRowPh:'Name',tblAddCol:'Add column',tblAddRow:'Add row',tblEdit:'Edit',tblDone:'Done',tblDel:'Delete table',tblGone:'Table deleted',tblColGone:'Column deleted',tblRowGone:'Row deleted',tblDelCol:'Delete column',tblDelRow:'Delete row',tblWord:'Table',tblMissing:'Table not found',tblTrashed:'That table is in the trash',lkSet:'Link the selected word',lkPick:'Select a word in the title first',lkUrl:'Link address',lkOk:'OK',lkCancel:'Cancel',lkDone:'Link added',tblOpen:'Expand table',tblClose:'Collapse table',seedDone:'Examples added',freshBtn:'Start fresh: delete everything',freshSure:'Are you sure? All notes are deleted, tap',freshSureSync:'Are you sure? All notes and the Drive copy are deleted, tap',freshDone:'Notebook cleared',
+    
+    tourNext:'Next',tourBack:'Back',tourSkip:'Skip',tourDone:'Done',tourAgain:'Show the tour again',tourMore:'Take a detailed tour',tourOf:'{n} / {m}',
+    tour:{
+      day:[
+        ['Welcome to Yarın Defteri','You write your tasks into layers: day, week, month, year and 10 years. Postpone as much as you like, it won\u2019t slip out of sight and you won\u2019t forget. Postpone freely, you\u2019ll get to it one day. \nA short tour shows how it works, tap Next. You can reopen this tour any time from \u201cTake a detailed tour\u201d in Settings and practise.'],
+        ['Write','Tap a line and write. Enter opens a new line. \nBackspace on an empty line removes it.'],
+        ['Done, drag, move','Tap the box: task done. Press and hold the box, then drag (on a computer, click and drag). Drop on the arrows next to the date {lr} to postpone by a day. Drop on the Week, Month or Year tab below to move it to that layer. Drop on the Timeless Notes {nb} icon at the far right to turn it into a note.'],
+        ['Three dots','Tap the three dots {dots} to detail the line you wrote.\nAdd a note, give a date and time, set a repeat, attach a link or delete.'],
+        ['Sometime this week','The + line on top is the Sometime this week section. Write here, or drag a line into it, and the task belongs to that week without a day. The Sometime this month section at the bottom does the same for the month.'],
+        ['Move between days','Tap the arrows or swipe the main area left and right to move between days. Tap the date in the title to open a calendar.\nOn a keyboard, use \u2190 \u2192, and T returns to today.'],
+        ['Layers','Day, Week, Month, Year, 10 Yr: plan the same work at different scales. The {nb} icon at the far right is Timeless Notes.\nIt works like a timeless notebook.'],
+        ['Sticky notes','For quick, short notes. Swipe the cards left and right to switch.\nA card can move to a task.'],
+        ['Settings','Theme, language, text size, backup and sync are here.\nYou can open this tour again any time from \u201cTake a detailed tour\u201d in the About section.']
+      ],
+      week:[
+        ['Week','The seven days of the week, one under another. Tap the arrows or swipe the main area to move between weeks.'],
+        ['A day\u2019s lines','Tap a day\u2019s lines and write. Tap the date on the left to open that day. Past days fold up; tap the triangle to open or close them.'],
+        ['Drag','Drag the box onto another day\u2019s lines. Drop on the arrows next to the title {lr} to move a week forward or back. Drop on the Month or Year tab to move it to that layer.'],
+        ['Sometime this week','Weekly tasks without a day sit at the top, monthly ones at the bottom. Drop a line there and it belongs to the week or month without a day.']
+      ],
+      month:[
+        ['Month','Tap the arrows or swipe: move between months.'],
+        ['Calendar','Each day is a box; days with tasks show a mark. Tap a day once: its tasks open below. Tap again to open the day page.'],
+        ['Move','Hold a task in the calendar and drag it to another day\u2019s box to move it there. Drop on the arrows next to the title {lr} to put it in the Sometime this month section of the next or previous month. Drop on the tabs below to send it to Year or 10 Yr.'],
+        ['Sometime this month','The + line on top: monthly tasks without a day are here. Write here or drag daily tasks in.']
+      ],
+      year:[
+        ['Year','Tap the arrows or swipe: move between years.'],
+        ['Months','Each month has its own lines. Tap a month name to open that month; the triangle folds it. Past months are gathered in one row.'],
+        ['Drag','Drag a task onto another month\u2019s lines to move it there. Drop on the arrows next to the title {lr} to put it in the Sometime this year section of the next or previous year.'],
+        ['Sometime this year','The + line on top: yearly tasks without a month are here. Write there or drag tasks in.']
+      ],
+      decade:[
+        ['10 Years','Tap the arrows or swipe: move between ten-year spans.'],
+        ['Years','Ten years, one under another. Tap a year name to open that year. Write long-term goals on the year\u2019s lines.'],
+        ['Drag','Drag a task onto another year\u2019s lines to move it there. Drop on the arrows next to the title {lr} to put it in the top section of the next or previous decade.']
+      ],
+      nb:[
+        ['Tabs','Sort your notes into tabs. + opens a new tab, and you can drag tab names to reorder them. All shows every note.'],
+        ['Add a note','Write and press Enter: the note is added on top. The table icon next to it adds a table note; the bin icon shows deleted notes.'],
+        ['Drag','Drag from the handle beside a note. Drop between two notes to reorder. Drop on a tab to move it there, or on the Bin to delete it. Tabs and the Bin appear at the bottom while you drag.'],
+        ['Formatting','Links in notes are clickable. Write **bold** and ==highlight==; [word](address) links a word. Long notes fold with the triangle.']
+      ],
+      pins:[
+        ['Sticky notes','Paper for quick, short notes. + New note opens a new sheet. The moon changes the colour, the bin shows deleted notes.'],
+        ['Write and swipe','Tap the paper and write. Swipe the cards left and right to switch (\u2190 \u2192 on a keyboard). It loops from the last back to the first.'],
+        ['Buttons','The icons below: box adds a checklist line, B and the marker make the selected word bold or highlighted, link a word, move to today or to Timeless Notes, delete.']
+      ]
+    },
+    nbOrd:'Order changed',fmtB:'Bold',fmtH:'Highlight',secFold:'Collapse',secUnfold:'Expand',goMonth:'Open month',goYear:'Open year',tblAdd:'Add table',tblTitlePh:'Table name',tblColPh:'Date',tblRowPh:'Name',tblAddCol:'Add column',tblAddRow:'Add row',tblEdit:'Edit',tblDone:'Done',tblDel:'Delete table',tblGone:'Table deleted',tblColGone:'Column deleted',tblRowGone:'Row deleted',tblDelCol:'Delete column',tblDelRow:'Delete row',tblWord:'Table',tblMissing:'Table not found',tblTrashed:'That table is in the trash',lkSet:'Link the selected word',lkPick:'Select a word in the title first',lkUrl:'Link address',lkOk:'OK',lkCancel:'Cancel',lkDone:'Link added',tblOpen:'Expand table',tblClose:'Collapse table',freshBtn:'Start fresh: delete everything',freshSure:'Are you sure? All notes are deleted, tap',freshSureSync:'Are you sure? All notes and the Drive copy are deleted, tap',freshDone:'Notebook cleared',
     dragT:'Drag and drop',
     dragTx:'Hold a task and drop it on another day, week, month or year; drop it on a page tab at the bottom and it goes to that page, drop it on the notebook icon and it goes to the Archive. In Timeless Notes, drag a note\u2019s three-dot handle onto a tab or the trash.',
     helpNoSync:'',
@@ -1274,14 +1346,14 @@ function load(){
     var raw=localStorage.getItem(STORE);
     if(raw){
       var o=JSON.parse(raw);
-      return {lang:o&&o.lang==='tr'?'tr':'en',font:o&&o.font==='hand'?'hand':'plain',pinDark:(o&&typeof o.pinDark==='boolean')?o.pinDark:null,seeded:!!(o&&o.seeded),mfold:(o&&o.mfold&&typeof o.mfold==='object'&&!Array.isArray(o.mfold))?o.mfold:{},decadeStart:(o&&typeof o.decadeStart==='number')?o.decadeStart:new Date().getFullYear(),zoom:zoomOk(o&&o.zoom),theme:(o&&(o.theme==='light'||o.theme==='dark'))?o.theme:null,yrev:!!(o&&o.yrev),hideDone:!!(o&&o.hideDone),syncOn:!!(o&&o.syncOn),syncRev:(o&&typeof o.syncRev==='number')?o.syncRev:null,dirty:!!(o&&o.dirty),syncLast:(o&&typeof o.syncLast==='number')?o.syncLast:0,pins:cleanPins(o&&o.pins)||[],nb:cleanNb(o&&o.nb),projects:cleanProjects(o&&o.projects)||[],items:clean(o)||[]};
+      return {lang:o&&o.lang==='tr'?'tr':'en',font:o&&o.font==='hand'?'hand':'plain',pinDark:(o&&typeof o.pinDark==='boolean')?o.pinDark:null,seeded:!!(o&&o.seeded),tours:(o&&o.tours&&typeof o.tours==='object'&&!Array.isArray(o.tours))?o.tours:{},mfold:(o&&o.mfold&&typeof o.mfold==='object'&&!Array.isArray(o.mfold))?o.mfold:{},decadeStart:(o&&typeof o.decadeStart==='number')?o.decadeStart:new Date().getFullYear(),zoom:zoomOk(o&&o.zoom),theme:(o&&(o.theme==='light'||o.theme==='dark'))?o.theme:null,yrev:!!(o&&o.yrev),hideDone:!!(o&&o.hideDone),syncOn:!!(o&&o.syncOn),syncRev:(o&&typeof o.syncRev==='number')?o.syncRev:null,dirty:!!(o&&o.dirty),syncLast:(o&&typeof o.syncLast==='number')?o.syncLast:0,pins:cleanPins(o&&o.pins)||[],nb:cleanNb(o&&o.nb),projects:cleanProjects(o&&o.projects)||[],items:clean(o)||[]};
     }
   }catch(e){storageOK=false}
-  return {lang:'en',font:'plain',pinDark:null,seeded:false,mfold:{},decadeStart:new Date().getFullYear(),zoom:1,theme:null,yrev:false,hideDone:false,syncOn:false,syncRev:null,dirty:false,syncLast:0,pins:[],nb:{tabs:[],notes:[]},projects:[],items:[]};
+  return {lang:'en',font:'plain',pinDark:null,seeded:false,tours:{},mfold:{},decadeStart:new Date().getFullYear(),zoom:1,theme:null,yrev:false,hideDone:false,syncOn:false,syncRev:null,dirty:false,syncLast:0,pins:[],nb:{tabs:[],notes:[]},projects:[],items:[]};
 }
 function persist(){
   clearTimeout(saveTimer);saveTimer=null;
-  try{localStorage.setItem(STORE,JSON.stringify({v:1,lang:S.lang,font:S.font,pinDark:S.pinDark,seeded:S.seeded,mfold:S.mfold,zoom:S.zoom,theme:S.theme,yrev:S.yrev,hideDone:S.hideDone,syncOn:S.syncOn,syncRev:S.syncRev,dirty:S.dirty,syncLast:S.syncLast,decadeStart:S.decadeStart,pins:S.pins,nb:S.nb,projects:S.projects,items:S.items}));}
+  try{localStorage.setItem(STORE,JSON.stringify({v:1,lang:S.lang,font:S.font,pinDark:S.pinDark,seeded:S.seeded,tours:S.tours,mfold:S.mfold,zoom:S.zoom,theme:S.theme,yrev:S.yrev,hideDone:S.hideDone,syncOn:S.syncOn,syncRev:S.syncRev,dirty:S.dirty,syncLast:S.syncLast,decadeStart:S.decadeStart,pins:S.pins,nb:S.nb,projects:S.projects,items:S.items}));}
   catch(e){storageOK=false;if(!warned){warned=true;toast(T.noStore)}}
 }
 function queueSave(){editSeq++;S.dirty=true;clearTimeout(saveTimer);saveTimer=setTimeout(persist,300);autoPushSoon()}
@@ -2148,7 +2220,7 @@ function render(){
     tabs[i].classList.toggle('on',on);
     if(on)tabs[i].setAttribute('aria-current','page');else tabs[i].removeAttribute('aria-current');
   }
-  pinB.hidden=false;fitAll();fitTitle();
+  pinB.hidden=false;fitAll();fitTitle();tourSoon();
 }
 
 /* ---------- sheets ---------- */
@@ -2541,11 +2613,13 @@ function openPins(){
   /* keyboard: the global handler asks the open deck to step or add */
   wrap._nav=function(dir){var nn=cards.length;if(mode!=='deck'||nn<2)return;blurNow();act=(((act+dir)%nn)+nn)%nn;layout()};
   wrap._new=function(){if(mode==='deck')add.click()};
-  wrap.appendChild(h('div',{class:'pinbar'},[h('div',{class:'pinpill',text:T.pins}),h('div',{class:'sp'}),add,dkBtn,trBtn,xBtn()]));
+  var qBtn=h('button',{class:'xbtn',type:'button','aria-label':T.tourAgain,title:T.tourAgain,text:'?',onclick:function(){blurNow();tourStart('pins')}});
+  wrap.appendChild(h('div',{class:'pinbar'},[h('div',{class:'pinpill',text:T.pins}),h('div',{class:'sp'}),add,qBtn,dkBtn,trBtn,xBtn()]));
   wrap.appendChild(list);wrap.appendChild(dots);wrap.appendChild(trashBox);
   showSheet(wrap,true);
   draw();
   if(!has(cards[0])&&els[0])els[0]._ta.focus();
+  tourSoon('pins');
 }
 
 
@@ -3958,42 +4032,6 @@ function drawer(key,title,kids){
   }});
   return h('div',{class:'sdrawer'},[hd,body]);
 }
-function seedSamples(lang){
-  var X=TX[lang]||T,key=dkey(today());
-  X.seedTasks.forEach(function(x){
-    var ly=x.layer||'day',it={id:uid(),text:x.t,done:!!x.done,layer:ly,key:ly==='day'?key:keyOf(ly,today())};
-    if(x.note)it.note=x.note;
-    if(x.todos){
-      var rec={id:uid(),title:x.t,todos:x.todos.map(function(t){return {id:uid(),text:t,done:false}}),n:1};
-      if(x.notes)rec.notes=x.notes;
-      S.projects.push(rec);it.pj=rec.id;
-    }
-    S.items.push(it);
-  });
-  X.seedPins.slice().reverse().forEach(function(x){if(S.pins.filter(function(y){return y.text||y.ti}).length<10)S.pins.unshift({id:uid(),ti:x.ti,text:x.text})});
-  var tab=S.nb.tabs.filter(function(t){return t.name===X.seedTab})[0];
-  if(!tab&&S.nb.tabs.length<12){tab={id:uid(),name:X.seedTab};S.nb.tabs.push(tab)}
-  var t0=Date.now(),n=X.seedNbs.length;
-  X.seedNbs.slice().reverse().forEach(function(x,k){S.nb.notes.unshift({id:uid(),text:x.tx,tab:(x.tab&&tab)?tab.id:'',t:t0-(n-1-k)*1000})});
-  persist();queueSave();
-}
-function openWelcome(){
-  var p=h('div',{class:'panel welcome',role:'dialog','aria-modal':'true','aria-label':T.welcomeT});
-  p.appendChild(h('div',{class:'phead'},[h('div',{class:'sheet-title sicon',role:'img','aria-label':T.brand[0]+' '+T.brand[1],html:SUNICON+'<span class="stxt"><span>'+T.brand[0]+'</span><span>'+T.brand[1]+'</span></span>'}),xBtn()]));
-  p.appendChild(h('div',{class:'htitle',text:T.welcomeT}));
-  p.appendChild(h('p',{class:'wtx',text:T.welcomeTx}));
-  p.appendChild(h('button',{class:'sbtn wpri',type:'button',text:T.welcomeLoad,onclick:function(){
-    while(p.children.length>1)p.removeChild(p.lastChild);
-    p.appendChild(h('div',{class:'htitle',text:'Örnek içerik dili \u00b7 Language'}));
-    [['tr','Türkçe'],['en','English']].forEach(function(o){
-      p.appendChild(h('button',{class:'sbtn wsec wlang',type:'button',text:o[1],onclick:function(){seedSamples(o[0]);closeSheet();if(S.lang!==o[0])applyLang(o[0]);else render();toast(TX[o[0]].seedDone)}}));
-    });
-  }}));
-  p.appendChild(h('p',{class:'whint wmid',text:T.welcomeReset}));
-  p.appendChild(h('button',{class:'sbtn wsec',type:'button',text:T.welcomeGo,onclick:closeSheet}));
-  p.appendChild(h('p',{class:'whint',text:T.welcomeHint}));
-  showSheet(p,true);
-}
 function openHelp(){
   var p=h('div',{class:'panel',role:'dialog','aria-modal':'true','aria-label':T.howTitle});
   p.appendChild(h('div',{class:'phead'},[
@@ -4049,17 +4087,6 @@ function openHelp(){
   p.appendChild(hseg);
   drawHelp();
   p.classList.add('helpp');p.appendChild(cols);
-  var sbox=h('div',{class:'hseed'});
-  function seedIdle(){sbox.innerHTML='';sbox.appendChild(h('button',{class:'hopen',type:'button',onclick:seedAsk},[h('span',{text:T.seedBtn})]))}
-  function seedAsk(){
-    sbox.innerHTML='';
-    sbox.appendChild(h('p',{class:'hwarn',text:T.seedWarn}));
-    sbox.appendChild(h('div',{class:'hbtns'},[
-      h('button',{class:'sbtn',type:'button',text:T.seedNo,onclick:seedIdle}),
-      h('button',{class:'sbtn pri',type:'button',text:T.seedGo,onclick:function(){seedSamples();closeSheet();render();toast(T.seedDone)}})
-    ]));
-  }
-  seedIdle();p.appendChild(sbox);
   showSheet(p,true);
 }
 function openArchive(tab){
@@ -4186,7 +4213,7 @@ function openSettings(){
   var fsure=false,fb=h('button',{class:'sbtn dng',type:'button',text:T.freshBtn,onclick:function(){
     if(!fsure){fsure=true;fb.textContent=S.syncOn?T.freshSureSync:T.freshSure;return}
     S.items=[];S.projects=[];S.pins=[];S.nb={tabs:[],notes:[]};
-    S.seeded=true;persist();queueSave();closeSheet();render();openWelcome();
+    S.seeded=true;S.tours={};persist();queueSave();closeSheet();render();
   }});
   bk.push(h('div',{class:'sbtns'},[fb]));
   var confirming=false;
@@ -4203,8 +4230,11 @@ function openSettings(){
   if(typeof syncDrawer!=='undefined'&&syncDrawer)p.appendChild(syncDrawer);
   p.appendChild(drawer('backup',T.backup,bk));
   p.appendChild(h('div',{class:'slabel',text:T.about}));
-  T.aboutIntro.split('\n').forEach(function(t){p.appendChild(h('p',{class:'snote',text:t}))});
-  p.appendChild(h('button',{class:'hopen',type:'button',onclick:openHelp},[h('span',{text:T.howTitle}),h('span',{html:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>'})]));
+  T.aboutIntro.split('\n').forEach(function(t,n){
+    p.appendChild(h('p',{class:'snote',text:t}));
+    if(n===1)p.appendChild(h('p',{class:'snote slinks'},[h('button',{class:'slink',type:'button',onclick:function(){var k=view;closeSheet();setTimeout(function(){tourStart(k)},260)}},[T.tourMore+' \u203a'])]));
+  });
+  p.appendChild(h('p',{class:'snote slinks'},[h('button',{class:'slink',type:'button',onclick:openHelp,text:T.howTitle})]));
   p.appendChild(h('p',{class:'snote acredit'},[T.credit[0],h('a',{href:'https://www.instagram.com/kaybid/',target:'_blank',rel:'noopener noreferrer',text:'@kaybid'}),T.credit[1]]));
   showSheet(p,true);
 }
@@ -4368,7 +4398,7 @@ function finishDrag(commit){
 document.addEventListener('keydown',function(e){if(e.key==='Escape'&&drag)finishDrag(false)});
 /* keyboard shortcuts: arrows step through days/weeks/months/years or through post-its */
 document.addEventListener('keydown',function(e){
-  if(e.defaultPrevented||e.ctrlKey||e.metaKey||drag||e.isComposing)return;
+  if(tour||e.defaultPrevented||e.ctrlKey||e.metaKey||drag||e.isComposing)return;
   var k=e.key,a=document.activeElement,tag=a&&a.tagName,typing=!!(a&&(tag==='TEXTAREA'||tag==='INPUT'||tag==='SELECT'||a.isContentEditable));
   if(popEl&&popEl.parentNode)return;
   var arrow=k==='ArrowLeft'?-1:k==='ArrowRight'?1:0;
@@ -4388,6 +4418,162 @@ document.addEventListener('keydown',function(e){
   if(ni>=1&&ni<=5){e.preventDefault();view=LAYERS[ni-1];render();window.scrollTo(0,0)}
   else if(ni===6){var nbt=document.querySelector('.tabnb');if(nbt){e.preventDefault();nbt.click()}}
 });
+
+
+/* ---------- guided tours ---------- */
+var TOUR_SEL={
+  day:[null,['#page .lines'],['#page .row:not(.draft) .cb','#page .lines'],['#page .row:not(.draft) .notebtn.has','#page .row:not(.draft) .more','#page .lines'],['#page .quiet'],['#page .nav .ncenter'],['.tabs .bar'],['#pinBtn'],['#gear']],
+  week:[['#page .nav .ncenter'],['#page .wweek'],['#page .wweek .row:not(.draft) .cb','#page .wweek .wday:not(.wfold)','#page .wweek'],['#page .quiet']],
+  month:[['#page .nav .ncenter'],['#page .mgrid'],['#page .mgrid .mc:not(.more)','#page .mgrid'],['#page .quiet']],
+  year:[['#page .nav .ncenter'],['#page .msec.now','#page .msec','#page .yframe'],['#page .msec .row:not(.draft) .cb','#page .msec.now','#page .msec'],['#page .quiet']],
+  decade:[['#page .nav .ncenter'],['#page .yframe'],['#page .msec .row:not(.draft) .cb','#page .msec','#page .yframe']],
+  nb:[['#page .nbtabs'],['#page .naddrow'],['#page .nrow .nmore','#page .naddrow'],['#page .nrow .nview','#page .naddrow']],
+  pins:[['.pinwrap .pinbar'],['.pinwrap .pin.front'],['.pinwrap .pin.front .pact']]
+};
+var TOUR_IC={
+  book:'<path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3z"/><path d="M5 17a3 3 0 0 1 3-3h11"/>',
+  pen:'<path d="M4 20l1-4 11-11 3 3-11 11z"/><path d="M14 7l3 3"/>',
+  check:'<rect x="4" y="4" width="16" height="16" rx="3"/><path d="M8.5 12.5l2.5 2.5 4.5-5"/>',
+  dots:'<circle cx="12" cy="5.5" r="1.4"/><circle cx="12" cy="12" r="1.4"/><circle cx="12" cy="18.5" r="1.4"/>',
+  sun:'<circle cx="12" cy="12" r="4"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6L7 7M17 17l1.4 1.4M5.6 18.4L7 17M17 7l1.4-1.4"/>',
+  lr:'<path d="M4 12h16M8 8l-4 4 4 4M16 8l4 4-4 4"/>',
+  layers:'<path d="M12 4l9 5-9 5-9-5z"/><path d="M3 14l9 5 9-5"/>',
+  note:'<path d="M5 4h14v10l-6 6H5z"/><path d="M13 20v-6h6"/>',
+  gear:'<circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"/>',
+  cal:'<rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/>',
+  grid:'<rect x="4" y="4" width="16" height="16" rx="2"/><path d="M4 10h16M4 15h16M10 4v16M15 4v16"/>',
+  drag:'<path d="M12 3v18M3 12h18M12 3l-3 3M12 3l3 3M12 21l-3-3M12 21l3-3M3 12l3-3M3 12l3 3M21 12l-3-3M21 12l-3 3"/>'
+};
+var TOUR_ICO={
+  day:['book','pen','check','dots','sun','lr','layers','note','gear'],
+  week:['cal','pen','drag','sun'],
+  month:['cal','grid','drag','sun'],
+  year:['cal','grid','drag','sun'],
+  decade:['cal','grid','drag'],
+  nb:['layers','pen','dots','note'],
+  pins:['note','lr','drag']
+};
+var TOUR_INL={
+  lr:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l-6 6 6 6M15 6l6 6-6 6"/></svg>',
+  dots:'<svg viewBox="0 0 24 24" fill="currentColor"><circle cx="5.5" cy="12" r="1.8"/><circle cx="12" cy="12" r="1.8"/><circle cx="18.5" cy="12" r="1.8"/></svg>',
+  nb:NB_I
+};
+function tourRich(str){
+  var out=[],re=/\{(\w+)\}/g,last=0,m;
+  while((m=re.exec(str))){
+    if(m.index>last)out.push(str.slice(last,m.index));
+    if(TOUR_INL[m[1]])out.push(h('span',{class:'tinl','aria-hidden':'true',html:TOUR_INL[m[1]]}));
+    last=m.index+m[0].length;
+  }
+  if(last<str.length)out.push(str.slice(last));
+  return out;
+}
+function tourIc(key,i){
+  var n=(TOUR_ICO[key]||[])[i],d=n&&TOUR_IC[n];
+  return d?h('span',{class:'tic','aria-hidden':'true',html:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">'+d+'</svg>'}):null;
+}
+var tour=null,tourT=0;
+function tourFind(sels){
+  if(!sels)return null;
+  for(var i=0;i<sels.length;i++){
+    var l=document.querySelectorAll(sels[i]);
+    for(var j=0;j<l.length;j++){var r=l[j].getBoundingClientRect();if(r.width>1&&r.height>1)return l[j]}
+  }
+  return null;
+}
+function tourStart(key){
+  if(tour||!T.tour||!T.tour[key])return;
+  var a=document.activeElement;if(a&&a.blur&&a!==document.body)a.blur();
+  var root=h('div',{class:'tour',role:'dialog','aria-modal':'true','aria-label':T.tour[key][0][0]}),spot=h('div',{class:'tspot'}),card=h('div',{class:'tcard'});
+  root.appendChild(spot);root.appendChild(card);
+  ['touchmove','wheel'].forEach(function(ev){root.addEventListener(ev,function(e){if(e.cancelable)e.preventDefault()},{passive:false})});
+  document.body.appendChild(root);document.body.classList.add('touring');
+  tour={key:key,i:0,root:root,spot:spot,card:card,el:null};
+  document.addEventListener('keydown',tourKey,true);
+  window.addEventListener('resize',tourPlace);
+  window.addEventListener('scroll',tourPlace,true);
+  tourShow(0);
+}
+function tourEnd(){
+  if(!tour)return;
+  var k=tour.key;
+  document.removeEventListener('keydown',tourKey,true);
+  window.removeEventListener('resize',tourPlace);
+  window.removeEventListener('scroll',tourPlace,true);
+  tour.root.remove();document.body.classList.remove('touring');tour=null;
+  S.tours[k]=1;persist();
+}
+function tourKey(e){
+  if(!tour)return;
+  if(e.key==='Escape'){e.preventDefault();e.stopPropagation();tourEnd()}
+  else if(e.key==='ArrowRight'){e.preventDefault();e.stopPropagation();tourGo(1)}
+  else if(e.key==='ArrowLeft'){e.preventDefault();e.stopPropagation();tourGo(-1)}
+}
+function tourGo(d){
+  var n=T.tour[tour.key].length,i=tour.i+d;
+  if(i>=n){tourEnd();return}
+  if(i<0)return;
+  tourShow(i);
+}
+function tourShow(i){
+  tour.i=i;
+  var st=T.tour[tour.key],n=st.length,card=tour.card;
+  var el=tourFind(TOUR_SEL[tour.key][i]);tour.el=el;
+  if(el){
+    var r=el.getBoundingClientRect(),vh=window.innerHeight;
+    if((r.top<8||r.bottom>vh-8)&&!(el.closest&&el.closest('.pinwrap,.tabs,.nav'))){try{el.scrollIntoView({block:r.height>vh*.6?'start':'center'})}catch(x){}}
+  }
+  card.innerHTML='';
+  var dots=h('div',{class:'tdots'});
+  for(var k=0;k<n;k++)dots.appendChild(h('i',{class:k===i?'on':''}));
+  card.appendChild(dots);
+  card.appendChild(h('div',{class:'th'},[tourIc(tour.key,i),h('span',{text:st[i][0]})]));
+  var tp=st[i][1].split(/\s*\n\s*/);
+  card.appendChild(h('div',{class:'tt'},tourRich(tp[0])));
+  for(var q=1;q<tp.length;q++)card.appendChild(h('div',{class:'tt2'},tourRich(tp[q])));
+  var nx=h('button',{type:'button',class:'tnext',text:i===n-1?T.tourDone:T.tourNext,onclick:function(){tourGo(1)}});
+  var bar=h('div',{class:'tb'},[
+    h('button',{type:'button',class:'tskip',text:T.tourSkip,onclick:tourEnd}),
+    h('span',{class:'sp'}),
+    i>0?h('button',{type:'button',class:'tback',text:T.tourBack,onclick:function(){tourGo(-1)}}):null,
+    nx
+  ]);
+  card.appendChild(bar);
+  tourPlace();
+  try{nx.focus({preventScroll:true})}catch(x){}
+}
+function tourPlace(){
+  if(!tour)return;
+  var el=tour.el&&tour.el.isConnected?tour.el:tourFind(TOUR_SEL[tour.key][tour.i]);tour.el=el;
+  var vw=window.innerWidth,vh=window.innerHeight,card=tour.card,spot=tour.spot,cw=Math.min(360,vw-24);
+  card.style.width=cw+'px';
+  var ch=card.offsetHeight,left,top;
+  if(!el){
+    tour.root.classList.add('nospot');spot.style.display='none';
+    left=(vw-cw)/2;top=Math.max(12,(vh-ch)/2);
+  }else{
+    tour.root.classList.remove('nospot');spot.style.display='';
+    var r=el.getBoundingClientRect(),p=6,x=Math.max(3,r.left-p),y=Math.max(3,r.top-p),x2=Math.min(vw-3,r.right+p),y2=Math.min(vh-3,r.bottom+p);
+    spot.style.left=x+'px';spot.style.top=y+'px';spot.style.width=(x2-x)+'px';spot.style.height=(y2-y)+'px';
+    if(y2+12+ch<=vh-12)top=y2+12;
+    else if(y-12-ch>=12)top=y-12-ch;
+    else top=vh-ch-12;
+    left=Math.max(12,Math.min(vw-cw-12,(x+x2)/2-cw/2));
+  }
+  card.style.left=left+'px';card.style.top=top+'px';
+}
+function tourSoon(key){
+  if(tour){requestAnimationFrame(tourPlace);return}
+  clearTimeout(tourT);
+  tourT=setTimeout(function(){
+    if(tour||drag||window.__noTour)return;
+    var k=key||view;
+    if(S.tours[k]||!T.tour[k])return;
+    if(k==='pins'){if(sheet.hidden||!sheet.querySelector('.pinwrap'))return}
+    else if(!sheet.hidden||(popEl&&popEl.parentNode))return;
+    tourStart(k);
+  },450);
+}
 
 /* ---------- gestures ---------- */
 var pageEl=document.getElementById('page'),sx=null,sy=0,st=0,swAx=null,swVx=0,swLx=0,swLt=0;
@@ -4442,16 +4628,11 @@ document.addEventListener('visibilitychange',function(){
 if(document.fonts&&document.fonts.ready)document.fonts.ready.then(function(){fitAll();fitTitle()});
 window.addEventListener('resize',function(){fitAll();fitTitle()});
 
-var needWelcome=false;
-if(!S.seeded){
-  if(!S.syncOn&&!S.items.length&&!S.pins.length&&!S.nb.notes.length&&!S.projects.length)needWelcome=true;
-  S.seeded=true;persist();
-}
+if(!S.seeded){S.seeded=true;persist()}
 document.getElementById('gear').setAttribute('aria-label',T.settings);
 document.getElementById('pinBtn').setAttribute('aria-label',T.pins);
 buildTabs();render();
 syncBtnUpdate();
-if(needWelcome)setTimeout(openWelcome,350);
 
 if(SYNC_OK&&S.syncOn)setTimeout(function(){syncNow(true,true)},600);
 })();
