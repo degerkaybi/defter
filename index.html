@@ -21,7 +21,7 @@ img{max-width:100%}
 <title>Yarın Defteri</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=Inter:wght@400;500;600&family=Jost:wght@400&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=Inter:wght@400;500;600&family=Jost:wght@400&family=Noto+Emoji:wght@400;600&display=swap">
 <style>
 /* Layout: one calm notebook page made of soft cards on ruled paper; a floating tab bar sits at the bottom. */
 :root{
@@ -72,6 +72,9 @@ img{max-width:100%}
   color-scheme:dark;
 }
 :root[data-font="plain"]{--hand:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;--fs:.66}
+:root[data-emoji="mono"]{--hand:'Caveat','Noto Emoji','Bradley Hand','Segoe Print','Comic Sans MS',cursive;--sans:'Inter','Noto Emoji',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif}
+:root[data-emoji="mono"][data-font="plain"]{--hand:'Inter','Noto Emoji',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif}
+:root[data-emoji="gray"] .emo{filter:grayscale(1)}
 
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 body{
@@ -855,6 +858,7 @@ select option:disabled{color:var(--ink-faint)}
 .dbody{padding-bottom:2px}
 .slabel{font:600 12px/1 var(--sans);letter-spacing:.02em;color:var(--blue);padding:16px 4px 6px;border-top:1px solid var(--rule)}
 .srow2{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:10px 4px;border-top:1px solid var(--rule)}
+.srow2.one{grid-template-columns:1fr}
 .srow>span{white-space:nowrap}
 .srow .seg button{padding:8px 10px;font-size:13px}
 .scell{display:flex;flex-direction:column;align-items:stretch;gap:8px;min-width:0;font:15px/1.2 var(--sans)}
@@ -1111,7 +1115,7 @@ var TX={
     merge:'Birleştirin, ikisini de tutun',takeRemote:'Drive’dakini alın',takeLocal:'Bu cihazdakini gönderin',
     about:'Hakkında',
     aboutIntro:'Yarın Defteri, zamanı ve günleri daha iyi algılamak ve yönetebilmek için ortaya çıktı.\nGün, hafta, ay, yıl ve 10 yıl, aynı işe farklı ölçeklerden bakmanızı sağlayan birbirine bağlı görünümlerdir; böylece bugünü daha geniş bir zaman bağlamında görürsünüz. Her işin bir güne sığması gerekmez; ne zaman yapacağını bilmediğiniz görevleri uygun zaman aralığına (\u201cbu hafta\u201d, \u201cbu ay\u201d, \u201cbu yıl\u201d) bırakıp vakti gelince bir güne taşıyabilirsiniz. Böylece işleri tek güne sıkıştırmak yerine zamana yayar, yetişemediklerinizi ertelersiniz.\nSürükleme bu işin kalbidir: görevi tutup farklı bir zamana ya da alttaki bir görünüme bırakarak ilgili tarihe taşıyabilir ya da defter ikonuna bırakıp arşivleyebilirsiniz. Benzer şekilde, Zamansız Notlar\u2019daki notları da sürükleyerek sekmelere veya çöpe taşıyabilirsiniz.\nBir zamanı olmayan notlar için post-it ve Zamansız Notlar var; fikirler, hatırlanacaklar ve kenara koyduğunuzuz işler orada bekler.',
-    howTitle:'Nasıl kullanılır',liteGo:'Rafine moda geçin',liteOff:'Normal moda dönün',
+    howTitle:'Nasıl kullanılır',emoCol:'Renkli emoji',emoMono:'Çizgi emoji',emoGray:'Gri emoji',backExit:'Çıkmak için bir kez daha geri basın',liteGo:'Rafine moda geçin',liteOff:'Normal moda dönün',
     helpIntro:'Yarın Defteri, kâğıt defterin boş bıraktığı yerleri tamamlamak için yapıldı: yazın, işaretleyin, yetişmeyeni yarına bırakın. Gün, hafta, ay, yıl ve 10 yıl sayfaları birbirine bağlıdır; hepsinde hem liste hem takvim gibi planlayabilirsiniz. Tarihi belli olmayan işi \u201cbu hafta\u201d ya da \u201cbu ay içinde\u201d diye yazarsınız; kâğıt parçası gibi kullan-at notlar için post-it, kalıcı fikirler için Zamansız Notlar, uzun işler için projeler var.',
     helpTabs:['Yarın Defteri','Post-it','Zamansız Notlar'],
     helpPin:[
@@ -1227,7 +1231,7 @@ var TX={
     merge:'Merge, keep both',takeRemote:'Use the one in Drive',takeLocal:'Send this device’s',
     about:'About',
     aboutIntro:'Yarın Defteri (Tomorrow\u2019s Notebook) came about to perceive and manage time and days better.\nThe day, week, month, year and 10-year pages are connected views of the same work: you look at the same task at different scales and see today in a wider context of time. Not every task has to fit into a day; tasks you don\u2019t know when to do can wait in a suitable stretch of time (\u201cthis week\u201d, \u201cthis month\u201d, \u201cthis year\u201d) and move to a day when their time comes. That way you spread work across time instead of squeezing it into one day, and you postpone what you couldn\u2019t get to.\nDragging is the heart of it: hold a task and drop it on another time or on a view below to move it to that date, or drop it on the notebook icon to archive it. In the same way, you can drag notes in Timeless Notes onto tabs or the trash.\nFor notes that have no time attached there are post-its and Timeless Notes; ideas, things to remember and tasks you set aside wait there.',
-    howTitle:'How to use',liteGo:'Switch to Refined mode',liteOff:'Back to the normal mode',
+    howTitle:'How to use',emoCol:'Color emoji',emoMono:'Line emoji',emoGray:'Gray emoji',backExit:'Press back again to exit',liteGo:'Switch to Refined mode',liteOff:'Back to the normal mode',
     helpIntro:'Tomorrow\u2019s Notebook was made to fill the gaps a paper notebook leaves: write, tick things off, and leave what did not fit for tomorrow. The day, week, month, year and 10-year pages are connected, and on all of them you can plan like in a list and a calendar at once. An item with no date can be noted as \u201csometime this week\u201d or \u201cthis month\u201d; there are post-its for throwaway notes, Timeless Notes for ideas you want to keep, and projects for long work.',
     helpTabs:['Notebook','Post-it','Timeless Notes'],
     helpPin:[
@@ -1421,14 +1425,14 @@ function load(){
     var raw=localStorage.getItem(STORE);
     if(raw){
       var o=JSON.parse(raw);
-      return {lang:o&&o.lang==='tr'?'tr':'en',font:o&&o.font==='hand'?'hand':'plain',pinDark:(o&&typeof o.pinDark==='boolean')?o.pinDark:null,seeded:!!(o&&o.seeded),tours:(o&&o.tours&&typeof o.tours==='object'&&!Array.isArray(o.tours))?o.tours:{},mfold:(o&&o.mfold&&typeof o.mfold==='object'&&!Array.isArray(o.mfold))?o.mfold:{},decadeStart:(o&&typeof o.decadeStart==='number')?o.decadeStart:new Date().getFullYear(),zoom:zoomOk(o&&o.zoom),theme:(o&&(o.theme==='light'||o.theme==='dark'))?o.theme:null,yrev:!!(o&&o.yrev),lite:!!(o&&o.lite),hideDone:!!(o&&o.hideDone),syncOn:!!(o&&o.syncOn),syncRev:(o&&typeof o.syncRev==='number')?o.syncRev:null,dirty:!!(o&&o.dirty),syncLast:(o&&typeof o.syncLast==='number')?o.syncLast:0,pins:cleanPins(o&&o.pins)||[],nb:cleanNb(o&&o.nb),projects:cleanProjects(o&&o.projects)||[],items:clean(o)||[]};
+      return {lang:o&&o.lang==='tr'?'tr':'en',font:o&&o.font==='hand'?'hand':'plain',emoji:(o&&(o.emoji==='color'||o.emoji==='gray'))?o.emoji:'mono',pinDark:(o&&typeof o.pinDark==='boolean')?o.pinDark:null,seeded:!!(o&&o.seeded),tours:(o&&o.tours&&typeof o.tours==='object'&&!Array.isArray(o.tours))?o.tours:{},mfold:(o&&o.mfold&&typeof o.mfold==='object'&&!Array.isArray(o.mfold))?o.mfold:{},decadeStart:(o&&typeof o.decadeStart==='number')?o.decadeStart:new Date().getFullYear(),zoom:zoomOk(o&&o.zoom),theme:(o&&(o.theme==='light'||o.theme==='dark'))?o.theme:null,yrev:!!(o&&o.yrev),lite:!!(o&&o.lite),hideDone:!!(o&&o.hideDone),syncOn:!!(o&&o.syncOn),syncRev:(o&&typeof o.syncRev==='number')?o.syncRev:null,dirty:!!(o&&o.dirty),syncLast:(o&&typeof o.syncLast==='number')?o.syncLast:0,pins:cleanPins(o&&o.pins)||[],nb:cleanNb(o&&o.nb),projects:cleanProjects(o&&o.projects)||[],items:clean(o)||[]};
     }
   }catch(e){storageOK=false}
-  return {lang:'en',font:'plain',pinDark:null,seeded:false,tours:{},mfold:{},decadeStart:new Date().getFullYear(),zoom:1,theme:null,lite:false,yrev:false,hideDone:false,syncOn:false,syncRev:null,dirty:false,syncLast:0,pins:[],nb:{tabs:[],notes:[]},projects:[],items:[]};
+  return {lang:'en',font:'plain',emoji:'mono',pinDark:null,seeded:false,tours:{},mfold:{},decadeStart:new Date().getFullYear(),zoom:1,theme:null,lite:false,yrev:false,hideDone:false,syncOn:false,syncRev:null,dirty:false,syncLast:0,pins:[],nb:{tabs:[],notes:[]},projects:[],items:[]};
 }
 function persist(){
   clearTimeout(saveTimer);saveTimer=null;
-  try{localStorage.setItem(STORE,JSON.stringify({v:1,lang:S.lang,font:S.font,pinDark:S.pinDark,seeded:S.seeded,tours:S.tours,mfold:S.mfold,zoom:S.zoom,theme:S.theme,yrev:S.yrev,lite:S.lite,hideDone:S.hideDone,syncOn:S.syncOn,syncRev:S.syncRev,dirty:S.dirty,syncLast:S.syncLast,decadeStart:S.decadeStart,pins:S.pins,nb:realNb(),projects:S.projects,items:realItems()}));}
+  try{localStorage.setItem(STORE,JSON.stringify({v:1,lang:S.lang,font:S.font,emoji:S.emoji,pinDark:S.pinDark,seeded:S.seeded,tours:S.tours,mfold:S.mfold,zoom:S.zoom,theme:S.theme,yrev:S.yrev,lite:S.lite,hideDone:S.hideDone,syncOn:S.syncOn,syncRev:S.syncRev,dirty:S.dirty,syncLast:S.syncLast,decadeStart:S.decadeStart,pins:S.pins,nb:realNb(),projects:S.projects,items:realItems()}));}
   catch(e){storageOK=false;if(!warned){warned=true;toast(T.noStore)}}
 }
 function realItems(){return S.items.filter(function(x){return !x._tour})}
@@ -1439,7 +1443,7 @@ window.addEventListener('pagehide',function(){if(saveTimer)persist()});
 
 var S=load(),T=TX[S.lang],pastOpen=false,view='day',anchor=today(),lastToday=dkey(today());
 document.documentElement.lang=S.lang;
-document.documentElement.setAttribute('data-font',S.font);
+document.documentElement.setAttribute('data-font',S.font);document.documentElement.setAttribute('data-emoji',S.emoji||'mono');
 function isDark(){
   if(S&&S.theme)return S.theme==='dark';
   try{var c=getComputedStyle(document.body).backgroundColor.match(/[\d.]+/g);if(c&&c.length>=3&&(c.length<4||+c[3]>0.5))return (0.2126*c[0]+0.7152*c[1]+0.0722*c[2])<128}catch(e){}
@@ -1572,9 +1576,19 @@ function dispText(t){
   return str;
 }
 function tblById(id){return S.nb.notes.filter(function(x){return x.id===id&&x.tb})[0]||null}
+var EMO_RE;try{EMO_RE=new RegExp('(?:\\p{Extended_Pictographic}(?:\\uFE0F|\\u200D\\p{Extended_Pictographic}|[\\u{1F3FB}-\\u{1F3FF}])*|[\\u{1F1E6}-\\u{1F1FF}]{2}|[#*0-9]\\uFE0F?\\u20E3)','gu')}catch(e){EMO_RE=/$^/g}
 function fmtInto(el,str,rich,depth){
   var re=new RegExp(FMT_SRC,'g'),last=0,m;
-  function plain(seg){if(!seg)return;if(rich)linkifyInto(el,seg);else el.appendChild(document.createTextNode(seg))}
+  function plain(seg){
+    if(!seg)return;
+    if(rich){linkifyInto(el,seg);return}
+    var last2=0,em;EMO_RE.lastIndex=0;
+    while((em=EMO_RE.exec(seg))){
+      if(em.index>last2)el.appendChild(document.createTextNode(seg.slice(last2,em.index)));
+      el.appendChild(h('span',{class:'emo',text:em[0]}));last2=em.index+em[0].length;
+    }
+    if(last2<seg.length)el.appendChild(document.createTextNode(seg.slice(last2)));
+  }
   while((m=re.exec(str))){
     plain(str.slice(last,m.index));
     if(m[1]!=null){
@@ -2275,6 +2289,49 @@ function buildTabs(){
   box.appendChild(h('button',{class:'tab tabnb'+(view==='nb'?' on':''),type:'button',html:NB_I,'data-layer':'nb','aria-label':T.nb,title:T.nb,'aria-current':view==='nb'?'page':null,onclick:function(){openNotebook()}}));
 }
 var lastNav='';
+/* ---------- back button: step back through views, close sheets, then ask before leaving ---------- */
+var histInit,histV,histCur,histRestoring,histArmed,histArmT,histSkip;
+function hCur(){return S.lite?{v:lv,a:dkey(la||anchor)}:{v:view,a:dkey(anchor)}}
+function histSync(){
+  if(histRestoring)return;
+  try{
+    var c=hCur();
+    if(!histInit){histInit=true;history.replaceState({d:0},'');history.pushState({d:1,c:c},'');histV=c.v;c.lite=S.lite;histCur=c;return}
+    var d=(history.state&&history.state.d)||1;
+    if(c.v!==histV&&!(histCur&&S.lite!==!!histCur.lite)){history.pushState({d:d+1,c:c},'');histV=c.v}
+    else if(histCur&&c.a!==histCur.a)history.replaceState({d:d,c:c},'');
+    else if(c.v!==histV){history.replaceState({d:d,c:c},'');histV=c.v}
+    c.lite=S.lite;histCur=c;
+  }catch(e){}
+}
+function histOverlay(){return !!(tour||(!sheet.hidden)||(popEl&&popEl.parentNode))}
+function histCloseOverlay(){if(tour)tourEnd();if(popEl)popClose();if(!sheet.hidden)closeSheet()}
+function histApply(c){
+  histRestoring=true;
+  try{
+    if(S.lite){if(['day','week','month','year'].indexOf(c.v)>=0){lv=c.v;la=pd(c.a);ltRender()}}
+    else{view=c.v;anchor=pd(c.a);render();window.scrollTo(0,0)}
+    histV=c.v;histCur={v:c.v,a:c.a,lite:S.lite};
+  }finally{histRestoring=false}
+}
+window.addEventListener('popstate',function(e){
+  if(histSkip){histSkip=false;return}
+  var st=e.state;if(!st||typeof st.d!=='number')return;
+  try{
+    if(histOverlay()){histCloseOverlay();histSkip=true;history.go(1);return}
+    if(st.d===0){
+      if(histArmed){
+        histArmed=0;clearTimeout(histArmT);hideToast();
+        history.back();
+        setTimeout(function(){try{history.pushState({d:1,c:histCur},'')}catch(x){}},250);
+        return;
+      }
+      histArmed=1;clearTimeout(histArmT);histArmT=setTimeout(function(){histArmed=0},2600);
+      toast(T.backExit);histSkip=true;history.go(1);return;
+    }
+    if(st.c)histApply(st.c);
+  }catch(x){}
+});
 function render(){
   var nk=view+'|'+keyOf(view,anchor);if(nk!==lastNav){lastNav=nk;justDone={};revealDone=false}
   purgeTrash();ensureReps();syncProjects();hidN=0;doneN=0;
@@ -2300,6 +2357,7 @@ function render(){
   }
   pinB.hidden=false;fitAll();fitTitle();tourSoon();
   if(S.lite){ltShow();var ae0=document.activeElement,lb0=document.getElementById('lite');if(!(ae0&&ae0.tagName==='TEXTAREA'&&lb0.contains(ae0)&&!ltD))ltRender()}
+  histSync();
 }
 
 /* ---------- sheets ---------- */
@@ -4099,6 +4157,10 @@ function setFont(f){
   S.font=f;document.documentElement.setAttribute('data-font',f);persist();
   render();openSettings();
 }
+function setEmoji(m){
+  S.emoji=m;document.documentElement.setAttribute('data-emoji',m);persist();
+  render();openSettings();
+}
 function setZoom(z){
   S.zoom=z;document.documentElement.style.setProperty('--zm',String(z));persist();
   render();openSettings();
@@ -4265,6 +4327,8 @@ function openSettings(){
     h('button',{type:'button',text:'A+','aria-label':'+',disabled:zi>=ZOOMS.length-1,onclick:function(){setZoom(ZOOMS[zi+1])}})
   ])]);
   p.appendChild(h('div',{class:'srow2'},[fontCell,sizeCell]));
+  function segE(m,name){return h('button',{type:'button',text:name,'aria-pressed':String((S.emoji||'mono')===m),onclick:function(){if((S.emoji||'mono')!==m)setEmoji(m)}})}
+  p.appendChild(h('div',{class:'srow2 one'},[h('div',{class:'scell'},[h('div',{class:'seg'},[segE('color',T.emoCol),segE('mono',T.emoMono),segE('gray',T.emoGray)])])]));
   
   var archB=h('button',{class:'hopen',type:'button',onclick:function(){openArchive('arch')}},[h('span',{text:T.archive}),h('span',{html:ARCH_I})]);
   var trashB=h('button',{class:'hopen',type:'button',onclick:function(){openArchive('trash')}},[h('span',{text:T.trashS}),h('span',{html:TRASH_I})]);
@@ -4313,7 +4377,7 @@ function openSettings(){
   p.appendChild(h('div',{class:'slabel',text:T.about}));
   T.aboutIntro.split('\n').forEach(function(t,n){
     p.appendChild(h('p',{class:'snote',text:t}));
-    if(n===1&&!S.lite)p.appendChild(h('p',{class:'snote slinks'},[h('button',{class:'slink',type:'button',onclick:function(){var k=view;closeSheet();setTimeout(function(){tourStart(k)},260)}},[T.tourMore+' \u203a'])]));
+    if(n===0&&!S.lite)p.appendChild(h('p',{class:'snote slinks'},[h('button',{class:'slink',type:'button',onclick:function(){var k=view;closeSheet();setTimeout(function(){tourStart(k)},260)}},[T.tourMore+' \u203a'])]));
   });
   p.appendChild(h('p',{class:'snote slinks'},[h('button',{class:'slink',type:'button',onclick:openHelp,text:T.howTitle})]));
   p.appendChild(h('p',{class:'snote acredit'},[T.credit[0],h('a',{href:'https://www.instagram.com/kaybid/',target:'_blank',rel:'noopener noreferrer',text:'@kaybid'}),T.credit[1]]));
@@ -4962,6 +5026,7 @@ function ltRender(){
   app.appendChild(top);app.appendChild(ltNav());
   (lv==='day'?ltDay:lv==='week'?ltWeek:lv==='month'?ltMonth:ltYear)(app);
   ltFitAll();box.scrollTop=st;
+  histSync();
 }
 function ltShow(){
   var box=document.getElementById('lite');
