@@ -21,7 +21,7 @@ img{max-width:100%}
 <title>Yarın Defteri</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=Inter:wght@400;500;600&family=Jost:wght@400&family=Noto+Emoji:wght@400;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=Inter:wght@400;500;600&family=Jost:wght@400&display=swap">
 <style>
 /* Layout: one calm notebook page made of soft cards on ruled paper; a floating tab bar sits at the bottom. */
 :root{
@@ -72,9 +72,6 @@ img{max-width:100%}
   color-scheme:dark;
 }
 :root[data-font="plain"]{--hand:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;--fs:.66}
-:root[data-emoji="mono"]{--hand:'Caveat','Noto Emoji','Bradley Hand','Segoe Print','Comic Sans MS',cursive;--sans:'Inter','Noto Emoji',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif}
-:root[data-emoji="mono"][data-font="plain"]{--hand:'Inter','Noto Emoji',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif}
-:root[data-emoji="gray"] .emo{filter:grayscale(1)}
 
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 body{
@@ -858,7 +855,6 @@ select option:disabled{color:var(--ink-faint)}
 .dbody{padding-bottom:2px}
 .slabel{font:600 12px/1 var(--sans);letter-spacing:.02em;color:var(--blue);padding:16px 4px 6px;border-top:1px solid var(--rule)}
 .srow2{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:10px 4px;border-top:1px solid var(--rule)}
-.srow2.one{grid-template-columns:1fr}
 .srow>span{white-space:nowrap}
 .srow .seg button{padding:8px 10px;font-size:13px}
 .scell{display:flex;flex-direction:column;align-items:stretch;gap:8px;min-width:0;font:15px/1.2 var(--sans)}
@@ -1071,7 +1067,7 @@ body.lt-dragging{-webkit-user-select:none;user-select:none;cursor:grabbing}
 </style>
 
 <div class="app">
-  <div id="topHold" hidden><button class="gear pinbtn" id="pinBtn" type="button" aria-label="Zamansız Notlar"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path class="pn" d="M5 4.5h14v9.5l-5.5 5.5H5z"/><path d="M13.5 19.5v-3.5a2 2 0 0 1 2-2H19" stroke="var(--ink-soft)"/><path d="M8.5 9h7M8.5 12.2h4" stroke="var(--ink-soft)" opacity=".7"/></svg></button><button class="gear" id="gear" type="button" aria-label="Ayarlar"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M4 7h10M18 7h2M4 17h2M10 17h10"/><circle cx="16" cy="7" r="2"/><circle cx="8" cy="17" r="2"/></svg></button></div>
+  <div id="topHold" hidden><button class="gear pinbtn" id="pinBtn" type="button" aria-label="Zamansız Notlar"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path class="pn" d="M5 4.5h14v9.5l-5.5 5.5H5z"/><path d="M13.5 19.5v-3.5a2 2 0 0 1 2-2H19" stroke="var(--ink-soft)"/><g transform="translate(11.4 10.6) scale(.5) translate(-12 -12)" stroke="var(--pin-ink)" style="stroke:color-mix(in srgb,var(--pin-ink) 74%,var(--pin))" stroke-width="3.2"><path d="M6.5 3.5h11M6.5 20.5h11"/><path d="M8 3.5v3.8L12 12l-4 4.7v3.8M16 3.5v3.8L12 12l4 4.7v3.8"/></g></svg></button><button class="gear" id="gear" type="button" aria-label="Ayarlar"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M4 7h10M18 7h2M4 17h2M10 17h10"/><circle cx="16" cy="7" r="2"/><circle cx="8" cy="17" r="2"/></svg></button></div>
   <main id="page"></main>
 </div>
 <nav class="tabs" aria-label="Yarın Defteri"><div class="bar"><div class="tabs-in" id="tabs"></div>
@@ -1115,7 +1111,7 @@ var TX={
     merge:'Birleştirin, ikisini de tutun',takeRemote:'Drive’dakini alın',takeLocal:'Bu cihazdakini gönderin',
     about:'Hakkında',
     aboutIntro:'Yarın Defteri, zamanı ve günleri daha iyi algılamak ve yönetebilmek için ortaya çıktı.\nGün, hafta, ay, yıl ve 10 yıl, aynı işe farklı ölçeklerden bakmanızı sağlayan birbirine bağlı görünümlerdir; böylece bugünü daha geniş bir zaman bağlamında görürsünüz. Her işin bir güne sığması gerekmez; ne zaman yapacağını bilmediğiniz görevleri uygun zaman aralığına (\u201cbu hafta\u201d, \u201cbu ay\u201d, \u201cbu yıl\u201d) bırakıp vakti gelince bir güne taşıyabilirsiniz. Böylece işleri tek güne sıkıştırmak yerine zamana yayar, yetişemediklerinizi ertelersiniz.\nSürükleme bu işin kalbidir: görevi tutup farklı bir zamana ya da alttaki bir görünüme bırakarak ilgili tarihe taşıyabilir ya da defter ikonuna bırakıp arşivleyebilirsiniz. Benzer şekilde, Zamansız Notlar\u2019daki notları da sürükleyerek sekmelere veya çöpe taşıyabilirsiniz.\nBir zamanı olmayan notlar için post-it ve Zamansız Notlar var; fikirler, hatırlanacaklar ve kenara koyduğunuzuz işler orada bekler.',
-    howTitle:'Nasıl kullanılır',emoCol:'Renkli emoji',emoMono:'Çizgi emoji',emoGray:'Gri emoji',backExit:'Çıkmak için bir kez daha geri basın',liteGo:'Rafine moda geçin',liteOff:'Normal moda dönün',
+    howTitle:'Nasıl kullanılır',backExit:'Çıkmak için bir kez daha geri basın',liteGo:'Rafine moda geçin',liteOff:'Normal moda dönün',
     helpIntro:'Yarın Defteri, kâğıt defterin boş bıraktığı yerleri tamamlamak için yapıldı: yazın, işaretleyin, yetişmeyeni yarına bırakın. Gün, hafta, ay, yıl ve 10 yıl sayfaları birbirine bağlıdır; hepsinde hem liste hem takvim gibi planlayabilirsiniz. Tarihi belli olmayan işi \u201cbu hafta\u201d ya da \u201cbu ay içinde\u201d diye yazarsınız; kâğıt parçası gibi kullan-at notlar için post-it, kalıcı fikirler için Zamansız Notlar, uzun işler için projeler var.',
     helpTabs:['Yarın Defteri','Post-it','Zamansız Notlar'],
     helpPin:[
@@ -1231,7 +1227,7 @@ var TX={
     merge:'Merge, keep both',takeRemote:'Use the one in Drive',takeLocal:'Send this device’s',
     about:'About',
     aboutIntro:'Yarın Defteri (Tomorrow\u2019s Notebook) came about to perceive and manage time and days better.\nThe day, week, month, year and 10-year pages are connected views of the same work: you look at the same task at different scales and see today in a wider context of time. Not every task has to fit into a day; tasks you don\u2019t know when to do can wait in a suitable stretch of time (\u201cthis week\u201d, \u201cthis month\u201d, \u201cthis year\u201d) and move to a day when their time comes. That way you spread work across time instead of squeezing it into one day, and you postpone what you couldn\u2019t get to.\nDragging is the heart of it: hold a task and drop it on another time or on a view below to move it to that date, or drop it on the notebook icon to archive it. In the same way, you can drag notes in Timeless Notes onto tabs or the trash.\nFor notes that have no time attached there are post-its and Timeless Notes; ideas, things to remember and tasks you set aside wait there.',
-    howTitle:'How to use',emoCol:'Color emoji',emoMono:'Line emoji',emoGray:'Gray emoji',backExit:'Press back again to exit',liteGo:'Switch to Refined mode',liteOff:'Back to the normal mode',
+    howTitle:'How to use',backExit:'Press back again to exit',liteGo:'Switch to Refined mode',liteOff:'Back to the normal mode',
     helpIntro:'Tomorrow\u2019s Notebook was made to fill the gaps a paper notebook leaves: write, tick things off, and leave what did not fit for tomorrow. The day, week, month, year and 10-year pages are connected, and on all of them you can plan like in a list and a calendar at once. An item with no date can be noted as \u201csometime this week\u201d or \u201cthis month\u201d; there are post-its for throwaway notes, Timeless Notes for ideas you want to keep, and projects for long work.',
     helpTabs:['Notebook','Post-it','Timeless Notes'],
     helpPin:[
@@ -1425,14 +1421,14 @@ function load(){
     var raw=localStorage.getItem(STORE);
     if(raw){
       var o=JSON.parse(raw);
-      return {lang:o&&o.lang==='tr'?'tr':'en',font:o&&o.font==='hand'?'hand':'plain',emoji:(o&&(o.emoji==='color'||o.emoji==='gray'))?o.emoji:'mono',pinDark:(o&&typeof o.pinDark==='boolean')?o.pinDark:null,seeded:!!(o&&o.seeded),tours:(o&&o.tours&&typeof o.tours==='object'&&!Array.isArray(o.tours))?o.tours:{},mfold:(o&&o.mfold&&typeof o.mfold==='object'&&!Array.isArray(o.mfold))?o.mfold:{},decadeStart:(o&&typeof o.decadeStart==='number')?o.decadeStart:new Date().getFullYear(),zoom:zoomOk(o&&o.zoom),theme:(o&&(o.theme==='light'||o.theme==='dark'))?o.theme:null,yrev:!!(o&&o.yrev),lite:!!(o&&o.lite),hideDone:!!(o&&o.hideDone),syncOn:!!(o&&o.syncOn),syncRev:(o&&typeof o.syncRev==='number')?o.syncRev:null,dirty:!!(o&&o.dirty),syncLast:(o&&typeof o.syncLast==='number')?o.syncLast:0,pins:cleanPins(o&&o.pins)||[],nb:cleanNb(o&&o.nb),projects:cleanProjects(o&&o.projects)||[],items:clean(o)||[]};
+      return {lang:o&&o.lang==='tr'?'tr':'en',font:o&&o.font==='hand'?'hand':'plain',pinDark:(o&&typeof o.pinDark==='boolean')?o.pinDark:null,seeded:!!(o&&o.seeded),tours:(o&&o.tours&&typeof o.tours==='object'&&!Array.isArray(o.tours))?o.tours:{},mfold:(o&&o.mfold&&typeof o.mfold==='object'&&!Array.isArray(o.mfold))?o.mfold:{},decadeStart:(o&&typeof o.decadeStart==='number')?o.decadeStart:new Date().getFullYear(),zoom:zoomOk(o&&o.zoom),theme:(o&&(o.theme==='light'||o.theme==='dark'))?o.theme:null,yrev:!!(o&&o.yrev),lite:!!(o&&o.lite),hideDone:!!(o&&o.hideDone),syncOn:!!(o&&o.syncOn),syncRev:(o&&typeof o.syncRev==='number')?o.syncRev:null,dirty:!!(o&&o.dirty),syncLast:(o&&typeof o.syncLast==='number')?o.syncLast:0,pins:cleanPins(o&&o.pins)||[],nb:cleanNb(o&&o.nb),projects:cleanProjects(o&&o.projects)||[],items:clean(o)||[]};
     }
   }catch(e){storageOK=false}
-  return {lang:'en',font:'plain',emoji:'mono',pinDark:null,seeded:false,tours:{},mfold:{},decadeStart:new Date().getFullYear(),zoom:1,theme:null,lite:false,yrev:false,hideDone:false,syncOn:false,syncRev:null,dirty:false,syncLast:0,pins:[],nb:{tabs:[],notes:[]},projects:[],items:[]};
+  return {lang:'en',font:'plain',pinDark:null,seeded:false,tours:{},mfold:{},decadeStart:new Date().getFullYear(),zoom:1,theme:null,lite:false,yrev:false,hideDone:false,syncOn:false,syncRev:null,dirty:false,syncLast:0,pins:[],nb:{tabs:[],notes:[]},projects:[],items:[]};
 }
 function persist(){
   clearTimeout(saveTimer);saveTimer=null;
-  try{localStorage.setItem(STORE,JSON.stringify({v:1,lang:S.lang,font:S.font,emoji:S.emoji,pinDark:S.pinDark,seeded:S.seeded,tours:S.tours,mfold:S.mfold,zoom:S.zoom,theme:S.theme,yrev:S.yrev,lite:S.lite,hideDone:S.hideDone,syncOn:S.syncOn,syncRev:S.syncRev,dirty:S.dirty,syncLast:S.syncLast,decadeStart:S.decadeStart,pins:S.pins,nb:realNb(),projects:S.projects,items:realItems()}));}
+  try{localStorage.setItem(STORE,JSON.stringify({v:1,lang:S.lang,font:S.font,pinDark:S.pinDark,seeded:S.seeded,tours:S.tours,mfold:S.mfold,zoom:S.zoom,theme:S.theme,yrev:S.yrev,lite:S.lite,hideDone:S.hideDone,syncOn:S.syncOn,syncRev:S.syncRev,dirty:S.dirty,syncLast:S.syncLast,decadeStart:S.decadeStart,pins:S.pins,nb:realNb(),projects:S.projects,items:realItems()}));}
   catch(e){storageOK=false;if(!warned){warned=true;toast(T.noStore)}}
 }
 function realItems(){return S.items.filter(function(x){return !x._tour})}
@@ -1443,7 +1439,7 @@ window.addEventListener('pagehide',function(){if(saveTimer)persist()});
 
 var S=load(),T=TX[S.lang],pastOpen=false,view='day',anchor=today(),lastToday=dkey(today());
 document.documentElement.lang=S.lang;
-document.documentElement.setAttribute('data-font',S.font);document.documentElement.setAttribute('data-emoji',S.emoji||'mono');
+document.documentElement.setAttribute('data-font',S.font);
 function isDark(){
   if(S&&S.theme)return S.theme==='dark';
   try{var c=getComputedStyle(document.body).backgroundColor.match(/[\d.]+/g);if(c&&c.length>=3&&(c.length<4||+c[3]>0.5))return (0.2126*c[0]+0.7152*c[1]+0.0722*c[2])<128}catch(e){}
@@ -1576,19 +1572,9 @@ function dispText(t){
   return str;
 }
 function tblById(id){return S.nb.notes.filter(function(x){return x.id===id&&x.tb})[0]||null}
-var EMO_RE;try{EMO_RE=new RegExp('(?:\\p{Extended_Pictographic}(?:\\uFE0F|\\u200D\\p{Extended_Pictographic}|[\\u{1F3FB}-\\u{1F3FF}])*|[\\u{1F1E6}-\\u{1F1FF}]{2}|[#*0-9]\\uFE0F?\\u20E3)','gu')}catch(e){EMO_RE=/$^/g}
 function fmtInto(el,str,rich,depth){
   var re=new RegExp(FMT_SRC,'g'),last=0,m;
-  function plain(seg){
-    if(!seg)return;
-    if(rich){linkifyInto(el,seg);return}
-    var last2=0,em;EMO_RE.lastIndex=0;
-    while((em=EMO_RE.exec(seg))){
-      if(em.index>last2)el.appendChild(document.createTextNode(seg.slice(last2,em.index)));
-      el.appendChild(h('span',{class:'emo',text:em[0]}));last2=em.index+em[0].length;
-    }
-    if(last2<seg.length)el.appendChild(document.createTextNode(seg.slice(last2)));
-  }
+  function plain(seg){if(!seg)return;if(rich)linkifyInto(el,seg);else el.appendChild(document.createTextNode(seg))}
   while((m=re.exec(str))){
     plain(str.slice(last,m.index));
     if(m[1]!=null){
@@ -2280,7 +2266,7 @@ function pageYear(){
 }
 
 /* ---------- tabs + render ---------- */
-var NB_I='<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11a1.5 1.5 0 0 1 1.5 1.5v14a1.5 1.5 0 0 1-1.5 1.5h-11z"/><path d="M6.5 3.5v17"/><path d="M13.5 3.5v6l1.5-1.2 1.5 1.2v-6"/><path d="M9.5 13.5h6M9.5 16.5h4" opacity=".7"/></svg>';
+var NB_I='<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11a1.5 1.5 0 0 1 1.5 1.5v14a1.5 1.5 0 0 1-1.5 1.5h-11z"/><path d="M6.5 3.5v17"/><path transform="translate(13 12) scale(.4) translate(-12 -12)" stroke-width="4" d="M18.178 8c5.096 0 5.096 8 0 8-5.095 0-7.133-8-12.739-8-4.585 0-4.585 8 0 8 5.606 0 7.644-8 12.74-8z"/></svg>';
 function buildTabs(){
   var box=document.getElementById('tabs');box.innerHTML='';
   LAYERS.forEach(function(l){
@@ -4157,10 +4143,6 @@ function setFont(f){
   S.font=f;document.documentElement.setAttribute('data-font',f);persist();
   render();openSettings();
 }
-function setEmoji(m){
-  S.emoji=m;document.documentElement.setAttribute('data-emoji',m);persist();
-  render();openSettings();
-}
 function setZoom(z){
   S.zoom=z;document.documentElement.style.setProperty('--zm',String(z));persist();
   render();openSettings();
@@ -4198,7 +4180,7 @@ function openHelp(){
   ];
   var cols=h('div',{class:'hcols'});
   var HI_PIN=[
-    G('<path d="M5 4.5h14v9.5l-5.5 5.5H5z"/><path d="M13.5 19.5V14H19"/>'),
+    G('<path d="M5 4.5h14v9.5l-5.5 5.5H5z"/><path d="M13.5 19.5V14H19"/><g transform="translate(11.4 10.6) scale(.5) translate(-12 -12)" stroke-width="3.4"><path d="M6.5 3.5h11M6.5 20.5h11"/><path d="M8 3.5v3.8L12 12l-4 4.7v3.8M16 3.5v3.8L12 12l4 4.7v3.8"/></g>'),
     G('<path d="M5 5h14M5 9h9"/><rect x="4" y="3" width="16" height="18" rx="2"/>'),
     G('<circle cx="7" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="17" cy="12" r="1.6"/>'),
     ARW_I+DAY_I,
@@ -4327,8 +4309,6 @@ function openSettings(){
     h('button',{type:'button',text:'A+','aria-label':'+',disabled:zi>=ZOOMS.length-1,onclick:function(){setZoom(ZOOMS[zi+1])}})
   ])]);
   p.appendChild(h('div',{class:'srow2'},[fontCell,sizeCell]));
-  function segE(m,name){return h('button',{type:'button',text:name,'aria-pressed':String((S.emoji||'mono')===m),onclick:function(){if((S.emoji||'mono')!==m)setEmoji(m)}})}
-  p.appendChild(h('div',{class:'srow2 one'},[h('div',{class:'scell'},[h('div',{class:'seg'},[segE('color',T.emoCol),segE('mono',T.emoMono),segE('gray',T.emoGray)])])]));
   
   var archB=h('button',{class:'hopen',type:'button',onclick:function(){openArchive('arch')}},[h('span',{text:T.archive}),h('span',{html:ARCH_I})]);
   var trashB=h('button',{class:'hopen',type:'button',onclick:function(){openArchive('trash')}},[h('span',{text:T.trashS}),h('span',{html:TRASH_I})]);
@@ -4583,6 +4563,7 @@ var TOUR_IC={
   sun:'<circle cx="12" cy="12" r="4"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6L7 7M17 17l1.4 1.4M5.6 18.4L7 17M17 7l1.4-1.4"/>',
   lr:'<path d="M4 12h16M8 8l-4 4 4 4M16 8l4 4-4 4"/>',
   layers:'<path d="M12 4l9 5-9 5-9-5z"/><path d="M3 14l9 5 9-5"/>',
+  pit:'<path d="M5 4.5h14v9.5l-5.5 5.5H5z"/><path d="M13.5 19.5V14H19"/><g transform="translate(11.4 10.6) scale(.5) translate(-12 -12)" stroke-width="3.4"><path d="M6.5 3.5h11M6.5 20.5h11"/><path d="M8 3.5v3.8L12 12l-4 4.7v3.8M16 3.5v3.8L12 12l4 4.7v3.8"/></g>',
   note:'<path d="M5 4h14v10l-6 6H5z"/><path d="M13 20v-6h6"/>',
   gear:'<circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"/>',
   cal:'<rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/>',
@@ -4590,13 +4571,13 @@ var TOUR_IC={
   drag:'<path d="M12 3v18M3 12h18M12 3l-3 3M12 3l3 3M12 21l-3-3M12 21l3-3M3 12l3-3M3 12l3 3M21 12l-3-3M21 12l-3 3"/>'
 };
 var TOUR_ICO={
-  day:['book','pen','check','dots','sun','lr','layers','note','gear'],
+  day:['book','pen','check','dots','sun','lr','layers','pit','gear'],
   week:['cal','pen','drag','sun'],
   month:['cal','grid','pen','drag','sun'],
   year:['cal','grid','drag','sun'],
   decade:['cal','grid','drag'],
   nb:['layers','pen','dots','note'],
-  pins:['note','lr','drag']
+  pins:['pit','lr','drag']
 };
 var TOUR_INL={
   lr:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l-6 6 6 6M15 6l6 6-6 6"/></svg>',
