@@ -151,21 +151,15 @@ h1{margin:0;font-weight:inherit}
 .pin textarea{display:block;flex:1 1 auto;width:100%;min-height:0;background:none;border:0;outline:0;resize:none;overflow-y:auto;padding:0;font:400 calc(24px*var(--hs))/1.28 var(--hand);color:var(--pin-ink)}
 .view strong.fb,.nview strong.fb,.pview strong.fb,.ttview strong.fb{font-weight:700}
 s.fs{text-decoration:line-through;text-decoration-thickness:.07em}
-.selbar{--sbbg:#4d515b;--sbfg:#f6f3ea;position:fixed;z-index:2100;display:flex;align-items:center;gap:2px;padding:4px;background:var(--sbbg);color:var(--sbfg);border-radius:13px;box-shadow:0 8px 26px rgba(0,0,0,.34),0 0 0 1px color-mix(in srgb,var(--sbfg) 22%,transparent);transform-origin:var(--ox,50%) 0;animation:sbin .17s cubic-bezier(.2,.8,.3,1)}
+.selbar{--sbbg:#4d515b;--sbfg:#f6f3ea;position:fixed;z-index:2100;left:0;right:0;bottom:0;box-sizing:border-box;display:flex;align-items:center;justify-content:space-around;gap:2px;padding:3px 8px;background:var(--sbbg);color:var(--sbfg);border-top:1px solid color-mix(in srgb,var(--sbfg) 14%,transparent)}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]):not([data-mode]) .selbar{--sbbg:#3d3f47;--sbfg:#e6e3da}}
 :root[data-theme="dark"]:not([data-mode]) .selbar,:root[data-mode="dark"] .selbar{--sbbg:#3d3f47;--sbfg:#e6e3da}
-@keyframes sbin{from{opacity:0;transform:scale(.35,.7)}to{opacity:1;transform:none}}
-.selbar button{width:36px;height:34px;border-radius:9px;display:grid;place-items:center;color:var(--sbfg);touch-action:manipulation}
-.selbar button svg{width:17px;height:17px;display:block}
+.selbar button{flex:1 1 0;max-width:64px;height:38px;border-radius:9px;display:grid;place-items:center;color:var(--sbfg);touch-action:manipulation}
+.selbar button svg{width:19px;height:19px;display:block}
 .selbar button:hover,.selbar button:active{background:color-mix(in srgb,var(--sbfg) 18%,transparent)}
-.selbar .sbin{width:min(230px,calc(100vw - 110px));height:34px;box-sizing:border-box;border:0;outline:0;background:color-mix(in srgb,var(--sbfg) 16%,transparent);color:var(--sbfg);border-radius:9px;padding:0 10px;font:500 14px/1 var(--sans)}
+.selbar .sbin{flex:1 1 auto;min-width:0;height:36px;box-sizing:border-box;border:0;outline:0;background:color-mix(in srgb,var(--sbfg) 16%,transparent);color:var(--sbfg);border-radius:9px;padding:0 10px;font:500 14px/1 var(--sans)}
 .selbar .sbin::placeholder{color:color-mix(in srgb,var(--sbfg) 55%,transparent)}
-.selbar .sbgrip{flex:none;width:26px;height:34px;display:grid;place-items:center;color:color-mix(in srgb,var(--sbfg) 60%,transparent);cursor:grab;touch-action:none;user-select:none;-webkit-user-select:none;border-radius:9px;margin-left:2px;border-left:1px solid color-mix(in srgb,var(--sbfg) 25%,transparent);padding-left:2px}
-.selbar .sbgrip svg{width:15px;height:20px;display:block}
-.selbar .sbgrip:hover{color:var(--sbfg)}
-.selbar.drag{transition:none;animation:none;box-shadow:0 12px 30px rgba(0,0,0,.4),0 0 0 2px var(--blue)}
-.selbar.drag .sbgrip{cursor:grabbing;color:var(--sbfg)}
-.selbar .sbok{color:var(--sbfg);font:700 17px/1 var(--sans)}
+.selbar .sbok{flex:none;width:44px;max-width:none;color:var(--sbfg);font:700 17px/1 var(--sans)}
 
 mark.hl{background:var(--hl,rgba(255,214,10,.34));color:inherit;border-radius:4px;padding:0 .12em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
 :root{--hl:rgba(255,205,40,.42)}
@@ -1185,7 +1179,7 @@ var TX={
     merge:'Birleştirin, ikisini de tutun',takeRemote:'Drive’dakini alın',takeLocal:'Bu cihazdakini gönderin',
     about:'Hakkında',
     aboutIntro:'Yarın Defteri, zamanı ve günleri daha iyi algılamak ve yönetebilmek için ortaya çıktı.\nGün, hafta, ay, yıl ve 10 yıl, aynı işe farklı ölçeklerden bakmanızı sağlayan birbirine bağlı görünümlerdir; böylece bugünü daha geniş bir zaman bağlamında görürsünüz. Her işin bir güne sığması gerekmez; ne zaman yapacağını bilmediğiniz görevleri uygun zaman aralığına (\u201cbu hafta\u201d, \u201cbu ay\u201d, \u201cbu yıl\u201d) bırakıp vakti gelince bir güne taşıyabilirsiniz. Böylece işleri tek güne sıkıştırmak yerine zamana yayar, yetişemediklerinizi ertelersiniz.\nSürükleme bu işin kalbidir: görevi tutup farklı bir zamana ya da alttaki bir görünüme bırakarak ilgili tarihe taşıyabilir ya da defter ikonuna bırakıp arşivleyebilirsiniz. Benzer şekilde, Zamansız Notlar\u2019daki notları da sürükleyerek sekmelere veya çöpe taşıyabilirsiniz.\nBir zamanı olmayan notlar için post-it ve Zamansız Notlar var; fikirler, hatırlanacaklar ve kenara koyduğunuzuz işler orada bekler.',
-    howTitle:'Nasıl kullanılır',backExit:'Çıkmak için bir kez daha geri basın',advTitle:'Beta',selbarOn:'Seçince biçim editörü: açık',selbarOff:'Seçince biçim editörü: kapalı',liteGo:'Rafine moda geçin',liteOff:'Normal moda dönün',
+    howTitle:'Nasıl kullanılır',backExit:'Çıkmak için bir kez daha geri basın',advTitle:'Beta',selbarOn:'Klavye üstü biçim çubuğu: açık',selbarOff:'Klavye üstü biçim çubuğu: kapalı',liteGo:'Rafine moda geçin',liteOff:'Normal moda dönün',
     helpIntro:'Yarın Defteri, kâğıt defterin boş bıraktığı yerleri tamamlamak için yapıldı: yazın, işaretleyin, yetişmeyeni yarına bırakın. Gün, hafta, ay, yıl ve 10 yıl sayfaları birbirine bağlıdır; hepsinde hem liste hem takvim gibi planlayabilirsiniz. Tarihi belli olmayan işi \u201cbu hafta\u201d ya da \u201cbu ay içinde\u201d diye yazarsınız; kâğıt parçası gibi kullan-at notlar için post-it, kalıcı fikirler için Zamansız Notlar, uzun işler için projeler var.',
     helpTabs:['Yarın Defteri','Post-it','Zamansız Notlar'],
     helpPin:[
@@ -1301,7 +1295,7 @@ var TX={
     merge:'Merge, keep both',takeRemote:'Use the one in Drive',takeLocal:'Send this device’s',
     about:'About',
     aboutIntro:'Yarın Defteri (Tomorrow\u2019s Notebook) came about to perceive and manage time and days better.\nThe day, week, month, year and 10-year pages are connected views of the same work: you look at the same task at different scales and see today in a wider context of time. Not every task has to fit into a day; tasks you don\u2019t know when to do can wait in a suitable stretch of time (\u201cthis week\u201d, \u201cthis month\u201d, \u201cthis year\u201d) and move to a day when their time comes. That way you spread work across time instead of squeezing it into one day, and you postpone what you couldn\u2019t get to.\nDragging is the heart of it: hold a task and drop it on another time or on a view below to move it to that date, or drop it on the notebook icon to archive it. In the same way, you can drag notes in Timeless Notes onto tabs or the trash.\nFor notes that have no time attached there are post-its and Timeless Notes; ideas, things to remember and tasks you set aside wait there.',
-    howTitle:'How to use',backExit:'Press back again to exit',advTitle:'Beta',selbarOn:'Format editor on selection: on',selbarOff:'Format editor on selection: off',liteGo:'Switch to Refined mode',liteOff:'Back to the normal mode',
+    howTitle:'How to use',backExit:'Press back again to exit',advTitle:'Beta',selbarOn:'Format bar above the keyboard: on',selbarOff:'Format bar above the keyboard: off',liteGo:'Switch to Refined mode',liteOff:'Back to the normal mode',
     helpIntro:'Tomorrow\u2019s Notebook was made to fill the gaps a paper notebook leaves: write, tick things off, and leave what did not fit for tomorrow. The day, week, month, year and 10-year pages are connected, and on all of them you can plan like in a list and a calendar at once. An item with no date can be noted as \u201csometime this week\u201d or \u201cthis month\u201d; there are post-its for throwaway notes, Timeless Notes for ideas you want to keep, and projects for long work.',
     helpTabs:['Notebook','Post-it','Timeless Notes'],
     helpPin:[
@@ -1794,7 +1788,7 @@ function fmtWrap(v,s,e,mk){
   return{v:v.slice(0,a2)+mk+v.slice(a2,b2)+mk+v.slice(b2),s:a2+L,e:b2+L};
 }
 /* ---------- floating format bar: opens over any selected text in a writing field ---------- */
-var SB=null,SBst=null,SBt=0,SBdown=false,SBlink=false,SBmoved=false;
+var SB=null,SBst=null,SBt=0,SBdown=false,SBlink=false;
 var GRIP_I='<svg viewBox="0 0 12 16" aria-hidden="true" fill="currentColor"><circle cx="3.5" cy="3" r="1.35"/><circle cx="8.5" cy="3" r="1.35"/><circle cx="3.5" cy="8" r="1.35"/><circle cx="8.5" cy="8" r="1.35"/><circle cx="3.5" cy="13" r="1.35"/><circle cx="8.5" cy="13" r="1.35"/></svg>';
 function sbOk(el){
   if(S.selbar===false)return false;
@@ -1815,13 +1809,16 @@ function sbCaret(ta,pos){
   document.body.removeChild(d);
   return {x:x,y:y,h:lh};
 }
-function sbHide(){if(SB){SB.remove();SB=null}SBst=null;SBlink=false;SBmoved=false}
+function sbHide(){if(SB){SB.remove();SB=null}SBst=null;SBlink=false}
 function sbBtn(ic,label,fn){
   return h('button',{type:'button','aria-label':label,title:label,html:ic,onmousedown:function(e){e.preventDefault()},onclick:fn});
 }
 function sbFmt(mk){
   var st=SBst;if(!st||!st.ta.isConnected){sbHide();return}
-  var ta=st.ta,r=fmtWrap(ta.value,st.s,st.e,mk);if(!r)return;
+  var ta=st.ta,r;
+  if(st.e-st.s<1){var v0=ta.value;r={v:v0.slice(0,st.s)+mk+mk+v0.slice(st.s),s:st.s+mk.length,e:st.s+mk.length}}
+  else r=fmtWrap(ta.value,st.s,st.e,mk);
+  if(!r)return;
   ta.value=r.v;ta.dispatchEvent(new Event('input',{bubbles:true}));
   if(!ta.isConnected){sbHide();return}
   try{ta.focus();ta.setSelectionRange(r.s,r.e)}catch(x){}
@@ -1831,6 +1828,7 @@ function sbBox(){
   var st=SBst;if(!st||!st.ta.isConnected){sbHide();return}
   var ta=st.ta,v=ta.value,s0=st.s;
   while(s0<st.e&&/\s/.test(v.charAt(s0)))s0++;
+  while(s0>=2&&FMT_MK.indexOf(v.slice(s0-2,s0))>=0)s0-=2;
   var pre=(s0>0&&!/\s/.test(v.charAt(s0-1)))?' ':'';
   var ins=pre+'[ ] ';
   ta.value=v.slice(0,s0)+ins+v.slice(s0);ta.dispatchEvent(new Event('input',{bubbles:true}));
@@ -1849,26 +1847,6 @@ function sbLinkApply(inp){
   sbHide();toast(T.lkDone);
   if(ta.isConnected){try{ta.focus();ta.setSelectionRange(end,end)}catch(x){}}
 }
-function sbGrip(){
-  var g=h('div',{class:'sbgrip',role:'separator','aria-label':T.sbMove,title:T.sbMove,html:GRIP_I}),ox=0,oy=0,on=false;
-  g.addEventListener('pointerdown',function(e){
-    if(e.pointerType==='mouse'&&e.button!==0)return;
-    e.preventDefault();e.stopPropagation();
-    var r=SB.getBoundingClientRect();ox=e.clientX-r.left;oy=e.clientY-r.top;on=true;SBmoved=true;
-    SB.classList.add('drag');try{g.setPointerCapture(e.pointerId)}catch(x){}
-  });
-  g.addEventListener('pointermove',function(e){
-    if(!on||!SB)return;e.preventDefault();
-    var vv=window.visualViewport,vw=vv?vv.width:innerWidth,vh=vv?vv.height:innerHeight,t0=vv?vv.offsetTop:0,l0=vv?vv.offsetLeft:0;
-    var x=Math.max(l0+4,Math.min(e.clientX-ox,l0+vw-SB.offsetWidth-4));
-    var y=Math.max(t0+4,Math.min(e.clientY-oy,t0+vh-SB.offsetHeight-4));
-    SB.style.left=Math.round(x)+'px';SB.style.top=Math.round(y)+'px';
-  });
-  var end=function(e){if(!on)return;on=false;if(SB)SB.classList.remove('drag');try{g.releasePointerCapture(e.pointerId)}catch(x){}
-    var ta=SBst&&SBst.ta;if(ta&&ta.isConnected&&!(SB&&SBlink)){try{ta.focus();ta.setSelectionRange(SBst.s,SBst.e)}catch(x){}}};
-  g.addEventListener('pointerup',end);g.addEventListener('pointercancel',end);
-  return g;
-}
 function sbFill(){
   SB.innerHTML='';
   if(SBlink){
@@ -1881,33 +1859,32 @@ function sbFill(){
     SB.appendChild(h('button',{type:'button',class:'sbok','aria-label':T.lkOk,title:T.lkOk,text:'✓',onclick:function(){sbLinkApply(inp)}}));
     setTimeout(function(){inp.focus()},0);
   }else{
-    SB.appendChild(sbBtn(LINK_I,T.lkSet,function(){SBlink=true;sbFill();sbPlace()}));
+    SB.appendChild(sbBtn(LINK_I,T.lkSet,function(){var st=SBst;if(!st||st.e-st.s<1){toast(T.lkPick);return}SBlink=true;sbFill();sbPlace()}));
     SB.appendChild(sbBtn(BOLD_I,T.fmtB,function(){sbFmt('**')}));
     SB.appendChild(sbBtn(HL_I,T.fmtH,function(){sbFmt('==')}));
     SB.appendChild(sbBtn(STRIKE_I,T.fmtS,function(){sbFmt('~~')}));
     SB.appendChild(sbBtn(BXS_I,T.fmtBox,sbBox));
   }
-  SB.appendChild(sbGrip());
 }
 function sbPlace(){
   if(!SB||!SBst)return;
   var ta=SBst.ta;if(!ta.isConnected){sbHide();return}
-  var p1=sbCaret(ta,SBst.s),p2=sbCaret(ta,SBst.e),vv=window.visualViewport;
-  var vw=vv?vv.width:innerWidth,vh=vv?vv.height:innerHeight,t0=vv?vv.offsetTop:0,l0=vv?vv.offsetLeft:0;
-  var bw=SB.offsetWidth,bh=SB.offsetHeight;
-  if(SBmoved){
-    var mx=Math.max(l0+4,Math.min(parseFloat(SB.style.left)||0,l0+vw-bw-4)),my=Math.max(t0+4,Math.min(parseFloat(SB.style.top)||0,t0+vh-bh-4));
-    SB.style.left=Math.round(mx)+'px';SB.style.top=Math.round(my)+'px';SB.style.setProperty('--ox','50%');return;
+  var vv=window.visualViewport;
+  if(vv){
+    SB.style.left=Math.round(vv.offsetLeft)+'px';SB.style.right='auto';SB.style.width=Math.round(vv.width)+'px';
+    SB.style.bottom=Math.max(0,Math.round(innerHeight-(vv.offsetTop+vv.height)))+'px';
   }
-  var one=Math.abs(p1.y-p2.y)<2,cx=one?(p1.x+p2.x)/2:p2.x;
-  var x=Math.max(l0+8,Math.min(cx-bw/2,l0+vw-bw-8));
-  var coarse=window.matchMedia&&matchMedia('(pointer:coarse)').matches;
-  /* touch: below = clear the blue handles; above = clear Android's own Cut/Copy panel that sits on the selection */
-  var yb=p2.y+p2.h+(coarse?32:8),ya=p1.y-bh-(coarse?64:8),y=yb;
-  if(yb+bh>t0+vh-8){y=ya;if(y<t0+6)y=Math.min(yb,t0+vh-bh-8)}
-  y=Math.max(t0+6,y);
-  SB.style.left=Math.round(x)+'px';SB.style.top=Math.round(y)+'px';
-  SB.style.setProperty('--ox',Math.round(cx-x)+'px');
+  /* keep the caret clear of the bar: scroll the writing surface (page or sheet) just enough */
+  var bt=SB.getBoundingClientRect().top,p=sbCaret(ta,SBst.e),over=p.y+p.h+8-bt;
+  if(over>2){
+    var el=ta.parentElement,sc=null;
+    while(el&&el!==document.body&&el!==document.documentElement){
+      var oy=getComputedStyle(el).overflowY;
+      if((oy==='auto'||oy==='scroll')&&el.scrollHeight>el.clientHeight+1){sc=el;break}
+      el=el.parentElement;
+    }
+    if(sc)sc.scrollTop+=over;else window.scrollBy(0,over);
+  }
 }
 function sbShow(ta,s,e){
   SBst={ta:ta,s:s,e:e};
@@ -1923,7 +1900,8 @@ function sbEval(){
   if(SB&&SBlink&&SB.contains(ta))return;
   if(!sbOk(ta)||SBdown){sbHide();return}
   var s=ta.selectionStart,e=ta.selectionEnd;
-  if(s==null||e-s<1||!ta.value.slice(s,e).trim()){sbHide();return}
+  if(s==null){sbHide();return}
+  if(e-s>=1&&!ta.value.slice(s,e).trim())e=s;
   sbShow(ta,s,e);
 }
 function sbEvalSoon(){clearTimeout(SBt);SBt=setTimeout(sbEval,90)}
