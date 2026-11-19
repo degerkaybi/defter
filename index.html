@@ -159,6 +159,12 @@ s.fs{text-decoration:line-through;text-decoration-thickness:.07em}
 .selbar button:hover,.selbar button:active{background:color-mix(in srgb,var(--sbfg) 18%,transparent)}
 .selbar .sbin{flex:1 1 auto;min-width:0;height:36px;box-sizing:border-box;border:0;outline:0;background:color-mix(in srgb,var(--sbfg) 16%,transparent);color:var(--sbfg);border-radius:9px;padding:0 10px;font:500 14px/1 var(--sans)}
 .selbar .sbin::placeholder{color:color-mix(in srgb,var(--sbfg) 55%,transparent)}
+.selbar.sbfloat{left:auto;right:auto;bottom:auto;width:auto;justify-content:flex-start;padding:4px;border-radius:13px;border-top:0;box-shadow:0 8px 26px rgba(0,0,0,.34),0 0 0 1px color-mix(in srgb,var(--sbfg) 22%,transparent);transform-origin:var(--ox,50%) 0;animation:sbin .17s cubic-bezier(.2,.8,.3,1)}
+.selbar.sbfloat button{flex:none;width:36px;max-width:none;height:34px}
+.selbar.sbfloat button svg{width:17px;height:17px}
+.selbar.sbfloat .sbin{flex:none;width:230px;height:34px}
+.selbar.sbfloat .sbok{width:36px}
+@keyframes sbin{from{opacity:0;transform:scale(.35,.7)}to{opacity:1;transform:none}}
 .selbar .sbok{flex:none;width:44px;max-width:none;color:var(--sbfg);font:700 17px/1 var(--sans)}
 
 mark.hl{background:var(--hl,rgba(255,214,10,.34));color:inherit;border-radius:4px;padding:0 .12em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
@@ -1179,7 +1185,7 @@ var TX={
     merge:'Birleştirin, ikisini de tutun',takeRemote:'Drive’dakini alın',takeLocal:'Bu cihazdakini gönderin',
     about:'Hakkında',
     aboutIntro:'Yarın Defteri, zamanı ve günleri daha iyi algılamak ve yönetebilmek için ortaya çıktı.\nGün, hafta, ay, yıl ve 10 yıl, aynı işe farklı ölçeklerden bakmanızı sağlayan birbirine bağlı görünümlerdir; böylece bugünü daha geniş bir zaman bağlamında görürsünüz. Her işin bir güne sığması gerekmez; ne zaman yapacağını bilmediğiniz görevleri uygun zaman aralığına (\u201cbu hafta\u201d, \u201cbu ay\u201d, \u201cbu yıl\u201d) bırakıp vakti gelince bir güne taşıyabilirsiniz. Böylece işleri tek güne sıkıştırmak yerine zamana yayar, yetişemediklerinizi ertelersiniz.\nSürükleme bu işin kalbidir: görevi tutup farklı bir zamana ya da alttaki bir görünüme bırakarak ilgili tarihe taşıyabilir ya da defter ikonuna bırakıp arşivleyebilirsiniz. Benzer şekilde, Zamansız Notlar\u2019daki notları da sürükleyerek sekmelere veya çöpe taşıyabilirsiniz.\nBir zamanı olmayan notlar için post-it ve Zamansız Notlar var; fikirler, hatırlanacaklar ve kenara koyduğunuzuz işler orada bekler.',
-    howTitle:'Nasıl kullanılır',backExit:'Çıkmak için bir kez daha geri basın',advTitle:'Beta',selbarOn:'Klavye üstü biçim çubuğu: açık',selbarOff:'Klavye üstü biçim çubuğu: kapalı',liteGo:'Rafine moda geçin',liteOff:'Normal moda dönün',
+    howTitle:'Nasıl kullanılır',backExit:'Çıkmak için bir kez daha geri basın',advTitle:'Beta',selbarOn:'Biçim çubuğu: açık',selbarOff:'Biçim çubuğu: kapalı',liteGo:'Rafine moda geçin',liteOff:'Normal moda dönün',
     helpIntro:'Yarın Defteri, kâğıt defterin boş bıraktığı yerleri tamamlamak için yapıldı: yazın, işaretleyin, yetişmeyeni yarına bırakın. Gün, hafta, ay, yıl ve 10 yıl sayfaları birbirine bağlıdır; hepsinde hem liste hem takvim gibi planlayabilirsiniz. Tarihi belli olmayan işi \u201cbu hafta\u201d ya da \u201cbu ay içinde\u201d diye yazarsınız; kâğıt parçası gibi kullan-at notlar için post-it, kalıcı fikirler için Zamansız Notlar, uzun işler için projeler var.',
     helpTabs:['Yarın Defteri','Post-it','Zamansız Notlar'],
     helpPin:[
@@ -1295,7 +1301,7 @@ var TX={
     merge:'Merge, keep both',takeRemote:'Use the one in Drive',takeLocal:'Send this device’s',
     about:'About',
     aboutIntro:'Yarın Defteri (Tomorrow\u2019s Notebook) came about to perceive and manage time and days better.\nThe day, week, month, year and 10-year pages are connected views of the same work: you look at the same task at different scales and see today in a wider context of time. Not every task has to fit into a day; tasks you don\u2019t know when to do can wait in a suitable stretch of time (\u201cthis week\u201d, \u201cthis month\u201d, \u201cthis year\u201d) and move to a day when their time comes. That way you spread work across time instead of squeezing it into one day, and you postpone what you couldn\u2019t get to.\nDragging is the heart of it: hold a task and drop it on another time or on a view below to move it to that date, or drop it on the notebook icon to archive it. In the same way, you can drag notes in Timeless Notes onto tabs or the trash.\nFor notes that have no time attached there are post-its and Timeless Notes; ideas, things to remember and tasks you set aside wait there.',
-    howTitle:'How to use',backExit:'Press back again to exit',advTitle:'Beta',selbarOn:'Format bar above the keyboard: on',selbarOff:'Format bar above the keyboard: off',liteGo:'Switch to Refined mode',liteOff:'Back to the normal mode',
+    howTitle:'How to use',backExit:'Press back again to exit',advTitle:'Beta',selbarOn:'Format bar: on',selbarOff:'Format bar: off',liteGo:'Switch to Refined mode',liteOff:'Back to the normal mode',
     helpIntro:'Tomorrow\u2019s Notebook was made to fill the gaps a paper notebook leaves: write, tick things off, and leave what did not fit for tomorrow. The day, week, month, year and 10-year pages are connected, and on all of them you can plan like in a list and a calendar at once. An item with no date can be noted as \u201csometime this week\u201d or \u201cthis month\u201d; there are post-its for throwaway notes, Timeless Notes for ideas you want to keep, and projects for long work.',
     helpTabs:['Notebook','Post-it','Timeless Notes'],
     helpPin:[
@@ -1870,6 +1876,17 @@ function sbPlace(){
   if(!SB||!SBst)return;
   var ta=SBst.ta;if(!ta.isConnected){sbHide();return}
   var vv=window.visualViewport;
+  if(SB.classList.contains('sbfloat')){
+    var p1=sbCaret(ta,SBst.s),p2=sbCaret(ta,SBst.e);
+    var vw=vv?vv.width:innerWidth,vh=vv?vv.height:innerHeight,t0=vv?vv.offsetTop:0,l0=vv?vv.offsetLeft:0;
+    var bw=SB.offsetWidth,bh=SB.offsetHeight,one=Math.abs(p1.y-p2.y)<2,cx=one?(p1.x+p2.x)/2:p2.x;
+    var x=Math.max(l0+8,Math.min(cx-bw/2,l0+vw-bw-8));
+    var yb=p2.y+p2.h+8,ya=p1.y-bh-8,y=yb;
+    if(yb+bh>t0+vh-8){y=ya;if(y<t0+6)y=Math.min(yb,t0+vh-bh-8)}
+    y=Math.max(t0+6,y);
+    SB.style.left=Math.round(x)+'px';SB.style.top=Math.round(y)+'px';SB.style.setProperty('--ox',Math.round(cx-x)+'px');
+    return;
+  }
   if(vv){
     SB.style.left=Math.round(vv.offsetLeft)+'px';SB.style.right='auto';SB.style.width=Math.round(vv.width)+'px';
     SB.style.bottom=Math.max(0,Math.round(innerHeight-(vv.offsetTop+vv.height)))+'px';
@@ -1886,10 +1903,12 @@ function sbPlace(){
     if(sc)sc.scrollTop+=over;else window.scrollBy(0,over);
   }
 }
+function sbCoarse(){return !!(window.matchMedia&&matchMedia('(pointer:coarse)').matches)}
 function sbShow(ta,s,e){
   SBst={ta:ta,s:s,e:e};
+  if(SB&&SB.classList.contains('sbfloat')===sbCoarse()){SB.remove();SB=null;SBlink=false}
   if(!SB){
-    SB=h('div',{class:'selbar',role:'toolbar','aria-label':T.fmtB});
+    SB=h('div',{class:'selbar'+(sbCoarse()?'':' sbfloat'),role:'toolbar','aria-label':T.fmtB});
     SB.addEventListener('mousedown',function(ev){if(ev.target.tagName!=='INPUT')ev.preventDefault()});
     document.body.appendChild(SB);SBlink=false;sbFill();
   }
@@ -1902,6 +1921,7 @@ function sbEval(){
   var s=ta.selectionStart,e=ta.selectionEnd;
   if(s==null){sbHide();return}
   if(e-s>=1&&!ta.value.slice(s,e).trim())e=s;
+  if(!sbCoarse()&&e-s<1){sbHide();return}
   sbShow(ta,s,e);
 }
 function sbEvalSoon(){clearTimeout(SBt);SBt=setTimeout(sbEval,90)}
