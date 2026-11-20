@@ -96,6 +96,8 @@ h1{margin:0;font-weight:inherit}
 .gear[hidden]{display:none}
 @keyframes spin{to{transform:rotate(360deg)}}
 .dhead.pend::after{content:'';display:inline-block;width:7px;height:7px;margin-left:8px;border-radius:50%;background:var(--blue);vertical-align:middle}
+.syncwarn{position:fixed;z-index:85;left:50%;transform:translateX(-50%);bottom:calc(env(safe-area-inset-bottom,0px) + 84px);max-width:calc(100vw - 28px);padding:9px 15px;border-radius:999px;border:0;background:var(--chip);color:var(--ink);font:500 13px/1.25 var(--sans);box-shadow:0 4px 18px rgba(0,0,0,.28),0 0 0 1px var(--rule);text-align:center}
+.syncwarn[hidden]{display:none}
 .gear.pend::after{content:'';position:absolute;top:6px;right:4px;width:7px;height:7px;border-radius:50%;background:var(--blue)}
 
 .pinbtn svg .pn{fill:var(--pin);stroke:var(--ink-soft)}
@@ -1174,13 +1176,13 @@ var TX={
     hint:'Bir satıra dokunun ve yazmaya başlayın.',still:'hâlâ duruyor',
     carryweek:'geçen haftadan',subOf:'Alt başlık',subs:'Alt başlıklar',carryyear:'geçen yıldan',pastY:'Geçmiş yıllar',tpYear:'Yıl %{P} geçti',tpYearR:'{N} gün kaldı',tpDec:'10 yıl %{P} geçti',tpDecR:'Yıl {K} / 10',carrymonth:'geçen aydan',bring:'buraya alın',
     pull:'bitmeyenleri bugüne alın',wkShort:'H',openDay:'Güne gidin',mprevPh:'bu gün…',mprojects:'Aktif projeler',mexp:'Genişletin',mcol:'Daraltın',moreN:'+{N} daha',days:'Bu ay',noDays:'Bu ay henüz bir güne yazılmadı.',
-    openLink:'Linki açın',projects:'Projeler',rename:'Başlığı düzenleyin',pjArch:'Arşiv',pjDrop:'Arşivlemek için buraya bırakın',pjArchived:'Arşivlendi',pjRestore:'Geri alın',pjAttach:'Projeye ekleyin',pjDetach:'Projeden çıkarın',pjNone:'Henüz proje yok',pjAdded:'Projeye eklendi',pinMax:'En fazla 10 not',pinNoRep:'Bu görev taşınamaz',pinTasks:'Taşınan görevler',pinHere:'Bu güne taşıyın',pinToNb:'Zamansız Notlara taşıyın',trashS:'Çöp',pinDropHint:'Post-it dışında tutmak için görevi buraya sürükleyin',pinPick:'Boş post-it taşınamaz',pinSub:'alt madde',calendar:'Takvim',pjNeedTitle:'Önce proje adı yazın',chkS:'+ Madde',bulS:'• Liste',pjNoItems:'madde yok',pjOff:'Nota çevirin',hereS:'Bu güne',tmrwS:'Yarına',nextS:'Ertesi güne',toWeekS:'Haftaya',toMonthS:'Aya',delS:'Silin',tabNotes:'Notlar',project:'Proje',pjNew:'+ Yeni proje',pjUntitled:'Adsız proje',pjTitlePh:'Proje adı',pjEmpty:'Henüz proje yok. Uzun soluklu işler için bir proje açın, maddelere tarih verirseniz o günün defterine de düşer.',pjAdd:'+ Madde ekleyin',pjTodoPh:'Yapılacak…',delTodo:'Maddeyi silin',pjNotes:'Akla gelenler',pjNotesPh:'Not…',pjDel:'Projeyi silin',pjGone:'Proje silindi',pjMake:'Proje yapın',pjOpen:'Projeyi açın',pjDate:'Tarih verin',pjClr:'Tarihi kaldırın',pjDone:'tamam',pjBack:'Projeler',pjMade:'Proje oluşturuldu',here:'Bu güne alın',moveTo:'Güne taşıyın',repeat:'Tekrarlayın',repNone:'Tekrarsız',repW:'Her hafta',repM:'Her ay',repY:'Her yıl',toWeek:'Haftaya alın',toMonth:'Aya alın',tmrw:'Yarına erteleyin',nextday:'Ertesi güne erteleyin',bullet:'• Madde',check2:'☐ Görev',noteClr:'Notu temizleyin',undoCap:'Geri alın',del:'Görevi silin',pins:'Post-it',nb:'Zamansız Notlar',nbAll:'Etiketsiz',nbSortT:'Zamana göre sıralı (yenisi üstte)',nbSortM:'Kendi sıranız',nbDef:'Arşiv',nbAddPh:'Yeni not…',nbTabPh:'Sekme adı',nbNewTab:'Yeni sekme',nbEmpty:'Henüz not yok. Aklınızdakini yukarıya yazın.',nbDefEmpty:'Arşivlemek istediğiniz görevi alttaki defter simgesine sürükleyin ya da satır menüsündeki saat ikonuna basın; alt maddeleri ve notuyla burada bekler.',nbMove:'Taşıyın',nbNone:'Sekmesiz',nbRename:'Adı değiştirin',nbDelTab:'Sekmeyi silin',nbDelSure:'Emin misiniz? Notlar Tümü\'nde kalır',nbTabMax:'En fazla 12 sekme',nbGone:'Not silindi',nbMore:'Seçenekler',nbDrag:'Sürükleyin',nbTrash:'Çöp',nbEmptyTrash:'Çöpü boşaltın',nbEmptySure:'Emin misiniz? Dokunun',nbTrashEmpty:'Çöp boş.',nbPerm:'Kalıcı silin',nbMoreTx:'Devamını gösterin',nbLess:'Kısaltın',nbDel:'Silin',pinNew:'+ Yeni',pinDarkT:'Koyu post-it',pinLight:'Sarı post-it',pinPh:'Telefon, alışveriş, aklınıza gelen…',pinTi:'Başlık',pinDel:'Silin',pinGone:'Not silindi',pinMove:'Taşıyın',fs:'Tam ekran',brand:['YARIN','DEFTERİ'],themeLight:'Açık tema',themeDark:'Koyu tema',fsOn:'Açın',fsOff:'Kapatın',fsFail:'Tarayıcı tam ekrana izin vermedi',fsIos:'Tam ekran için Paylaş › Ana Ekrana Ekle deyin, sonra defteri ana ekrandan açın; tarayıcı çubukları olmadan açılır.',pinDay:'Güne',pinWeek:'Haftaya',pinMonth:'Aya',pinSize:'Boyutu sürükleyin',
+    openLink:'Linki açın',projects:'Projeler',rename:'Başlığı düzenleyin',pjArch:'Arşiv',pjDrop:'Arşivlemek için buraya bırakın',pjArchived:'Arşivlendi',pjRestore:'Geri alın',pjAttach:'Projeye ekleyin',pjDetach:'Projeden çıkarın',pjNone:'Henüz proje yok',pjAdded:'Projeye eklendi',pinMax:'En fazla 10 not',pinNoRep:'Bu görev taşınamaz',pinTasks:'Taşınan görevler',pinHere:'Bu güne taşıyın',pinToNb:'Zamansız Notlara taşıyın',trashS:'Çöp',pinDropHint:'Post-it dışında tutmak için görevi buraya sürükleyin',pinPick:'Boş post-it taşınamaz',pinSub:'alt madde',calendar:'Takvim',pjNeedTitle:'Önce proje adı yazın',chkS:'+ Madde',bulS:'• Liste',pjNoItems:'madde yok',pjOff:'Nota çevirin',hereS:'Bu güne',tmrwS:'Yarına',nextS:'Ertesi güne',toWeekS:'Haftaya',toMonthS:'Aya',delS:'Silin',tabNotes:'Notlar',project:'Proje',pjNew:'+ Yeni proje',pjUntitled:'Adsız proje',pjTitlePh:'Proje adı',pjEmpty:'Henüz proje yok. Uzun soluklu işler için bir proje açın, maddelere tarih verirseniz o günün defterine de düşer.',pjAdd:'+ Madde ekleyin',pjTodoPh:'Yapılacak…',delTodo:'Maddeyi silin',pjNotes:'Akla gelenler',pjNotesPh:'Not…',pjDel:'Projeyi silin',pjGone:'Proje silindi',pjMake:'Proje yapın',pjOpen:'Projeyi açın',pjDate:'Tarih verin',pjClr:'Tarihi kaldırın',pjDone:'tamam',pjBack:'Projeler',pjMade:'Proje oluşturuldu',here:'Bu güne alın',moveTo:'Güne taşıyın',repeat:'Tekrarlayın',repNone:'Tekrarsız',repW:'Her hafta',repM:'Her ay',repY:'Her yıl',toWeek:'Haftaya alın',toMonth:'Aya alın',tmrw:'Yarına erteleyin',nextday:'Ertesi güne erteleyin',bullet:'• Madde',check2:'☐ Görev',noteClr:'Notu temizleyin',undoCap:'Geri alın',del:'Görevi silin',pins:'Post-it',nb:'Zamansız Notlar',nbAll:'Diğer',nbEvery:'Tüm notlar',nbSortT:'Zamana göre sıralı (yenisi üstte)',nbSortM:'Kendi sıranız',nbDef:'Arşiv',nbAddPh:'Yeni not…',nbTabPh:'Sekme adı',nbNewTab:'Yeni sekme',nbEmpty:'Henüz not yok. Aklınızdakini yukarıya yazın.',nbDefEmpty:'Arşivlemek istediğiniz görevi alttaki defter simgesine sürükleyin ya da satır menüsündeki saat ikonuna basın; alt maddeleri ve notuyla burada bekler.',nbMove:'Taşıyın',nbNone:'Sekmesiz',nbRename:'Adı değiştirin',nbDelTab:'Sekmeyi silin',nbDelSure:'Emin misiniz? Notlar Diğer\'de kalır',nbTabMax:'En fazla 12 sekme',nbGone:'Not silindi',nbMore:'Seçenekler',nbDrag:'Sürükleyin',nbTrash:'Çöp',nbEmptyTrash:'Çöpü boşaltın',nbEmptySure:'Emin misiniz? Dokunun',nbTrashEmpty:'Çöp boş.',nbPerm:'Kalıcı silin',nbMoreTx:'Devamını gösterin',nbLess:'Kısaltın',nbDel:'Silin',pinNew:'+ Yeni',pinDarkT:'Koyu post-it',pinLight:'Sarı post-it',pinPh:'Telefon, alışveriş, aklınıza gelen…',pinTi:'Başlık',pinDel:'Silin',pinGone:'Not silindi',pinMove:'Taşıyın',fs:'Tam ekran',brand:['YARIN','DEFTERİ'],themeLight:'Açık tema',themeDark:'Koyu tema',fsOn:'Açın',fsOff:'Kapatın',fsFail:'Tarayıcı tam ekrana izin vermedi',fsIos:'Tam ekran için Paylaş › Ana Ekrana Ekle deyin, sonra defteri ana ekrandan açın; tarayıcı çubukları olmadan açılır.',pinDay:'Güne',pinWeek:'Haftaya',pinMonth:'Aya',pinSize:'Boyutu sürükleyin',
     deleted:'Silindi',undo:'geri alın',moved:'Taşındı',archive:'Arşiv',arch:'Arşivleyin',archived:'Arşivlendi',trashT:'Silinenler',archEmpty:'Arşivde madde yok.',trashEmpty:'Silinen madde yok.',archNote:'Arşivlenenler sayfalardan kalkar; Zamansız Notlar\u2019daki Arşiv sekmesiyle aynı yerdir.',trashNote:'Silinenler 30 gün burada kalır, sonra kalıcı olarak silinir.',putBack:'Geri koyun',delForever:'Kalıcı silin',emptyTrash:'Silinenleri boşaltın',emptySure:'Emin misiniz? Tekrar dokunun',backed:'Geri konuldu',hideDone:'Bitenleri gizleyin',hidS:'biten gizli',hideAgain:'Bitenleri gizleyin',hideDoneL:'Biten yok',
     settings:'Ayarlar',lang:'Dil',font:'Yazı tipi',fontHand:'El yazısı',fontPlain:'Düz yazı',note:'Not',notePh:'Bu satır için not…',backup:'Yedek',
     backupNote:'Defteriniz bu tarayıcıda saklanır. Arada bir yedek alın.',
     saveBackup:'Kaydedin',copyBackup:'Kopyalayın',pasteHere:'Yedek metnini yapıştırın',
     restoreBtn:'Geri yükleyin',restoreGo:'Yükleyin',confirmRestore:'Mevcut defterinizin yerine geçecek. Onaylayın',
-    restored:'Yedek yüklendi',bad:'Yedek okunamadı',copied:'Kopyalandı',saved:'Kaydedildi',
+    restored:'Yedek yüklendi',nbN:'not',safeTitle:'Otomatik yedekler',safeNote:'Bu cihazdaki veri, üzerine yazılmadan önce otomatik saklanır (son 4 kopya).',safeGo:'Geri yükleyin',safeWhy:{pull:'Drive’dan güncellemeden önce',drive:'Drive’daki sürüm',restore:'Yedek yüklemeden önce',undo:'Geri yüklemeden önce'},syncWarn:'Değişiklikler henüz Drive’a yüklenmedi · Şimdi yükleyin',bad:'Yedek okunamadı',copied:'Kopyalandı',saved:'Kaydedildi',
     noStore:'Bu tarayıcı kayıt tutmuyor, yedek almayı unutmayın.',close:'Kapatın',size:'Yazı boyutu',order:'Yıl sırası',fwd:'Ocak → Aralık',rev:'Aralık → Ocak',past:'Geçmiş aylar',noteDel:'Notu silin',noteAdd:'Not ekleyin',noteEdit:'Notu düzenleyin',weekof:'haftası',
     check:'Yaptım',more:'Seçenekler',prev:'Önceki',next:'Sonraki',pick:'Tarih seçin',
     sync:'Senkron (yakında)',syncNote:'Notlarınızı Google Drive ile cihazlar arasında taşıyın. Defter, Drive’ınızda yalnızca bu uygulamanın görebildiği gizli bir alana kaydedilir. Bağlantıyı keserseniz Drive’daki kopya silinmez.',
@@ -1203,7 +1205,7 @@ var TX={
     helpNb:[
       ['Zamansız Notlar nedir','Alttaki çubukta sağdaki defter ikonu Zamansız Notlar’ı açar. Burası bir görev alanı değil, bir hatırlama alanıdır: günlük gibi, fikir ve not defteri gibi. Hiçbir güne bağlı değildir, sayılmaz, bitmesi gerekmez.'],
       ['Not yazmak','Üstteki kutuya yazın, <b>Enter</b> ile kaydedersiniz (yeni satır için Shift+Enter). Yazıp kaydetmediyseniz başka bir yere dokunsanız bile yazınız kutuda durur; siz kaydedene ya da silene kadar kaybolmaz.'],
-      ['Sekmeler','<b>Etiketsiz</b> henüz bir sekmeye koymadığınız notları gösterir. Saat ikonlu <b>Arşiv</b> kenara koyduğunuzuz görevlerin yeridir. <b>+</b> ile kendi sekmelerinizi açarsınız (en fazla 12); bir sekme seçiliyken altta <b>Adı değiştirin</b> ve <b>Sekmeyi silin</b> görünür; sekmeye uzun basıp sürükleyerek sırasını değiştirirsiniz. Sekme silinince notlar Etiketsiz’e döner.'],
+      ['Sekmeler','<b>Katmanlı ikon</b> tüm sekmelerdeki notları bir arada gösterir; <b>Diğer</b> henüz bir sekmeye koymadığınız notları. Saat ikonlu <b>Arşiv</b> kenara koyduğunuzuz görevlerin yeridir. <b>+</b> ile kendi sekmelerinizi açarsınız (en fazla 12); bir sekme seçiliyken altta <b>Adı değiştirin</b> ve <b>Sekmeyi silin</b> görünür; sekmeye uzun basıp sürükleyerek sırasını değiştirirsiniz. Sekme silinince notlar Diğer’e döner.'],
       ['Uzun notlar','Notun altındaki üçgen uzun yazıyı 4 satıra kısaltır ya da açar: <b>içi boş üçgen</b> kapalı, <b>dolu üçgen</b> açık demektir. 10 satırdan uzun notlar kapalı gelir.'],
       ['Üç nokta, tarih ve taşımak','Notun sekmesi ve yazıldığı tarih varsayılan olarak gizlidir; üç noktalı tutamağa <b>dokununca</b> o notun altında görünür. Tutamaçtan <b>sürükleyerek</b> notu üstteki sekmelerden birine bırakırsınız, taşınmış olur. Sürüklerken tutamacı çöp ikonuna bırakırsanız not çöpe gider.'],
       ['Çöp','Yeni not kutusunun sağındaki çöp ikonuna dokununca silinen notlar açılır. Bir notu sekmeye sürükleyerek geri koyarsınız, notun yanındaki çöp ikonuyla kalıcı silersiniz, <b>Çöpü boşaltın</b> düğmesi hepsini siler. Çöpte sayaç yoktur; burası serbest alan.'],
@@ -1248,7 +1250,7 @@ var TX={
         ['Sürükleyin','Bir işi başka yılın satırına sürükleyin: o yıla taşınır. Başlığın yanında çıkan {lr} oklara bırakırsanız sonraki ya da önceki on yılın üst bölümüne düşer.']
       ],
       nb:[
-        ['Sekmeler','Notlarınızı sekmelere ayırın. + ile yeni sekme açın, sekme adını sürükleyerek sıralayın. Etiketsiz, henüz sekmesi olmayan notları gösterir.'],
+        ['Sekmeler','Notlarınızı sekmelere ayırın. + ile yeni sekme açın, sekme adını sürükleyerek sıralayın. Baştaki katmanlı ikon hepsini bir arada, Diğer ise henüz sekmesi olmayan notları gösterir.'],
         ['Not ekleyin','Yazın ve Enter’a basın: not en üste eklenir. Yanındaki tablo simgesi tablo notu ekler, çöp simgesi silinenleri gösterir.'],
         ['Sürükleyin','Notun yanındaki tutamaçtan sürükleyin. İki notun arasına bırakırsanız sıra değişir. Bir sekmeye bırakırsanız o sekmeye, Çöp’e bırakırsanız çöpe gider. Sürüklerken sekmeler ve Çöp altta görünür.'],
         ['Biçim','Notlardaki bağlantılar tıklanır. **kalın** ve ==vurgu== yazabilirsiniz, [kelime](adres) kelimeye bağlantı verir. Uzun notlar üçgenle kısalır.']
@@ -1290,13 +1292,13 @@ var TX={
     hint:'Tap a line and start writing.',still:'still here',
     carryweek:'from last week',subOf:'Sub-heading',subs:'Sub-headings',carryyear:'from last year',pastY:'Past years',tpYear:'Year {P}% elapsed',tpYearR:'{N} days left',tpDec:'Decade {P}% elapsed',tpDecR:'Year {K} / 10',carrymonth:'from last month',bring:'bring here',
     pull:'move unfinished to today',wkShort:'W',openDay:'Go to day',mprevPh:'this day…',mprojects:'Active projects',mexp:'Expand',mcol:'Collapse',moreN:'+{N} more',days:'This month',noDays:'Nothing written on a day this month yet.',
-    openLink:'Open link',projects:'Projects',rename:'Edit title',pjArch:'Archive',pjDrop:'Drop here to archive',pjArchived:'Archived',pjRestore:'Restore',pjAttach:'Add to project',pjDetach:'Remove from project',pjNone:'No projects yet',pjAdded:'Added to project',pinMax:'Up to 10 notes',pinNoRep:"This task can't be moved",pinTasks:'Moved tasks',pinHere:'Move to this day',pinToNb:'Move to Timeless Notes',trashS:'Trash',pinDropHint:'Drag a task here to keep it outside the notes',pinPick:'An empty post-it can\'t be moved',pinSub:'sub-items',calendar:'Calendar',pjNeedTitle:'Give the project a name first',chkS:'+ Item',bulS:'• Bullet',pjNoItems:'no items',pjOff:'Make it a note',hereS:'This day',tmrwS:'Tomorrow',nextS:'Next day',toWeekS:'Week',toMonthS:'Month',delS:'Delete',tabNotes:'Notes',project:'Project',pjNew:'+ New project',pjUntitled:'Untitled project',pjTitlePh:'Project name',pjEmpty:'No projects yet. Start one for long-running work; give an item a date and it also shows up on that day.',pjAdd:'+ Add item',pjTodoPh:'To do…',delTodo:'Delete item',pjNotes:'Ideas',pjNotesPh:'Note…',pjDel:'Delete project',pjGone:'Project deleted',pjMake:'Make project',pjOpen:'Open project',pjDate:'Set date',pjClr:'Remove date',pjDone:'done',pjBack:'Projects',pjMade:'Project created',here:'Move to this day',moveTo:'Move to day',repeat:'Repeat',repNone:'No repeat',repW:'Every week',repM:'Every month',repY:'Every year',toWeek:'Move to week',toMonth:'Move to month',tmrw:'Postpone to tomorrow',nextday:'Postpone a day',bullet:'• Bullet',check2:'☐ Task',noteClr:'Clear note',undoCap:'Undo',del:'Delete task',pins:'Post-it',nb:'Timeless Notes',nbAll:'Untagged',nbSortT:'Sorted by time (newest first)',nbSortM:'Your own order',nbDef:'Archive',nbAddPh:'New note…',nbTabPh:'Tab name',nbNewTab:'New tab',nbEmpty:'No notes yet. Write what is on your mind above.',nbDefEmpty:'Drag a task onto the notebook icon below, or tap the clock icon in its menu, to archive it; it waits here with its sub-items and notes.',nbMove:'Move',nbNone:'No tab',nbRename:'Rename',nbDelTab:'Delete tab',nbDelSure:"Sure? Notes stay in All",nbTabMax:'Up to 12 tabs',nbGone:'Note deleted',nbMore:'Options',nbDrag:'Drag',nbTrash:'Trash',nbEmptyTrash:'Empty trash',nbEmptySure:'Sure? Tap again',nbTrashEmpty:'Trash is empty.',nbPerm:'Delete forever',nbMoreTx:'Show more',nbLess:'Show less',nbDel:'Delete',pinNew:'+ New',pinDarkT:'Dark post-it',pinLight:'Yellow post-it',pinPh:'A phone number, shopping, a stray thought…',pinTi:'Title',pinDel:'Delete',pinGone:'Note deleted',pinMove:'Move',fs:'Full screen',brand:['TOMORROW’S','NOTEBOOK'],themeLight:'Light theme',themeDark:'Dark theme',fsOn:'Enter',fsOff:'Exit',fsFail:'The browser did not allow full screen',fsIos:'For full screen, tap Share › Add to Home Screen, then open the notebook from there; it opens without browser bars.',pinDay:'To day',pinWeek:'To week',pinMonth:'To month',pinSize:'Drag to resize',
+    openLink:'Open link',projects:'Projects',rename:'Edit title',pjArch:'Archive',pjDrop:'Drop here to archive',pjArchived:'Archived',pjRestore:'Restore',pjAttach:'Add to project',pjDetach:'Remove from project',pjNone:'No projects yet',pjAdded:'Added to project',pinMax:'Up to 10 notes',pinNoRep:"This task can't be moved",pinTasks:'Moved tasks',pinHere:'Move to this day',pinToNb:'Move to Timeless Notes',trashS:'Trash',pinDropHint:'Drag a task here to keep it outside the notes',pinPick:'An empty post-it can\'t be moved',pinSub:'sub-items',calendar:'Calendar',pjNeedTitle:'Give the project a name first',chkS:'+ Item',bulS:'• Bullet',pjNoItems:'no items',pjOff:'Make it a note',hereS:'This day',tmrwS:'Tomorrow',nextS:'Next day',toWeekS:'Week',toMonthS:'Month',delS:'Delete',tabNotes:'Notes',project:'Project',pjNew:'+ New project',pjUntitled:'Untitled project',pjTitlePh:'Project name',pjEmpty:'No projects yet. Start one for long-running work; give an item a date and it also shows up on that day.',pjAdd:'+ Add item',pjTodoPh:'To do…',delTodo:'Delete item',pjNotes:'Ideas',pjNotesPh:'Note…',pjDel:'Delete project',pjGone:'Project deleted',pjMake:'Make project',pjOpen:'Open project',pjDate:'Set date',pjClr:'Remove date',pjDone:'done',pjBack:'Projects',pjMade:'Project created',here:'Move to this day',moveTo:'Move to day',repeat:'Repeat',repNone:'No repeat',repW:'Every week',repM:'Every month',repY:'Every year',toWeek:'Move to week',toMonth:'Move to month',tmrw:'Postpone to tomorrow',nextday:'Postpone a day',bullet:'• Bullet',check2:'☐ Task',noteClr:'Clear note',undoCap:'Undo',del:'Delete task',pins:'Post-it',nb:'Timeless Notes',nbAll:'Other',nbEvery:'All notes',nbSortT:'Sorted by time (newest first)',nbSortM:'Your own order',nbDef:'Archive',nbAddPh:'New note…',nbTabPh:'Tab name',nbNewTab:'New tab',nbEmpty:'No notes yet. Write what is on your mind above.',nbDefEmpty:'Drag a task onto the notebook icon below, or tap the clock icon in its menu, to archive it; it waits here with its sub-items and notes.',nbMove:'Move',nbNone:'No tab',nbRename:'Rename',nbDelTab:'Delete tab',nbDelSure:"Sure? Notes stay in Other",nbTabMax:'Up to 12 tabs',nbGone:'Note deleted',nbMore:'Options',nbDrag:'Drag',nbTrash:'Trash',nbEmptyTrash:'Empty trash',nbEmptySure:'Sure? Tap again',nbTrashEmpty:'Trash is empty.',nbPerm:'Delete forever',nbMoreTx:'Show more',nbLess:'Show less',nbDel:'Delete',pinNew:'+ New',pinDarkT:'Dark post-it',pinLight:'Yellow post-it',pinPh:'A phone number, shopping, a stray thought…',pinTi:'Title',pinDel:'Delete',pinGone:'Note deleted',pinMove:'Move',fs:'Full screen',brand:['TOMORROW’S','NOTEBOOK'],themeLight:'Light theme',themeDark:'Dark theme',fsOn:'Enter',fsOff:'Exit',fsFail:'The browser did not allow full screen',fsIos:'For full screen, tap Share › Add to Home Screen, then open the notebook from there; it opens without browser bars.',pinDay:'To day',pinWeek:'To week',pinMonth:'To month',pinSize:'Drag to resize',
     deleted:'Deleted',undo:'undo',moved:'Moved',archive:'Archive',arch:'Archive',archived:'Archived',trashT:'Deleted',archEmpty:'Nothing archived.',trashEmpty:'Nothing deleted.',archNote:'Archived items leave the pages; this is the same place as the Archive tab in Timeless Notes.',trashNote:'Deleted items stay here for 30 days, then are removed for good.',putBack:'Put back',delForever:'Delete for good',emptyTrash:'Empty deleted',emptySure:'Sure? Tap again',backed:'Put back',hideDone:'Hide done',hidS:'done hidden',hideAgain:'Hide done',hideDoneL:'No done items',
     settings:'Settings',lang:'Language',font:'Font',fontHand:'Handwriting',fontPlain:'Plain',note:'Note',notePh:'A note for this line…',backup:'Backup',
     backupNote:'Your notebook is stored in this browser. A backup now and then is a good idea.',
     saveBackup:'Save',copyBackup:'Copy',pasteHere:'Paste backup text',
     restoreBtn:'Restore',restoreGo:'Load',confirmRestore:'This replaces your current notebook. Confirm',
-    restored:'Backup restored',bad:'Could not read backup',copied:'Copied',saved:'Saved',
+    restored:'Backup restored',nbN:'notes',safeTitle:'Automatic copies',safeNote:'The data on this device is kept automatically before it can be overwritten (last 4 copies).',safeGo:'Restore',safeWhy:{pull:'Before updating from Drive',drive:'Version in Drive',restore:'Before restoring a backup',undo:'Before restoring'},syncWarn:'Changes are not uploaded to Drive yet · Upload now',bad:'Could not read backup',copied:'Copied',saved:'Saved',
     noStore:'This browser is not saving anything. Remember to back up.',close:'Close',size:'Text size',order:'Year order',fwd:'Jan → Dec',rev:'Dec → Jan',past:'Past months',noteDel:'Delete note',noteAdd:'Add note',noteEdit:'Edit note',weekof:'week of',
     check:'Done',more:'Options',prev:'Previous',next:'Next',pick:'Pick a date',
     sync:'Sync (soon)',syncNote:'Carry your notes between devices with Google Drive. The notebook is saved in a hidden area of your Drive that only this app can see. If you disconnect, the copy in Drive is not deleted.',
@@ -1319,7 +1321,7 @@ var TX={
     helpNb:[
       ['What Timeless Notes is','The notebook icon at the right of the bottom bar opens Timeless Notes. It is not a task area but a place to remember: like a journal or an idea book. It is tied to no day, nothing is counted, nothing has to get done.'],
       ['Writing a note','Type in the box at the top and press <b>Enter</b> to save (Shift+Enter for a new line). If you wrote something and did not save it, it stays in the box even when you tap elsewhere, until you save or delete it.'],
-      ['Tabs','<b>Untagged</b> shows notes that are not in a tab yet. <b>Archive</b>, with the clock icon, is where tasks you set aside wait. <b>+</b> makes your own tabs (up to 12); with a tab selected, <b>Rename</b> and <b>Delete tab</b> appear below the notes; long-press a tab and drag it to reorder. When a tab is deleted its notes return to Untagged.'],
+      ['Tabs','The <b>stacked-layers icon</b> shows every note together; <b>Other</b> shows notes that are not in a tab yet. <b>Archive</b>, with the clock icon, is where tasks you set aside wait. <b>+</b> makes your own tabs (up to 12); with a tab selected, <b>Rename</b> and <b>Delete tab</b> appear below the notes; long-press a tab and drag it to reorder. When a tab is deleted its notes return to Other.'],
       ['Long notes','The triangle under a note shortens a long text to 4 lines or opens it: a <b>hollow triangle</b> means folded, a <b>filled triangle</b> means open. Notes longer than 10 lines start folded.'],
       ['Three dots, date and moving','A note’s tab and the date it was written stay hidden; <b>tap</b> its three-dot handle to show them under the note. <b>Drag</b> the handle onto one of the tabs above to move the note there, or onto the trash icon to delete it.'],
       ['Trash','Tap the trash icon at the right of the new-note box to open deleted notes. Drag a note onto a tab to put it back, use the trash icon next to a note to delete it forever, or <b>Empty trash</b> to clear all. The trash has no counter; this is a free space.'],
@@ -1364,7 +1366,7 @@ var TX={
         ['Drag','Drag a task onto another year\u2019s lines to move it there. Drop on the arrows next to the title {lr} to put it in the top section of the next or previous decade.']
       ],
       nb:[
-        ['Tabs','Sort your notes into tabs. + opens a new tab, and you can drag tab names to reorder them. Untagged shows notes that are not in a tab yet.'],
+        ['Tabs','Sort your notes into tabs. + opens a new tab, and you can drag tab names to reorder them. The first icon shows all notes together; Other shows notes that are not in a tab yet.'],
         ['Add a note','Write and press Enter: the note is added on top. The table icon next to it adds a table note; the bin icon shows deleted notes.'],
         ['Drag','Drag from the handle beside a note. Drop between two notes to reorder. Drop on a tab to move it there, or on the Bin to delete it. Tabs and the Bin appear at the bottom while you drag.'],
         ['Formatting','Links in notes are clickable. Write **bold** and ==highlight==; [word](address) links a word. Long notes fold with the triangle.']
@@ -1511,11 +1513,56 @@ function persist(){
   catch(e){storageOK=false;if(!warned){warned=true;toast(T.noStore)}}
 }
 function realItems(){return S.items.filter(function(x){return !x._tour})}
+/* ---- safety copies: before anything on this device can be overwritten, keep the last few versions ---- */
+var SAFE_KEY=STORE+'.safe',lastSafeAt=0;
+function safeList(){try{var a=JSON.parse(localStorage.getItem(SAFE_KEY)||'[]');return Array.isArray(a)?a:[]}catch(e){return []}}
+function safeSnap(){return {items:realItems(),pins:S.pins,nb:realNb(),projects:S.projects,ds:S.decadeStart}}
+function safeHas(d){return !!(d&&((d.items&&d.items.length)||(d.pins&&d.pins.length)||(d.projects&&d.projects.length)||(d.nb&&((d.nb.notes||[]).length||(d.nb.tabs||[]).length))))}
+function safeSave(why,d){
+  try{
+    d=d||safeSnap();if(!safeHas(d))return;
+    var a=safeList(),str=JSON.stringify(d);
+    if(a.length&&JSON.stringify(a[0].d)===str)return;
+    a.unshift({at:Date.now(),why:why,d:d});while(a.length>4)a.pop();
+    for(;;){try{localStorage.setItem(SAFE_KEY,JSON.stringify(a));break}catch(e){if(a.length<=1)break;a.pop()}}
+    lastSafeAt=Date.now();
+  }catch(e){}
+}
+function safeRestore(i){
+  var a=safeList(),e=a[i];if(!e||!e.d)return;
+  safeSave('undo');
+  var d=e.d;
+  S.items=clean({items:d.items})||S.items;if(d.pins)S.pins=cleanPins(d.pins);if(d.nb)S.nb=cleanNb(d.nb);if(d.projects)S.projects=cleanProjects(d.projects)||[];if(d.ds)S.decadeStart=d.ds;
+  S.dirty=true;editSeq++;persist();closeSheet();render();toast(T.restored);autoPushSoon();
+}
 function realNb(){var o={};for(var k in S.nb)o[k]=S.nb[k];o.notes=S.nb.notes.filter(function(x){return !x._tour});return o}
 function queueSave(){editSeq++;S.dirty=true;clearTimeout(saveTimer);saveTimer=setTimeout(persist,300);autoPushSoon()}
 document.addEventListener('visibilitychange',function(){if(document.visibilityState==='hidden'&&saveTimer)persist()});
 window.addEventListener('pagehide',function(){if(saveTimer)persist()});
 
+/* a second tab or window of the app on the same device: pick up what the other one saved instead of overwriting it later */
+var xtabPend=false;
+function xtabUnion(N){
+  function add(cur,inc){var h2={};cur.forEach(function(x){h2[x.id]=1});inc.forEach(function(x){if(!h2[x.id])cur.push(x)})}
+  add(S.items,N.items);add(S.pins,N.pins);add(S.nb.notes,N.nb.notes);add(S.nb.tabs,N.nb.tabs);add(S.projects,N.projects);
+}
+function xtabApply(){
+  xtabPend=false;
+  var N=load();
+  if(editing()||saveTimer){xtabUnion(N);xtabPend=true;return}
+  S.items=N.items;S.pins=N.pins;S.nb=N.nb;S.projects=N.projects;S.decadeStart=N.decadeStart;
+  S.dirty=S.dirty||N.dirty;S.syncRev=N.syncRev;S.syncLast=N.syncLast;S.syncOn=N.syncOn;
+  render();setStatus();
+}
+window.addEventListener('storage',function(e){
+  if(e.key!==STORE||!e.newValue)return;
+  try{
+    var o=JSON.parse(e.newValue);
+    if(JSON.stringify(o.items)===JSON.stringify(realItems())&&JSON.stringify(o.pins)===JSON.stringify(S.pins)&&JSON.stringify(o.nb)===JSON.stringify(realNb())&&JSON.stringify(o.projects)===JSON.stringify(S.projects))return;
+  }catch(x){return}
+  xtabApply();
+});
+document.addEventListener('focusout',function(){if(xtabPend)setTimeout(function(){if(xtabPend&&!editing())xtabApply()},400)});
 var S=load(),T=TX[S.lang],pastOpen=false,view='day',anchor=today(),lastToday=dkey(today());
 document.documentElement.lang=S.lang;
 document.documentElement.setAttribute('data-font',S.font);
@@ -3118,6 +3165,9 @@ function cleanNb(x){
   return {tabs:tabs,notes:notes,sort:(x&&x.sort==='time')?'time':'manual'};
 }
 var nbTab='all';
+var EVERY_I='<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4l8 4-8 4-8-4z"/><path d="M4 12l8 4 8-4"/><path d="M4 16l8 4 8-4"/></svg>';
+var UNT_I='<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 11.8V4.5a1 1 0 0 1 1-1h7.3l8.4 8.4a1 1 0 0 1 0 1.4l-7.3 7.3a1 1 0 0 1-1.4 0z"/><circle cx="8.2" cy="8.2" r="1.1"/><path d="M4 20L20 4"/></svg>';
+function nbOwnTab(){return (nbTab==='all'||nbTab==='every')?'':nbTab}
 var GRIP_I='<svg viewBox="0 0 24 24" aria-hidden="true"><g fill="currentColor"><circle cx="9" cy="6" r="1.6"/><circle cx="15" cy="6" r="1.6"/><circle cx="9" cy="12" r="1.6"/><circle cx="15" cy="12" r="1.6"/><circle cx="9" cy="18" r="1.6"/><circle cx="15" cy="18" r="1.6"/></g></svg>';
 var ARW_I='<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15M13.5 6.5L19 12l-5.5 5.5"/></svg>';
 var DAY_I='<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="8" r="3.6" style="fill:var(--today);stroke:none"/><path d="M4.5 15.5h15M4.5 20h15" opacity=".75"/></svg>';
@@ -3231,7 +3281,7 @@ function nbDrag(more,row,n,trashMode,closeMenu){
         var fb=null;
         function floatBar(){
           fb=h('div',{class:'nbtabs nbfl'});
-          fb.appendChild(h('div',{class:'nbt nbfc','data-nbtab':'all',text:T.nbAll}));
+          fb.appendChild(h('div',{class:'nbt nbfc defc evc untc','data-nbtab':'all','aria-label':T.nbAll,html:UNT_I}));
           fb.appendChild(h('div',{class:'nbt nbfc defc','data-nbtab':'def','aria-label':T.nbDef,html:LATER_I}));
           S.nb.tabs.forEach(function(t){fb.appendChild(h('div',{class:'nbt nbfc','data-nbtab':t.id,text:t.name}))});
           /* filters on top, trash as the bottom-most strip (closest to the thumb) */
@@ -3298,12 +3348,13 @@ function nbDrag(more,row,n,trashMode,closeMenu){
 }
 function pageNb(){
   var tabs=S.nb.tabs;
-  if(nbTab!=='all'&&nbTab!=='def'&&nbTab!=='trash'&&!tabs.some(function(t){return t.id===nbTab}))nbTab='all';
+  if(nbTab!=='all'&&nbTab!=='every'&&nbTab!=='def'&&nbTab!=='trash'&&!tabs.some(function(t){return t.id===nbTab}))nbTab='all';
   var p=h('div',{class:'nbp'});
   p.appendChild(h('div',{class:'nav'},[h('div',{class:'nslot l'}),h('div',{class:'ncenter'},[h('div',{class:'t'},[h('div',{class:'title',text:T.nb})])]),h('div',{class:'nslot r'})]));
   var strip=h('div',{class:'nbtabs'}),trow=h('div',{class:'nbrow'});
   function chip(id,label){return h('button',{type:'button',class:'nbt','data-nbtab':id,'aria-pressed':String(nbTab===id),text:label,onclick:function(){nbRedraw(id)}})}
-  strip.appendChild(chip('all',T.nbAll));
+  var ev=h('button',{type:'button',class:'nbt defc evc','data-nbtab':'every','aria-pressed':String(nbTab==='every'),'aria-label':T.nbEvery,title:T.nbEvery,html:EVERY_I,onclick:function(){nbRedraw('every')}});strip.appendChild(ev);
+  strip.appendChild(h('button',{type:'button',class:'nbt defc evc untc','data-nbtab':'all','aria-pressed':String(nbTab==='all'),'aria-label':T.nbAll,title:T.nbAll,html:UNT_I,onclick:function(){nbRedraw('all')}}));
   var dc=h('button',{type:'button',class:'nbt defc','aria-pressed':String(nbTab==='def'),'aria-label':T.nbDef,title:T.nbDef,html:LATER_I,onclick:function(){nbRedraw('def')}});strip.appendChild(dc);
   tabs.forEach(function(t){var c=chip(t.id,t.name);c.classList.add('ut');tabDrag(c,t,strip);strip.appendChild(c)});
   var plus=h('button',{type:'button',class:'nbt plus','aria-label':T.nbNewTab,title:T.nbNewTab,text:'+',onclick:function(){
@@ -3397,13 +3448,13 @@ function pageNb(){
     add.addEventListener('keydown',function(e){
       if(e.key==='Enter'&&!e.shiftKey){
         e.preventDefault();var v=add.value.trim();if(!v)return;
-        S.nb.notes.unshift({id:uid(),text:v.slice(0,4000),tab:nbTab==='all'?'':nbTab,t:Date.now()});queueSave();
+        S.nb.notes.unshift({id:uid(),text:v.slice(0,4000),tab:nbOwnTab(),t:Date.now()});queueSave();
         nbDraftSet('');nbRedraw();var a2=document.querySelector('.nadd');if(a2)a2.focus();
       }
     });
     var tblBtn=h('button',{type:'button',class:'ntrash ntblb','aria-label':T.tblAdd,title:T.tblAdd,html:TBL_I,onclick:function(){
       if(S.nb.notes.length>=1000)return;
-      var nn={id:uid(),text:'',tab:nbTab==='all'?'':nbTab,t:Date.now(),tb:{ti:'',cols:['',''],rows:[{n:'',v:['','']},{n:'',v:['','']}]}};
+      var nn={id:uid(),text:'',tab:nbOwnTab(),t:Date.now(),tb:{ti:'',cols:['',''],rows:[{n:'',v:['','']},{n:'',v:['','']}]}};
       S.nb.notes.unshift(nn);tbFocus={id:nn.id,f:'ti'};queueSave();nbRedraw();
     }});
     var byT=S.nb.sort==='time';
@@ -3411,7 +3462,7 @@ function pageNb(){
       S.nb.sort=byT?'manual':'time';queueSave();nbRedraw();toast(S.nb.sort==='time'?T.nbSortT:T.nbSortM);
     }});
     arow.appendChild(add);arow.appendChild(tblBtn);arow.appendChild(sortBtn);arow.appendChild(tbtn);body.appendChild(arow);focusAdd=add;
-    var list=S.nb.notes.filter(function(n){return !n.d&&(nbTab==='all'?!n.tab:n.tab===nbTab)});
+    var list=S.nb.notes.filter(function(n){return !n.d&&(nbTab==='every'||(nbTab==='all'?!n.tab:n.tab===nbTab))});
     if(S.nb.sort==='time')list=list.slice().sort(function(a,b){return (b.t||0)-(a.t||0)});
     if(!list.length)body.appendChild(h('p',{class:'pjempty',text:T.nbEmpty}));
     var nl=h('div',{class:'nlist'});
@@ -3458,7 +3509,7 @@ function pageNb(){
       nl.appendChild(row);
     });
     body.appendChild(nl);
-    if(nbTab!=='all'){
+    if(nbTab!=='all'&&nbTab!=='every'){
       var cur=tabs.filter(function(t){return t.id===nbTab})[0];
       var act=h('div',{class:'nbact'});
       var ren=h('button',{type:'button',text:T.nbRename,onclick:function(){
@@ -4412,7 +4463,18 @@ function syncStatusText(){
   if(S.dirty&&S.syncOn)return T.syncPending;
   return S.syncLast?T.syncLast+fmtTime(S.syncLast):T.syncNever;
 }
+var syncWarnEl=null;
+function syncWarnUpdate(){
+  var show=!!(SYNC_OK&&S.syncOn&&S.dirty&&!syncBusy&&Date.now()-(S.syncLast||0)>15*60000);
+  if(show&&!syncWarnEl){
+    syncWarnEl=h('button',{type:'button',class:'syncwarn',onclick:function(){syncNow(false)}});
+    document.body.appendChild(syncWarnEl);
+  }
+  if(syncWarnEl){syncWarnEl.textContent=T.syncWarn;syncWarnEl.hidden=!show}
+}
+setInterval(function(){try{syncWarnUpdate()}catch(e){}},60000);
 function syncBtnUpdate(){
+  syncWarnUpdate();
   var on=!!(SYNC_OK&&S.syncOn&&S.dirty&&!syncBusy);
   var g=document.getElementById('gear');if(g)g.classList.toggle('pend',on);
   var d=document.querySelector('.dhead[data-k="sync"]');if(d)d.classList.toggle('pend',on);
@@ -4429,6 +4491,7 @@ function syncOff(){
   S.syncOn=false;S.syncEmail='';S.syncRev=null;S.dirty=false;syncMsg='';persist();syncBtnUpdate();toast(T.disconnected);openSettings();
 }
 function applyRemote(rm){
+  if(!(sameItems(S.items,rm.items)&&samePins(rm.pins)&&sameNb(rm.nb)&&sameProj(rm.projects)))safeSave('pull');
   S.items=rm.items;if(rm.pins)S.pins=rm.pins;if(rm.nb)S.nb=rm.nb;if(rm.projects)S.projects=rm.projects;if(rm.ds)S.decadeStart=rm.ds;S.syncRev=rm.savedAt;S.dirty=false;S.syncLast=Date.now();persist();render();
 }
 function pushNow(id,seq){
@@ -4440,7 +4503,7 @@ function pushNow(id,seq){
 }
 function endSync(kind,auto){
   syncBusy=false;syncMsg='';
-  if(kind==='pulled'){toast(T.pulled)}
+  if(kind==='pulled'){toast(T.pulled,(lastSafeAt&&Date.now()-lastSafeAt<8000)?{label:T.undo,fn:function(){safeRestore(0)}}:null)}
   else if(kind==='pushed'&&!auto){toast(T.pushed)}
   else if(kind==='ok'&&!auto){toast(T.upToDate)}
   persist();setStatus();
@@ -4507,13 +4570,15 @@ function openConflict(){
   var p=h('div',{class:'panel',role:'dialog','aria-modal':'true'});
   p.appendChild(h('div',{class:'phead'},[h('div',{class:'sheet-title',text:T.conflictTitle}),xBtn()]));
   p.appendChild(h('p',{class:'snote',text:T.conflictText}));
-  p.appendChild(h('p',{class:'snote',text:T.onThis+': '+S.items.length+' '+T.lines+' · '+T.onDrive+': '+conf.rm.items.length+' '+T.lines}));
+  p.appendChild(h('p',{class:'snote',text:T.onThis+': '+S.items.length+' '+T.lines+' · '+S.nb.notes.length+' '+T.nbN+' · '+T.onDrive+': '+conf.rm.items.length+' '+T.lines+' · '+((conf.rm.nb&&conf.rm.nb.notes)?conf.rm.nb.notes.length:0)+' '+T.nbN}));
+  p.appendChild(h('p',{class:'snote',text:T.safeNote}));
   function run(kind){
     var c=conf;conf=null;closeSheet();
     if(syncBusy)return;
     syncBusy=true;syncSpin=true;setStatus();var seq=editSeq;
     var job;
     if(kind==='remote'){applyRemote(c.rm);endSync('pulled',false);return}
+    safeSave('drive',{items:c.rm.items,pins:c.rm.pins||[],nb:c.rm.nb||{tabs:[],notes:[]},projects:c.rm.projects||[],ds:c.rm.ds});
     if(kind==='merge'){
       var seen={};S.items.forEach(function(i){seen[i.id]=1});
       c.rm.items.forEach(function(i){if(!seen[i.id])S.items.push(i)});
@@ -4526,9 +4591,9 @@ function openConflict(){
       .catch(function(){syncBusy=false;S.dirty=true;syncMsg=T.syncFail;persist();setStatus();toast(T.syncFail)});
   }
   p.appendChild(h('div',{class:'sbtns cf'},[
-    h('button',{class:'sbtn big',type:'button',text:T.takeRemote,onclick:function(){run('remote')}}),
+    h('button',{class:'sbtn big',type:'button',text:T.merge,onclick:function(){run('merge')}}),
     h('div',{class:'cfpair'},[
-      h('button',{class:'sbtn',type:'button',text:T.merge,onclick:function(){run('merge')}}),
+      h('button',{class:'sbtn',type:'button',text:T.takeRemote,onclick:function(){run('remote')}}),
       h('button',{class:'sbtn',type:'button',text:T.takeLocal,onclick:function(){run('local')}})
     ])
   ]));
@@ -4751,9 +4816,21 @@ function openSettings(){
     var items=null,ds=null,pn=null,pr=null,nbk=null;try{var oo=JSON.parse(raw);items=clean(oo);if(oo&&Array.isArray(oo.projects))pr=cleanProjects(oo.projects);if(oo&&typeof oo.decadeStart==='number')ds=oo.decadeStart;if(oo&&Array.isArray(oo.pins))pn=cleanPins(oo.pins);if(oo&&oo.nb)nbk=cleanNb(oo.nb)}catch(e){}
     if(!items){toast(T.bad);return}
     if(!confirming){confirming=true;rb.textContent=T.confirmRestore;return}
+    safeSave('restore');
     S.items=items;if(ds)S.decadeStart=ds;if(pn)S.pins=pn;if(nbk)S.nb=nbk;if(pr)S.projects=pr;S.dirty=true;editSeq++;persist();closeSheet();render();toast(T.restored);autoPushSoon();
   });
   rbox.appendChild(ta);rbox.appendChild(h('div',{class:'sbtns'},[rb]));bk.push(rbox);
+  var sl=safeList();
+  if(sl.length){
+    bk.push(h('p',{class:'snote',text:T.safeTitle+' — '+T.safeNote}));
+    sl.forEach(function(e,i){
+      var d=e.d||{},n1=(d.items||[]).length,n2=d.nb&&d.nb.notes?d.nb.notes.length:0;
+      bk.push(h('div',{class:'sbtns two'},[
+        h('p',{class:'snote',text:fmtTime(e.at)+' · '+(T.safeWhy[e.why]||e.why)+' · '+n1+' '+T.lines+', '+n2+' '+T.nbN}),
+        h('button',{class:'sbtn',type:'button',text:T.safeGo,onclick:function(){safeRestore(i)}})
+      ]));
+    });
+  }
   if(typeof syncDrawer!=='undefined'&&syncDrawer)p.appendChild(syncDrawer);
   p.appendChild(drawer('backup',T.backup,bk));
   p.appendChild(h('div',{class:'slabel',text:T.about}));
