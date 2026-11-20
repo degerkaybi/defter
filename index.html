@@ -1048,6 +1048,9 @@ body.arrows-on .arrow.over{background:var(--blue-soft);box-shadow:0 0 0 2px var(
 .arow .at{font:15px/1.3 var(--sans);color:var(--ink);overflow-wrap:anywhere;cursor:text}
 .arow .atin{display:block;width:100%;box-sizing:border-box;font:15px/1.3 var(--sans);color:var(--ink);background:transparent;border:0;outline:0;padding:0;margin:0;resize:none;overflow:hidden}
 .arow.done .at{text-decoration:line-through;color:var(--ink-soft)}
+.arow .asn{margin-top:4px;font:13px/1.3 var(--sans);color:var(--ink-soft);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;overflow-wrap:anywhere;cursor:pointer}
+.arow .abtn.anb{color:var(--ink-faint)}
+.arow .abtn.anb svg{width:17px;height:17px;display:block}.arow .abtn.anb.has{color:var(--blue)}.arow .abtn.anb.has path:first-child{fill:var(--blue-soft)}
 .arow .am{margin-top:2px;font:12px/1.2 var(--sans);color:var(--ink-soft)}
 .arow .abtn{flex:none;padding:8px 12px;border-radius:999px;border:1px solid var(--rule-strong);background:none;font:500 13px/1 var(--sans);color:var(--ink)}
 .arow .abtn.ic{padding:8px;display:grid;place-items:center;color:var(--danger)}
@@ -2747,6 +2750,7 @@ var MOON_I='<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" f
 var XICON='<svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M3.5 3.5l9 9M12.5 3.5l-9 9"/></svg>';
 function xBtn(){return h('button',{class:'xbtn',type:'button','aria-label':T.close,html:XICON,onclick:closeSheet})}
 function itemDate(it){
+  if(it.layer==='pin'||it.layer==='trash'){var ol=origLabel(it);return (it.layer==='pin'?T.nbDef:T.trashS)+(ol?' \u00b7 '+ol:'')}
   if(it.layer==='day'){var d=pd(it.key);return T.wds[wdIdx(d)]+', '+shortDate(d)}
   if(it.layer==='week'){var m=pd(it.key);return S.lang==='tr'?shortDate(m)+' '+T.weekof:T.weekof+' '+shortDate(m)}
   if(it.layer==='month'){var q=it.key.split('-');return T.mo[+q[1]-1]+' '+q[0]}
@@ -3399,7 +3403,12 @@ function pageNb(){
       }
       atEl.addEventListener('click',atEdit);
       atEl.addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();atEdit()}});
-      row.appendChild(h('div',{class:'atxt'},[atEl,h('div',{class:'am',text:meta})]));
+      var nbody=((rc?rc.notes:it.note)||'').trim();
+      var kids=[atEl,h('div',{class:'am',text:meta})];
+      if(nbody){var sn=h('div',{class:'asn',role:'button',tabindex:'0',onclick:function(){openSheet(it)},onkeydown:function(e){if(e.key==='Enter'){e.preventDefault();openSheet(it)}}});
+        sn.textContent=nbody.replace(/\s*\n\s*/g,' · ');kids.push(sn)}
+      row.appendChild(h('div',{class:'atxt'},[atEl,h('div',{class:'am',text:meta})].concat(kids.slice(2))));
+      row.appendChild(h('button',{class:'abtn ic anb'+(hasNote(it)?' has':''),type:'button','aria-label':T.note,title:T.note,html:NOTE,onclick:function(){openSheet(it)}}));
       row.appendChild(h('button',{class:'abtn',type:'button',text:T.putBack,onclick:function(){
         var k=hereKey();delete it.ol;delete it.ok;delete it.dt;it.layer='day';it.key=k;queueSave();render();
         toast(T.backed+' · '+shortDate(pd(k)));nbRedraw();
