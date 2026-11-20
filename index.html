@@ -219,6 +219,7 @@ mark.hl{background:var(--hl,rgba(255,214,10,.34));color:inherit;border-radius:4p
 .nbp{display:flex;flex-direction:column}
 .nbrow{display:flex;align-items:center;gap:6px;margin:0 -2px;padding-bottom:12px}
 .nbtabs{flex:1 1 auto;min-width:0;display:flex;flex-wrap:wrap;gap:8px 6px;padding:2px}
+.nbsep{flex:none;align-self:center;width:1.5px;height:20px;margin:0 -2px;border-radius:1px;background:var(--rule-strong)}
 .nbt.defc{display:inline-flex;align-items:center;gap:6px;padding:7px 12px}.nbt.defc svg{display:block}.nbt.defc b{font:600 12.5px/1 var(--sans)}
 .nbt.defc{background:none;box-shadow:inset 0 0 0 1.5px var(--rule-strong)}
 .nbt.defc[aria-pressed="true"]{background:var(--blue-wash);box-shadow:inset 0 0 0 1.5px var(--blue-soft)}
@@ -353,6 +354,20 @@ body.nbdragging .nbtabs .nbt[data-nbtab]{box-shadow:inset 0 0 0 1.5px var(--blue
 .sub{font:400 calc(22px*var(--hs))/1.2 var(--hand);color:var(--blue)}
 .backwrap{position:fixed;left:0;right:0;bottom:calc(76px + env(safe-area-inset-bottom,0px));z-index:19;display:flex;justify-content:flex-end;max-width:560px;margin:0 auto;padding:0 max(16px,env(safe-area-inset-right,0px)) 0 max(16px,env(safe-area-inset-left,0px));pointer-events:none}
 .back{pointer-events:auto;padding:10px 16px;border-radius:999px;background:var(--sheet);border:1px solid var(--blue-soft);color:var(--blue);box-shadow:var(--shadow);font:500 13px/1 var(--sans)}
+.wxline{display:inline-flex;align-items:center;gap:8px;max-width:100%;white-space:nowrap;vertical-align:middle}
+.wxchip{display:inline-flex;align-items:center;gap:3px;flex:none;padding:5px 9px 5px 7px;border-radius:999px;background:var(--chip);color:var(--ink-soft);font:600 13px/1 var(--sans);border:0;cursor:pointer}
+.wxchip svg{width:18px;height:18px;display:block}.wxchip[hidden]{display:none}
+.wxchip.setup{padding:5px 7px;opacity:.55}
+.wxpanel .wxday{margin-top:-4px}
+.wxbig{display:flex;align-items:center;gap:14px;margin:4px 4px 12px}.wxbi{color:var(--ink);display:grid;place-items:center}
+.wxdeg{font:600 34px/1 var(--sans);color:var(--ink)}.wxdesc{margin-top:4px;font:14px/1.3 var(--sans);color:var(--ink-soft)}
+.wxgrid{margin:0 4px 6px;border-top:1px solid var(--rule)}
+.wxrow{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px solid var(--rule);font:14px/1.3 var(--sans);color:var(--ink-soft)}.wxrow b{font-weight:600;color:var(--ink)}
+.wxsearch{display:flex;gap:8px;margin:0 4px 8px}.wxin{flex:1;min-width:0;padding:10px 12px;border-radius:12px;border:1.5px solid var(--rule-strong);background:var(--chip);color:var(--ink);font:16px/1.2 var(--sans)}
+.wxres{display:flex;flex-direction:column;margin:0 4px 8px}
+.wxopt{display:flex;flex-direction:column;gap:2px;text-align:left;padding:10px 4px;border-bottom:1px solid var(--rule);color:var(--ink)}.wxopt b{font:600 15px/1.2 var(--sans)}.wxopt span{font:13px/1.2 var(--sans);color:var(--ink-soft)}
+.wxcred{font-size:12px;margin-top:6px}.wxcred a{color:inherit;text-decoration:underline}.wxupd{margin-bottom:6px}
+.wxseg{margin:0 4px 10px}
 .datepick{position:relative;display:inline-block;max-width:100%}
 .datepick input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;font-size:16px;border:0;padding:0}
 
@@ -1280,6 +1295,12 @@ var TX={
       ['Ayarlar','Ayarlar\u2019dan dili, açık ya da koyu temayı, yazı tipini ve boyutunu seçersiniz. <b>Yedek</b> defterinizi dosya olarak kaydeder, kopyalar ya da geri yükler. <b>Arşiv</b> arşivlediğiniz ve sildiğiniz satırları geri koyar (silinenler 30 gün durur); Göz ikonu (tema ve tam ekran düğmelerinin yanında) üstü çizili satırları saklar. <b>Senkron</b> ile Google hesabınıza bağlanıp aynı defteri telefonunuzda ve bilgisayarınızda kullanırsınız; defter Drive\u2019ınızda yalnızca bu uygulamanın görebildiği gizli bir alanda durur, değişiklikleriniz kendiliğinden gider. Gönderilmesi gereken bir değişiklik varsa Ayarlar simgesinde küçük bir mavi nokta belirir; Senkron bölümünden <b>Senkronize edin</b> demeniz yeterli.']
     ],
     credit:['Verimlilik için ',' tarafından tasarlandı, Claude ile birlikte geliştirildi.'],
+    wxTitle:'Hava durumu',wxSet:'Hava durumu için şehir seçin',wxOnL:'Açık',wxOffL:'Kapalı',wxCityL:'Şehir',wxNoCity:'Henüz şehir seçilmedi.',wxPickBtn:'Şehir seçin',wxChange:'Şehri değiştirin',
+    wxPickTitle:'Şehir',wxPickNote:'Yalnızca şehrin koordinatı hava servisine gider; notlarınız hiçbir yere gitmez.',wxPh:'Şehir adı',wxFind:'Arayın',wxSearching:'Aranıyor…',wxNoRes:'Sonuç bulunamadı.',wxErr:'Arama yapılamadı, bağlantıyı kontrol edin.',
+    wxHere:'Konumumu kullanın',wxHereName:'Konumum',wxLocating:'Konum alınıyor…',wxLocFail:'Konum alınamadı. Şehir adını yazıp “Arayın” düğmesine basabilirsiniz.',wxLocDenied:'Konum izni verilmedi. Tarayıcı ayarlarından izin verebilir ya da şehir adını yazıp “Arayın” düğmesine basabilirsiniz.',wxShort:'En az 2 harf yazın.',wxPrev:'Bu önizlemede dış bağlantılar kapalı; hava durumu yalnızca kendi sitenizde (GitHub Pages) çalışır.',wxSaved:'Şehir kaydedildi',wxNone:'Bu gün için hava verisi yok.',wxNow:'şimdi',wxUpd:'Son güncelleme',
+    wxHi:'En yüksek',wxLo:'En düşük',wxFeel:'Hissedilen',wxRainP:'Yağış ihtimali',wxRain:'Yağış miktarı',wxWind:'Rüzgâr',wxUv:'UV endeksi',wxSr:'Gün doğumu',wxSs:'Gün batımı',
+    wxCredit:'Hava verisi: <a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo</a> (CC BY 4.0)',
+    wxL:{c0:'Açık',c1:'Çoğunlukla açık',c2:'Parçalı bulutlu',c3:'Kapalı',fog:'Sisli',drz:'Çise',rain:'Yağmurlu',shw:'Sağanak',snow:'Karlı',sshw:'Kar sağanağı',storm:'Gök gürültülü fırtına'},
     wd:['Pazartesi','Salı','Çarşamba','Perşembe','Cuma','Cumartesi','Pazar'],
     wds:['Pzt','Sal','Çar','Per','Cum','Cmt','Paz'],
     wl:['P','S','Ç','P','C','C','P'],
@@ -1396,6 +1417,12 @@ var TX={
       ['Settings','In Settings you choose the language, light or dark theme, font and text size. <b>Backup</b> saves your notebook as a file, copies it or restores it. <b>Archive</b> brings back lines you archived or deleted (deleted ones stay for 30 days); The eye icon (next to the theme and full-screen buttons) tucks away crossed-out lines. With <b>Sync</b> you connect your Google account and use the same notebook on your phone and computer; it lives in a hidden area of your Drive that only this app can see, and changes are sent automatically. When something still needs sending, a small blue dot appears on the Settings icon; tap <b>Sync now</b> in the Sync section.']
     ],
     credit:['Designed for productivity by ',', built together with Claude.'],
+    wxTitle:'Weather',wxSet:'Choose a city for weather',wxOnL:'On',wxOffL:'Off',wxCityL:'City',wxNoCity:'No city chosen yet.',wxPickBtn:'Choose a city',wxChange:'Change city',
+    wxPickTitle:'City',wxPickNote:'Only the city coordinates are sent to the weather service; your notes never leave this device.',wxPh:'City name',wxFind:'Search',wxSearching:'Searching…',wxNoRes:'No results.',wxErr:'Search failed, check your connection.',
+    wxHere:'Use my location',wxHereName:'My location',wxLocating:'Getting location…',wxLocFail:'Could not get location. You can type a city name and press Search.',wxLocDenied:'Location permission was denied. Allow it in the browser settings, or type a city name and press Search.',wxShort:'Type at least 2 letters.',wxPrev:'External connections are blocked in this preview; weather only works on your own site (GitHub Pages).',wxSaved:'City saved',wxNone:'No weather data for this day.',wxNow:'now',wxUpd:'Last updated',
+    wxHi:'High',wxLo:'Low',wxFeel:'Feels like',wxRainP:'Chance of rain',wxRain:'Precipitation',wxWind:'Wind',wxUv:'UV index',wxSr:'Sunrise',wxSs:'Sunset',
+    wxCredit:'Weather data: <a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo</a> (CC BY 4.0)',
+    wxL:{c0:'Clear',c1:'Mainly clear',c2:'Partly cloudy',c3:'Overcast',fog:'Fog',drz:'Drizzle',rain:'Rain',shw:'Showers',snow:'Snow',sshw:'Snow showers',storm:'Thunderstorm'},
     wd:['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'],
     wds:['Mon','Tue','Wed','Thu','Fri','Sat','Sun'],
     wl:['M','T','W','T','F','S','S'],
@@ -2373,14 +2400,170 @@ function quiet(layer,always){
 }
 
 /* ---------- pages ---------- */
+/* ---------- weather (Open-Meteo, no key; only a city's coordinates leave the device) ---------- */
+var WXK=STORE+'.wx',WX_TTL=3600000;
+var W=(function(){
+  try{var o=JSON.parse(localStorage.getItem(WXK)||'null');
+    if(o&&typeof o==='object')return {on:o.on!==false,city:(o.city&&isFinite(o.city.lat)&&isFinite(o.city.lon))?{name:String(o.city.name||'').slice(0,60),lat:+o.city.lat,lon:+o.city.lon}:null,days:(o.days&&typeof o.days==='object')?o.days:{},now:o.now||null,ts:+o.ts||0,ck:o.ck||''}}catch(e){}
+  return {on:true,city:null,days:{},now:null,ts:0,ck:''};
+  })();
+function wxSave(){try{var ks=Object.keys(W.days).sort();while(ks.length>400)delete W.days[ks.shift()];localStorage.setItem(WXK,JSON.stringify(W))}catch(e){}}
+function wxCk(){return W.city?W.city.lat.toFixed(3)+','+W.city.lon.toFixed(3):''}
+var WXI={
+  sun:'<circle cx="12" cy="12" r="4"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6l1.4 1.4M17 17l1.4 1.4M5.6 18.4L7 17M17 7l1.4-1.4"/>',
+  part:'<circle cx="8.5" cy="8.5" r="2.8"/><path d="M8.5 2.6v1.2M2.6 8.5h1.2M4.3 4.3l.9.9M12.7 4.3l-.9.9"/><path d="M9.5 19.5h8a3.3 3.3 0 0 0 .5-6.55 4.6 4.6 0 0 0-8.9 1.1A3 3 0 0 0 9.5 19.5z"/>',
+  cloud:'<path d="M7.5 18.5h9a3.8 3.8 0 0 0 .6-7.55A5.3 5.3 0 0 0 6.9 9.6 4.5 4.5 0 0 0 7.5 18.5z"/>',
+  fog:'<path d="M4 8h16M6 12h12M4 16h16M8 20h8"/>',
+  drz:'<path d="M7.5 14.5h9a3.6 3.6 0 0 0 .6-7.15A5.1 5.1 0 0 0 7 6.2a4.2 4.2 0 0 0 .5 8.3z"/><path d="M8.5 18v1.5M12 18v1.5M15.5 18v1.5"/>',
+  rain:'<path d="M7.5 14.5h9a3.6 3.6 0 0 0 .6-7.15A5.1 5.1 0 0 0 7 6.2a4.2 4.2 0 0 0 .5 8.3z"/><path d="M8 17.5l-1 3M12 17.5l-1 3M16 17.5l-1 3"/>',
+  snow:'<path d="M7.5 14.5h9a3.6 3.6 0 0 0 .6-7.15A5.1 5.1 0 0 0 7 6.2a4.2 4.2 0 0 0 .5 8.3z"/><path d="M8 18.5h.01M12 20.5h.01M16 18.5h.01M10 20.5h.01M14 18.5h.01" stroke-width="2.4"/>',
+  storm:'<path d="M7.5 14.5h9a3.6 3.6 0 0 0 .6-7.15A5.1 5.1 0 0 0 7 6.2a4.2 4.2 0 0 0 .5 8.3z"/><path d="M12.8 13.5l-2.6 3.6h3l-2 3.4"/>'
+};
+function wxIcon(ic,sz){return '<svg viewBox="0 0 24 24" width="'+(sz||18)+'" height="'+(sz||18)+'" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+(WXI[ic]||WXI.cloud)+'</svg>'}
+function wxKind(c){
+  c=+c;
+  if(c===0)return ['sun','c0'];if(c===1)return ['part','c1'];if(c===2)return ['part','c2'];if(c===3)return ['cloud','c3'];
+  if(c===45||c===48)return ['fog','fog'];
+  if(c>=51&&c<=57)return ['drz','drz'];
+  if(c>=61&&c<=67)return ['rain','rain'];
+  if(c>=71&&c<=77)return ['snow','snow'];
+  if(c>=80&&c<=82)return ['rain','shw'];
+  if(c===85||c===86)return ['snow','sshw'];
+  if(c>=95)return ['storm','storm'];
+  return ['cloud','c3'];
+}
+function wxOn(){return !!W.on}
+function wxDay(k){return W.days[k]||null}
+function wxTemp(k){
+  var d=wxDay(k);if(!d)return null;
+  if(k===dkey(today())&&W.now&&Date.now()-W.now.at<3*3600000&&isFinite(W.now.t))return {t:W.now.t,c:isFinite(W.now.c)?W.now.c:d.c,cur:true};
+  return {t:d.hi,c:d.c,cur:false};
+}
+var wxBusy=false;
+function num(v){return (typeof v==='number'&&isFinite(v))?v:null}
+function wxFetch(force){
+  if(!W.on||!W.city||wxBusy||!window.fetch)return;
+  if(!force&&W.ck===wxCk()&&Date.now()-W.ts<WX_TTL)return;
+  wxBusy=true;
+  var url='https://api.open-meteo.com/v1/forecast?latitude='+W.city.lat+'&longitude='+W.city.lon+
+    '&current=temperature_2m,apparent_temperature,weather_code,wind_speed_10m'+
+    '&daily=weather_code,temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min,precipitation_probability_max,precipitation_sum,wind_speed_10m_max,uv_index_max,sunrise,sunset'+
+    '&timezone=auto&past_days=14&forecast_days=16';
+  var ck=wxCk(),ac=window.AbortController?new AbortController():null,tm=setTimeout(function(){if(ac)ac.abort()},12000);
+  fetch(url,ac?{signal:ac.signal}:undefined).then(function(r){if(!r.ok)throw new Error('http '+r.status);return r.json()}).then(function(j){
+    if(ck!==wxCk())return;
+    var d=j&&j.daily;if(!d||!d.time)throw new Error('no daily');
+    for(var i=0;i<d.time.length;i++){
+      var k=d.time[i];if(!/^\d{4}-\d{2}-\d{2}$/.test(k))continue;
+      var hi=num(d.temperature_2m_max&&d.temperature_2m_max[i]);if(hi===null)continue;
+      W.days[k]={c:num(d.weather_code[i]),hi:hi,lo:num(d.temperature_2m_min[i]),ah:num(d.apparent_temperature_max[i]),al:num(d.apparent_temperature_min[i]),
+        p:num(d.precipitation_probability_max[i]),r:num(d.precipitation_sum[i]),w:num(d.wind_speed_10m_max[i]),u:num(d.uv_index_max[i]),
+        sr:String(d.sunrise[i]||'').slice(11,16),ss:String(d.sunset[i]||'').slice(11,16)};
+    }
+    var c=j.current;
+    if(c&&num(c.temperature_2m)!==null)W.now={t:c.temperature_2m,c:num(c.weather_code),f:num(c.apparent_temperature),w:num(c.wind_speed_10m),at:Date.now()};
+    W.ts=Date.now();W.ck=ck;wxSave();wxPaint();
+  }).catch(function(){}).then(function(){clearTimeout(tm);wxBusy=false});
+}
+function wxFill(el){
+  var k=el.getAttribute('data-wx');
+  if(!W.city){el.className='wxchip setup';el.innerHTML=wxIcon('part',18);el.hidden=false;el.setAttribute('aria-label',T.wxSet);el.title=T.wxSet;return}
+  var v=wxTemp(k);
+  if(!v){el.hidden=true;return}
+  el.hidden=false;el.className='wxchip';
+  var ic=wxKind(v.c)[0];
+  el.innerHTML=wxIcon(ic,18)+'<span>'+Math.round(v.t)+'°</span>';
+  var lab=T.wxL[wxKind(v.c)[1]];
+  el.setAttribute('aria-label',lab+', '+Math.round(v.t)+'°');el.title=lab;
+}
+function wxPaint(){[].forEach.call(document.querySelectorAll('[data-wx]'),wxFill)}
+function wxChip(k){
+  var b=h('button',{type:'button','data-wx':k,class:'wxchip',onclick:function(){wxOpen(k)}});
+  wxFill(b);return b;
+}
+function wxSetCity(c){
+  W.city=c?{name:String(c.name||'').slice(0,60),lat:+c.lat,lon:+c.lon}:null;
+  W.days={};W.now=null;W.ts=0;W.ck='';wxSave();wxPaint();
+  if(W.city)wxFetch(true);
+}
+function wxFmtTime(ts){var d=new Date(ts);return ('0'+d.getHours()).slice(-2)+':'+('0'+d.getMinutes()).slice(-2)}
+function wxCredit(){return h('p',{class:'snote wxcred',html:T.wxCredit})}
+function wxOpen(k){
+  if(!W.city){wxPicker();return}
+  wxFetch(false);
+  var d=wxDay(k),v=wxTemp(k);
+  var p=h('div',{class:'panel wxpanel',role:'dialog','aria-modal':'true','aria-label':T.wxTitle});
+  p.appendChild(h('div',{class:'phead'},[h('div',{class:'sheet-title',text:W.city.name||T.wxTitle}),xBtn()]));
+  var dd=pd(k),dl=(S.lang==='tr'?T.wd[wdIdx(dd)]+', '+dd.getDate()+' '+T.mo[dd.getMonth()]:T.wd[wdIdx(dd)]+', '+T.mo[dd.getMonth()]+' '+dd.getDate());
+  p.appendChild(h('p',{class:'snote wxday',text:dl}));
+  if(!d||!v){
+    p.appendChild(h('p',{class:'snote',text:T.wxNone}));
+  }else{
+    var kd=wxKind(v.c);
+    p.appendChild(h('div',{class:'wxbig'},[h('span',{class:'wxbi',html:wxIcon(kd[0],44)}),h('div',{class:'wxbt'},[h('div',{class:'wxdeg',text:Math.round(v.t)+'°'}),h('div',{class:'wxdesc',text:T.wxL[kd[1]]+(v.cur?' · '+T.wxNow:'')})])]));
+    var rows=[];
+    function row(l,val){if(val!=null&&val!=='')rows.push(h('div',{class:'wxrow'},[h('span',{text:l}),h('b',{text:val})]))}
+    row(T.wxHi,d.hi!=null?Math.round(d.hi)+'°':null);
+    row(T.wxLo,d.lo!=null?Math.round(d.lo)+'°':null);
+    row(T.wxFeel,(k===dkey(today())&&W.now&&W.now.f!=null&&v.cur)?Math.round(W.now.f)+'°':(d.ah!=null&&d.al!=null?Math.round(d.al)+'° / '+Math.round(d.ah)+'°':null));
+    row(T.wxRainP,d.p!=null?'%'+Math.round(d.p):null);
+    row(T.wxRain,d.r!=null?(Math.round(d.r*10)/10)+' mm':null);
+    row(T.wxWind,d.w!=null?Math.round(d.w)+' km/h':null);
+    row(T.wxUv,d.u!=null?String(Math.round(d.u*10)/10):null);
+    row(T.wxSr,d.sr||null);row(T.wxSs,d.ss||null);
+    p.appendChild(h('div',{class:'wxgrid'},rows));
+  }
+  if(W.ts)p.appendChild(h('p',{class:'snote wxupd',text:T.wxUpd+' '+wxFmtTime(W.ts)}));
+  p.appendChild(h('div',{class:'sbtns'},[h('button',{class:'sbtn',type:'button',text:T.wxChange,onclick:function(){wxPicker()}})]));
+  p.appendChild(wxCredit());
+  showSheet(p,true);
+}
+function wxPreview(){return !!(window.claude&&window.claude.use)}
+function wxPicker(){
+  var p=h('div',{class:'panel wxpanel',role:'dialog','aria-modal':'true','aria-label':T.wxPickTitle});
+  p.appendChild(h('div',{class:'phead'},[h('div',{class:'sheet-title',text:T.wxPickTitle}),xBtn()]));
+  p.appendChild(h('p',{class:'snote',text:T.wxPickNote}));
+  var inp=h('input',{type:'text',class:'wxin',placeholder:T.wxPh,'aria-label':T.wxPh,maxlength:'60',autocomplete:'off',spellcheck:'false'});
+  var res=h('div',{class:'wxres'}),msg=h('p',{class:'snote wxmsg'});
+  var seq=0;
+  function pick(c){wxSetCity(c);closeSheet();toast(T.wxSaved)}
+  function fold(t){return t.replace(/[İI]/g,'I').replace(/ı/g,'i').replace(/[Şş]/g,function(c){return c==='Ş'?'S':'s'}).replace(/[Ğğ]/g,function(c){return c==='Ğ'?'G':'g'}).replace(/[Üü]/g,function(c){return c==='Ü'?'U':'u'}).replace(/[Öö]/g,function(c){return c==='Ö'?'O':'o'}).replace(/[Çç]/g,function(c){return c==='Ç'?'C':'c'})}
+  function geo(q){return fetch('https://geocoding-api.open-meteo.com/v1/search?name='+encodeURIComponent(q)+'&count=6&language='+S.lang+'&format=json').then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(j){return (j&&j.results)||[]})}
+  function search(){
+    var q=inp.value.trim();if(q.length<2){msg.textContent=T.wxShort;return}
+    var my=++seq;res.innerHTML='';msg.textContent=T.wxSearching;
+    geo(q).then(function(a){var f=fold(q);return (a.length||f===q)?a:geo(f)}).then(function(a){
+      if(my!==seq)return;
+      msg.textContent=a.length?'':T.wxNoRes;
+      a.forEach(function(r){
+        if(!isFinite(r.latitude)||!isFinite(r.longitude))return;
+        var sub=[r.admin1,r.country].filter(Boolean).join(', ');
+        res.appendChild(h('button',{type:'button',class:'wxopt',onclick:function(){pick({name:r.name,lat:r.latitude,lon:r.longitude})}},[h('b',{text:r.name}),h('span',{text:sub})]));
+      });
+    }).catch(function(){if(my===seq)msg.textContent=wxPreview()?T.wxPrev:T.wxErr});
+  }
+  inp.addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();search()}});
+  p.appendChild(h('div',{class:'wxsearch'},[inp,h('button',{class:'sbtn',type:'button',text:T.wxFind,onclick:search})]));
+  p.appendChild(msg);p.appendChild(res);
+  if(navigator.geolocation)p.appendChild(h('div',{class:'sbtns'},[h('button',{class:'sbtn',type:'button',text:T.wxHere,onclick:function(){
+    msg.textContent=T.wxLocating;
+    navigator.geolocation.getCurrentPosition(function(g){pick({name:T.wxHereName,lat:Math.round(g.coords.latitude*100)/100,lon:Math.round(g.coords.longitude*100)/100})},function(er){msg.textContent=wxPreview()?T.wxPrev:(er&&er.code===1?T.wxLocDenied:T.wxLocFail)},{timeout:12000,maximumAge:600000});
+  }})]));
+  p.appendChild(wxCredit());
+  showSheet(p,true);
+  setTimeout(function(){try{inp.focus()}catch(e){}},60);
+}
 function pageDay(){
   var f=h('div'),key=dkey(anchor),t=today(),tk=dkey(t);
   var rel=yearSub(anchor);
-  var label=S.lang==='tr'?T.wd[wdIdx(anchor)]+', '+anchor.getDate()+' '+T.mo[anchor.getMonth()]:T.wd[wdIdx(anchor)]+', '+T.mo[anchor.getMonth()]+' '+anchor.getDate();
+  var wxo=wxOn(),shortL=wxo&&window.innerWidth<600;
+  var wdn=shortL?T.wds[wdIdx(anchor)]:T.wd[wdIdx(anchor)],mon=shortL?T.mo[anchor.getMonth()].slice(0,3):T.mo[anchor.getMonth()];
+  var label=S.lang==='tr'?wdn+', '+anchor.getDate()+' '+mon:wdn+', '+mon+' '+anchor.getDate();
   var pick=h('input',{type:'date',id:'dayPick',value:key,'aria-label':T.pick});
   pick.addEventListener('change',function(){if(pick.value)go('day',pd(pick.value))});
   var title=h('span',{class:'datepick'},[h('h1',{class:'title'+(key===tk?' istoday':''),text:label}),pick]);
-  f.appendChild(navBar(title,rel));
+  f.appendChild(navBar(wxo?h('span',{class:'wxline'},[title,wxChip(key)]):title,rel));
+  if(wxo)wxFetch(false);
   var qw=quiet('week',true),qm=quiet('month',true);
   if(qw)f.appendChild(qw);
   f.appendChild(linesBlock('day',key,{row:36,min:9,margin:true,ph:S.items.length?'':T.hint,phOnce:true}));
@@ -3316,7 +3499,7 @@ function nbDrag(more,row,n,trashMode,closeMenu){
         function up(){
           var isTr=!!(over&&over.classList.contains('ntrash')),tid=over&&!isTr?over.getAttribute('data-nbtab'):null,was=go,insv=ins;
           clean();
-          if(!was){if(!trashMode){nbInfo[n.id]=!nbInfo[n.id];row.classList.toggle('nshow',!!nbInfo[n.id])}return}
+          if(!was){if(!trashMode&&nbTab!=='every'){nbInfo[n.id]=!nbInfo[n.id];row.classList.toggle('nshow',!!nbInfo[n.id])}return}
           setTimeout(function(){more._drag=false},0);
           if(isTr){
             n.d=Date.now();queueSave();nbRedraw();
@@ -3360,6 +3543,7 @@ function pageNb(){
   var ev=h('button',{type:'button',class:'nbt defc evc','data-nbtab':'every','aria-pressed':String(nbTab==='every'),'aria-label':T.nbEvery,title:T.nbEvery,html:EVERY_I,onclick:function(){nbRedraw('every')}});strip.appendChild(ev);
   strip.appendChild(h('button',{type:'button',class:'nbt defc evc untc','data-nbtab':'all','aria-pressed':String(nbTab==='all'),'aria-label':T.nbAll,title:T.nbAll,html:UNT_I,onclick:function(){nbRedraw('all')}}));
   var dc=h('button',{type:'button',class:'nbt defc','aria-pressed':String(nbTab==='def'),'aria-label':T.nbDef,title:T.nbDef,html:LATER_I,onclick:function(){nbRedraw('def')}});strip.appendChild(dc);
+  strip.appendChild(h('span',{class:'nbsep','aria-hidden':'true'}));
   tabs.forEach(function(t){var c=chip(t.id,t.name);c.classList.add('ut');tabDrag(c,t,strip);strip.appendChild(c)});
   var plus=h('button',{type:'button',class:'nbt plus','aria-label':T.nbNewTab,title:T.nbNewTab,text:'+',onclick:function(){
     if(tabs.length>=12){toast(T.nbTabMax);return}
@@ -3477,7 +3661,7 @@ function pageNb(){
     var nl=h('div',{class:'nlist'});
     list.forEach(function(n){
       if(n.tb){nl.appendChild(tblRow(n,tabs));return}
-      var row=h('div',{class:'nrow'+(nbInfo[n.id]?' nshow':''),'data-nid':n.id});
+      var row=h('div',{class:'nrow'+((nbInfo[n.id]||nbTab==='every')?' nshow':''),'data-nid':n.id});
       var ta=h('textarea',{rows:'1',spellcheck:'false','aria-label':T.nb});ta.value=n.text;
       var tog=h('button',{type:'button',class:'ntog',hidden:true,onclick:function(){n.c=tog._col?0:1;queueSave();apply()}});
       var nv=h('div',{class:'nview',onclick:function(e){
@@ -3550,7 +3734,7 @@ function tblRow(n,tabs){
   var tb=n.tb,col=n.c===1,edit=!!tbEdit[n.id]&&!col;
   if(!Array.isArray(tb.cw))tb.cw=[];
   while(tb.cw.length<tb.cols.length)tb.cw.push(0);
-  var row=h('div',{class:'nrow ntbl'+(col?' tcol':'')+(nbInfo[n.id]?' nshow':''),'data-nid':n.id});
+  var row=h('div',{class:'nrow ntbl'+(col?' tcol':'')+((nbInfo[n.id]||nbTab==='every')?' nshow':''),'data-nid':n.id});
   var tx=h('div',{class:'ntx'});
   function mut(fn,msg,focus){
     var before=JSON.stringify(n.tb);fn();if(focus)tbFocus={id:n.id,f:focus};queueSave();nbRedraw();
@@ -4841,6 +5025,15 @@ function openSettings(){
     });
   }
   if(typeof syncDrawer!=='undefined'&&syncDrawer)p.appendChild(syncDrawer);
+  var wk=[];
+  function segW(on,name){return h('button',{type:'button',text:name,'aria-pressed':String(W.on===on),onclick:function(){if(W.on!==on){W.on=on;wxSave();render();openSettings();if(on)wxFetch(false)}}})}
+  wk.push(h('div',{class:'seg wxseg'},[segW(true,T.wxOnL),segW(false,T.wxOffL)]));
+  if(W.on){
+    wk.push(h('p',{class:'snote',text:W.city?T.wxCityL+': '+W.city.name:T.wxNoCity}));
+    wk.push(h('div',{class:'sbtns'},[h('button',{class:'sbtn',type:'button',text:W.city?T.wxChange:T.wxPickBtn,onclick:function(){wxPicker()}})]));
+  }
+  wk.push(wxCredit());
+  p.appendChild(drawer('wx',T.wxTitle,wk));
   p.appendChild(drawer('backup',T.backup,bk));
   p.appendChild(h('div',{class:'slabel',text:T.about}));
   T.aboutIntro.split('\n').forEach(function(t,n){
@@ -5624,6 +5817,7 @@ document.addEventListener('visibilitychange',function(){
   var nowKey=dkey(today());
   if(nowKey!==lastToday){if(dkey(anchor)===lastToday)anchor=today();lastToday=nowKey;render()}
   if(SYNC_OK&&S.syncOn&&Date.now()-lastAuto>30000)syncNow(true,true);
+  wxFetch(false);
 });
 if(document.fonts&&document.fonts.ready)document.fonts.ready.then(function(){fitAll();fitTitle()});
 window.addEventListener('resize',function(){fitAll();fitTitle()});
