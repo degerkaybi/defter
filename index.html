@@ -347,21 +347,38 @@ body.nbdragging .nbtabs .nbt[data-nbtab]{box-shadow:inset 0 0 0 1.5px var(--blue
 .nbact .dng,.sbtn.dng{color:var(--danger)}
 
 .nslot{width:36px;height:40px;margin-top:calc((36px*var(--hs) - 40px)/2)}
-.arrow{flex:none;width:30px;height:40px;margin-top:calc((36px*var(--hs) - 40px)/2);border-radius:12px;display:grid;place-items:center;color:var(--ink-soft);background:none}
+.arrow{flex:none;width:34px;height:40px;margin-top:calc((36px*var(--hs) - 40px)/2 - .75px);border-radius:12px;display:grid;place-items:center;color:var(--ink-soft);background:none}
 .nav .t{text-align:center;min-width:0}
+.arrow svg{width:32px;height:32px;display:block}
 .title{font:400 calc(30px*var(--hs))/calc(36px*var(--hs)) var(--hand);color:var(--ink);white-space:nowrap}
 .title.istoday{color:var(--today)}
 .sub{font:400 calc(22px*var(--hs))/1.2 var(--hand);color:var(--blue)}
 .backwrap{position:fixed;left:0;right:0;bottom:calc(76px + env(safe-area-inset-bottom,0px));z-index:19;display:flex;justify-content:flex-end;max-width:560px;margin:0 auto;padding:0 max(16px,env(safe-area-inset-right,0px)) 0 max(16px,env(safe-area-inset-left,0px));pointer-events:none}
 .back{pointer-events:auto;padding:10px 16px;border-radius:999px;background:var(--sheet);border:1px solid var(--blue-soft);color:var(--blue);box-shadow:var(--shadow);font:500 13px/1 var(--sans)}
-.wxline{display:inline-flex;align-items:center;gap:8px;max-width:100%;white-space:nowrap;vertical-align:middle}
+.wxline{display:flex;align-items:center;justify-content:center;gap:8px;max-width:100%;white-space:nowrap}
 .wxchip{display:inline-flex;align-items:center;gap:3px;flex:none;padding:5px 9px 5px 7px;border-radius:999px;background:var(--chip);color:var(--ink-soft);font:600 13px/1 var(--sans);border:0;cursor:pointer}
+.wxline .wxchip{margin:-8px 0}
 .wxchip svg{width:18px;height:18px;display:block}.wxchip[hidden]{display:none}
 .wxchip.setup{padding:5px 7px;opacity:.55}
 .wxpanel .wxday{margin-top:-4px}
+.wxhead{display:flex;align-items:center;gap:8px}.wxhead .sheet-title{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.wxsp{display:none}.wxhead .sheet-title{flex:1 1 auto}
+.wxref,.wxback{flex:none;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:none;color:var(--ink-soft);border:0}.wxref:hover,.wxback:hover{background:var(--chip)}
+.wxref svg{display:block}.wxref.spin svg{animation:spin 1s linear infinite}
+.wxten{margin:0 4px 6px;border-top:1px solid var(--rule)}
+.wxtr{display:grid;grid-template-columns:86px 26px minmax(0,1fr) auto;align-items:center;gap:8px;width:100%;padding:9px 0;border-bottom:1px solid var(--rule);text-align:left;color:var(--ink)}
+.wxtd{font:500 13.5px/1.2 var(--sans);color:var(--ink-soft);white-space:nowrap}.wxtr.today .wxtd{color:var(--blue);font-weight:600}
+.wxti{display:grid;place-items:center;color:var(--ink)}
+.wxtx{display:flex;flex-direction:column;gap:2px;min-width:0;font:13.5px/1.2 var(--sans);color:var(--ink)}.wxtx small{font-size:12px;color:var(--ink-soft)}
+.wxtt{display:flex;gap:7px;font:14px/1 var(--sans);color:var(--ink-soft)}.wxtt b{color:var(--ink);font-weight:600}
+
 .wxbig{display:flex;align-items:center;gap:14px;margin:4px 4px 12px}.wxbi{color:var(--ink);display:grid;place-items:center}
 .wxdeg{font:600 34px/1 var(--sans);color:var(--ink)}.wxdesc{margin-top:4px;font:14px/1.3 var(--sans);color:var(--ink-soft)}
-.wxgrid{margin:0 4px 6px;border-top:1px solid var(--rule)}
+.wxtrio{display:flex;flex-wrap:wrap;gap:8px 18px;margin:0 4px 14px}
+.wxtri{display:inline-flex;align-items:center;gap:4px;font:600 17px/1 var(--sans);color:var(--ink)}.wxtri i{display:grid;place-items:center;font-style:normal}
+.wxtri.up i{color:#e8863a}.wxtri.dn i{color:var(--blue)}.wxtri.fl i{color:var(--ink-soft)}
+.wxtiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:0 4px 10px}
+.wxtile{display:flex;flex-direction:column;gap:5px;padding:9px 10px;border-radius:12px;background:var(--chip)}
+.wxtile span{font:12px/1.2 var(--sans);color:var(--ink-soft)}.wxtile b{font:600 15px/1.1 var(--sans);color:var(--ink);white-space:nowrap}
 .wxrow{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px solid var(--rule);font:14px/1.3 var(--sans);color:var(--ink-soft)}.wxrow b{font-weight:600;color:var(--ink)}
 .wxsearch{display:flex;gap:8px;margin:0 4px 8px}.wxin{flex:1;min-width:0;padding:10px 12px;border-radius:12px;border:1.5px solid var(--rule-strong);background:var(--chip);color:var(--ink);font:16px/1.2 var(--sans)}
 .wxres{display:flex;flex-direction:column;margin:0 4px 8px}
@@ -707,7 +724,8 @@ textarea.mkon{color:transparent!important;-webkit-text-fill-color:transparent!im
 .wcol svg{width:22px;height:22px}
 .wday.wopen .wcol{position:absolute;right:0;top:3px;width:42px;height:32px;margin:0;background:none;color:var(--ink-faint);border-radius:10px;z-index:2}.wday.wopen .wcol svg{width:18px;height:18px}.wday.wopen .lines{padding-right:34px}
 .wday.today .wlab .n,.wday.today .wlab .d{color:var(--blue);font-weight:600}
-.wday.today .wlab{position:relative}.wday.today .wlab::after{content:"";position:absolute;left:50%;bottom:-5px;width:20px;height:1px;margin-left:-10px;background:var(--blue)}
+.wday.today .wlab{position:relative}.wday.today .wlab::after{content:"";order:1;width:20px;height:1px;margin-top:4px;background:var(--blue)}
+.wxm{order:2;display:inline-flex;align-items:center;gap:1px;margin-top:4px;font:600 11.5px/1 var(--sans);color:var(--ink-soft);white-space:nowrap}.wxm svg{width:14px;height:14px;display:block}.wxm[hidden]{display:none}
 
 /* month page */
 .mgrid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:2px 1px;margin:0 0 16px;padding:6px 4px 4px;background:var(--card);border-radius:18px}
@@ -1295,7 +1313,7 @@ var TX={
       ['Ayarlar','Ayarlar\u2019dan dili, açık ya da koyu temayı, yazı tipini ve boyutunu seçersiniz. <b>Yedek</b> defterinizi dosya olarak kaydeder, kopyalar ya da geri yükler. <b>Arşiv</b> arşivlediğiniz ve sildiğiniz satırları geri koyar (silinenler 30 gün durur); Göz ikonu (tema ve tam ekran düğmelerinin yanında) üstü çizili satırları saklar. <b>Senkron</b> ile Google hesabınıza bağlanıp aynı defteri telefonunuzda ve bilgisayarınızda kullanırsınız; defter Drive\u2019ınızda yalnızca bu uygulamanın görebildiği gizli bir alanda durur, değişiklikleriniz kendiliğinden gider. Gönderilmesi gereken bir değişiklik varsa Ayarlar simgesinde küçük bir mavi nokta belirir; Senkron bölümünden <b>Senkronize edin</b> demeniz yeterli.']
     ],
     credit:['Verimlilik için ',' tarafından tasarlandı, Claude ile birlikte geliştirildi.'],
-    wxTitle:'Hava durumu',wxSet:'Hava durumu için şehir seçin',wxOnL:'Açık',wxOffL:'Kapalı',wxCityL:'Şehir',wxNoCity:'Henüz şehir seçilmedi.',wxPickBtn:'Şehir seçin',wxChange:'Şehri değiştirin',
+    wxTen:'10 günlük tahmin',wxTenTitle:'10 günlük',wxBack:'Geri',wxRefresh:'Güncelleyin',wxRefFail:'Güncellenemedi, bağlantıyı kontrol edin.',wxTitle:'Hava durumu',wxSet:'Hava durumu için şehir seçin',wxOnL:'Açık',wxOffL:'Kapalı',wxCityL:'Şehir',wxNoCity:'Henüz şehir seçilmedi.',wxPickBtn:'Şehir seçin',wxChange:'Şehri değiştirin',
     wxPickTitle:'Şehir',wxPickNote:'Yalnızca şehrin koordinatı hava servisine gider; notlarınız hiçbir yere gitmez.',wxPh:'Şehir adı',wxFind:'Arayın',wxSearching:'Aranıyor…',wxNoRes:'Sonuç bulunamadı.',wxErr:'Arama yapılamadı, bağlantıyı kontrol edin.',
     wxHere:'Konumumu kullanın',wxHereName:'Konumum',wxLocating:'Konum alınıyor…',wxLocFail:'Konum alınamadı. Şehir adını yazıp “Arayın” düğmesine basabilirsiniz.',wxLocDenied:'Konum izni verilmedi. Tarayıcı ayarlarından izin verebilir ya da şehir adını yazıp “Arayın” düğmesine basabilirsiniz.',wxShort:'En az 2 harf yazın.',wxPrev:'Bu önizlemede dış bağlantılar kapalı; hava durumu yalnızca kendi sitenizde (GitHub Pages) çalışır.',wxSaved:'Şehir kaydedildi',wxNone:'Bu gün için hava verisi yok.',wxNow:'şimdi',wxUpd:'Son güncelleme',
     wxHi:'En yüksek',wxLo:'En düşük',wxFeel:'Hissedilen',wxRainP:'Yağış ihtimali',wxRain:'Yağış miktarı',wxWind:'Rüzgâr',wxUv:'UV endeksi',wxSr:'Gün doğumu',wxSs:'Gün batımı',
@@ -1417,7 +1435,7 @@ var TX={
       ['Settings','In Settings you choose the language, light or dark theme, font and text size. <b>Backup</b> saves your notebook as a file, copies it or restores it. <b>Archive</b> brings back lines you archived or deleted (deleted ones stay for 30 days); The eye icon (next to the theme and full-screen buttons) tucks away crossed-out lines. With <b>Sync</b> you connect your Google account and use the same notebook on your phone and computer; it lives in a hidden area of your Drive that only this app can see, and changes are sent automatically. When something still needs sending, a small blue dot appears on the Settings icon; tap <b>Sync now</b> in the Sync section.']
     ],
     credit:['Designed for productivity by ',', built together with Claude.'],
-    wxTitle:'Weather',wxSet:'Choose a city for weather',wxOnL:'On',wxOffL:'Off',wxCityL:'City',wxNoCity:'No city chosen yet.',wxPickBtn:'Choose a city',wxChange:'Change city',
+    wxTen:'10-day forecast',wxTenTitle:'10 days',wxBack:'Back',wxRefresh:'Refresh',wxRefFail:'Could not refresh, check your connection.',wxTitle:'Weather',wxSet:'Choose a city for weather',wxOnL:'On',wxOffL:'Off',wxCityL:'City',wxNoCity:'No city chosen yet.',wxPickBtn:'Choose a city',wxChange:'Change city',
     wxPickTitle:'City',wxPickNote:'Only the city coordinates are sent to the weather service; your notes never leave this device.',wxPh:'City name',wxFind:'Search',wxSearching:'Searching…',wxNoRes:'No results.',wxErr:'Search failed, check your connection.',
     wxHere:'Use my location',wxHereName:'My location',wxLocating:'Getting location…',wxLocFail:'Could not get location. You can type a city name and press Search.',wxLocDenied:'Location permission was denied. Allow it in the browser settings, or type a city name and press Search.',wxShort:'Type at least 2 letters.',wxPrev:'External connections are blocked in this preview; weather only works on your own site (GitHub Pages).',wxSaved:'City saved',wxNone:'No weather data for this day.',wxNow:'now',wxUpd:'Last updated',
     wxHi:'High',wxLo:'Low',wxFeel:'Feels like',wxRainP:'Chance of rain',wxRain:'Precipitation',wxWind:'Wind',wxUv:'UV index',wxSr:'Sunrise',wxSs:'Sunset',
@@ -2128,13 +2146,16 @@ function fitTitle(){
   if(view==='day'){
     /* one size for every day: fit the longest possible date, so no day looks bigger than another */
     var box=t.closest('.t'),avail=box?box.clientWidth:0;if(!avail)return;
+    var wxs=wxOn(),chipEl=document.querySelector('#page .wxchip');
+    if(wxs&&chipEl&&!chipEl.hidden)avail-=chipEl.offsetWidth+8;
     var cs=getComputedStyle(t),base=parseFloat(cs.fontSize);
     var m=document.createElement('span');
     m.style.cssText='position:absolute;visibility:hidden;white-space:nowrap;left:-9999px;top:0;font-family:'+cs.fontFamily+';font-weight:'+cs.fontWeight+';font-size:'+base+'px;letter-spacing:'+cs.letterSpacing;
     document.body.appendChild(m);
     var mx=0;
     for(var i=0;i<7;i++)for(var j=0;j<12;j++){
-      m.textContent=S.lang==='tr'?T.wd[i]+', 28 '+T.mo[j]:T.wd[i]+', '+T.mo[j]+' 28';
+      var wn=wxs?T.wds[i]:T.wd[i],mn=wxs?T.mo[j].slice(0,3):T.mo[j];
+      m.textContent=S.lang==='tr'?wn+', 28 '+mn:wn+', '+mn+' 28';
       mx=Math.max(mx,m.getBoundingClientRect().width);
     }
     m.remove();
@@ -2441,10 +2462,10 @@ function wxTemp(k){
 }
 var wxBusy=false;
 function num(v){return (typeof v==='number'&&isFinite(v))?v:null}
-function wxFetch(force){
-  if(!W.on||!W.city||wxBusy||!window.fetch)return;
-  if(!force&&W.ck===wxCk()&&Date.now()-W.ts<WX_TTL)return;
-  wxBusy=true;
+function wxFetch(force,cb){
+  if(!W.on||!W.city||wxBusy||!window.fetch){if(cb)setTimeout(function(){cb(false)},0);return}
+  if(!force&&W.ck===wxCk()&&Date.now()-W.ts<WX_TTL){if(cb)setTimeout(function(){cb(true)},0);return}
+  wxBusy=true;var okf=false;
   var url='https://api.open-meteo.com/v1/forecast?latitude='+W.city.lat+'&longitude='+W.city.lon+
     '&current=temperature_2m,apparent_temperature,weather_code,wind_speed_10m'+
     '&daily=weather_code,temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min,precipitation_probability_max,precipitation_sum,wind_speed_10m_max,uv_index_max,sunrise,sunset'+
@@ -2462,11 +2483,17 @@ function wxFetch(force){
     }
     var c=j.current;
     if(c&&num(c.temperature_2m)!==null)W.now={t:c.temperature_2m,c:num(c.weather_code),f:num(c.apparent_temperature),w:num(c.wind_speed_10m),at:Date.now()};
-    W.ts=Date.now();W.ck=ck;wxSave();wxPaint();
-  }).catch(function(){}).then(function(){clearTimeout(tm);wxBusy=false});
+    W.ts=Date.now();W.ck=ck;wxSave();wxPaint();okf=true;
+  }).catch(function(){}).then(function(){clearTimeout(tm);wxBusy=false;if(cb)cb(okf)});
 }
 function wxFill(el){
   var k=el.getAttribute('data-wx');
+  if(el.classList.contains('wxm')){
+    var mv=W.city?wxTemp(k):null;
+    if(!mv){el.hidden=true;return}
+    el.hidden=false;el.innerHTML=wxIcon(wxKind(mv.c)[0],14)+'<span>'+Math.round(mv.t)+'°</span>';el.title=T.wxL[wxKind(mv.c)[1]];
+    return;
+  }
   if(!W.city){el.className='wxchip setup';el.innerHTML=wxIcon('part',18);el.hidden=false;el.setAttribute('aria-label',T.wxSet);el.title=T.wxSet;return}
   var v=wxTemp(k);
   if(!v){el.hidden=true;return}
@@ -2488,12 +2515,50 @@ function wxSetCity(c){
 }
 function wxFmtTime(ts){var d=new Date(ts);return ('0'+d.getHours()).slice(-2)+':'+('0'+d.getMinutes()).slice(-2)}
 function wxCredit(){return h('p',{class:'snote wxcred',html:T.wxCredit})}
+var WX_REF='<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11a8 8 0 0 0-14.5-4.2L4 8.5"/><path d="M4 4v4.5h4.5"/><path d="M4 13a8 8 0 0 0 14.5 4.2L20 15.5"/><path d="M20 20v-4.5h-4.5"/></svg>';
+var WX_BACK='<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>';
+function wxRefBtn(redo){
+  var b=h('button',{type:'button',class:'wxref','aria-label':T.wxRefresh,title:T.wxRefresh,html:WX_REF,onclick:function(){
+    if(b.classList.contains('spin'))return;
+    b.classList.add('spin');
+    wxFetch(true,function(ok){
+      var open=sheet&&!sheet.hidden&&sheet.querySelector('.wxpanel');
+      if(open)redo();
+      if(!ok)toast(T.wxRefFail);
+    });
+  }});
+  return b;
+}
+function wxTen(k0){
+  var p=h('div',{class:'panel wxpanel',role:'dialog','aria-modal':'true','aria-label':T.wxTenTitle});
+  var back=h('button',{type:'button',class:'wxback','aria-label':T.wxBack,title:T.wxBack,html:WX_BACK,onclick:function(){wxOpen(k0)}});
+  p.appendChild(h('div',{class:'phead wxhead'},[back,h('div',{class:'sheet-title',text:T.wxTenTitle}),h('span',{class:'wxsp'}),wxRefBtn(function(){wxTen(k0)}),xBtn()]));
+  p.appendChild(h('p',{class:'snote wxday',text:(W.city&&W.city.name)||''}));
+  var tk=dkey(today()),list=h('div',{class:'wxten'}),n=0;
+  for(var i=0;i<10;i++){
+    var d=addDays(today(),i),k=dkey(d),w=wxDay(k);
+    if(!w)continue;n++;
+    var kd=wxKind(w.c),dl=T.wds[wdIdx(d)]+' '+d.getDate()+' '+T.mo[d.getMonth()].slice(0,3);
+    (function(k){
+      list.appendChild(h('button',{type:'button',class:'wxtr'+(k===tk?' today':''),onclick:function(){wxOpen(k)}},[
+        h('span',{class:'wxtd',text:k===tk?T.today:dl}),
+        h('span',{class:'wxti',html:wxIcon(kd[0],22)}),
+        h('span',{class:'wxtx'},[h('span',{text:T.wxL[kd[1]]}),w.p!=null?h('small',{text:T.wxRainP+' %'+Math.round(w.p)}):null]),
+        h('span',{class:'wxtt'},[h('b',{text:Math.round(w.hi)+'°'}),w.lo!=null?h('span',{text:Math.round(w.lo)+'°'}):null])
+      ]));
+    })(k);
+  }
+  if(!n)p.appendChild(h('p',{class:'snote',text:T.wxNone}));else p.appendChild(list);
+  if(W.ts)p.appendChild(h('p',{class:'snote wxupd',text:T.wxUpd+' '+wxFmtTime(W.ts)}));
+  p.appendChild(wxCredit());
+  showSheet(p,true);
+}
 function wxOpen(k){
   if(!W.city){wxPicker();return}
   wxFetch(false);
   var d=wxDay(k),v=wxTemp(k);
   var p=h('div',{class:'panel wxpanel',role:'dialog','aria-modal':'true','aria-label':T.wxTitle});
-  p.appendChild(h('div',{class:'phead'},[h('div',{class:'sheet-title',text:W.city.name||T.wxTitle}),xBtn()]));
+  p.appendChild(h('div',{class:'phead wxhead'},[h('div',{class:'sheet-title',text:W.city.name||T.wxTitle}),h('span',{class:'wxsp'}),wxRefBtn(function(){wxOpen(k)}),xBtn()]));
   var dd=pd(k),dl=(S.lang==='tr'?T.wd[wdIdx(dd)]+', '+dd.getDate()+' '+T.mo[dd.getMonth()]:T.wd[wdIdx(dd)]+', '+T.mo[dd.getMonth()]+' '+dd.getDate());
   p.appendChild(h('p',{class:'snote wxday',text:dl}));
   if(!d||!v){
@@ -2501,20 +2566,25 @@ function wxOpen(k){
   }else{
     var kd=wxKind(v.c);
     p.appendChild(h('div',{class:'wxbig'},[h('span',{class:'wxbi',html:wxIcon(kd[0],44)}),h('div',{class:'wxbt'},[h('div',{class:'wxdeg',text:Math.round(v.t)+'°'}),h('div',{class:'wxdesc',text:T.wxL[kd[1]]+(v.cur?' · '+T.wxNow:'')})])]));
-    var rows=[];
-    function row(l,val){if(val!=null&&val!=='')rows.push(h('div',{class:'wxrow'},[h('span',{text:l}),h('b',{text:val})]))}
-    row(T.wxHi,d.hi!=null?Math.round(d.hi)+'°':null);
-    row(T.wxLo,d.lo!=null?Math.round(d.lo)+'°':null);
-    row(T.wxFeel,(k===dkey(today())&&W.now&&W.now.f!=null&&v.cur)?Math.round(W.now.f)+'°':(d.ah!=null&&d.al!=null?Math.round(d.al)+'° / '+Math.round(d.ah)+'°':null));
-    row(T.wxRainP,d.p!=null?'%'+Math.round(d.p):null);
-    row(T.wxRain,d.r!=null?(Math.round(d.r*10)/10)+' mm':null);
-    row(T.wxWind,d.w!=null?Math.round(d.w)+' km/h':null);
-    row(T.wxUv,d.u!=null?String(Math.round(d.u*10)/10):null);
-    row(T.wxSr,d.sr||null);row(T.wxSs,d.ss||null);
-    p.appendChild(h('div',{class:'wxgrid'},rows));
+    var feel=(k===dkey(today())&&W.now&&W.now.f!=null&&v.cur)?Math.round(W.now.f)+'°':(d.ah!=null&&d.al!=null?Math.round(d.al)+'° / '+Math.round(d.ah)+'°':null);
+    function svg(path){return '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+path+'</svg>'}
+    var trio=[];
+    function tri(cls,ic,lab,val){if(val!=null&&val!=='')trio.push(h('span',{class:'wxtri '+cls,title:lab,'aria-label':lab+' '+val},[h('i',{html:svg(ic)}),h('b',{text:val})]))}
+    tri('up','<path d="M12 19V5M6 11l6-6 6 6"/>',T.wxHi,d.hi!=null?Math.round(d.hi)+'°':null);
+    tri('dn','<path d="M12 5v14M6 13l6 6 6-6"/>',T.wxLo,d.lo!=null?Math.round(d.lo)+'°':null);
+    tri('fl','<path d="M14 14.8V5a2 2 0 0 0-4 0v9.8a4 4 0 1 0 4 0z"/>',T.wxFeel,feel);
+    if(trio.length)p.appendChild(h('div',{class:'wxtrio'},trio));
+    var tiles=[];
+    function tile(l,val){if(val!=null&&val!=='')tiles.push(h('div',{class:'wxtile'},[h('span',{text:l}),h('b',{text:val})]))}
+    tile(T.wxRainP,d.p!=null?'%'+Math.round(d.p):null);
+    tile(T.wxRain,d.r!=null?(Math.round(d.r*10)/10)+' mm':null);
+    tile(T.wxWind,d.w!=null?Math.round(d.w)+' km/h':null);
+    tile(T.wxUv,d.u!=null?String(Math.round(d.u*10)/10):null);
+    tile(T.wxSr,d.sr||null);tile(T.wxSs,d.ss||null);
+    if(tiles.length)p.appendChild(h('div',{class:'wxtiles'},tiles));
   }
   if(W.ts)p.appendChild(h('p',{class:'snote wxupd',text:T.wxUpd+' '+wxFmtTime(W.ts)}));
-  p.appendChild(h('div',{class:'sbtns'},[h('button',{class:'sbtn',type:'button',text:T.wxChange,onclick:function(){wxPicker()}})]));
+  p.appendChild(h('div',{class:'sbtns'},[h('button',{class:'sbtn',type:'button',text:T.wxTen,onclick:function(){wxTen(k)}}),h('button',{class:'sbtn',type:'button',text:T.wxChange,onclick:function(){wxPicker()}})]));
   p.appendChild(wxCredit());
   showSheet(p,true);
 }
@@ -2556,7 +2626,7 @@ function wxPicker(){
 function pageDay(){
   var f=h('div'),key=dkey(anchor),t=today(),tk=dkey(t);
   var rel=yearSub(anchor);
-  var wxo=wxOn(),shortL=wxo&&window.innerWidth<600;
+  var wxo=wxOn(),shortL=wxo;
   var wdn=shortL?T.wds[wdIdx(anchor)]:T.wd[wdIdx(anchor)],mon=shortL?T.mo[anchor.getMonth()].slice(0,3):T.mo[anchor.getMonth()];
   var label=S.lang==='tr'?wdn+', '+anchor.getDate()+' '+mon:wdn+', '+mon+' '+anchor.getDate();
   var pick=h('input',{type:'date',id:'dayPick',value:key,'aria-label':T.pick});
@@ -2584,6 +2654,7 @@ function pageWeek(){
   else
     title=S.lang==='tr'?mon.getDate()+' '+T.mo[mon.getMonth()].slice(0,3)+' – '+sun.getDate()+' '+T.mo[sun.getMonth()].slice(0,3):T.mo[mon.getMonth()].slice(0,3)+' '+mon.getDate()+' – '+T.mo[sun.getMonth()].slice(0,3)+' '+sun.getDate();
   f.appendChild(navBar(h('h1',{class:'title',text:title}),yearSub(mon)));
+  if(wxOn())wxFetch(false);
   var wq=quiet('week',true);if(wq)f.appendChild(wq);
   var c=carryBlock('week');if(c)f.appendChild(c);
   var wk0=dkey(mon),wk6=dkey(sun);
@@ -2612,8 +2683,10 @@ function pageWeek(){
     var empty=!listFor('day',key).length;
     var past=key<tk,fold=past&&!wOpen[key];
     var sec=h('section',{class:'wday'+(key===tk?' today':'')+(empty?' empty':'')+(fold?' wfold':'')+(past&&!fold?' wopen':''),'data-layer':'day','data-key':key});
+    var wxm=null;
+    if(wxOn()&&!fold){wxm=h('span',{class:'wxm','data-wx':key});wxFill(wxm)}
     var lab=h('button',{class:'wlab',type:'button',onclick:function(){go('day',d)}},[
-      h('span',{class:'n',text:String(d.getDate())}),h('span',{class:'d',text:T.wds[i]})
+      h('span',{class:'n',text:String(d.getDate())}),h('span',{class:'d',text:T.wds[i]}),wxm
     ]);
     if(past&&!fold){
       sec.appendChild(h('div',{class:'wlc'},[lab,h('button',{class:'wcol',type:'button','aria-label':T.secFold,title:T.secFold,html:TRI_UP,onclick:function(){delete wOpen[key];render()}})]));
