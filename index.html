@@ -376,6 +376,7 @@ body.nbdragging .nbtabs .nbt[data-nbtab]{box-shadow:inset 0 0 0 1.5px var(--blue
 .wxtrio{display:flex;flex-wrap:wrap;gap:8px 18px;margin:0 4px 14px}
 .wxtri{display:inline-flex;align-items:center;gap:4px;font:600 17px/1 var(--sans);color:var(--ink)}.wxtri i{display:grid;place-items:center;font-style:normal}
 .wxtri.up i{color:#e8863a}.wxtri.dn i{color:var(--blue)}.wxtri.fl i{color:var(--ink-soft)}
+.wxsum{display:flex;flex-direction:column;gap:7px;margin:0 4px 12px;padding:10px 12px;border-radius:12px;background:var(--chip)}.wxsr{display:flex;align-items:center;gap:8px;font:14px/1.25 var(--sans);color:var(--ink)}.wxsr i{display:grid;place-items:center;font-style:normal;color:var(--blue);flex:none}.wxsr .wxst{color:var(--ink-soft);font-variant-numeric:tabular-nums;white-space:nowrap}.wxsr b{font-weight:600}.wxsr.none{color:var(--ink-soft)}
 .wxtiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:0 4px 10px}
 .wxtile{display:flex;flex-direction:column;gap:5px;padding:9px 10px;border-radius:12px;background:var(--chip)}
 .wxtile span{font:12px/1.2 var(--sans);color:var(--ink-soft)}.wxtile b{font:600 15px/1.1 var(--sans);color:var(--ink);white-space:nowrap}
@@ -465,6 +466,13 @@ textarea.mkon{color:transparent!important;-webkit-text-fill-color:transparent!im
 .ibx{display:inline-block;position:relative;box-sizing:border-box;width:.8em;height:.8em;margin:0 .26em 0 .04em;border:1.6px solid var(--ink-faint);border-radius:.22em;vertical-align:-.08em;cursor:pointer;pointer-events:auto}
 .ibx::after{content:'';position:absolute;inset:-.5em -.28em}
 .ibx.on{background:var(--ink-soft);border-color:var(--ink-soft)}
+.ibx{touch-action:none;-webkit-touch-callout:none;-webkit-user-select:none;user-select:none}
+.bxlift,.bxlift+.ibl{opacity:.28}
+.bxghost{position:fixed;left:0;top:0;z-index:95;pointer-events:none;display:flex;align-items:center;gap:6px;max-width:72vw;padding:6px 12px 6px 9px;border-radius:12px;background:var(--sheet);color:var(--ink);font:500 15px/1.2 var(--hand);box-shadow:0 8px 22px rgba(0,0,0,.28);white-space:nowrap}
+.bxghost .ibx{flex:none;margin:0}
+.bxcaret{position:fixed;z-index:94;width:3px;border-radius:2px;background:var(--blue);pointer-events:none;box-shadow:0 0 0 2px rgba(74,111,165,.25)}
+.bxover{outline:2px dashed var(--blue);outline-offset:-2px;border-radius:8px}
+body.bxdrag{-webkit-user-select:none;user-select:none;cursor:grabbing}
 .ibx.on::before{content:'';position:absolute;left:28%;top:6%;width:26%;height:52%;border:solid var(--paper);border-width:0 .13em .13em 0;transform:rotate(45deg)}
 .ibl.on{color:var(--ink-faint);text-decoration:line-through;text-decoration-thickness:1.4px}
 .view{position:absolute;left:0;right:0;top:0;height:var(--row);padding:0 0 0 6px;font-family:var(--hand);font-size:calc(var(--row)*.76*var(--hs));line-height:var(--row);color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;pointer-events:none}
@@ -881,6 +889,16 @@ html{overscroll-behavior-x:none}
 .panel{padding-top:0!important}
 .panel.note{max-width:600px!important;padding-left:max(14px,env(safe-area-inset-left,0px));padding-right:max(14px,env(safe-area-inset-right,0px))}
 .backdrop.center:has(.panel.note){padding:10px max(10px,env(safe-area-inset-left,0px))}
+/* with a classic 12px scrollbar the right margin looked wider than the left: take the scrollbar's width out of the padding so both sides match */
+.panel{scrollbar-gutter:stable;padding-right:max(2px,calc(max(20px,env(safe-area-inset-left,0px)) - var(--sbw,0px)))}
+.panel.note{padding-right:max(2px,calc(max(14px,env(safe-area-inset-right,0px)) - var(--sbw,0px)))}
+.phead .syncico.hd{margin-right:6px}
+/* settings: every row shares one left and one right edge (the logo's and the close button's) */
+.panel.sett .srow,.panel.sett .srow2,.panel.sett .btnrow{padding-left:0;padding-right:0}
+.panel.sett .dhead,.panel.sett .slabel{padding-left:0;padding-right:0}
+.panel.sett .snote,.panel.sett .sbtns,.panel.sett .wxseg{margin-left:0;margin-right:0}
+.panel.sett .hopen:not(.btnrow .hopen){width:100%;margin-left:0;margin-right:0}
+.srow>.seg{flex:0 1 auto;min-width:0}.srow .icobox{flex:none}
 .phead{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;position:sticky;top:0;z-index:2;background:var(--sheet);padding:16px 0 8px}
 .phead .sheet-title,.phead .sheet-text{padding:0;flex:1;min-width:0}
 .xbtn{flex:none;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:var(--chip);color:var(--ink-soft)}
@@ -945,7 +963,7 @@ select option:disabled{color:var(--ink-faint)}
 .slabel{font:600 12px/1 var(--sans);letter-spacing:.02em;color:var(--blue);padding:16px 4px 6px;border-top:1px solid var(--rule)}
 .srow2{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:10px 4px;border-top:1px solid var(--rule)}
 .srow>span{white-space:nowrap}
-.srow .seg button{padding:8px 10px;font-size:13px}
+.srow .seg button{padding:8px 14px;font-size:13px;min-width:44px}
 .scell{display:flex;flex-direction:column;align-items:stretch;gap:8px;min-width:0;font:15px/1.2 var(--sans)}
 .scell .seg{justify-content:space-between}
 .scell .seg button{flex:1;padding:8px 6px}
@@ -963,6 +981,7 @@ select option:disabled{color:var(--ink-faint)}
 .cfpair .sbtn{flex:1 1 0;min-width:0;padding:11px 8px;line-height:1.2;white-space:normal}
 .sbtns.two{flex-wrap:nowrap}
 .sbtns.two .sbtn{flex:1 1 0;min-width:0;padding:10px 6px;text-align:center;white-space:nowrap}
+.wxpanel .sbtns.two .sbtn{padding:10px 4px;font-size:13px;letter-spacing:-.1px}
 .phg{display:flex;align-items:center;gap:2px;flex:none}
 .syncico.hd{position:relative;flex:none;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:none;color:var(--ink-soft)}
 .syncico.hd:hover{background:var(--chip)}
@@ -1229,7 +1248,7 @@ var TX={
     about:'Hakkında',
     aboutIntro:'Yarın Defteri, zamanı ve günleri daha iyi algılamak ve yönetebilmek için ortaya çıktı.\nGün, hafta, ay, yıl ve 10 yıl, aynı işe farklı ölçeklerden bakmanızı sağlayan birbirine bağlı görünümlerdir; böylece bugünü daha geniş bir zaman bağlamında görürsünüz. Her işin bir güne sığması gerekmez; ne zaman yapacağını bilmediğiniz görevleri uygun zaman aralığına (\u201cbu hafta\u201d, \u201cbu ay\u201d, \u201cbu yıl\u201d) bırakıp vakti gelince bir güne taşıyabilirsiniz. Böylece işleri tek güne sıkıştırmak yerine zamana yayar, yetişemediklerinizi ertelersiniz.\nSürükleme bu işin kalbidir: görevi tutup farklı bir zamana ya da alttaki bir görünüme bırakarak ilgili tarihe taşıyabilir ya da defter ikonuna bırakıp arşivleyebilirsiniz. Benzer şekilde, Zamansız Notlar\u2019daki notları da sürükleyerek sekmelere veya çöpe taşıyabilirsiniz.\nBir zamanı olmayan notlar için post-it ve Zamansız Notlar var; fikirler, hatırlanacaklar ve kenara koyduğunuzuz işler orada bekler.',
     howTitle:'Nasıl kullanılır',backExit:'Çıkmak için bir kez daha geri basın',advTitle:'Beta',selbarOn:'Biçim çubuğu: açık',selbarOff:'Biçim çubuğu: kapalı',liteGo:'Rafine moda geçin',liteOff:'Normal moda dönün',
-    helpIntro:'Yarın Defteri, kâğıt defterin boş bıraktığı yerleri tamamlamak için yapıldı: yazın, işaretleyin, yetişmeyeni yarına bırakın. Gün, hafta, ay, yıl ve 10 yıl sayfaları birbirine bağlıdır; hepsinde hem liste hem takvim gibi planlayabilirsiniz. Tarihi belli olmayan işi \u201cbu hafta\u201d ya da \u201cbu ay içinde\u201d diye yazarsınız; kâğıt parçası gibi kullan-at notlar için post-it, kalıcı fikirler için Zamansız Notlar, uzun işler için projeler var.',
+    helpIntro:'Yarın Defteri, kâğıt defterin boş bıraktığı yerleri tamamlamak için yapıldı: yazın, işaretleyin, yetişmeyeni yarına bırakın. Gün, hafta, ay, yıl ve 10 yıl sayfaları birbirine bağlıdır; hepsinde hem liste hem takvim gibi planlayabilirsiniz. Tarihi belli olmayan işi \u201cbu hafta\u201d ya da \u201cbu ay içinde\u201d diye yazarsınız; kâğıt parçası gibi kullan-at notlar için post-it, kalıcı fikirler için Zamansız Notlar var.',
     helpTabs:['Yarın Defteri','Post-it','Zamansız Notlar'],
     helpPin:[
       ['Post-it nedir','Üstteki post-it düğmesi hiçbir güne bağlı olmayan, kullan-at bir alandır: telefon numarası, alışveriş listesi, aklınıza gelen bir cümle. Yazdığınız anda kaydedilir. En fazla 10 post-it tutarsınız.'],
@@ -1245,7 +1264,7 @@ var TX={
       ['Uzun notlar','Notun altındaki üçgen uzun yazıyı 4 satıra kısaltır ya da açar: <b>içi boş üçgen</b> kapalı, <b>dolu üçgen</b> açık demektir. 10 satırdan uzun notlar kapalı gelir.'],
       ['Üç nokta, tarih ve taşımak','Notun sekmesi ve yazıldığı tarih varsayılan olarak gizlidir; üç noktalı tutamağa <b>dokununca</b> o notun altında görünür. Tutamaçtan <b>sürükleyerek</b> notu üstteki sekmelerden birine bırakırsınız, taşınmış olur. Sürüklerken tutamacı çöp ikonuna bırakırsanız not çöpe gider.'],
       ['Çöp','Yeni not kutusunun sağındaki çöp ikonuna dokununca silinen notlar açılır. Bir notu sekmeye sürükleyerek geri koyarsınız, notun yanındaki çöp ikonuyla kalıcı silersiniz, <b>Çöpü boşaltın</b> düğmesi hepsini siler. Çöpte sayaç yoktur; burası serbest alan.'],
-      ['Arşiv: kenara konan görevler','Bir görevi sayfadan tutup alttaki defter simgesine bırakırsanız ya da satır menüsündeki <b>saat ikonuna</b> basarsanız <b>Arşiv</b> sekmesine gider; alt maddeleri ve notuyla birlikte bekler. Aynı liste Ayarlar\u2019daki <b>Arşiv</b> düğmesinde de açılır. Sayaç yoktur. İstediğinizde <b>Geri koyun</b> düğmesiyle bugüne ya da başka bir sayfaya döndürürsünüz.']
+      ['Arşiv: kenara konan görevler','Bir görevi sayfadan tutup alttaki defter simgesine bırakırsanız ya da satır menüsündeki <b>saat ikonuna</b> basarsanız <b>Arşiv</b> sekmesine gider; alt maddeleri ve notuyla birlikte bekler. Arşivdeki bir satırın yazısına ya da not ikonuna dokunarak notunu açar, düzenlersiniz; kilitli değildir. Aynı liste Ayarlar\u2019daki <b>Arşiv</b> düğmesinde de açılır. Sayaç yoktur. İstediğinizde <b>Geri koyun</b> düğmesiyle bugüne ya da başka bir sayfaya döndürürsünüz.']
     ],
     
     tourNext:'İleri',tourBack:'Geri',tourSkip:'Atlayın',tourDone:'Bitti',tourAgain:'Turu yeniden gösterin',tourMore:'Detaylı bir tura çıkın',liteMode:'Rafine mod',tourOf:'{n} / {m}',
@@ -1257,9 +1276,10 @@ var TX={
         ['Üç nokta','Üç noktaya {dots} dokunun, yazdığınız satırı detaylandırın.\nNota ayrıntı yazın, tarih ve saat verin, tekrar kurun, bağlantı ekleyin ya da silin.\nNot alınan satırlarda simge değişir: üç nokta yerine {note} not simgesi görünür.'],
         ['Bu hafta içinde','Üstteki + satırı Bu hafta içinde bölümü. Buraya yazarsanız ya da bir satırı sürükleyip bırakırsanız iş, günü belli olmadan o haftaya ait olur. Sayfanın altındaki Bu ay içinde bölümü aynı şekilde aya ait işler içindir.'],
         ['Günler arasında gezin','Tarihin iki yanındaki oklara dokunun ya da sayfayı sağa sola kaydırın: günler arasında gezersiniz. Tarihe dokununca takvim açılır.\nKlavyede ← → ile gezilir, T bugüne döner.'],
+        ['Hava durumu','Tarihin yanındaki küçük bulut ikonuna dokunun ve şehrinizi seçin. Günün sıcaklığı yanında görünür; dokununca saat saat yağış özeti ve 10 günlük tahmin açılır.\nİsterseniz Ayarlar’dan kapatırsınız.'],
         ['Görünümler','Gün, Hafta, Ay, Yıl, 10 Yıl: aynı işe farklı ölçeklerden bakarsınız. En sağdaki {nb} simgesi Zamansız Notlar.\nBurası zamansız bir defter gibi çalışır.'],
         ['Post-it','Kısa, hızlı notlar için. Kartları sağa sola kaydırarak değiştirirsiniz.\nBir kartı göreve taşıyabilirsiniz.'],
-        ['Ayarlar','Tema, dil, yazı boyutu, yedek ve senkron burada.\nTuru, Hakkında bölümündeki “Detaylı bir tura çıkın” bağlantısından istediğiniz zaman yeniden açabilirsiniz.']
+        ['Ayarlar','Tema, dil (TR / EN), yazı boyutu, hava durumu, yedek ve senkron burada.\nTuru, Hakkında bölümündeki “Detaylı bir tura çıkın” bağlantısından istediğiniz zaman yeniden açabilirsiniz.']
       ],
       week:[
         ['Hafta','Haftanın yedi günü alt alta. Oklara dokunun ya da sayfayı sağa sola kaydırın: haftalar arasında gezersiniz.'],
@@ -1299,18 +1319,20 @@ var TX={
     },
     nbOrd:'Sıra değişti',fmtB:'Kalın',fmtH:'Vurgulayın',fmtS:'Üstünü çizin',fmtBox:'Kutucuk ekleyin',sbMove:'Taşıyın',pjAddNote:'Not ekleyin',secFold:'Daraltın',secUnfold:'Genişletin',goMonth:'Aya gidin',goYear:'Yıla gidin',tblAdd:'Tablo ekleyin',tblTitlePh:'Tablo adı',tblColPh:'Tarih',tblRowPh:'Ad',tblAddCol:'Sütun ekleyin',tblAddRow:'Satır ekleyin',tblEdit:'Düzenleyin',tblDone:'Bitti',tblDel:'Tabloyu silin',tblGone:'Tablo silindi',tblColGone:'Sütun silindi',tblRowGone:'Satır silindi',tblDelCol:'Sütunu silin',tblDelRow:'Satırı silin',tblWord:'Tablo',tblMissing:'Tablo bulunamadı',tblTrashed:'Bu tablo çöpte',lkSet:'Seçili sözcüğe bağlantı verin',lkPick:'Önce başlıkta bir sözcük seçin',lkUrl:'Bağlantı adresi',lkOk:'Tamam',lkCancel:'Vazgeçin',lkDone:'Bağlantı eklendi',tblOpen:'Tabloyu açın',tblClose:'Tabloyu daraltın',freshBtn:'Baştan başlayın: her şeyi silin',freshSure:'Emin misiniz? Tüm notlar silinir, dokunun',freshSureSync:'Emin misiniz? Tüm notlar ve Drive kopyası silinir, dokunun',freshDone:'Defter temizlendi',
     dragT:'Sürükle-bırak',
-    dragTx:'Görevi tutup başka bir güne, haftaya, aya ya da yıla bırakın; alttaki görünüme bırakırsanız o görünüme gider, defter ikonuna bırakırsanız Arşiv\u2019e kalkar. Zamansız Notlar\u2019da notun üç nokta tutamacını sekmeye ya da çöpe sürükleyin.',
+    dragTx:'Görevi tutup başka bir güne, haftaya, aya ya da yıla bırakın; alttaki görünüme bırakırsanız o görünüme gider, defter ikonuna bırakırsanız Arşiv\u2019e kalkar. Satır içindeki kutucukları da basılı tutup sürükleyerek taşırsınız. Zamansız Notlar\u2019da notun üç nokta tutamacını sekmeye ya da çöpe sürükleyin.',
     helpNoSync:'',
     help:[
-      ['Yazmak ve işaretlemek','Bir satıra dokunup yazın, <b>Enter</b> yeni satır açar. Kutucuk satırın üstünü çizer, hiçbir şey silinmez. Notlardaki web adresleri tıklanabilir olur; <b>☐ Görev</b> ile onay kutulu satırlar eklersiniz.'],
+      ['Yazmak ve işaretlemek','Bir satıra dokunup yazın, <b>Enter</b> yeni satır açar. Kutucuk satırın üstünü çizer, hiçbir şey silinmez. Notlardaki web adresleri tıklanabilir olur.'],
+      ['Satır içi kutucuklar','Satırın içine <b>[ ]</b> yazın: “[ ] süt [ ] ekmek”. Her kutucuk kendi yazısıyla bir parçadır, dokununca işaretlenir. Kutucuğa <b>basılı tutup</b> (bilgisayarda tıklayıp sürükleyerek) parçayı aynı satırda başka bir yere, başka bir satıra, “Bu hafta içinde” gibi bir listeye ya da boş bir satıra taşırsınız; mavi çizgi nereye gireceğini gösterir.'],
       ['Sayfalar','Gün, hafta, ay, yıl ve 10 yıl sayfaları birbirine bağlıdır; alttaki çubuktan seçer, kaydırarak ilerlersiniz. Her sayfada <b>Bu hafta içinde</b>, <b>Bu ay içinde</b> gibi alanlar vardır: o döneme ait ama bir güne atanmamış işler buraya yazılır.'],
       ['Gün sayfası','Günün işlerini yazarsınız. Üstte haftanın, altta ayın <b>içinde</b> alanı görünür; böylece günün yanında yaklaşan işleri de görürsünüz. Geçmiş bir günde bitmeyenleri <b>bugüne alın</b> ile taşırsınız, başlığa dokunup tarih seçersiniz.'],
       ['Hafta sayfası','Yedi gün alt alta kart olarak durur; kartın başlığına dokunmak o günü açar. En üstteki <b>Bu hafta içinde</b> alanı haftaya ait ama güne atanmamış işlerindir, geçen haftadan kalanlar <b>buraya alın</b> ile gelir.'],
       ['Ay sayfası','Takvimde her günün işleri başlık olarak görünür (biten soluk ve üstü çizili, fazlası <b>+2</b> gibi). Bir güne dokununca altta <b>Bu ay</b> bölümünde açılır; ikinci dokunuş ya da <b>Güne gidin</b> gün sayfasını açar. <b>Genişletin</b> bütün günleri alt alta gösterir. <b>Bu ay içinde</b> işlerini ya da takvimdeki başlıkları tutup başka bir güne bırakırsınız.'],
       ['Yıl ve 10 yıl','Uzun ve çok uzun vadeli planlar içindir.'],
-      ['Taşımak ve ertelemek','Kutucuğa basılı tutun (bilgisayarda sürükleyin) ve başka bir güne, haftaya, aya ya da yıla bırakın. Alttaki görünümlere bırakırsanız görev o görünüme (gün, hafta, ay, yıl, 10 yıl) gider; gün sayfasında üstteki <b>‹ ›</b> oklarına bırakırsanız önceki ya da sonraki güne gider; alttaki <b>defter ikonuna</b> bırakırsanız Arşiv\u2019e kalkar. Ya da satırı açıp <b>üç nokta</b> menüsünden <b>Yarına</b>, <b>Haftaya</b>, <b>Aya</b> deyin, tarih seçin, tekrar kurun ya da bir projeye bağlayın.'],
-      ['Not ve proje','Satırın sağındaki ikon not sayfasını açar. Not ile proje aynı sayfadır: madde listesi ve serbest not alanı. Başlığın önündeki ikonla <b>Not</b> (mavi) ile <b>Proje</b> (turuncu) arasında geçersiniz, başlığa dokunup adını değiştirirsiniz. Maddeleri tutup sürükleyerek sıralar, takvim ikonuyla tarih verirsiniz; tarihli madde o günün sayfasına da düşer. Biten maddeyi <b>Arşivlemek için buraya bırakın</b> alanına sürüklerseniz <b>Arşiv</b> bölümüne gider, ilerlemede sayılmaya devam eder. Bir notu ya da projeyi klasör düğmesiyle başka bir projeye bağlarsanız onun alt başlığı olur; üst projede toplanır, satırın ikonunda küçük bir nokta görünür. Bütün projeler üstteki <b>Projeler</b> sekmesindedir.'],
-      ['Ayarlar','Ayarlar\u2019dan dili, açık ya da koyu temayı, yazı tipini ve boyutunu seçersiniz. <b>Yedek</b> defterinizi dosya olarak kaydeder, kopyalar ya da geri yükler. <b>Arşiv</b> arşivlediğiniz ve sildiğiniz satırları geri koyar (silinenler 30 gün durur); Göz ikonu (tema ve tam ekran düğmelerinin yanında) üstü çizili satırları saklar. <b>Senkron</b> ile Google hesabınıza bağlanıp aynı defteri telefonunuzda ve bilgisayarınızda kullanırsınız; defter Drive\u2019ınızda yalnızca bu uygulamanın görebildiği gizli bir alanda durur, değişiklikleriniz kendiliğinden gider. Gönderilmesi gereken bir değişiklik varsa Ayarlar simgesinde küçük bir mavi nokta belirir; Senkron bölümünden <b>Senkronize edin</b> demeniz yeterli.']
+      ['Taşımak ve ertelemek','Kutucuğa basılı tutun (bilgisayarda sürükleyin) ve başka bir güne, haftaya, aya ya da yıla bırakın. Alttaki görünümlere bırakırsanız görev o görünüme (gün, hafta, ay, yıl, 10 yıl) gider; gün sayfasında üstteki <b>‹ ›</b> oklarına bırakırsanız önceki ya da sonraki güne gider; alttaki <b>defter ikonuna</b> bırakırsanız Arşiv\u2019e kalkar. Ya da satırı açıp <b>üç nokta</b> menüsünden <b>Yarına</b>, <b>Haftaya</b>, <b>Aya</b> deyin, tarih seçin ya da tekrar kurun.'],
+      ['Not sayfası','Satırın sağındaki ikon not sayfasını açar: başlık, madde listesi ve serbest bir not alanı. Maddeleri basılı tutup sürükleyerek sıralar, takvim ikonuyla tarih verirsiniz; tarihli madde o günün sayfasına da düşer. İlerleme (örneğin 2/5) başlığın yanında görünür. Biten maddeyi <b>Arşivlemek için buraya bırakın</b> alanına sürüklerseniz <b>Arşiv</b> bölümüne gider, ilerlemede sayılmaya devam eder. Not eklenen satırlarda üç nokta yerine not simgesi görünür.'],
+      ['Hava durumu','Tarihin yanındaki küçük bulut ikonuna dokunun ve bir kez şehrinizi seçin (ya da konumunuzu kullanın). Günün sıcaklığı tarihin yanında görünür; dokununca o günün özeti açılır: saat saat yağmur, kar ya da fırtına aralıkları, en yüksek, en düşük ve hissedilen sıcaklık, yağış, rüzgâr, UV, gün doğumu ve batımı. <b>10 günlük tahmin</b> yeni bir sayfa açar, geri okuyla özete dönersiniz; yenile düğmesi tahmini günceller. Hafta sayfasında günlerin altında da görünür. Ayarlar’daki <b>Hava durumu</b> bölümünden kapatır ya da şehri değiştirirsiniz. Veri Open-Meteo’dan gelir; yalnızca şehrin koordinatı gönderilir, notlarınız hiçbir yere gitmez.'],
+      ['Ayarlar','Ayarlar\u2019dan dili (TR ya da EN), açık ya da koyu temayı, yazı tipini ve boyutunu seçersiniz. <b>Yedek</b> defterinizi dosya olarak kaydeder, kopyalar ya da geri yükler; ayrıca bu cihazdaki veri üzerine yazılmadan önce otomatik saklanan son 4 kopya da burada durur, tek dokunuşla geri yüklersiniz. <b>Arşiv</b> arşivlediğiniz ve sildiğiniz satırları geri koyar (silinenler 30 gün durur); Göz ikonu (tema ve tam ekran düğmelerinin yanında) üstü çizili satırları saklar. <b>Senkron</b> ile Google hesabınıza bağlanıp aynı defteri telefonunuzda ve bilgisayarınızda kullanırsınız; defter Drive\u2019ınızda yalnızca bu uygulamanın görebildiği gizli bir alanda durur, değişiklikleriniz kendiliğinden gider. İki cihazda farklı değişiklik olursa <b>Birleştirin</b> ikisini de tutar; Drive\u2019dan veri geldiğinde çıkan <b>geri alın</b> ile eski haline dönebilirsiniz. Gönderilmesi gereken bir değişiklik varsa Ayarlar simgesinde küçük bir mavi nokta belirir; Senkron bölümünden <b>Senkronize edin</b> demeniz yeterli.']
     ],
     credit:['Verimlilik için ',' tarafından tasarlandı, Claude ile birlikte geliştirildi.'],
     wxTen:'10 günlük tahmin',wxTenTitle:'10 günlük',wxBack:'Geri',wxRefresh:'Güncelleyin',wxRefFail:'Güncellenemedi, bağlantıyı kontrol edin.',wxTitle:'Hava durumu',wxSet:'Hava durumu için şehir seçin',wxOnL:'Açık',wxOffL:'Kapalı',wxCityL:'Şehir',wxNoCity:'Henüz şehir seçilmedi.',wxPickBtn:'Şehir seçin',wxChange:'Şehri değiştirin',
@@ -1318,7 +1340,7 @@ var TX={
     wxHere:'Konumumu kullanın',wxHereName:'Konumum',wxLocating:'Konum alınıyor…',wxLocFail:'Konum alınamadı. Şehir adını yazıp “Arayın” düğmesine basabilirsiniz.',wxLocDenied:'Konum izni verilmedi. Tarayıcı ayarlarından izin verebilir ya da şehir adını yazıp “Arayın” düğmesine basabilirsiniz.',wxShort:'En az 2 harf yazın.',wxPrev:'Bu önizlemede dış bağlantılar kapalı; hava durumu yalnızca kendi sitenizde (GitHub Pages) çalışır.',wxSaved:'Şehir kaydedildi',wxNone:'Bu gün için hava verisi yok.',wxNow:'şimdi',wxUpd:'Son güncelleme',
     wxHi:'En yüksek',wxLo:'En düşük',wxFeel:'Hissedilen',wxRainP:'Yağış ihtimali',wxRain:'Yağış miktarı',wxWind:'Rüzgâr',wxUv:'UV endeksi',wxSr:'Gün doğumu',wxSs:'Gün batımı',
     wxCredit:'Hava verisi: <a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo</a> (CC BY 4.0)',
-    wxL:{c0:'Açık',c1:'Çoğunlukla açık',c2:'Parçalı bulutlu',c3:'Kapalı',fog:'Sisli',drz:'Çise',rain:'Yağmurlu',shw:'Sağanak',snow:'Karlı',sshw:'Kar sağanağı',storm:'Gök gürültülü fırtına'},
+    wxS:{storm:'Fırtına',snow:'Kar',rain:'Yağmur',shw:'Sağanak',drz:'Çise',wind:'Kuvvetli rüzgâr',fog:'Sis'},wxSAll:'Gün boyu',wxSAfter:'sonrası',wxSNone:'Yağış beklenmiyor',wxL:{c0:'Açık',c1:'Çoğunlukla açık',c2:'Parçalı bulutlu',c3:'Kapalı',fog:'Sisli',drz:'Çise',rain:'Yağmurlu',shw:'Sağanak',snow:'Karlı',sshw:'Kar sağanağı',storm:'Gök gürültülü fırtına'},
     wd:['Pazartesi','Salı','Çarşamba','Perşembe','Cuma','Cumartesi','Pazar'],
     wds:['Pzt','Sal','Çar','Per','Cum','Cmt','Paz'],
     wl:['P','S','Ç','P','C','C','P'],
@@ -1351,7 +1373,7 @@ var TX={
     about:'About',
     aboutIntro:'Yarın Defteri (Tomorrow\u2019s Notebook) came about to perceive and manage time and days better.\nThe day, week, month, year and 10-year pages are connected views of the same work: you look at the same task at different scales and see today in a wider context of time. Not every task has to fit into a day; tasks you don\u2019t know when to do can wait in a suitable stretch of time (\u201cthis week\u201d, \u201cthis month\u201d, \u201cthis year\u201d) and move to a day when their time comes. That way you spread work across time instead of squeezing it into one day, and you postpone what you couldn\u2019t get to.\nDragging is the heart of it: hold a task and drop it on another time or on a view below to move it to that date, or drop it on the notebook icon to archive it. In the same way, you can drag notes in Timeless Notes onto tabs or the trash.\nFor notes that have no time attached there are post-its and Timeless Notes; ideas, things to remember and tasks you set aside wait there.',
     howTitle:'How to use',backExit:'Press back again to exit',advTitle:'Beta',selbarOn:'Format bar: on',selbarOff:'Format bar: off',liteGo:'Switch to Refined mode',liteOff:'Back to the normal mode',
-    helpIntro:'Tomorrow\u2019s Notebook was made to fill the gaps a paper notebook leaves: write, tick things off, and leave what did not fit for tomorrow. The day, week, month, year and 10-year pages are connected, and on all of them you can plan like in a list and a calendar at once. An item with no date can be noted as \u201csometime this week\u201d or \u201cthis month\u201d; there are post-its for throwaway notes, Timeless Notes for ideas you want to keep, and projects for long work.',
+    helpIntro:'Tomorrow\u2019s Notebook was made to fill the gaps a paper notebook leaves: write, tick things off, and leave what did not fit for tomorrow. The day, week, month, year and 10-year pages are connected, and on all of them you can plan like in a list and a calendar at once. An item with no date can be noted as \u201csometime this week\u201d or \u201cthis month\u201d; there are post-its for throwaway notes, Timeless Notes for ideas you want to keep.',
     helpTabs:['Notebook','Post-it','Timeless Notes'],
     helpPin:[
       ['What a post-it is','The post-it button at the top opens a throwaway space that is not tied to any day: a phone number, a shopping list, a sentence that just came to mind. It saves as you type. You can keep up to 10 post-its.'],
@@ -1367,7 +1389,7 @@ var TX={
       ['Long notes','The triangle under a note shortens a long text to 4 lines or opens it: a <b>hollow triangle</b> means folded, a <b>filled triangle</b> means open. Notes longer than 10 lines start folded.'],
       ['Three dots, date and moving','A note’s tab and the date it was written stay hidden; <b>tap</b> its three-dot handle to show them under the note. <b>Drag</b> the handle onto one of the tabs above to move the note there, or onto the trash icon to delete it.'],
       ['Trash','Tap the trash icon at the right of the new-note box to open deleted notes. Drag a note onto a tab to put it back, use the trash icon next to a note to delete it forever, or <b>Empty trash</b> to clear all. The trash has no counter; this is a free space.'],
-      ['Archive: tasks set aside','Hold a task and drop it on the notebook icon at the bottom, or tap the <b>clock icon</b> in its menu, and it goes to the <b>Archive</b> tab, waiting with its sub-items and note. The same list opens from <b>Archive</b> in Settings. There is no counter. <b>Put back</b> returns it to today or any other page when you want.']
+      ['Archive: tasks set aside','Hold a task and drop it on the notebook icon at the bottom, or tap the <b>clock icon</b> in its menu, and it goes to the <b>Archive</b> tab, waiting with its sub-items and note. Tap an archived line\u2019s text or its note icon to open and edit its note; nothing is locked. The same list opens from <b>Archive</b> in Settings. There is no counter. <b>Put back</b> returns it to today or any other page when you want.']
     ],
     
     tourNext:'Next',tourBack:'Back',tourSkip:'Skip',tourDone:'Done',tourAgain:'Show the tour again',tourMore:'Take a detailed tour',liteMode:'Refined mode',tourOf:'{n} / {m}',
@@ -1379,9 +1401,10 @@ var TX={
         ['Three dots','Tap the three dots {dots} to detail the line you wrote.\nAdd a note, give a date and time, set a repeat, attach a link or delete.\nOn lines with a note the icon changes: a {note} note icon appears instead of the three dots.'],
         ['Sometime this week','The + line on top is the Sometime this week section. Write here, or drag a line into it, and the task belongs to that week without a day. The Sometime this month section at the bottom does the same for the month.'],
         ['Move between days','Tap the arrows or swipe the main area left and right to move between days. Tap the date in the title to open a calendar.\nOn a keyboard, use \u2190 \u2192, and T returns to today.'],
+        ['Weather','Tap the small cloud next to the date and pick your city. The day\u2019s temperature shows beside it; tapping it opens an hour-by-hour rain summary and a 10-day forecast.\nYou can turn it off in Settings.'],
         ['Views','Day, Week, Month, Year, 10 Yr: look at the same work at different scales. The {nb} icon at the far right is Timeless Notes.\nIt works like a timeless notebook.'],
         ['Sticky notes','For quick, short notes. Swipe the cards left and right to switch.\nA card can move to a task.'],
-        ['Settings','Theme, language, text size, backup and sync are here.\nYou can open this tour again any time from \u201cTake a detailed tour\u201d in the About section.']
+        ['Settings','Theme, language (TR / EN), text size, weather, backup and sync are here.\nYou can open this tour again any time from \u201cTake a detailed tour\u201d in the About section.']
       ],
       week:[
         ['Week','The seven days of the week, one under another. Tap the arrows or swipe the main area to move between weeks.'],
@@ -1421,18 +1444,20 @@ var TX={
     },
     nbOrd:'Order changed',fmtB:'Bold',fmtH:'Highlight',fmtS:'Strikethrough',fmtBox:'Add a checkbox',sbMove:'Move',pjAddNote:'Add a note',secFold:'Collapse',secUnfold:'Expand',goMonth:'Open month',goYear:'Open year',tblAdd:'Add table',tblTitlePh:'Table name',tblColPh:'Date',tblRowPh:'Name',tblAddCol:'Add column',tblAddRow:'Add row',tblEdit:'Edit',tblDone:'Done',tblDel:'Delete table',tblGone:'Table deleted',tblColGone:'Column deleted',tblRowGone:'Row deleted',tblDelCol:'Delete column',tblDelRow:'Delete row',tblWord:'Table',tblMissing:'Table not found',tblTrashed:'That table is in the trash',lkSet:'Link the selected word',lkPick:'Select a word in the title first',lkUrl:'Link address',lkOk:'OK',lkCancel:'Cancel',lkDone:'Link added',tblOpen:'Expand table',tblClose:'Collapse table',freshBtn:'Start fresh: delete everything',freshSure:'Are you sure? All notes are deleted, tap',freshSureSync:'Are you sure? All notes and the Drive copy are deleted, tap',freshDone:'Notebook cleared',
     dragT:'Drag and drop',
-    dragTx:'Hold a task and drop it on another day, week, month or year; drop it on a view at the bottom and it goes to that view, drop it on the notebook icon and it goes to the Archive. In Timeless Notes, drag a note\u2019s three-dot handle onto a tab or the trash.',
+    dragTx:'Hold a task and drop it on another day, week, month or year; drop it on a view at the bottom and it goes to that view, drop it on the notebook icon and it goes to the Archive. Checkboxes inside a line can be held and dragged too. In Timeless Notes, drag a note\u2019s three-dot handle onto a tab or the trash.',
     helpNoSync:'',
     help:[
-      ['Writing and ticking off','Tap a line and write, <b>Enter</b> opens a new line. The box crosses a line out, nothing is ever deleted. Web addresses in notes become tappable; use <b>☐ Task</b> to add lines with checkboxes.'],
+      ['Writing and ticking off','Tap a line and write, <b>Enter</b> opens a new line. The box crosses a line out, nothing is ever deleted. Web addresses in notes become tappable.'],
+      ['Checkboxes inside a line','Type <b>[ ]</b> inside a line: “[ ] milk [ ] bread”. Each checkbox is a part with its own text and ticks off when tapped. <b>Hold</b> a checkbox (click and drag on a computer) to move that part elsewhere in the same line, to another line, to a list like “Sometime this week” or to an empty line; a blue bar shows where it will land.'],
       ['Pages','The day, week, month, year and 10-year pages are connected; pick one from the bar at the bottom or swipe to turn the page. Every page has areas like <b>Sometime this week</b> and <b>Sometime this month</b>: things that belong to that period but not to a day yet.'],
       ['Day page','Write the day\u2019s items here. The week\u2019s and the month\u2019s \u201csometime\u201d areas sit above and below, so you see what is coming next to today. Unfinished items from a past day move over with <b>move unfinished to today</b>, and tapping the title lets you pick a date.'],
       ['Week page','The seven days stand one under another as cards; tapping a card\u2019s title opens that day. The <b>Sometime this week</b> area at the top holds what belongs to the week but not to a day, and leftovers from last week come in with <b>bring here</b>.'],
       ['Month page','Each day shows its items as small titles (done ones are faded and crossed out, extras become <b>+2</b>). Tap a day and it opens in the <b>This month</b> section below; a second tap or <b>Go to day</b> opens the day page. <b>Expand</b> lists every day. Hold a <b>Sometime this month</b> item or a title in the calendar and drop it on another day.'],
       ['Year and 10 years','These pages are for long and very long-term plans.'],
-      ['Moving and postponing','Hold the box (drag on a computer) and drop a line on another day, week, month or year. Dropping it on a view at the bottom sends it to that view (day, week, month, year, 10 years); on the day page, the <b>‹ ›</b> arrows at the top send it to the previous or next day; the <b>notebook icon</b> at the bottom sends it to the Archive. Or open a line and use the <b>three dots</b> to choose <b>Tomorrow</b>, <b>Week</b> or <b>Month</b>, pick a date, set a repeat or attach it to a project.'],
-      ['Notes and projects','The icon at the right of a line opens its note page. A note and a project are the same page: a list of items plus a free note field. The icon before the title switches between <b>Note</b> (blue) and <b>Project</b> (orange), and tapping the title renames it. Hold an item to drag it into order, and give it a date with the calendar icon; a dated item also shows up on that day. Drag a finished item to <b>Drop here to archive</b> and it moves to the <b>Archive</b> section, still counted in the progress. Attach a note or project to another project with the folder button and it becomes its sub-heading: it is gathered in the parent project, and its icon gets a small dot. All projects are in the <b>Projects</b> tab at the top.'],
-      ['Settings','In Settings you choose the language, light or dark theme, font and text size. <b>Backup</b> saves your notebook as a file, copies it or restores it. <b>Archive</b> brings back lines you archived or deleted (deleted ones stay for 30 days); The eye icon (next to the theme and full-screen buttons) tucks away crossed-out lines. With <b>Sync</b> you connect your Google account and use the same notebook on your phone and computer; it lives in a hidden area of your Drive that only this app can see, and changes are sent automatically. When something still needs sending, a small blue dot appears on the Settings icon; tap <b>Sync now</b> in the Sync section.']
+      ['Moving and postponing','Hold the box (drag on a computer) and drop a line on another day, week, month or year. Dropping it on a view at the bottom sends it to that view (day, week, month, year, 10 years); on the day page, the <b>‹ ›</b> arrows at the top send it to the previous or next day; the <b>notebook icon</b> at the bottom sends it to the Archive. Or open a line and use the <b>three dots</b> to choose <b>Tomorrow</b>, <b>Week</b> or <b>Month</b>, pick a date or set a repeat.'],
+      ['Note page','The icon at the right of a line opens its note page: a title, a list of items and a free note field. Hold an item to drag it into order, and give it a date with the calendar icon; a dated item also shows up on that day. Progress (for example 2/5) appears next to the title. Drag a finished item to <b>Drop here to archive</b> and it moves to the <b>Archive</b> section, still counted in the progress. Lines that have a note show a note icon instead of the three dots.'],
+      ['Weather','Tap the small cloud icon next to the date and pick your city once (or use your location). The day\u2019s temperature shows beside the date; tapping it opens that day\u2019s summary: hour-by-hour spans of rain, snow or storm, the high, low and feels-like temperature, rain, wind, UV, sunrise and sunset. <b>10-day forecast</b> opens a new page, and the back arrow returns to the summary; the refresh button updates the forecast. It also shows under the days on the week page. In Settings, <b>Weather</b> turns it off or changes the city. The data comes from Open-Meteo; only the city\u2019s coordinates are sent, your notes never leave your device.'],
+      ['Settings','In Settings you choose the language (TR or EN), light or dark theme, font and text size. <b>Backup</b> saves your notebook as a file, copies it or restores it; the last 4 copies kept automatically before this device\u2019s data can be overwritten also live there, and you restore one with a tap. <b>Archive</b> brings back lines you archived or deleted (deleted ones stay for 30 days); The eye icon (next to the theme and full-screen buttons) tucks away crossed-out lines. With <b>Sync</b> you connect your Google account and use the same notebook on your phone and computer; it lives in a hidden area of your Drive that only this app can see, and changes are sent automatically. If both devices changed things, <b>Merge</b> keeps both; after data arrives from Drive, <b>undo</b> takes you back. When something still needs sending, a small blue dot appears on the Settings icon; tap <b>Sync now</b> in the Sync section.']
     ],
     credit:['Designed for productivity by ',', built together with Claude.'],
     wxTen:'10-day forecast',wxTenTitle:'10 days',wxBack:'Back',wxRefresh:'Refresh',wxRefFail:'Could not refresh, check your connection.',wxTitle:'Weather',wxSet:'Choose a city for weather',wxOnL:'On',wxOffL:'Off',wxCityL:'City',wxNoCity:'No city chosen yet.',wxPickBtn:'Choose a city',wxChange:'Change city',
@@ -1440,7 +1465,7 @@ var TX={
     wxHere:'Use my location',wxHereName:'My location',wxLocating:'Getting location…',wxLocFail:'Could not get location. You can type a city name and press Search.',wxLocDenied:'Location permission was denied. Allow it in the browser settings, or type a city name and press Search.',wxShort:'Type at least 2 letters.',wxPrev:'External connections are blocked in this preview; weather only works on your own site (GitHub Pages).',wxSaved:'City saved',wxNone:'No weather data for this day.',wxNow:'now',wxUpd:'Last updated',
     wxHi:'High',wxLo:'Low',wxFeel:'Feels like',wxRainP:'Chance of rain',wxRain:'Precipitation',wxWind:'Wind',wxUv:'UV index',wxSr:'Sunrise',wxSs:'Sunset',
     wxCredit:'Weather data: <a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo</a> (CC BY 4.0)',
-    wxL:{c0:'Clear',c1:'Mainly clear',c2:'Partly cloudy',c3:'Overcast',fog:'Fog',drz:'Drizzle',rain:'Rain',shw:'Showers',snow:'Snow',sshw:'Snow showers',storm:'Thunderstorm'},
+    wxS:{storm:'Thunderstorm',snow:'Snow',rain:'Rain',shw:'Showers',drz:'Drizzle',wind:'Strong wind',fog:'Fog'},wxSAll:'All day',wxSAfter:'After',wxSNone:'No precipitation expected',wxL:{c0:'Clear',c1:'Mainly clear',c2:'Partly cloudy',c3:'Overcast',fog:'Fog',drz:'Drizzle',rain:'Rain',shw:'Showers',snow:'Snow',sshw:'Snow showers',storm:'Thunderstorm'},
     wd:['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'],
     wds:['Mon','Tue','Wed','Thu','Fri','Sat','Sun'],
     wl:['M','T','W','T','F','S','S'],
@@ -2251,6 +2276,9 @@ function makeRow(box,it,o){
   }});
   var vwEl=h('div',{class:'view'});renderInline(vwEl,it?it.text:'');
   vwEl._bx=function(i){if(!row.dataset.id)return;ta.value=toggleBox(ta.value,i);ta.dispatchEvent(new Event('input',{bubbles:true}))};
+  row._bxh={view:vwEl,get:function(){return ta.value},set:function(v){
+    if(!v.trim()){if(row.dataset.id){removeItem(row.dataset.id);row.remove()}return}
+    ta.value=v;ta.dispatchEvent(new Event('input',{bubbles:true}))}};
   var tw=h('div',{class:'tw'},[ta,vwEl]);
   tpkBind(ta);
   row.appendChild(checkBtn(row));row.appendChild(tw);row.appendChild(nd);var lb=linkBtn(it?it.text:'');row._lb=lb;row.appendChild(h('div',{class:'acts'},[lb,pjBtn(it),noteBtn(row),more]));
@@ -2323,13 +2351,7 @@ function monthName(m){return T.mo[m]}
 function shortDate(d){return S.lang==='tr'?d.getDate()+' '+T.mo[d.getMonth()]:T.mo[d.getMonth()]+' '+d.getDate()}
 
 /* ---------- floating notes, reminders ---------- */
-function nudgeOn(layer,key){
-  var t=today();
-  if(key!==keyOf(layer,t))return false;
-  if(layer==='week')return wdIdx(t)>=5;
-  if(layer==='month'){var dim=new Date(t.getFullYear(),t.getMonth()+1,0).getDate();return t.getDate()>=dim-1}
-  return false;
-}
+function nudgeOn(){return false} /* stres yaratmasın: 'hâlâ duruyor' hatırlatması kapalı */
 function floatBlock(layer){
   var key=keyOf(layer,anchor),cur=key===keyOf(layer,today());
   return h('section',{class:'float','data-layer':layer,'data-key':key},[
@@ -2393,6 +2415,9 @@ function quiet(layer,always){
     var qt=h('div',{class:'qtext',role:'button',tabindex:'0',onclick:function(e){if(e.target.closest&&e.target.closest('a.ilk'))return;qEdit()},onkeydown:function(e){if(e.target===qt&&(e.key==='Enter'||e.key===' ')){e.preventDefault();qEdit()}}});
     qt._bx=function(i){it.text=toggleBox(it.text,i);queueSave();qt.textContent='';renderInline(qt,it.text);refreshLink(qlb,it.text)};
     var qlb=linkBtn(it.text);
+    row._bxh={view:qt,get:function(){return it.text},set:function(v){
+      if(!v.trim()){removeItem(it.id);row.remove();return}
+      it.text=v;queueSave();qt.textContent='';renderInline(qt,v);refreshLink(qlb,v)}};
     function qEdit(){
       var ta=h('textarea',{class:'qtext qedit',rows:'1',spellcheck:'false',enterkeyhint:'done','aria-label':T['lab_'+layer]});
       ta.value=it.text;qt.replaceWith(ta);fit(ta);ta.focus();try{ta.setSelectionRange(ta.value.length,ta.value.length)}catch(x){}
@@ -2429,7 +2454,7 @@ var W=(function(){
   return {on:true,city:null,days:{},now:null,ts:0,ck:''};
   })();
 function wxSave(){try{var ks=Object.keys(W.days).sort();while(ks.length>400)delete W.days[ks.shift()];localStorage.setItem(WXK,JSON.stringify(W))}catch(e){}}
-function wxCk(){return W.city?W.city.lat.toFixed(3)+','+W.city.lon.toFixed(3):''}
+function wxCk(){return W.city?W.city.lat.toFixed(3)+','+W.city.lon.toFixed(3)+'|h':''}
 var WXI={
   sun:'<circle cx="12" cy="12" r="4"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6l1.4 1.4M17 17l1.4 1.4M5.6 18.4L7 17M17 7l1.4-1.4"/>',
   part:'<circle cx="8.5" cy="8.5" r="2.8"/><path d="M8.5 2.6v1.2M2.6 8.5h1.2M4.3 4.3l.9.9M12.7 4.3l-.9.9"/><path d="M9.5 19.5h8a3.3 3.3 0 0 0 .5-6.55 4.6 4.6 0 0 0-8.9 1.1A3 3 0 0 0 9.5 19.5z"/>',
@@ -2462,13 +2487,47 @@ function wxTemp(k){
 }
 var wxBusy=false;
 function num(v){return (typeof v==='number'&&isFinite(v))?v:null}
+/* saatlik veriden kısa özet: ardışık saatleri türe göre gruplar */
+function wxHType(c,g){
+  c=+c;
+  if(c>=95)return 'storm';
+  if((c>=71&&c<=77)||c===85||c===86)return 'snow';
+  if(c>=61&&c<=67)return 'rain';
+  if(c>=80&&c<=82)return 'shw';
+  if(c>=51&&c<=57)return 'drz';
+  if(g!==null&&g>=60)return 'wind';
+  if(c===45||c===48)return 'fog';
+  return '';
+}
+function wxHourly(hh){
+  if(!hh||!hh.time||!hh.weather_code)return;
+  var tk=dkey(today()),by={};
+  for(var i=0;i<hh.time.length;i++){
+    var t=String(hh.time[i]),k=t.slice(0,10),hr=+t.slice(11,13);
+    if(!/^\d{4}-\d{2}-\d{2}$/.test(k)||!(hr>=0&&hr<24)||k<tk)continue;
+    (by[k]=by[k]||new Array(24))[hr]=wxHType(hh.weather_code[i],num(hh.wind_gusts_10m&&hh.wind_gusts_10m[i]));
+  }
+  Object.keys(by).forEach(function(k){
+    var a=by[k],d=W.days[k];if(!d)return;
+    var segs=[],cur=null;
+    for(var h2=0;h2<24;h2++){
+      var ty=a[h2]||'';
+      if(cur&&cur[0]===ty){cur[2]=h2+1}
+      else{if(cur&&cur[0])segs.push(cur);cur=[ty,h2,h2+1]}
+    }
+    if(cur&&cur[0])segs.push(cur);
+    var m=[];
+    segs.forEach(function(sg){var l=m[m.length-1];if(l&&l[0]===sg[0]&&sg[1]-l[2]<=1)l[2]=sg[2];else m.push(sg)});
+    d.s=m.slice(0,6);
+  });
+}
 function wxFetch(force,cb){
   if(!W.on||!W.city||wxBusy||!window.fetch){if(cb)setTimeout(function(){cb(false)},0);return}
   if(!force&&W.ck===wxCk()&&Date.now()-W.ts<WX_TTL){if(cb)setTimeout(function(){cb(true)},0);return}
   wxBusy=true;var okf=false;
   var url='https://api.open-meteo.com/v1/forecast?latitude='+W.city.lat+'&longitude='+W.city.lon+
     '&current=temperature_2m,apparent_temperature,weather_code,wind_speed_10m'+
-    '&daily=weather_code,temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min,precipitation_probability_max,precipitation_sum,wind_speed_10m_max,uv_index_max,sunrise,sunset'+
+    '&hourly=weather_code,wind_gusts_10m&daily=weather_code,temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min,precipitation_probability_max,precipitation_sum,wind_speed_10m_max,uv_index_max,sunrise,sunset'+
     '&timezone=auto&past_days=14&forecast_days=16';
   var ck=wxCk(),ac=window.AbortController?new AbortController():null,tm=setTimeout(function(){if(ac)ac.abort()},12000);
   fetch(url,ac?{signal:ac.signal}:undefined).then(function(r){if(!r.ok)throw new Error('http '+r.status);return r.json()}).then(function(j){
@@ -2481,6 +2540,7 @@ function wxFetch(force,cb){
         p:num(d.precipitation_probability_max[i]),r:num(d.precipitation_sum[i]),w:num(d.wind_speed_10m_max[i]),u:num(d.uv_index_max[i]),
         sr:String(d.sunrise[i]||'').slice(11,16),ss:String(d.sunset[i]||'').slice(11,16)};
     }
+    wxHourly(j.hourly);
     var c=j.current;
     if(c&&num(c.temperature_2m)!==null)W.now={t:c.temperature_2m,c:num(c.weather_code),f:num(c.apparent_temperature),w:num(c.wind_speed_10m),at:Date.now()};
     W.ts=Date.now();W.ck=ck;wxSave();wxPaint();okf=true;
@@ -2553,6 +2613,24 @@ function wxTen(k0){
   p.appendChild(wxCredit());
   showSheet(p,true);
 }
+function wxSumEl(k,d){
+  if(!d||!Array.isArray(d.s))return null;
+  var nh=(k===dkey(today()))?new Date().getHours():-1;
+  var segs=d.s.filter(function(g){return g[2]>nh});
+  function hm(x){return (x<10?'0':'')+x+':00'}
+  var rows=[];
+  segs.slice(0,4).forEach(function(g){
+    var ty=g[0],a=g[1],b=g[2],when;
+    if(a===0&&b===24)when=T.wxSAll;
+    else if(b===24)when=S.lang==='tr'?hm(a)+' '+T.wxSAfter:T.wxSAfter+' '+hm(a);
+    else when=hm(a)+'–'+hm(b);
+    var ic=ty==='storm'?'storm':ty==='snow'?'snow':ty==='rain'?'rain':ty==='shw'?'rain':ty==='drz'?'drz':ty==='fog'?'fog':'cloud';
+    var wi=ty==='wind'?'<path d="M3 8h10a3 3 0 1 0-3-3M3 12h15a3 3 0 1 1-3 3M3 16h7"/>':null;
+    rows.push(h('div',{class:'wxsr'},[h('i',{html:wi?'<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+wi+'</svg>':wxIcon(ic,18)}),h('span',{class:'wxst',text:when}),h('b',{text:T.wxS[ty]})]));
+  });
+  if(!rows.length)rows.push(h('div',{class:'wxsr none'},[h('span',{text:T.wxSNone})]));
+  return h('div',{class:'wxsum'},rows);
+}
 function wxOpen(k){
   if(!W.city){wxPicker();return}
   wxFetch(false);
@@ -2574,6 +2652,7 @@ function wxOpen(k){
     tri('dn','<path d="M12 5v14M6 13l6 6 6-6"/>',T.wxLo,d.lo!=null?Math.round(d.lo)+'°':null);
     tri('fl','<path d="M14 14.8V5a2 2 0 0 0-4 0v9.8a4 4 0 1 0 4 0z"/>',T.wxFeel,feel);
     if(trio.length)p.appendChild(h('div',{class:'wxtrio'},trio));
+    var sm=wxSumEl(k,d);if(sm)p.appendChild(sm);
     var tiles=[];
     function tile(l,val){if(val!=null&&val!=='')tiles.push(h('div',{class:'wxtile'},[h('span',{text:l}),h('b',{text:val})]))}
     tile(T.wxRainP,d.p!=null?'%'+Math.round(d.p):null);
@@ -2584,7 +2663,7 @@ function wxOpen(k){
     if(tiles.length)p.appendChild(h('div',{class:'wxtiles'},tiles));
   }
   if(W.ts)p.appendChild(h('p',{class:'snote wxupd',text:T.wxUpd+' '+wxFmtTime(W.ts)}));
-  p.appendChild(h('div',{class:'sbtns'},[h('button',{class:'sbtn',type:'button',text:T.wxTen,onclick:function(){wxTen(k)}}),h('button',{class:'sbtn',type:'button',text:T.wxChange,onclick:function(){wxPicker()}})]));
+  p.appendChild(h('div',{class:'sbtns two'},[h('button',{class:'sbtn',type:'button',text:T.wxTen,onclick:function(){wxTen(k)}}),h('button',{class:'sbtn',type:'button',text:T.wxChange,onclick:function(){wxPicker()}})]));
   p.appendChild(wxCredit());
   showSheet(p,true);
 }
@@ -4903,13 +4982,14 @@ function openHelp(){
   var hseg=h('div',{class:'seg hseg',role:'tablist'});
   var G=function(d){return '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">'+d+'</svg>'};
   var HI=[
-    BOX,CAL_I,
+    BOX,BXS_I,CAL_I,
     G('<circle cx="12" cy="12" r="4"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6L7 7M17 17l1.4 1.4M5.6 18.4L7 17M17 7l1.4-1.4"/>'),
     G('<rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M8 14h8M8 17h8"/>'),
     G('<rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4M8.5 14h.01M12 14h.01M15.5 14h.01M8.5 17h.01M12 17h.01"/>'),
     G('<path d="M3 17l5-5 4 3 8-9"/><path d="M15 6h5v5"/>'),
     G('<path d="M12 4v16M8 8l4-4 4 4M8 16l4 4 4-4"/>'),
-    NOTE+PJ_W,
+    NOTE,
+    G('<path d="M9.5 19.5h8a3.3 3.3 0 0 0 .5-6.55 4.6 4.6 0 0 0-8.9 1.1A3 3 0 0 0 9.5 19.5z"/><circle cx="8.5" cy="8.5" r="2.8"/><path d="M8.5 2.6v1.2M2.6 8.5h1.2M4.3 4.3l.9.9M12.7 4.3l-.9.9"/>'),
     G('<path d="M7 18a4.5 4.5 0 0 1-.6-8.96A6 6 0 0 1 17.9 8.6 4.8 4.8 0 0 1 17 18z"/>')
   ];
   var cols=h('div',{class:'hcols'});
@@ -4930,8 +5010,6 @@ function openHelp(){
     var secs=htab===0?T.help:htab===1?T.helpPin:T.helpNb;
     secs.forEach(function(sec,i){
       var txt=sec[1],ic=htab===0?HI[i]:htab===1?HI_PIN[i]:HI_NB[i];
-      if(htab===0&&i===6)txt=txt.replace(', tekrar kur ya da bir projeye bağla',' ya da tekrar kur').replace(', set a repeat or attach it to a project',' or set a repeat');
-      if(htab===0&&i===7)txt=S.lang==='tr'?'Satırın sağındaki ikon not sayfasını açar: madde listesi ve serbest not alanı. Maddeleri tutup sürükleyerek sıralar, takvim ikonuyla tarih verirsin; tarihli madde o günün sayfasına da düşer.':'The icon at the right of a line opens its note page: a list of items plus a free note field. Hold an item to drag it into order, and give it a date with the calendar icon; a dated item also shows up on that day.';
       cols.appendChild(h('div',{class:'hx'},[
         h('h3',{class:'hsec'},[h('span',{class:'hic',html:ic||''}),h('span',{text:sec[0]})]),
         h('p',{class:'hp',html:txt})
@@ -4983,7 +5061,7 @@ function openArchive(tab){
   showSheet(p,true);
 }
 function openSettings(){
-  var p=h('div',{class:'panel',role:'dialog','aria-modal':'true'}),xb0=xBtn();
+  var p=h('div',{class:'panel sett',role:'dialog','aria-modal':'true'}),xb0=xBtn();
   var lbtn=h('button',{class:'lbtn',type:'button','aria-label':T.liteMode,title:T.liteMode,'aria-pressed':String(!!S.lite),text:'R',onclick:function(){setLite(!S.lite)}}),lsep=h('span',{class:'psepv','aria-hidden':'true'});
   p.appendChild(h('div',{class:'phead'},[h('div',{class:'sheet-title sicon',role:'img','aria-label':T.settings,html:SUNICON+'<span class="stxt"><span>'+T.brand[0]+'</span><span>'+T.brand[1]+'</span></span>'}),h('div',{class:'phg'},[xb0])]));
   if(SYNC_OK){
@@ -5003,7 +5081,7 @@ function openSettings(){
   var fe=document.documentElement,fsOK=!!(fe.requestFullscreen||fe.webkitRequestFullscreen);
   var fsNow=function(){return !!(document.fullscreenElement||document.webkitFullscreenElement)};
   var standaloneApp=(window.matchMedia&&matchMedia('(display-mode: standalone)').matches)||window.navigator.standalone===true;
-  var langRow=h('div',{class:'srow'},[h('div',{class:'seg'},[seg('tr','Türkçe'),seg('en','English')])]);
+  var langRow=h('div',{class:'srow'},[h('div',{class:'seg'},[seg('tr','TR'),seg('en','EN')])]);
   var icoBox=h('div',{class:'icobox'});langRow.appendChild(icoBox);
   var dark=isDark();
   icoBox.appendChild(h('button',{class:'fsbtn thm',type:'button','aria-label':dark?T.themeLight:T.themeDark,title:dark?T.themeLight:T.themeDark,html:dark?SUN_I:MOON_I,onclick:function(){
@@ -5309,7 +5387,7 @@ document.addEventListener('keydown',function(e){
 
 /* ---------- guided tours ---------- */
 var TOUR_SEL={
-  day:[null,['#page .lines'],['#page .row:not(.draft) .cb','#page .lines'],['#page .row:not(.draft) .notebtn.has','#page .row:not(.draft) .more','#page .lines'],['#page .quiet'],['#page .nav .ncenter'],['.tabs .bar'],['#pinBtn'],['#gear']],
+  day:[null,['#page .lines'],['#page .row:not(.draft) .cb','#page .lines'],['#page .row:not(.draft) .notebtn.has','#page .row:not(.draft) .more','#page .lines'],['#page .quiet'],['#page .nav .ncenter'],['#page .wxchip','#page .nav .ncenter'],['.tabs .bar'],['#pinBtn'],['#gear']],
   week:[['#page .nav .ncenter'],['#page .wweek'],['#page .wweek .row:not(.draft) .cb','#page .wweek .wday:not(.wfold)','#page .wweek'],['#page .quiet']],
   month:[['#page .nav .ncenter'],['#page .mgrid'],['#page .mcar','#page .mgrid'],['#page .mgrid .mday.sel','#page .mgrid'],['#page .quiet']],
   year:[['#page .nav .ncenter'],['#page .msec.now','#page .msec','#page .yframe'],['#page .msec .row:not(.draft) .cb','#page .msec.now','#page .msec'],['#page .quiet']],
@@ -5332,8 +5410,9 @@ var TOUR_IC={
   grid:'<rect x="4" y="4" width="16" height="16" rx="2"/><path d="M4 10h16M4 15h16M10 4v16M15 4v16"/>',
   drag:'<path d="M12 3v18M3 12h18M12 3l-3 3M12 3l3 3M12 21l-3-3M12 21l3-3M3 12l3-3M3 12l3 3M21 12l-3-3M21 12l-3 3"/>'
 };
+TOUR_IC.wx=WXI.part;
 var TOUR_ICO={
-  day:['book','pen','check','dots','sun','lr','layers','pit','gear'],
+  day:['book','pen','check','dots','sun','lr','wx','layers','pit','gear'],
   week:['cal','pen','drag','sun'],
   month:['cal','grid','pen','drag','sun'],
   year:['cal','grid','drag','sun'],
@@ -5832,6 +5911,167 @@ function setLite(v){
   box.addEventListener('touchcancel',function(){ok=false;back()},{passive:true});
 })();
 
+/* ---------- drag an inline checkbox part (box + its text) within a line, to another line, or to a new line ---------- */
+var BXEND=0;
+(function(){
+  var P=null,D=null,ghost=null,caret=null,raf=0,loop=0;
+  function parts(text){
+    var re=new RegExp(BX_RE.source,'g'),pos=[],m;text=String(text||'');
+    while((m=re.exec(text)))pos.push(m.index);
+    if(!pos.length)return {head:text,segs:[]};
+    var segs=[];for(var i=0;i<pos.length;i++)segs.push(text.slice(pos[i],i+1<pos.length?pos[i+1]:text.length));
+    return {head:text.slice(0,pos[0]),segs:segs};
+  }
+  function join(head,segs){
+    var out=[],hd=head.replace(/\s+$/,'');if(hd.trim())out.push(hd);
+    segs.forEach(function(g){g=g.trim();if(g)out.push(g)});
+    return out.join(' ');
+  }
+  function endPoint(view){
+    var r=document.createRange();r.selectNodeContents(view);
+    var rs=r.getClientRects(),vr=view.getBoundingClientRect();
+    if(!rs.length)return {x:vr.left+6,y1:vr.top,y2:vr.bottom};
+    var l=rs[rs.length-1];
+    return {x:Math.min(l.right+2,vr.right-4),y1:l.top,y2:l.bottom};
+  }
+  function pick(x,y){
+    var best=null,bd=1e9,els=document.querySelectorAll('.row,.qrow,.qfoot,.quiet.qempty');
+    for(var i=0;i<els.length;i++){
+      var el=els[i],r=el.getBoundingClientRect();
+      if(r.width<4||r.height<4||r.bottom<0||r.top>window.innerHeight)continue;
+      var dy=y<r.top?r.top-y:(y>r.bottom?y-r.bottom:0),dx=x<r.left?r.left-x:(x>r.right?x-r.right:0),d=dy+dx;
+      if(d<bd){bd=d;best=el}
+    }
+    if(!best||bd>26)return null;
+    if(!best._bxh){
+      var sec=best.closest('.quiet');if(!sec||!sec.dataset.layer)return null;
+      return {kind:'new',el:best,layer:sec.dataset.layer,key:sec.dataset.key};
+    }
+    var h0=best._bxh,txt=h0.get(),n=parts(txt).segs.length,view=h0.view,boxes=view.querySelectorAll('.ibx');
+    var t={kind:'row',el:best,bi:n,pt:null};
+    if(n>0&&boxes.length===n&&txt.trim()){
+      var bestD=1e12;
+      for(var j=0;j<=n;j++){
+        var pt;
+        if(j<n){var br=boxes[j].getBoundingClientRect();pt={x:br.left-3,y1:br.top,y2:br.bottom}}
+        else pt=endPoint(view);
+        var cy=(pt.y1+pt.y2)/2,dd=Math.pow(pt.x-x,2)+Math.pow((cy-y)*2,2);
+        if(dd<bestD){bestD=dd;t.bi=j;t.pt=pt}
+      }
+    }
+    return t;
+  }
+  function mark(){
+    document.querySelectorAll('.bxover').forEach(function(e){e.classList.remove('bxover')});
+    if(caret){caret.remove();caret=null}
+    var t=D&&D.tgt;if(!t)return;
+    if(t.kind==='row'&&t.pt){
+      caret=h('div',{class:'bxcaret'});
+      caret.style.left=(t.pt.x-1)+'px';caret.style.top=(t.pt.y1-1)+'px';caret.style.height=(t.pt.y2-t.pt.y1+2)+'px';
+      document.body.appendChild(caret);
+    }else t.el.classList.add('bxover');
+  }
+  function upd(){
+    raf=0;if(!D)return;
+    ghost.style.transform='translate('+(D.x+10)+'px,'+(D.y-(D.type==='mouse'?18:52))+'px)';
+    var t=pick(D.x,D.y),o=D.tgt;
+    if(!o&&!t){return}
+    if(!o||!t||o.el!==t.el||o.bi!==t.bi||o.kind!==t.kind){D.tgt=t;mark()}
+  }
+  function tick(){
+    loop=0;if(!D)return;
+    var v=D.y<80?-14:(D.y>window.innerHeight-80?14:0);
+    if(v){window.scrollBy(0,v);upd()}
+    loop=requestAnimationFrame(tick);
+  }
+  function begin(x,y){
+    if(!P)return;
+    clearTimeout(P.t);
+    var src=P.el,seg=parts(src._bxh.get()).segs[P.idx];
+    if(seg==null){P=null;return}
+    D={id:P.id,type:P.type,el:src,idx:P.idx,b:P.b,seg:seg,x:x,y:y,tgt:null};P=null;
+    try{var a=document.activeElement;if(a&&a.blur&&a!==document.body)a.blur()}catch(e){}
+    try{D.b.setPointerCapture(D.id)}catch(e){}
+    var on=/x/i.test(seg.slice(0,3)),label=seg.replace(/^\[[ xX]?\]\s*/,'').trim();
+    if(label.length>28)label=label.slice(0,27)+'…';
+    ghost=h('div',{class:'bxghost'},[h('span',{class:'ibx'+(on?' on':'')}),h('span',{text:label||'…'})]);
+    document.body.appendChild(ghost);
+    D.b.classList.add('bxlift');if(D.b.nextElementSibling&&D.b.nextElementSibling.classList.contains('ibl'))D.b.nextElementSibling.classList.add('bxlift');
+    document.body.classList.add('bxdrag');
+    try{if(navigator.vibrate)navigator.vibrate(12)}catch(e){}
+    upd();loop=requestAnimationFrame(tick);
+  }
+  function clean(){
+    if(ghost){ghost.remove();ghost=null}
+    if(caret){caret.remove();caret=null}
+    document.querySelectorAll('.bxover,.bxlift').forEach(function(e){e.classList.remove('bxover');e.classList.remove('bxlift')});
+    document.body.classList.remove('bxdrag');
+    if(D){try{D.b.releasePointerCapture(D.id)}catch(e){}}
+    cancelAnimationFrame(loop);loop=0;D=null;
+  }
+  function drop(){
+    var t=D.tgt,src=D.el,idx=D.idx;
+    if(!t)return false;
+    var sh=src._bxh,P0=parts(sh.get()),seg=P0.segs[idx];if(seg==null)return false;
+    var sg=seg.trim(),needRender=false;
+    if(t.kind==='row'&&t.el===src){
+      var segs=P0.segs.slice(),j=t.bi;segs.splice(idx,1);if(j>idx)j--;
+      if(j===idx)return false;
+      segs.splice(j,0,sg);sh.set(join(P0.head,segs));
+      return true;
+    }
+    var rest=P0.segs.slice();rest.splice(idx,1);
+    if(t.kind==='new'){addItem(t.layer,t.key,sg);needRender=true}
+    else{
+      var th=t.el._bxh,Q=parts(th.get()),ts=Q.segs.slice();ts.splice(t.bi,0,sg);
+      th.set(join(Q.head,ts));
+      if(t.el.classList.contains('qrow'))needRender=true;
+    }
+    sh.set(join(P0.head,rest));
+    if(src.classList.contains('qrow'))needRender=true;
+    if(needRender)render();
+    return true;
+  }
+  document.addEventListener('pointerdown',function(e){
+    if(D||P)return;
+    if(e.pointerType==='mouse'&&e.button!==0)return;
+    var b=e.target&&e.target.closest&&e.target.closest('.ibx');
+    if(!b||b.closest('.bxghost'))return;
+    var el=b.closest('.row,.qrow');if(!el||!el._bxh)return;
+    P={id:e.pointerId,type:e.pointerType,x:e.clientX,y:e.clientY,b:b,el:el,idx:parseInt(b.getAttribute('data-bi'),10)};
+    if(e.pointerType!=='mouse')P.t=setTimeout(function(){if(P)begin(P.x,P.y)},380);
+  },true);
+  document.addEventListener('pointermove',function(e){
+    if(D){
+      if(e.pointerId!==D.id)return;
+      e.preventDefault();D.x=e.clientX;D.y=e.clientY;
+      if(!raf)raf=requestAnimationFrame(upd);
+      return;
+    }
+    if(P&&e.pointerId===P.id){
+      var d=Math.hypot(e.clientX-P.x,e.clientY-P.y);
+      if(P.type==='mouse'){if(d>5)begin(e.clientX,e.clientY)}
+      else if(d>9){clearTimeout(P.t);P=null}
+    }
+  },true);
+  document.addEventListener('pointerup',function(e){
+    if(D&&e.pointerId===D.id){
+      D.x=e.clientX;D.y=e.clientY;upd();
+      try{drop()}catch(x){}
+      clean();BXEND=Date.now();e.preventDefault();return;
+    }
+    if(P&&e.pointerId===P.id){clearTimeout(P.t);P=null}
+  },true);
+  document.addEventListener('pointercancel',function(e){
+    if(D&&e.pointerId===D.id){clean();BXEND=Date.now()}
+    else if(P&&e.pointerId===P.id){clearTimeout(P.t);P=null}
+  },true);
+  document.addEventListener('touchmove',function(e){if(D&&e.cancelable)e.preventDefault()},{passive:false,capture:true});
+  document.addEventListener('contextmenu',function(e){if((P||D)&&e.target.closest&&e.target.closest('.ibx'))e.preventDefault()},true);
+  document.addEventListener('keydown',function(e){if(D&&e.key==='Escape'){clean();BXEND=Date.now()}});
+  document.addEventListener('click',function(e){if(Date.now()-BXEND<450){e.preventDefault();e.stopPropagation();e.stopImmediatePropagation()}},true);
+})();
+
 /* tapping an inline checkbox toggles it without opening the line for editing */
 document.addEventListener('click',function(e){
   var b=e.target&&e.target.closest&&e.target.closest('.ibx');if(!b)return;
@@ -5896,6 +6136,7 @@ if(document.fonts&&document.fonts.ready)document.fonts.ready.then(function(){fit
 window.addEventListener('resize',function(){fitAll();fitTitle()});
 
 if(!S.seeded){S.seeded=true;persist()}
+(function(){try{var d=document.createElement('div');d.style.cssText='position:absolute;top:-999px;left:0;width:100px;height:100px;overflow:scroll;visibility:hidden';document.body.appendChild(d);var w=d.offsetWidth-d.clientWidth;d.remove();document.documentElement.style.setProperty('--sbw',Math.max(0,w)+'px')}catch(e){}})();
 document.getElementById('gear').setAttribute('aria-label',T.settings);
 document.getElementById('pinBtn').setAttribute('aria-label',T.pins);
 buildTabs();render();
