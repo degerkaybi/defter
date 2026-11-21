@@ -961,6 +961,7 @@ select option:disabled{color:var(--ink-faint)}
 .dhead[aria-expanded="true"]::after{transform:rotate(-135deg);margin-top:3px}
 .dbody{padding-bottom:2px}
 .slabel{font:600 12px/1 var(--sans);letter-spacing:.02em;color:var(--blue);padding:16px 4px 6px;border-top:1px solid var(--rule)}
+.slrow{display:flex;flex-wrap:wrap;gap:6px 22px;align-items:baseline}
 .sfh b{color:var(--ink);font-weight:600}
 .sfrow{display:flex;align-items:center;gap:12px;padding:9px 0;border-top:1px solid var(--rule)}
 .sft{flex:1 1 auto;min-width:0;font:13px/1.35 var(--sans);color:var(--ink-soft)}.sft .sfa{color:var(--ink);font-size:14px}
@@ -1250,7 +1251,7 @@ var TX={
     conflictTitle:'İki defter farklı',conflictText:'Bu cihazda ve Drive’da farklı değişiklikler var. Nasıl devam edelim?',onThis:'Bu cihazda',onDrive:'Drive’da',lines:'satır',
     merge:'Birleştirin, ikisini de tutun',takeRemote:'Drive’dakini alın',takeLocal:'Bu cihazdakini gönderin',
     about:'Hakkında',
-    aboutIntro:'Yarın Defteri, zamanı ve günleri daha iyi algılamak ve yönetebilmek için ortaya çıktı.\nGün, hafta, ay, yıl ve 10 yıl, aynı işe farklı ölçeklerden bakmanızı sağlayan birbirine bağlı görünümlerdir; böylece bugünü daha geniş bir zaman bağlamında görürsünüz. Her işin bir güne sığması gerekmez; ne zaman yapacağını bilmediğiniz görevleri uygun zaman aralığına (\u201cbu hafta\u201d, \u201cbu ay\u201d, \u201cbu yıl\u201d) bırakıp vakti gelince bir güne taşıyabilirsiniz. Böylece işleri tek güne sıkıştırmak yerine zamana yayar, yetişemediklerinizi ertelersiniz.\nSürükleme bu işin kalbidir: görevi tutup farklı bir zamana ya da alttaki bir görünüme bırakarak ilgili tarihe taşıyabilir ya da defter ikonuna bırakıp arşivleyebilirsiniz. Benzer şekilde, Zamansız Notlar\u2019daki notları da sürükleyerek sekmelere veya çöpe taşıyabilirsiniz.\nBir zamanı olmayan notlar için post-it ve Zamansız Notlar var; fikirler, hatırlanacaklar ve kenara koyduğunuzuz işler orada bekler.',
+    aboutIntro:'Yarın Defteri, zamanı ve günleri daha iyi algılamak ve yönetebilmek için ortaya çıktı. Dağınık dikkat deneyimi olanlar bilir, gözünün önünde olmayan şey yok gibidir.\nBu yüzden Yarın Defteri\u2019nde bir girdiyi hem bir gün içinden, hem hafta, hem ay, hem de yıl ya da yıllar içinden görebilirsiniz. Böylece unutmazsınız. Ve kolayca erteleyebileceğiniz için stres de yaratmaz.\nGün, hafta, ay, yıl ve 10 yıl, aynı işe farklı ölçeklerden bakmanızı sağlayan birbirine bağlı görünümlerdir; böylece bugünü daha geniş bir zaman bağlamında görürsünüz. Her işin bir güne sığması gerekmez; ne zaman yapacağını bilmediğiniz görevleri uygun zaman aralığına (\u201cbu hafta\u201d, \u201cbu ay\u201d, \u201cbu yıl\u201d) bırakıp vakti gelince bir güne taşıyabilirsiniz. Böylece işleri tek güne sıkıştırmak yerine zamana yayar, yetişemediklerinizi ertelersiniz.\nSürükleme bu işin kalbidir: görevi tutup farklı bir zamana ya da alttaki bir görünüme bırakarak ilgili tarihe taşıyabilir ya da defter ikonuna bırakıp arşivleyebilirsiniz. Benzer şekilde, Zamansız Notlar\u2019daki notları da sürükleyerek sekmelere veya çöpe taşıyabilirsiniz.\nBir zamanı olmayan notlar için post-it ve Zamansız Notlar var; fikirler, hatırlanacaklar ve kenara koyduğunuzuz işler orada bekler.',
     howTitle:'Nasıl kullanılır',backExit:'Çıkmak için bir kez daha geri basın',advTitle:'Beta',selbarOn:'Biçim çubuğu: açık',selbarOff:'Biçim çubuğu: kapalı',liteGo:'Rafine moda geçin',liteOff:'Normal moda dönün',
     helpIntro:'Yarın Defteri, kâğıt defterin boş bıraktığı yerleri tamamlamak için yapıldı: yazın, işaretleyin, yetişmeyeni yarına bırakın. Gün, hafta, ay, yıl ve 10 yıl sayfaları birbirine bağlıdır; hepsinde hem liste hem takvim gibi planlayabilirsiniz. Tarihi belli olmayan işi \u201cbu hafta\u201d ya da \u201cbu ay içinde\u201d diye yazarsınız; kâğıt parçası gibi kullan-at notlar için post-it, kalıcı fikirler için Zamansız Notlar var.',
     helpTabs:['Yarın Defteri','Post-it','Zamansız Notlar'],
@@ -1271,10 +1272,10 @@ var TX={
       ['Arşiv: kenara konan görevler','Bir görevi sayfadan tutup alttaki defter simgesine bırakırsanız ya da satır menüsündeki <b>saat ikonuna</b> basarsanız <b>Arşiv</b> sekmesine gider; alt maddeleri ve notuyla birlikte bekler. Arşivdeki bir satırın yazısına ya da not ikonuna dokunarak notunu açar, düzenlersiniz; kilitli değildir. Aynı liste Ayarlar\u2019daki <b>Arşiv</b> düğmesinde de açılır. Sayaç yoktur. İstediğinizde <b>Geri koyun</b> düğmesiyle bugüne ya da başka bir sayfaya döndürürsünüz.']
     ],
     
-    tourNext:'İleri',tourBack:'Geri',tourSkip:'Atlayın',tourDone:'Bitti',tourAgain:'Turu yeniden gösterin',tourMore:'Detaylı bir tura çıkın',liteMode:'Rafine mod',tourOf:'{n} / {m}',
+    tourNext:'İleri',tourBack:'Geri',tourSkip:'Atlayın',tourDone:'Bitti',tourAgain:'Turu yeniden gösterin',tourMore:'Tura başlayın',liteMode:'Rafine mod',tourOf:'{n} / {m}',
     tour:{
       day:[
-        ['Yarın Defterine hoş geldiniz','Aynı işe gün, hafta, ay, yıl ve 10 yıl görünümlerinden bakabilirsiniz. İstediğiniz kadar erteleyebilirsiniz, ama gözünüzden kaçmaz, unutmazsınız. Özgürce erteleyin, bir gün elbet yapacaksınız.\nKısa bir turla nasıl çalıştığına bakalım, İleri’ye dokunun. Bu turu istediğiniz zaman Ayarlar’daki “Detaylı bir tura çıkın” bağlantısından yeniden açıp pratik yapabilirsiniz.'],
+        ['Yarın Defterine hoş geldiniz','Aynı işe gün, hafta, ay, yıl ve 10 yıl görünümlerinden bakabilirsiniz. İstediğiniz kadar erteleyebilirsiniz, ama gözünüzden kaçmaz, unutmazsınız. Özgürce erteleyin, bir gün elbet yapacaksınız.\nKısa bir turla nasıl çalıştığına bakalım, İleri’ye dokunun. Bu turu istediğiniz zaman Ayarlar’daki “Tura başlayın” bağlantısından yeniden açıp pratik yapabilirsiniz.'],
         ['Yazın','Bir satıra dokunun ve yazın. Enter yeni satır açar. \nBoş bir satırda Backspace satırı siler.'],
         ['Tamamlayın, sürükleyin, taşıyın','Kutucuğa dokunun: iş tamam. Kutucuğu basılı tutup sürükleyin (bilgisayarda tıklayıp sürükleyin).\nTarihin yanında çıkan {lr} oklara bırakırsanız bir gün ertelenir. Alttaki Hafta, Ay, Yıl görünümlerine bırakırsanız iş o görünüme taşınır. En sağdaki Zamansız Notlar {nb} simgesine bırakırsanız nota dönüşür.'],
         ['Üç nokta','Üç noktaya {dots} dokunun, yazdığınız satırı detaylandırın.\nNota ayrıntı yazın, tarih ve saat verin, tekrar kurun, bağlantı ekleyin ya da silin.\nNot alınan satırlarda simge değişir: üç nokta yerine {note} not simgesi görünür.'],
@@ -1283,7 +1284,7 @@ var TX={
         ['Hava durumu','Tarihin yanındaki küçük bulut ikonuna dokunun ve şehrinizi seçin. Günün sıcaklığı yanında görünür; dokununca saat saat yağış özeti ve 10 günlük tahmin açılır.\nİsterseniz Ayarlar’dan kapatırsınız.'],
         ['Görünümler','Gün, Hafta, Ay, Yıl, 10 Yıl: aynı işe farklı ölçeklerden bakarsınız. En sağdaki {nb} simgesi Zamansız Notlar.\nBurası zamansız bir defter gibi çalışır.'],
         ['Post-it','Kısa, hızlı notlar için. Kartları sağa sola kaydırarak değiştirirsiniz.\nBir kartı göreve taşıyabilirsiniz.'],
-        ['Ayarlar','Tema, dil (TR / EN), yazı boyutu, hava durumu, yedek ve senkron burada.\nTuru, Hakkında bölümündeki “Detaylı bir tura çıkın” bağlantısından istediğiniz zaman yeniden açabilirsiniz.']
+        ['Ayarlar','Tema, dil (TR / EN), yazı boyutu, hava durumu, yedek ve senkron burada.\nTuru, Hakkında bölümündeki “Tura başlayın” bağlantısından istediğiniz zaman yeniden açabilirsiniz.']
       ],
       week:[
         ['Hafta','Haftanın yedi günü alt alta. Oklara dokunun ya da sayfayı sağa sola kaydırın: haftalar arasında gezersiniz.'],
@@ -1338,7 +1339,7 @@ var TX={
       ['Hava durumu','Tarihin yanındaki küçük bulut ikonuna dokunun ve bir kez şehrinizi seçin (ya da konumunuzu kullanın). Günün sıcaklığı tarihin yanında görünür; dokununca o günün özeti açılır: saat saat yağmur, kar ya da fırtına aralıkları, en yüksek, en düşük ve hissedilen sıcaklık, yağış, rüzgâr, UV, gün doğumu ve batımı. <b>10 günlük tahmin</b> yeni bir sayfa açar, geri okuyla özete dönersiniz; yenile düğmesi tahmini günceller. Hafta sayfasında günlerin altında da görünür. Ayarlar’daki <b>Hava durumu</b> bölümünden kapatır ya da şehri değiştirirsiniz. Veri Open-Meteo’dan gelir; yalnızca şehrin koordinatı gönderilir, notlarınız hiçbir yere gitmez.'],
       ['Ayarlar','Ayarlar\u2019dan dili (TR ya da EN), açık ya da koyu temayı, yazı tipini ve boyutunu seçersiniz. <b>Yedek</b> defterinizi dosya olarak kaydeder, kopyalar ya da geri yükler; ayrıca bu cihazdaki veri üzerine yazılmadan önce otomatik saklanan son 4 kopya da burada durur, tek dokunuşla geri yüklersiniz. <b>Arşiv</b> arşivlediğiniz ve sildiğiniz satırları geri koyar (silinenler 30 gün durur); Göz ikonu (tema ve tam ekran düğmelerinin yanında) üstü çizili satırları saklar. <b>Senkron</b> ile Google hesabınıza bağlanıp aynı defteri telefonunuzda ve bilgisayarınızda kullanırsınız; defter Drive\u2019ınızda yalnızca bu uygulamanın görebildiği gizli bir alanda durur, değişiklikleriniz kendiliğinden gider. İki cihazda farklı değişiklik olursa <b>Birleştirin</b> ikisini de tutar; Drive\u2019dan veri geldiğinde çıkan <b>geri alın</b> ile eski haline dönebilirsiniz. Gönderilmesi gereken bir değişiklik varsa Ayarlar simgesinde küçük bir mavi nokta belirir; Senkron bölümünden <b>Senkronize edin</b> demeniz yeterli.']
     ],
-    credit:['Verimlilik için ',' tarafından tasarlandı, Claude ile birlikte geliştirildi.'],
+    credit:['Verimli, düzenli ve organize olmuş günler için ',' tarafından tasarlandı, Claude ile birlikte geliştirildi.'],
     wxTen:'10 günlük tahmin',wxTenTitle:'10 günlük',wxBack:'Geri',wxRefresh:'Güncelleyin',wxRefFail:'Güncellenemedi, bağlantıyı kontrol edin.',wxTitle:'Hava durumu',wxSet:'Hava durumu için şehir seçin',wxOnL:'Açık',wxOffL:'Kapalı',wxCityL:'Şehir',wxNoCity:'Henüz şehir seçilmedi.',wxPickBtn:'Şehir seçin',wxChange:'Şehri değiştirin',
     wxPickTitle:'Şehir',wxPickNote:'Yalnızca şehrin koordinatı hava servisine gider; notlarınız hiçbir yere gitmez.',wxPh:'Şehir adı',wxFind:'Arayın',wxSearching:'Aranıyor…',wxNoRes:'Sonuç bulunamadı.',wxErr:'Arama yapılamadı, bağlantıyı kontrol edin.',
     wxHere:'Konumumu kullanın',wxHereName:'Konumum',wxLocating:'Konum alınıyor…',wxLocFail:'Konum alınamadı. Şehir adını yazıp “Arayın” düğmesine basabilirsiniz.',wxLocDenied:'Konum izni verilmedi. Tarayıcı ayarlarından izin verebilir ya da şehir adını yazıp “Arayın” düğmesine basabilirsiniz.',wxShort:'En az 2 harf yazın.',wxPrev:'Bu önizlemede dış bağlantılar kapalı; hava durumu yalnızca kendi sitenizde (GitHub Pages) çalışır.',wxSaved:'Şehir kaydedildi',wxNone:'Bu gün için hava verisi yok.',wxNow:'şimdi',wxUpd:'Son güncelleme',
@@ -1375,7 +1376,7 @@ var TX={
     conflictTitle:'The two notebooks differ',conflictText:'This device and Drive both have different changes. How should we continue?',onThis:'On this device',onDrive:'In Drive',lines:'lines',
     merge:'Merge, keep both',takeRemote:'Use the one in Drive',takeLocal:'Send this device’s',
     about:'About',
-    aboutIntro:'Yarın Defteri (Tomorrow\u2019s Notebook) came about to perceive and manage time and days better.\nThe day, week, month, year and 10-year pages are connected views of the same work: you look at the same task at different scales and see today in a wider context of time. Not every task has to fit into a day; tasks you don\u2019t know when to do can wait in a suitable stretch of time (\u201cthis week\u201d, \u201cthis month\u201d, \u201cthis year\u201d) and move to a day when their time comes. That way you spread work across time instead of squeezing it into one day, and you postpone what you couldn\u2019t get to.\nDragging is the heart of it: hold a task and drop it on another time or on a view below to move it to that date, or drop it on the notebook icon to archive it. In the same way, you can drag notes in Timeless Notes onto tabs or the trash.\nFor notes that have no time attached there are post-its and Timeless Notes; ideas, things to remember and tasks you set aside wait there.',
+    aboutIntro:'Yarın Defteri (Tomorrow\u2019s Notebook) came about to perceive and manage time and days better. If you know what scattered attention is like, you know that what is out of sight might as well not exist.\nThat is why, in Yarın Defteri, you can see one entry from within a day, a week, a month, and a year or several years. So you don\u2019t forget it. And because you can postpone it easily, it doesn\u2019t create stress.\nThe day, week, month, year and 10-year pages are connected views of the same work: you look at the same task at different scales and see today in a wider context of time. Not every task has to fit into a day; tasks you don\u2019t know when to do can wait in a suitable stretch of time (\u201cthis week\u201d, \u201cthis month\u201d, \u201cthis year\u201d) and move to a day when their time comes. That way you spread work across time instead of squeezing it into one day, and you postpone what you couldn\u2019t get to.\nDragging is the heart of it: hold a task and drop it on another time or on a view below to move it to that date, or drop it on the notebook icon to archive it. In the same way, you can drag notes in Timeless Notes onto tabs or the trash.\nFor notes that have no time attached there are post-its and Timeless Notes; ideas, things to remember and tasks you set aside wait there.',
     howTitle:'How to use',backExit:'Press back again to exit',advTitle:'Beta',selbarOn:'Format bar: on',selbarOff:'Format bar: off',liteGo:'Switch to Refined mode',liteOff:'Back to the normal mode',
     helpIntro:'Tomorrow\u2019s Notebook was made to fill the gaps a paper notebook leaves: write, tick things off, and leave what did not fit for tomorrow. The day, week, month, year and 10-year pages are connected, and on all of them you can plan like in a list and a calendar at once. An item with no date can be noted as \u201csometime this week\u201d or \u201cthis month\u201d; there are post-its for throwaway notes, Timeless Notes for ideas you want to keep.',
     helpTabs:['Notebook','Post-it','Timeless Notes'],
@@ -1396,10 +1397,10 @@ var TX={
       ['Archive: tasks set aside','Hold a task and drop it on the notebook icon at the bottom, or tap the <b>clock icon</b> in its menu, and it goes to the <b>Archive</b> tab, waiting with its sub-items and note. Tap an archived line\u2019s text or its note icon to open and edit its note; nothing is locked. The same list opens from <b>Archive</b> in Settings. There is no counter. <b>Put back</b> returns it to today or any other page when you want.']
     ],
     
-    tourNext:'Next',tourBack:'Back',tourSkip:'Skip',tourDone:'Done',tourAgain:'Show the tour again',tourMore:'Take a detailed tour',liteMode:'Refined mode',tourOf:'{n} / {m}',
+    tourNext:'Next',tourBack:'Back',tourSkip:'Skip',tourDone:'Done',tourAgain:'Show the tour again',tourMore:'Start the tour',liteMode:'Refined mode',tourOf:'{n} / {m}',
     tour:{
       day:[
-        ['Welcome to Yarın Defteri','You can look at the same task from day, week, month, year and 10-year views. Postpone as much as you like, it won\u2019t slip out of sight and you won\u2019t forget. Postpone freely, you\u2019ll get to it one day. \nA short tour shows how it works, tap Next. You can reopen this tour any time from \u201cTake a detailed tour\u201d in Settings and practise.'],
+        ['Welcome to Yarın Defteri','You can look at the same task from day, week, month, year and 10-year views. Postpone as much as you like, it won\u2019t slip out of sight and you won\u2019t forget. Postpone freely, you\u2019ll get to it one day. \nA short tour shows how it works, tap Next. You can reopen this tour any time from \u201cStart the tour\u201d in Settings and practise.'],
         ['Write','Tap a line and write. Enter opens a new line. \nBackspace on an empty line removes it.'],
         ['Done, drag, move','Tap the box: task done. Press and hold the box, then drag (on a computer, click and drag).\nDrop on the arrows next to the date {lr} to postpone by a day. Drop on the Week, Month or Year view below to move it there. Drop on the Timeless Notes {nb} icon at the far right to turn it into a note.'],
         ['Three dots','Tap the three dots {dots} to detail the line you wrote.\nAdd a note, give a date and time, set a repeat, attach a link or delete.\nOn lines with a note the icon changes: a {note} note icon appears instead of the three dots.'],
@@ -1408,7 +1409,7 @@ var TX={
         ['Weather','Tap the small cloud next to the date and pick your city. The day\u2019s temperature shows beside it; tapping it opens an hour-by-hour rain summary and a 10-day forecast.\nYou can turn it off in Settings.'],
         ['Views','Day, Week, Month, Year, 10 Yr: look at the same work at different scales. The {nb} icon at the far right is Timeless Notes.\nIt works like a timeless notebook.'],
         ['Sticky notes','For quick, short notes. Swipe the cards left and right to switch.\nA card can move to a task.'],
-        ['Settings','Theme, language (TR / EN), text size, weather, backup and sync are here.\nYou can open this tour again any time from \u201cTake a detailed tour\u201d in the About section.']
+        ['Settings','Theme, language (TR / EN), text size, weather, backup and sync are here.\nYou can open this tour again any time from \u201cStart the tour\u201d in the About section.']
       ],
       week:[
         ['Week','The seven days of the week, one under another. Tap the arrows or swipe the main area to move between weeks.'],
@@ -1463,7 +1464,7 @@ var TX={
       ['Weather','Tap the small cloud icon next to the date and pick your city once (or use your location). The day\u2019s temperature shows beside the date; tapping it opens that day\u2019s summary: hour-by-hour spans of rain, snow or storm, the high, low and feels-like temperature, rain, wind, UV, sunrise and sunset. <b>10-day forecast</b> opens a new page, and the back arrow returns to the summary; the refresh button updates the forecast. It also shows under the days on the week page. In Settings, <b>Weather</b> turns it off or changes the city. The data comes from Open-Meteo; only the city\u2019s coordinates are sent, your notes never leave your device.'],
       ['Settings','In Settings you choose the language (TR or EN), light or dark theme, font and text size. <b>Backup</b> saves your notebook as a file, copies it or restores it; the last 4 copies kept automatically before this device\u2019s data can be overwritten also live there, and you restore one with a tap. <b>Archive</b> brings back lines you archived or deleted (deleted ones stay for 30 days); The eye icon (next to the theme and full-screen buttons) tucks away crossed-out lines. With <b>Sync</b> you connect your Google account and use the same notebook on your phone and computer; it lives in a hidden area of your Drive that only this app can see, and changes are sent automatically. If both devices changed things, <b>Merge</b> keeps both; after data arrives from Drive, <b>undo</b> takes you back. When something still needs sending, a small blue dot appears on the Settings icon; tap <b>Sync now</b> in the Sync section.']
     ],
-    credit:['Designed for productivity by ',', built together with Claude.'],
+    credit:['Designed for productive, orderly and organized days by ',', built together with Claude.'],
     wxTen:'10-day forecast',wxTenTitle:'10 days',wxBack:'Back',wxRefresh:'Refresh',wxRefFail:'Could not refresh, check your connection.',wxTitle:'Weather',wxSet:'Choose a city for weather',wxOnL:'On',wxOffL:'Off',wxCityL:'City',wxNoCity:'No city chosen yet.',wxPickBtn:'Choose a city',wxChange:'Change city',
     wxPickTitle:'City',wxPickNote:'Only the city coordinates are sent to the weather service; your notes never leave this device.',wxPh:'City name',wxFind:'Search',wxSearching:'Searching…',wxNoRes:'No results.',wxErr:'Search failed, check your connection.',
     wxHere:'Use my location',wxHereName:'My location',wxLocating:'Getting location…',wxLocFail:'Could not get location. You can type a city name and press Search.',wxLocDenied:'Location permission was denied. Allow it in the browser settings, or type a city name and press Search.',wxShort:'Type at least 2 letters.',wxPrev:'External connections are blocked in this preview; weather only works on your own site (GitHub Pages).',wxSaved:'City saved',wxNone:'No weather data for this day.',wxNow:'now',wxUpd:'Last updated',
@@ -5179,7 +5180,6 @@ function openSettings(){
       ]));
     });
   }
-  if(typeof syncDrawer!=='undefined'&&syncDrawer)p.appendChild(syncDrawer);
   var wk=[];
   function segW(on,name){return h('button',{type:'button',text:name,'aria-pressed':String(W.on===on),onclick:function(){if(W.on!==on){W.on=on;wxSave();render();openSettings();if(on)wxFetch(false)}}})}
   wk.push(h('div',{class:'seg wxseg'},[segW(true,T.wxOnL),segW(false,T.wxOffL)]));
@@ -5188,18 +5188,23 @@ function openSettings(){
     wk.push(h('div',{class:'sbtns'},[h('button',{class:'sbtn',type:'button',text:W.city?T.wxChange:T.wxPickBtn,onclick:function(){wxPicker()}})]));
   }
   wk.push(wxCredit());
-  p.appendChild(drawer('wx',T.wxTitle,wk));
-  p.appendChild(drawer('backup',T.backup,bk));
   p.appendChild(h('div',{class:'slabel',text:T.about}));
   T.aboutIntro.split('\n').forEach(function(t,n){
     p.appendChild(h('p',{class:'snote',text:t}));
-    if(n===0&&!S.lite)p.appendChild(h('p',{class:'snote slinks'},[h('button',{class:'slink',type:'button',onclick:function(){var k=view;closeSheet();setTimeout(function(){tourStart(k)},260)}},[T.tourMore+' \u203a'])]));
+    if(n===1){
+      var lk=[];
+      if(!S.lite)lk.push(h('button',{class:'slink',type:'button',onclick:function(){var k=view;closeSheet();setTimeout(function(){tourStart(k)},260)}},[T.tourMore+' \u203a']));
+      lk.push(h('button',{class:'slink',type:'button',onclick:openHelp,text:T.howTitle+' \u203a'}));
+      p.appendChild(h('p',{class:'snote slinks slrow'},lk));
+    }
   });
-  p.appendChild(h('p',{class:'snote slinks'},[h('button',{class:'slink',type:'button',onclick:openHelp,text:T.howTitle})]));
   var sbSw=h('button',{class:'slink',type:'button',role:'switch','aria-checked':String(S.selbar!==false),onclick:function(){
     S.selbar=!(S.selbar!==false);persist();sbHide();
     sbSw.textContent=(S.selbar?T.selbarOn:T.selbarOff);sbSw.setAttribute('aria-checked',String(S.selbar));
   }});sbSw.textContent=(S.selbar!==false?T.selbarOn:T.selbarOff);
+  if(typeof syncDrawer!=='undefined'&&syncDrawer)p.appendChild(syncDrawer);
+  p.appendChild(drawer('wx',T.wxTitle,wk));
+  p.appendChild(drawer('backup',T.backup,bk));
   p.appendChild(drawer('adv',T.advTitle,[
     h('p',{class:'snote slinks'},[h('button',{class:'slink',type:'button',onclick:function(){setLite(!S.lite)}},[(S.lite?T.liteOff:T.liteGo)+' \u203a'])]),
     h('p',{class:'snote slinks'},[sbSw])
