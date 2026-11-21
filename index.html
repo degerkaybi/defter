@@ -961,6 +961,10 @@ select option:disabled{color:var(--ink-faint)}
 .dhead[aria-expanded="true"]::after{transform:rotate(-135deg);margin-top:3px}
 .dbody{padding-bottom:2px}
 .slabel{font:600 12px/1 var(--sans);letter-spacing:.02em;color:var(--blue);padding:16px 4px 6px;border-top:1px solid var(--rule)}
+.sfh b{color:var(--ink);font-weight:600}
+.sfrow{display:flex;align-items:center;gap:12px;padding:9px 0;border-top:1px solid var(--rule)}
+.sft{flex:1 1 auto;min-width:0;font:13px/1.35 var(--sans);color:var(--ink-soft)}.sft .sfa{color:var(--ink);font-size:14px}
+.sfrow .sbtn{flex:none;white-space:nowrap}
 .srow2{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:10px 4px;border-top:1px solid var(--rule)}
 .srow>span{white-space:nowrap}
 .srow .seg button{padding:8px 14px;font-size:13px;min-width:44px}
@@ -5166,11 +5170,11 @@ function openSettings(){
   rbox.appendChild(ta);rbox.appendChild(h('div',{class:'sbtns'},[rb]));bk.push(rbox);
   var sl=safeList();
   if(sl.length){
-    bk.push(h('p',{class:'snote',text:T.safeTitle+' — '+T.safeNote}));
+    bk.push(h('p',{class:'snote sfh'},[h('b',{text:T.safeTitle}),h('br'),document.createTextNode(T.safeNote)]));
     sl.forEach(function(e,i){
       var d=e.d||{},n1=(d.items||[]).length,n2=d.nb&&d.nb.notes?d.nb.notes.length:0;
-      bk.push(h('div',{class:'sbtns two'},[
-        h('p',{class:'snote',text:fmtTime(e.at)+' · '+(T.safeWhy[e.why]||e.why)+' · '+n1+' '+T.lines+', '+n2+' '+T.nbN}),
+      bk.push(h('div',{class:'sfrow'},[
+        h('div',{class:'sft'},[h('div',{class:'sfa',text:fmtTime(e.at)+' · '+(T.safeWhy[e.why]||e.why)}),h('div',{text:n1+' '+T.lines+', '+n2+' '+T.nbN})]),
         h('button',{class:'sbtn',type:'button',text:T.safeGo,onclick:function(){safeRestore(i)}})
       ]));
     });
